@@ -75,7 +75,7 @@ For each stop:
 
 - `stop_id` (stable unique id)
 - `stop_name`
-- `latitude`, `longitude` (WGS84)
+- `latitude`, `longitude`
 - `locality/zone` (Noida/Gurgaon/Dwarka/etc., optional)
 - `active` (boolean)
 - Notes:

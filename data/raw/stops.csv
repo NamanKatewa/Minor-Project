@@ -1,0 +1,682 @@
+stop_id                     , stop_name                           , latitude          , longitude        , locality          , zone                , active
+STOP_DEL_MADHUBAN_001       , Madhuban Chowk                      , 28.70353859005168 , 77.13097067985892, Pitampura         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_DEEPALI_002        , Deepali Chowk                       , 28.697654769351107, 77.11868707467086, Pitampura         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_WESTENCL_003       , West Enclave (Police Line)          , 28.693620180315172, 77.1035158049367 , Pitampura         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_MANGOL_004         , Mangolpuri                          , 28.687069384053302, 77.09608522800164, Mangolpuri        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_PEERA_005          , Peera Garhi                         , 28.679699375012493, 77.09462992857657, Peera Garhi       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_BHERA_006          , Bhera Enclave                       , 28.67096188911731 , 77.09340596681261, Paschim Vihar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_MEERA_007          , Meera Bagh Red Light                , 28.660271184544747, 77.09154168668987, Paschim Vihar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_KESHO_008          , Kesho Pur                           , 28.646800532476192, 77.08473343303619, Vikas Puri        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_VIKAS_009          , Vikaspuri Mor                       , 28.6265666509265  , 77.07016405503309, Vikas Puri        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SHASTRI_010        , Shastri Nagar Metro                 , 28.66995890151815 , 77.1818167488349 , Shastri Nagar     , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_INDERLOK_011       , Inderlok Metro                      , 28.6739383797919  , 77.16885061723357, Inderlok          , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_KANAHAIYA_012      , Kanahaiya Nagar Metro               , 28.68319175706812 , 77.16427559381465, Tri Nagar         , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_KESHAV_013         , Keshav Puram Metro                  , 28.689507585686187, 77.16121819473592, Keshav Puram      , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_SHALIMAR_014       , Shalimar Bagh/Richi Rich            , 28.693781236778808, 77.15928176196877, Shalimar Bagh     , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_WAZIRPUR_015       , Wazirpur Depot/NSP                  , 28.694844728532807, 77.15500092786252, Wazirpur          , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_BRITANIA_016       , Britania Chowk                      , 28.683561400379975, 77.14712750858466, Shakurpur         , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_PUNJABI_017        , Punjabi Bagh Gol Chakkar            , 28.673719500243696, 77.14035361985547, Punjabi Bagh      , DELHI_NCR_WEST      , TRUE
+STOP_DEL_BHARAT_018         , Bharat Darshan Park                 , 28.666993486604948, 77.1352030342259 , Punjabi Bagh      , DELHI_NCR_WEST      , TRUE
+STOP_DEL_RAJDHANI_019       , Rajdhani College                    , 28.655068035253088, 77.12559489967629, Raja Garden       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_RAJOURI_020        , Rajouri Garden Footover Bridge      , 28.64663029126297 , 77.12658328145659, Rajouri Garden    , DELHI_NCR_WEST      , TRUE
+STOP_DEL_DHAULA_021         , Dhaula Kuan                         , 28.599269804553344, 77.16256125564085, Dhaula Kuan       , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_RITHALA_022        , Rithala Metro                       ,                   ,                  , Rohini            , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_ROHINI_W_023       , Rohini West Metro                   ,                   ,                  , Rohini            , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_ROHINI_E_024       , Rohini East Metro                   ,                   ,                  , Rohini            , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_PITAMPURA_025      , Pitampura Metro                     ,                   ,                  , Pitampura         , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_KOHAT_026          , Kohat Enclave Metro                 ,                   ,                  , Pitampura         , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_NARAINA_027        , Naraina                             ,                   ,                  , Naraina           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_CANTT_028          , Delhi Cantt Metro/Ring Road         ,                   ,                  , Delhi Cantt       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_ESI_029            , ESI Hospital                        ,                   ,                  , Basai Darapur     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_RAJOURI_RL_030     , Rajouri Garden Red Light            ,                   ,                  , Rajouri Garden    , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NARAINA_KM_031     , Naraina Kali Mandir                 ,                   ,                  , Naraina           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NARAINA_MANDI_032  , Naraina Mandi                       ,                   ,                  , Naraina           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_CRPF_033           , CRPF Camp                           ,                   ,                  , Jharoda Kalan     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_PASTRY_034         , Vikaspuri Mor/Pastry Palace         ,                   ,                  , Vikas Puri        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_JANAK_035          , Janakpuri Metro                     ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_TILAK_AG_036       , Tilak Nagar Agarwal                 ,                   ,                  , Tilak Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_TILAK_HR_037       , Tilak Nagar Haldiram Red Light      ,                   ,                  , Tilak Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SUBHASH_RL_038     , Subhash Nagar Metro                 ,                   ,                  , Subhash Nagar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_CAMBRIDGE_039      , Cambridge School/MG Flats           ,                   ,                  , Subhash Nagar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SUBHASH_MG_040     , Subhash Nagar Gol Chakkar           ,                   ,                  , Subhash Nagar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SUBHASH_JC_041     , Subhash Nagar Junction              ,                   ,                  , Subhash Nagar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SWARAG_042         , Swarag Ashram Bus Stop              ,                   ,                  , Hari Nagar        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_DDU_043            , Din Dayal Hospital                  ,                   ,                  , Hari Nagar        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_GHANTA_044         , Hari Nagar Ghanta Ghar              ,                   ,                  , Hari Nagar        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_HARI_DEPOT_045     , Hari Nagar Depot                    ,                   ,                  , Hari Nagar        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_JANAK_DBLOCK_046   , Janakpuri D Block Red Light         ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_VIKAS_BRO_047      , Vikaspuri/Brotherhood               ,                   ,                  , Vikas Puri        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NSIT_048           , NSIT/Sec 13                         ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DWK_3_4_049        , Dwarka Sector 3 & 4                 ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_KARGIL_050         , Kargil Chowk                        ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_AASHIRWAD_051      , Aashirwad Chowk                     ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DWK_6_10_052       , Dwarka Sector 6 & 10                ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_RAMPHAL_053        , Ganpati/Ramphal Chowk               ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_QUEENS_054         , Queens Valley Sector 8              ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SPG_055            , SPG Main Road                       ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SEC21_056          , Sector 21 Metro/Taj Vivanta         ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_PACIFIC_057        , Pacific Mall                        ,                   ,                  , Subhash Nagar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_YASHO_058          , Yashobhoomi                         ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_CHANAN_059         , Chanan Devi/C1 Red Light            ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_DABRI_060          , Dabri Mor                           ,                   ,                  , Dabri             , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DADA_DEV_061       , Dada Dev Hospital                   ,                   ,                  , Dabri             , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_POWER_062          , Power House Road                    ,                   ,                  , Dabri             , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DWK_1_063          , Dwarka Sector 1/Mahavir Enclave     ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_PALAM_MD_064       , Palam/Mother Dairy                  ,                   ,                  , Palam             , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_PALAM_FLY_065      , Palam Flyover Upper                 ,                   ,                  , Palam             , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_VEGAS_066          , Sector 3 Red Light (Near Vegas Mall),                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_PARAMOUNT_067      , Paramount School                    ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_POCHANPUR_068      , Sector 23/DDA Flat Pochanpur        ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_BHARTI_069         , Bharti College                      ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_KALI_MATA_070      , Kali Mata Mandir                    ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SAGAR_071          , Sagar Pur C1                        ,                   ,                  , Sagar Pur         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_JANAK_CINE_072     , Janak Cinema                        ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_DASRATH_073        , Dasrath Puri Metro                  ,                   ,                  , Dasrath Puri      , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SEC1_RL_074        , Sec 1 Red light                     ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_RAJOKRI_075        , Rajokri                             ,                   ,                  , Rajokri           , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_KESHO_MANDI_076    , KeshoPur Mandi                      ,                   ,                  , Kesho Pur         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_JANAK_E_077        , Janakpuri East Metro                ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_AGARWAL_RL_078     , Agarwal Red Light                   ,                   ,                  , Tilak Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_TILAK_METRO_079    , Tilak Nagar Metro                   ,                   ,                  , Tilak Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_FATEH_080          , Fateh Nagar                         ,                   ,                  , Fateh Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_LAJWANTI_081       , Lajwanti Red Light                  ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_PANKHA_082         , Pankha Road/Peer Baba               ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SADAR_083          , Sadar Bazar                         ,                   ,                  , Delhi Cantt       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NANGLOI_H_084      , Vikaspuri School H Block            ,                   ,                  , Vikas Puri        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_RADISSON_085       , Radisson Blu/Jawala Heri            ,                   ,                  , Paschim Vihar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_MIAWALI_086        , Mia Wali Nagar                      ,                   ,                  , Paschim Vihar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NANGLOI_CH_087     , Nangloi Chowk/Agarwal Sweet         ,                   ,                  , Nangloi           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_JAL_BOARD_088      , Jal Board Office                    ,                   ,                  , Nangloi           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_MARGSHREE_089      , MargShree School                    ,                   ,                  , Nangloi           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NATHU_090          , Nathu Ram Convent School            ,                   ,                  , Nangloi           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NILOTHI_091        , Nilothi Mor                         ,                   ,                  , Nilothi           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_KAWAR_092          , Kawar Nagar/Rishal Garden           ,                   ,                  , Nangloi           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_RANHOLA_093        , Ranhola Police Station Mor          ,                   ,                  , Ranhola           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_KOTLA_VILL_094     , Kotla Village                       ,                   ,                  , Kotla Vihar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_CHACHAL_095        , Chachal Park                        ,                   ,                  , Chanchal Park     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_BAKKAR_096         , Bakkarwala/Mundka Mor               ,                   ,                  , Mundka            , DELHI_NCR_WEST      , TRUE
+STOP_DEL_JAI_VIHAR_097      , Jai Vihar/Baani Camp                ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DICHAU_098         , Dichau Depot                        ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SHYAM_Z_099        , Shyam Vihar Z Block                 ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_TAJPUR_100         , Tajpur/Chhawla                      ,                   ,                  , Chhawla           , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DEENPUR_101        , Deenpur/Goyla Khurd                 ,                   ,                  , Deenpur           , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_QUTUB_VIHAR_102    , Qutub Vihar                         ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_NALA_103           , Nala Road Holy Convent School       ,                   ,                  , Vikas Puri        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NAJAF_METRO_104    , Najafgarh Metro                     ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_NAGLI_105          , Nagli Dairy                         ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SAI_BABA_106       , Najafgarh/Sai Baba                  ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_BDO_107            , BDO Roshanpura                      ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_JHATIKRA_108       , Jhatikra Mor                        ,                   ,                  , Jhatikra          , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_BIJWASAN_109       , Bijwasan Flyover                    ,                   ,                  , Bijwasan          , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SAMALKHA_110       , Samalkha                            ,                   ,                  , Samalkha          , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_KAPASHERA_111      , Kapashera Bijwasan Red Light        ,                   ,                  , Kapashera         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_UTTAM_E_112        , Uttam Nagar East                    ,                   ,                  , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_UTTAM_W_113        , Uttam Nagar West                    ,                   ,                  , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NAWADA_114         , Nawada Metro                        ,                   ,                  , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_MOHAN_765_115      , Mohan Garden Pillar No -765         ,                   ,                  , Mohan Garden      , DELHI_NCR_WEST      , TRUE
+STOP_DEL_DWARKA_MOR_116     , Dwarka Mor Metro                    ,                   ,                  , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_RAJAPURI_117       , Rajapuri                            ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SEC5_118           , Sec 05                              ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_LOVELY_119         , Lovely Chowk                        ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_AMAN_120           , Aman Chowk                          ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_NAJAF_CIRCLE_121   , Najafgarh Circle                    ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SEC19_122          , Sec-19 Welcome Hotel                ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DWARKA_EXP_123     , Dwarka Expressway                   ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_NAGLI_METRO_124    , Nagli Dairy Metro                   ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_GOLOK_125          , Golok Dham                          ,                   ,                  , Bijwasan          , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_PILLAR_772_126     , Metro Pillar 772                    ,                   ,                  , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_DPS_MATIYALA_127   , DPS Matiyala                        ,                   ,                  , Matiyala          , DELHI_NCR_WEST      , TRUE
+STOP_DEL_RAJAPURI_PS_128    , Rajapuri Police Station             ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DWK_SEC2_129       , Dwarka Sec 02                       ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_BAH_WORLD_130          , World School Bahadurgarh            ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_BRIG_131           , Brig Hoshiar Singh Metro            ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_CITY_132           , Bahadurgarh City Metro/Bus Stand    ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_BRAHM_133          , Brahm Shakti Hosp                   ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_JAATWADA_134       , Jaatwada Colony                     ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_HARDYAL_135        , Hardyal School Sec 09               ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_JHARODA_TOLL_136   , Jharoda Toll/Village                ,                   ,                  , Jharoda           , BAHADURGARH         , TRUE
+STOP_BAH_NAVYUG_137         , Navyug School                       ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_KALI_PYAU_138      , Kali Pyau/Suraj Kunj                ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_ANAJ_139           , Anaj Mandi                          ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_SURAKH_140         , Surakh Pur Mor                      ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_HOLY_141           , Holycross Petrol PP                 ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_DAULTAPUR_142      , Daultapur/Kanganheri Village        ,                   ,                  , Daultapur         , BAHADURGARH         , TRUE
+STOP_BAH_MATIYALA_143       , Matiyala/Jhatikra Village/Toll      ,                   ,                  , Matiyala          , BAHADURGARH         , TRUE
+STOP_BAH_DHARAMPUR_144      , Dharampur                           ,                   ,                  , Dharampur         , BAHADURGARH         , TRUE
+STOP_BAH_MOHAMMAD_145       , Mohammad Heri                       ,                   ,                  , Mohammadpur       , BAHADURGARH         , TRUE
+STOP_BAH_AXIS_146           , Axis Bank                           ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_RAILWAY_147        , Railway Road                        ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_BUS_STAND_148      , Bus Stand                           ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_OLA_149            , Ola Showroom                        ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_BALAJI_150         , Bala Ji Temple                      ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_HL_CITY_151        , HL City                             ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_MITRAU_152         , Mitrau                              ,                   ,                  , Mitrao            , DELHI_NCR_WEST      , TRUE
+STOP_BAH_SURHERA_153        , Surhera Village                     ,                   ,                  , Surhera           , DELHI_NCR_WEST      , TRUE
+STOP_BAH_RAWTA_154          , Rawta More                          ,                   ,                  , Rawta             , DELHI_NCR_WEST      , TRUE
+STOP_BAH_UJJWA_155          , Ujjwa Village                       ,                   ,                  , Ujjwa             , DELHI_NCR_WEST      , TRUE
+STOP_BAH_DAURALA_156        , Daurala Border                      ,                   ,                  , Daurala           , DELHI_NCR_WEST      , TRUE
+STOP_BAH_KALIAWAS_157       , Kaliawas Polic Post                 ,                   ,                  , Kaliawas          , GURGAON             , TRUE
+STOP_BAH_SGT_158            , SGT College                         ,                   ,                  , Budhera           , GURGAON             , TRUE
+STOP_BAH_BUDHHERA_159       , Budhhera                            ,                   ,                  , Budhera           , GURGAON             , TRUE
+STOP_BAH_CHANDU_160         , Chandu Village                      ,                   ,                  , Chandu            , GURGAON             , TRUE
+STOP_BAH_DHANKOT_161        , Dhankot Village                     ,                   ,                  , Dhankot           , GURGAON             , TRUE
+STOP_BAH_SEC99A_162         , Sec 99 A                            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_BAH_SPR_163            , Dwarka Expressway/SPR Road          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_DEL_APOLLO_164         , Apollo Parking                      ,                   ,                  , Sarita Vihar      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MANDI_HOUSE_165    , Mandi House Metro                   ,                   ,                  , Mandi House       , DELHI_NCR_CENTRAL   , TRUE
+STOP_DEL_RK_ASHRAM_166      , RK Ashram Metro via Ashoka Road     ,                   ,                  , Paharganj         , DELHI_NCR_CENTRAL   , TRUE
+STOP_DEL_JHANDEWALAN_167    , Jhande Wala Metro                   ,                   ,                  , Jhandewalan       , DELHI_NCR_CENTRAL   , TRUE
+STOP_DEL_KAROL_BAGH_168     , Karol Bagh (Pusa Road)              ,                   ,                  , Karol Bagh        , DELHI_NCR_CENTRAL   , TRUE
+STOP_DEL_RAJENDRA_169       , Rajendra Palace Metro               ,                   ,                  , Rajendra Place    , DELHI_NCR_CENTRAL   , TRUE
+STOP_DEL_PATEL_METRO_170    , Patel Nagar Metro                   ,                   ,                  , Patel Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SHADIPUR_171       , Shadipur Metro                      ,                   ,                  , Shadipur          , DELHI_NCR_WEST      , TRUE
+STOP_DEL_TODAPUR_172        , TodaPur                             ,                   ,                  , Todapur           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NARAINA_VILL_173   , Naraina Village                     ,                   ,                  , Naraina           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_JHAREDA_174        , Jhareda Village                     ,                   ,                  , Delhi Cantt       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SHANKAR_175        , Shankar Vihar                       ,                   ,                  , Delhi Cantt       , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MAHIPALPUR_176     , Mahipalpur/Vishal Mega Mart         ,                   ,                  , Mahipalpur        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_RANGPURI_177       , Rangpuri/Shiv Murti                 ,                   ,                  , Rangpuri          , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_JANGPURA_178       , Jangpura Metro Station              ,                   ,                  , Jangpura          , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_LAJPAT_179         , Lajpat Nagar Metro                  ,                   ,                  , Lajpat Nagar      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_NEHRU_STAD_180     , Nehru Stadium                       ,                   ,                  , Lodhi Road        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_INA_181            , Kotla Delhi Hatt INA Metro          ,                   ,                  , INA Colony        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_AIIMS_182          , Safdarjung/AIIMS                    ,                   ,                  , Ansari Nagar      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SAROJINI_183       , Sarojini Mkt Bus Stand              ,                   ,                  , Sarojini Nagar    , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_LEELA_184          , Chanakyapuri Leela Hotel            ,                   ,                  , Chanakyapuri      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_HYATT_185          , Hyatt Hotel                         ,                   ,                  , RK Puram          , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MOTI_BAGH_186      , Moti Bagh/Nanakpura Gurudwara       ,                   ,                  , Moti Bagh         , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_V_KUNJ_FLY_187     , Vasant Kunj Flyover Upper           ,                   ,                  , Vasant Kunj       , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MASUDPUR_188       , Masudpur Village                    ,                   ,                  , Vasant Kunj       , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_CHURCH_RL_189      , Church Red Light                    ,                   ,                  , Vasant Kunj       , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_GOVIND_TARA_190    , Govind Puri/Tara Apartment          ,                   ,                  , Govindpuri        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SANGAM_191         , Sangam Vihar/Batra Hospital         ,                   ,                  , Sangam Vihar      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_DEVLI_192          , Devli Mode                          ,                   ,                  , Devli             , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SAINIK_193         , Sainik Farm                         ,                   ,                  , Sainik Farm       , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SAKET_GURU_194     , Saket Gurudwara                     ,                   ,                  , Saket             , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MAIDAN_195         , Maidan Garhi/IGNOU/Saidula Mor      ,                   ,                  , Maidan Garhi      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_LADO_BUS_196       , Lado Sarai Bus Stand                ,                   ,                  , Lado Sarai        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_AHINSA_197         , Anhinsa Sathal Bus Stand            ,                   ,                  , Mehrauli          , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_GOVIND_METRO_198   , Govind Puri Metro                   ,                   ,                  , Govindpuri        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_POOJA_199          , Pooja Masala                        ,                   ,                  , Govindpuri        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_DDA_429_200        , DDA Flat 429 Bus Stop               ,                   ,                  , Kalkaji           , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_CHIRAG_201         , Chirag Delhi                        ,                   ,                  , Chirag Delhi      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SEKH_SARAI_202     , Sekh Sarai                          ,                   ,                  , Sheikh Sarai      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SAKET_COURT_203    , Saket Court                         ,                   ,                  , Saket             , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SELECT_CITY_204    , Saket Select City Mall              ,                   ,                  , Saket             , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MAX_205            , Max Hospital                        ,                   ,                  , Saket             , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MALVIYA_206        , Malviya Nagar Metro                 ,                   ,                  , Malviya Nagar     , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_KHOKA_207          , Khoka Market                        ,                   ,                  , Saket             , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SAKET_METRO_208    , Saket Metro                         ,                   ,                  , Saket             , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_LADO_209           , Lado Sarai                          ,                   ,                  , Lado Sarai        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_QUTAB_210          , Qutab Metro                         ,                   ,                  , Mehrauli          , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_CDR_211            , CDR Chowk/ChattarPur Metro          ,                   ,                  , Chhatarpur        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MANGLAPURI_212     , New Manglapuri                      ,                   ,                  , Manglapuri        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SULTANPUR_213      , Sultanpur Metro                     ,                   ,                  , Sultanpur         , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_GHITORNI_214       , Ghitorni Metro                      ,                   ,                  , Ghitorni          , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_ARJAN_215          , Arjan Garh Metro                    ,                   ,                  , Arjan Garh        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_KHANPUR_216        , Khanpur T Point                     ,                   ,                  , Khanpur           , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_AYA_NAGAR_217      , Aya Nagar                           ,                   ,                  , Aya Nagar         , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SHRI_LAAL_218      , Shri Laal Chowk                     ,                   ,                  , Govindpuri        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_JAMIA_219          , Jamia Metro (via Modi Mill)         ,                   ,                  , Jamia Nagar       , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_NEHRU_PLACE_220    , Nehru Place                         ,                   ,                  , Nehru Place       , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_PANCHSHEEL_221     , Panchsheel Park Metro               ,                   ,                  , Panchsheel Park   , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_RK_PURAM_222       , RK Puram Sec 4 Police Post          ,                   ,                  , RK Puram          , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MUNIRKA_223        , Munirka (Aggarwal Sweets)           ,                   ,                  , Munirka           , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_JNU_RL_224         , Vasant Vihar JNU Red Light          ,                   ,                  , Vasant Vihar      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_VASANT_KUNJ_225    , Vasant Kunj                         ,                   ,                  , Vasant Kunj       , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_FORTIS_226         , Fortis                              ,                   ,                  , Vasant Kunj       , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_VK_CHURCH_227      , Vasant Kunj(Church)                 ,                   ,                  , Vasant Kunj       , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_KAILASH_228        , Kailash Colony Metro                ,                   ,                  , Kailash Colony    , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_ANSAL_229          , Ansal Plaza Bus Stop                ,                   ,                  , Andrews Ganj      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_KOTLA_RL_230       , Kotla Red Light                     ,                   ,                  , Kotla Mubarakpur  , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SIRI_FORT_231      , Siri Fort Auditorium Stand          ,                   ,                  , Siri Fort         , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_UDAY_232           , Uday Park                           ,                   ,                  , Uday Park         , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SHAHPUR_233        , Shahpur Jat                         ,                   ,                  , Shahpur Jat       , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_KISHAN_234         , KishanGarh Car Market               ,                   ,                  , Kishangarh        , DELHI_NCR_SOUTH     , TRUE
+STOP_NOIDA_VAISHALI_235     , Vaishali Metro                      ,                   ,                  , Vaishali          , NOIDA_GHAZIABAD     , TRUE
+STOP_NOIDA_DABAR_236        , Dabar                               ,                   ,                  , Kaushambi         , NOIDA_GHAZIABAD     , TRUE
+STOP_DEL_GHAZIPUR_237       , Ghazipur Mandi                      ,                   ,                  , Ghazipur          , DELHI_NCR_EAST      , TRUE
+STOP_NOIDA_INDIRA_238       , Indira Puram                        ,                   ,                  , Indirapuram       , NOIDA_GHAZIABAD     , TRUE
+STOP_NOIDA_E_CITY_239       , Electronic City Metro               ,                   ,                  , Noida             , NOIDA_GHAZIABAD     , TRUE
+STOP_NOIDA_SEC62_240        , Sec 62                              ,                   ,                  , Noida             , NOIDA_GHAZIABAD     , TRUE
+STOP_NOIDA_SEC59_241        , Sec 59                              ,                   ,                  , Noida             , NOIDA_GHAZIABAD     , TRUE
+STOP_NOIDA_SEC61_242        , Sec 61                              ,                   ,                  , Noida             , NOIDA_GHAZIABAD     , TRUE
+STOP_NOIDA_SEC52_243        , Sec 52                              ,                   ,                  , Noida             , NOIDA_GHAZIABAD     , TRUE
+STOP_NOIDA_METRO_51_244     , Noida Metro 51 Junction             ,                   ,                  , Noida             , NOIDA_GHAZIABAD     , TRUE
+STOP_NOIDA_WAVE_245         , Noida Wave City Centre Metro        ,                   ,                  , Noida             , NOIDA_GHAZIABAD     , TRUE
+STOP_NOIDA_GOLF_246         , Golf Course Metro                   ,                   ,                  , Noida             , NOIDA_GHAZIABAD     , TRUE
+STOP_NOIDA_SASHI_247        , Sashi Chowk                         ,                   ,                  , Noida             , NOIDA_GHAZIABAD     , TRUE
+STOP_NOIDA_BIRD_248         , Bird Sanctury Bus Stop              ,                   ,                  , Noida             , NOIDA_GHAZIABAD     , TRUE
+STOP_NOIDA_OKHLA_249        , Okhla Bird Sanctury Metro           ,                   ,                  , Noida             , NOIDA_GHAZIABAD     , TRUE
+STOP_DEL_KALINDI_250        , MCD/Kalindi Kunj Metro              ,                   ,                  , Kalindi Kunj      , DELHI_NCR_SOUTH     , TRUE
+STOP_NOIDA_VAISHALI_SCH_251 , Vaishali School                     ,                   ,                  , Vaishali          , NOIDA_GHAZIABAD     , TRUE
+STOP_DEL_ANAND_VIHAR_252    , Anand Vihar Bus Stand               ,                   ,                  , Anand Vihar       , DELHI_NCR_EAST      , TRUE
+STOP_DEL_DILSHAD_253        , Dilshad Garden/Jhilmil Metro        ,                   ,                  , Dilshad Garden    , DELHI_NCR_EAST      , TRUE
+STOP_DEL_SAHADRA_254        , Sahadra Welcome /Metro              ,                   ,                  , Shahdara          , DELHI_NCR_EAST      , TRUE
+STOP_DEL_SHASTRI_PARK_255   , Shastri Park                        ,                   ,                  , Shastri Park      , DELHI_NCR_EAST      , TRUE
+STOP_DEL_CIVIL_LINES_256    , Ip College/Civil Lines Metro        ,                   ,                  , Civil Lines       , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_VIDHAN_257         , Vidhan Sabha Metro                  ,                   ,                  , Civil Lines       , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_VISHWA_258         , Vishwavidhalya Metro                ,                   ,                  , University Enclave, DELHI_NCR_NORTH     , TRUE
+STOP_DEL_GTB_259            , GTB Nagar Metro                     ,                   ,                  , GTB Nagar         , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_MODEL_260          , Model Town Metro                    ,                   ,                  , Model Town        , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_ADARSH_261         , Adarsh Nagar Police Station         ,                   ,                  , Adarsh Nagar      , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_IP_EXT_262         , IP Extension Metro                  ,                   ,                  , IP Extension      , DELHI_NCR_EAST      , TRUE
+STOP_DEL_HASANPUR_263       , Hasanpur Depot                      ,                   ,                  , Hasanpur          , DELHI_NCR_EAST      , TRUE
+STOP_DEL_PREET_264          , Preet Vihar Metro                   ,                   ,                  , Preet Vihar       , DELHI_NCR_EAST      , TRUE
+STOP_DEL_NIRMAN_265         , Nirman Vihar Metro                  ,                   ,                  , Nirman Vihar      , DELHI_NCR_EAST      , TRUE
+STOP_DEL_LAXMI_266          , Laxmi Nagar Metro                   ,                   ,                  , Laxmi Nagar       , DELHI_NCR_EAST      , TRUE
+STOP_DEL_MOTHER_DAIRY_267   , Mother Dairy                        ,                   ,                  , Patparganj        , DELHI_NCR_EAST      , TRUE
+STOP_DEL_AKSHARDHAM_268     , Akshardham Flyover                  ,                   ,                  , Akshardham        , DELHI_NCR_EAST      , TRUE
+STOP_DEL_SARAI_KALE_269     , Sarai Kale Khan                     ,                   ,                  , Sarai Kale Khan   , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MAHARANI_270       , Maharani Bagh Gurudwara             ,                   ,                  , Maharani Bagh     , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_ASHRAM_271         , Ashram Metro Gate No 3              ,                   ,                  , Ashram            , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MOOLCHAND_272      , Moolchand Flyover                   ,                   ,                  , Lajpat Nagar      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_GULMOHER_273       , Gulmoher Park                       ,                   ,                  , Gulmohar Park     , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_HAUZ_KHAS_274      , Hauz Khas Metro Gate 1              ,                   ,                  , Hauz Khas         , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_ADCHINI_275        , Adchini                             ,                   ,                  , Adchini           , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_ANDHERIA_276       , Andheria Mor                        ,                   ,                  , Mehrauli          , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SSB_277            , SSB Camp Red Light                  ,                   ,                  , Ghitorni          , DELHI_NCR_SOUTH     , TRUE
+STOP_FBD_IP_278             , IP Colony/Sec-31                    ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_PALLA_279          , Palla Chowk                         ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_ESSAR_280          , Essar Petrol Pump                   ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_DEL_BADARPUR_281       , Badarpur Border                     ,                   ,                  , Badarpur          , DELHI_NCR_SOUTH     , TRUE
+STOP_FBD_SEC37_282          , Sec 37/Highway                      ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_NHPC_283           , NHPC Chowk                          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_MEWLA_284          , Mewla Maharajpur Metro              ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SEC46_285          , Sec 46 Eicher School                ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_ANKHEER_286        , Ankheer Gol Chakkar                 ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SEC48_287          , Sec 48                              ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SAINIK_288         , Sainik Colony Parking               ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SHRIRAM_289        , Shriram Millenium School            ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_WORLD_ST_290       , World Street                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_BPTP_291           , BPTP Bridge                         ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_ESCORT_292         , Escort Red Light                    ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_MILAN_293          , Milan Sweet/Ashwini Hospital        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_YMC_294            , YMC Flyover                         ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_BATA_295           , Bata Chowk                          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SEC22_23_296       , Sec 22/23 Red Light U turn          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_NIT_297            , NIT Hardware Chowk                  ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_BABA_DEEP_298      , Baba Deep Singh Chowk/Piyali        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_3NO_299            , 3 No. Maszid                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_JAAT_300           , Jaat Chowk                          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_CHANDILA_301       , Chandila Chowk                      ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_PRIDE_302          , Sec 77/78 Pride Chowk               ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_GURJAR_303         , Gurjar Chowk                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SEC8_PUL_304       , Sec 8 Pul                           ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_TIGAON_305         , Tigaon Road                         ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_IMT_306            , IMT Chowk                           ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_CHANDWALI_307      , Chandwali                           ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SEC65_308          , Sec 65                              ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SAHAPURA_309       , Sahapura                            ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_JAJRU_310          , Jajru                               ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_JHADSETLI_311      , Jhadsetli                           ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SIKRI_312          , Sikri                               ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_GADPURI_313        , Gadpuri Toll                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_DUDHOLA_314        , Dudhola                             ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_JAINDAPUR_315      , Jaindapur                           ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_FBD_SILONI_316         , Siloni                              ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_FBD_RPS_SAVANA_317     , RPS Savana                          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SRS_ROYAL_318      , SRS Royal Hills                     ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SEC17_CNG_319      , Sec 17 Flyover CNG Pump             ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_KHERI_320          , Kheri Pull                          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_28_29_MKT_321      , 28/29 Market                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_BADKHAL_322        , Badkhal                             ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_ANKHEER_VILL_323   , Ankheer Village                     ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_DELHI_MASJID_324   , Delhi Masjid                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SAINIK_RL_325      , Sainik Colony Red Light             ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_PIYUSH_326         , Piyush Heights                      ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SRS_RES_327        , SRS Residence                       ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SEC15_328          , Sector 15                           ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_AZRONDA_329        , Azronda                             ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_BK_330             , BK Gol Chakkar                      ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_DAYANAND_331       , Dayanand College                    ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_MINI_BYPASS_332    , Mini By-Pass                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_MULLA_333          , Mulla Hotel                         ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_ACHIEVER_334       , Achiever                            ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_PALI_335           , Pali                                ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_NUNHERA_336        , Nunhera                             ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SEC3_337           , Sec 3                               ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_GOODYER_338        , Goodyer Chowk                       ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_BALLAB_SOHNA_339   , Ballabhgarh Sohna Mor               ,                   ,                  , Ballabgarh        , FARIDABAD           , TRUE
+STOP_FBD_GOCHI_340          , Gochi Police Post                   ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_DABUA_341          , Dabua Nala                          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SARURPUR_342       , Sarurpur Chowk                      ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_NAGLA_343          , Nagla Chowk                         ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_KHADI_344          , Khadi Mor                           ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_PALI_CHOWK_345     , Pali Chowk                          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_PAL_ALAWALPUR_VILL_346 , Alawalpur Village                   ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_NAYA_GAO_347       , Naya Gao                            ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_MANDI_348          , Mandi Chowk                         ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_ALAWALPUR_CH_349   , Alawalpur Chowk Palwal              ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_BUS_STAND_350      , Palwal Bus Stand                    ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_KITHWADI_351       , Kithwadi Chowk                      ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_NEXA_352           , Nexa Showroom                       ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_RASOOLPUR_353      , Rasoolpur Chowk                     ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_AGRA_354           , Agra Chowk                          ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_OLD_SOHNA_355      , Old Sohna Mor                       ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_HUDA_SOHNA_356     , Huda Sohna Road                     ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_DHATEER_357        , Dhateer                             ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_SOHNA_358          , Sohna                               ,                   ,                  , Sohna             , GURGAON             , TRUE
+STOP_PAL_PAPPAN_359         , Pappan Plaza                        ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_HUDA_BRIDGE_360    , Huda Bridge/Flyover                 ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_GOVT_HOSP_361      , Govt Hospital                       ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_PANCHWATI_362      , Panchwati Chowk                     ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_MANDKOLA_RD_363    , Mandkola Road                       ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_KARNA_364          , Karna Gao Mor                       ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_MAHESH_365         , Mahesh Pur                          ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_MANDKOLA_VILL_366  , Mandkola Village                    ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_MANUVASH_367       , Manuvash                            ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_SHILANI_368        , Shilani Mor                         ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_GGN_SEC7_369           , Sec 07 Gate                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_AMBEDKAR_370       , Sec-04/07 Ambedkar Chowk            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ESI_09_371         , Sec 09 ESI Hospital                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC09_372          , Sector - 09                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SIDDESH_373        , Slddeshvar School Sec 9             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_GREENWOOD_374      , Green Wood Public School            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ALPINE_10A_375     , Alpine Convent/Sec 10A              ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ANAJ_376           , Anaj Mandi Under Pass               ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_RAJNAGAR_377       , Rajnagar Bery Bagh                  ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DLF_PVR_378        , DLF PVR Phase 3                     ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_NATHU_PUR_379      , Nathu Pur                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_NEELKANTH_380      , Neelkanth Hospital                  ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_CITY_COURT_381     , City Court                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_LAZOR_382          , Lazor Valley                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_GWAL_PAHARI_383    , Gwal Pahari                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BANDHWARI_384      , Bandhwari                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC61_385          , Sec 61                              ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_AIPL_386           , AIPL Business Club                  ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_WORLDMARK_387      , WorldMark/Paras Trinity             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_M3M_388            , M3M Merlin                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DLF1_389           , DLF1                                ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BEHRAMPUR_390      , Behrampur                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_IREO_391           , Ireo Uptown                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MG_METRO_392       , MG Road Metro                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SIKANDER_393       , Sikanderpur Metro                   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SUNCITY_394        , Sun City/Sec 54 Chowk               ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC55_56_395       , Sec 55-56 Rapid Metro               ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SURAJ_396          , Suraj School                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_HARISH_397         , Harish Bakery                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_JALVAYU_398        , Jalvayu Tower                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_WAZIRABAD_399      , Wazirabad Red Light                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_HONGKONG_400       , Hong Kong Mkt Red Light             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC57_401          , Sec 57 Tehsil                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DHARAM_402         , Dharam Marg Society Cut             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DPS_403            , DPS School                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_XAVIER_404         , St. Xavier School/Marbella Villas   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SAI_KUNJ_405       , Sai Kunj                            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MAHENDRA_406       , Mahendra Aura                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_KRISHAN_407        , Krishan Chowk                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PALAM_C12_408      , Palam Vihar C1/2 Gate               ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_VYAPAR_409         , Vayapar Kendra                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_GARMIN_410         , Garmin Bank                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MAHINDRA_SHOW_411  , Mahindra Showroom                   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ASHOK_C1_412       , Ashok Vihar C1 Gate                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ASHOK_C2_413       , Ashok Vihar C2 Gate                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC5_CIRCLE_414    , Sec 5 Circle                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PALM_C1_415        , Palm C 1 Gate                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_RAM_MANDIR_416     , Ram Mandir Chowk                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PALAM_CENTRAL_417  , Palam Central Chowk                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_REZANG_LA_418      , Rezangla Chowk/Sec 23 A             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC23B_419         , Sector 23 B                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC23C_420         , Sector 23 C                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC22_23_MKT_421   , Sec 22-23 Market                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MARUTI_G2_422      , Maruti Gate No.2                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DUNDHAHERA_423     , Dundhahera Krishna Chowk            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PARK_VIEW_424      , Park View Residence                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SAMRAT_425         , Samrat Garden                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ASHOK_P2_426       , Ashok Vihar P 2                     ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC05_427          , Sector-05                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_RAMLILA_428        , Ramlila Ground                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PETRO_SEC5_429     , Petro PP Sec 5                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MATA_MANDIR_430    , Mata Mandir                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ATUL_KAT_431       , LT. Atul Katariya Chowk             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC17_432          , Sec-17                              ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_GHODA_433          , Ghoda Chowk                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC30_31_434       , Sec 30/31 Red Light                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_JHARSA_435         , Jharsa Chowk                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_CHINTAPURNI_436    , Chintapurni Mandir                  ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ARYAN_437          , Aryan Hospital/SBI Bank             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_NEW_COLONY_438     , New Colony Mor                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MADAN_PURI_439     , Madan Puri Gali No.2                ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PATAUDI_CH_440     , Pataudi Chowk                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SETHI_441          , Sethi Hospital Shiv Chowk           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BHUTESHWAR_442     , Bhuteshwar Mandir                   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BAJGHERA_443       , Bajghera Reliance U Turn            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BIKANER_444        , Bikaner                             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PURI_15_445        , Puri Pillar No 15                   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DWK_EXP_33_446     , Dwarka Expressway Pillar 33         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_40FOOT_447         , 40 Foot Road                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DWK_EXP_62_448     , Dwarka Expressway Pillar 62         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_CONSCIENT_449      , Conscient Mall                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DWK_EXP_95_450     , Dwarka Expressway Pillar 95         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DAULATBAD_451      , Daulatbad Flyover                   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_RAILWAY_PP_452     , Railway Road P.P                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PARKASH_453        , Parkash Puri Chowk                  ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_LAXMAN_454         , Laxman Vihar Red Light              ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SHANI_455          , Shani Dev Mandir                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_CCA_456            , CCA School                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC4_MKT_457       , Sector 4 Market                     ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC4_7_458         , Sector 4/7                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PREM_MANDIR_459    , Prem Mandir                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SADAR_460          , Sadar Bazar                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DB_BHARAT_461      , DB Bharat PP /Railway Station       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SHYAAM_NURS_462    , Shyaam Nursery                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PURI_SOC_463       , Puri Society                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BHARAT_PUMP_464    , Bharat Pump                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SHYAAM_BABA_465    , Shyaam Baba Chowk                   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC102_466         , Sec 102                             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ALPINE_467         , Alpine Public School                ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_UMANG_468          , City Bus Stop/Umang Bhardwaj        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_HIMGIRI_469        , Himgiri                             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC10A_470         , Sec 10 A                            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MINI_SEC_471       , Mini Secretariat Gurgaon            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SHIVAJI_472        , Shivaji Nagar/Sohna Chowk           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MOR_473            , Mor Chowk/Sec 15/Patel Nagar        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SADAR_PO_474       , Sadar Bazaar/Post Office            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DR_LAL_475         , Dr Lal/New Railway Road             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DSD_476            , DSD College/Gurgaon Village         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC12_477          , Sec 12/Telephone Exchange           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC14_478          , Sec 14/Akash/KV Airforce            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PAYAL_479          , Payal Cinema                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_KATARIA_480        , Kataria Chowk                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_RAJIV_481          , Rajiv Chowk                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_RAMPRASTH_482      , Ramprasth Society Sec 37 D          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SUNCITY_37_483     , SunCity School BPTB Sec 37          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ILD_484            , ILD Grand                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BASAI_485          , Under Basai Flyover                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_HIMGIRI_BHAWAN_486 , Himgiri Bhawan                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC10A_GATE_487    , Sec 10 A Gate                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BIKANER_KHANDSA_488, Bikaner Chowk/Khandsa Road          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MGF_489            , MGF Toyota/Tata Showroom            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_HERO_HONDA_490     , Hero Honda Chowk                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC34_491          , Sec 34 Marble Market                ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_GOLD_SOUK_492      , Gold Souk                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_KANHAI_MOR_493     , Kanhai Mor                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_KANHAI_RL_494      , Kanhai Red Light                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ARDEE_495          , Ardee City Gate No-3                ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_AMITY_496          , Amity School                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SAMASPUR_497       , Samaspur Village                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_NIRVANA_498        , Nirvana/Mayfield Garden/Sec 51      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PARK_HOSP_499      , Park Hospital                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_AWHO_500           , AWHO Sispal Vihar/South City-II     ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ARTEMIS_501        , Artemis Hospital                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_HUDA_METRO_502     , HUDA City (Metro Station)           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC31_RL_503       , Sector- 31 Red Light                ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC40_504          , Sector 40                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_CYBER_PARK_505     , Cyber Park                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC46A_506         , Sector 46 A                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC46B_507         , Sector 46 B                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BAKHTAWAR_508      , Bakhtawar Chowk                     ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SUBHASH_CH_509     , Subash Chowk                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ISLAMPUR_510       , Islampur Village                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_OMAXE_511          , Omaxe Mall                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC56_RL_512       , Sec 56 Red Light                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BADSHAPUR_513      , Badshapur                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC67_514          , Sec 67/Pyramid Society              ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MARUTI_KUNJ_515    , Maruti Kunj                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BHONDSI_516        , Bhondsi Bus Stop                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_NAURANGPUR_517     , NaurangPur/ Jai Bharti School       ,                   ,                  , Manesar           , GURGAON             , TRUE
+STOP_GGN_NSG_518            , NSG Gate                            ,                   ,                  , Manesar           , GURGAON             , TRUE
+STOP_GGN_RAMPURA_BY_519     , Rampura Bypass                      ,                   ,                  , Manesar           , GURGAON             , TRUE
+STOP_GGN_IMT_PETROL_520     , IMT Petrol Pump/Sita Hotel          ,                   ,                  , Manesar           , GURGAON             , TRUE
+STOP_GGN_RAMPURA_FLY_521    , Rampura Flyover                     ,                   ,                  , Manesar           , GURGAON             , TRUE
+STOP_GGN_TOLL_UTURN_522     , Toll U Turn                         ,                   ,                  , Manesar           , GURGAON             , TRUE
+STOP_GGN_PALM_HILLS_523     , Palm Hills                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_KHATOLA_524        , Khatola                             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ANDOUR_525         , Andour Heights                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_TULIP_526          , Tulip Chowk                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DWP_527            , DWP School                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SPR_528            , SPR Road                            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC81_529          , Sector 81                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC86_530          , Sector 86                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_KAKROLA_531        , Kakrola/Bhangrola U Turn            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC90_532          , Sector 90 Chowk                     ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC91_533          , Sector 91                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC92_534          , Sector 92/Sare Homes/Ansal Heights  ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_HAYATPUR_535       , Hayatpur Bus Stand                  ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_IRIS_536           , Iris/Reliance Mall                  ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ULTIMA2_537        , Ultima2                             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_FRK_DABODHA_538        , Dabodha More                        ,                   ,                  , Farukhnagar       , GURGAON             , TRUE
+STOP_FRK_FARUKH_539         , FarukhNagar                         ,                   ,                  , Farukhnagar       , GURGAON             , TRUE
+STOP_FRK_BALAJI_540         , Bala Ji Nagar                       ,                   ,                  , Farukhnagar       , GURGAON             , TRUE
+STOP_FRK_PATLI_541          , Patli                               ,                   ,                  , Farukhnagar       , GURGAON             , TRUE
+STOP_FRK_WAZIRPUR_542       , Wazirpur More/Signature Society     ,                   ,                  , Farukhnagar       , GURGAON             , TRUE
+STOP_FRK_HYATTPUR_543       , Hyattpur Bus Stand                  ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_FRK_GARHI_544          , Garhi More                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_FRK_SHALA_545          , Shala Dhani More                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_FRK_HYATTPUR_MORE_546  , Hyattpur More/Police Chowki         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_FRK_RPS_547            , RPS School                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_FRK_BAMDOLI_548        , Bamdoli                             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_FRK_DPS_549            , DPS School/Siknderpur Chowk         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_FRK_CHAITNYA_550       , Chaitnya School                     ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_FRK_ROYAL_551          , Royal Villa                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_FRK_SAPPHIRE_552       , Suphire Mall/Vatika Sec 83 Chowk    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_BHI_HONDA_553          , Honda Chowk                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_PIYUSH_554         , Piyush City                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_ASHIYANA_555       , Ashiyana Town                       ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_TAREHAN_556        , Tarehan City                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_THADDA_557         , Thadda Mor                          ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_OMAXE_558          , Omaxe City                          ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_TOLL_559           , Bhiwadi Toll                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_NIMAI_560          , Nimai                               ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_AVALON_561         , Avalon Garden                       ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_KRISH_562          , Krish Vatika                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_COSMOS_563         , Cosmos                              ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_ASHIYANA_ANGAN_564 , Ashiyana Angan                      ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_ASHADEEP_565       , Ashadeep                            ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_MAHESHWARI_566     , Maheshwari                          ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_DWARKA_567         , Dwarka Dheesh                       ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_MOR_568            , Bhiwadi Mor                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_SAMTAL_569         , Samtal Chowk                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_NEELAM_570         , Neelam Chowk                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_RICCO_571          , Ricco Chowk                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_NANDRAM_572        , Nandram Pur Bans                    ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_ALALPUR_573        , Alalpur                             ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_BHAGAT_574         , Bhagat Singh Chowk                  ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_NAGARPALIKA_575    , Nagarpalika Gate/Sector 4 Mor       ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_ARAVLI_576         , Aravli Vihar                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_MANSA_577          , Mansa Chowk                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_HETRAM_578         , Hetram Chowk                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_AALUPUR_579        , AaluPur Mandir                      ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_KALI_KHOLI_580     , Kali Kholi Chowk                    ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_UIT_581            , UIT Police Station                  ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_CAPITAL_582        , Capital Mall                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_KHORI_583          , Khori Mor                           ,                   ,                  , Tauru             , TAURU               , TRUE
+STOP_BHI_DHIDHARA_584       , Dhidhara                            ,                   ,                  , Tauru             , TAURU               , TRUE
+STOP_BHI_TAURU_PH_585       , Tauru Power House                   ,                   ,                  , Tauru             , TAURU               , TRUE
+STOP_BHI_TAURU_VIJAY_586    , Tauru Vijay Chowk                   ,                   ,                  , Tauru             , TAURU               , TRUE
+STOP_BHI_KRISH_CITY_587     , Krish City                          ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_TAPUKARA_588       , Tapukara                            ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_SEC4_6_589         , Sec 4/6 Mor                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_TAURU_BYPASS_590   , Tauru By Pass                       ,                   ,                  , Tauru             , TAURU               , TRUE
+STOP_NUH_NAGINA_591         , Nagina                              ,                   ,                  , Nuh               , NUH                 , TRUE
+STOP_NUH_BADKALI_592        , Badkali Chowk                       ,                   ,                  , Nuh               , NUH                 , TRUE
+STOP_NUH_BHADAS_593         , Bhadas                              ,                   ,                  , Nuh               , NUH                 , TRUE
+STOP_NUH_MALAB_594          , Malab                               ,                   ,                  , Nuh               , NUH                 , TRUE
+STOP_NUH_BUS_STAND_595      , Nuh Bus Stand/PNB Bank              ,                   ,                  , Nuh               , NUH                 , TRUE
+STOP_NUH_RESWASAN_596       , Reswasan/KMP                        ,                   ,                  , Nuh               , NUH                 , TRUE
+STOP_NUH_KAWARSIKA_597      , Kawarsika/Rojka Mev                 ,                   ,                  , Nuh               , NUH                 , TRUE
+STOP_NUH_RAIPUR_598         , Raipur                              ,                   ,                  , Nuh               , NUH                 , TRUE
+STOP_NUH_SOHNA_INDRI_599    , Sohna Indri Mor                     ,                   ,                  , Sohna             , GURGAON             , TRUE
+STOP_NUH_SOHNA_BUS_600      , Sohna Bus Stand                     ,                   ,                  , Sohna             , GURGAON             , TRUE
+STOP_NUH_SOHNA_CHUNGI_601   , Sohna Chungi No.1                   ,                   ,                  , Sohna             , GURGAON             , TRUE
+STOP_REW_NAIWALI_602        , Nai Wali                            ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_JHAJJAR_CH_603     , Jhajjar Chowk                       ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_CIVIL_604          , Civil Hosp                          ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_JAIN_605           , Jain School                         ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_AZAD_606           , Azad Chowk                          ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_DHARU_607          , Dharu Hera Chungi                   ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_ABHAY_608          , Abhay Singh Chowk                   ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_UTTAM_609          , Uttam Nagar                         ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_MASANI_610         , Masani                              ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_KHARKHDA_611       , Kharkhda                            ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_VIPUL_612          , Vipul Garden                        ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_MALPURA_613        , Malpura                             ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_SIDHRAWALI_614     , Sidhrawali                          ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_PARKING_615        , Parking                             ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_BUS_STAND_616      , Bus Stand                           ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_AMBEDKAR_617       , Ambedkar Chowk                      ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_SONU_618           , Sonu Juice Corner                   ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_SEC03_619          , Sec 03                              ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_PILOT_620          , Pilot Chowk                         ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_COLONEL_621        , Colonel Chowk                       ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_SEC4_MALL_622      , Sec 4 City Mall                     ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_POSWAL_623         , Poswal Chowk                        ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_KALKA_624          , Kalka Chowk                         ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_POLICE_625         , Police Line                         ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_OLD_RAO_626        , Old Rao/Kapdivas                    ,                   ,                  , Rewari            , REWARI              , TRUE
+STOP_REW_PANCHGAON_627      , Panchgaon/KMP                       ,                   ,                  , Panchgaon         , GURGAON             , TRUE
+STOP_PAT_BUS_STAND_628      , Pataudi Bus Stand                   ,                   ,                  , Pataudi           , PATAUDI             , TRUE
+STOP_PAT_OLD_COURT_629      , Old Court                           ,                   ,                  , Pataudi           , PATAUDI             , TRUE
+STOP_PAT_BHORA_630          , Bhora Kalan Village                 ,                   ,                  , Pataudi           , PATAUDI             , TRUE
+STOP_PAT_BILASPUR_631       , Bilaspur Chowk                      ,                   ,                  , Bilaspur          , GURGAON             , TRUE
+STOP_PAT_PATHREDI_632       , Pathredi Village                    ,                   ,                  , Pataudi           , PATAUDI             , TRUE
+STOP_PAT_JORASI_633         , JORASI/Kalwari Bus Stand            ,                   ,                  , Pataudi           , PATAUDI             , TRUE
+STOP_PAT_TAURU_634          , Tauru                               ,                   ,                  , Tauru             , TAURU               , TRUE
+STOP_GGN_CIVIL_SEC10_635    , Civil Hospital Sec 10               ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_RAVI_NAGAR_636     , Ravi Nagar Petrol Pump              ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PATAUDI_CHOWKI_637 , Pataudi Chowki                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC11_638          , Sec 11 Shakti Nagar                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_KADIPUR_639        , Kadipur Gali No. 01                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_GADOLI_640         , Gadoli/Gadhi Village                ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DWK_EXP_NH8_641    , Dwarka Exp Left turn towards NH-8   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_AVL_36_642         , AVL Sec 36                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_NARSINGHPUR_643    , Nar Singhpur/NH8                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_KHANDSA_644        , Khandsa Village                     ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_DEL_VIKAS_WORLD_645    , Vikaspuri World School              ,                   ,                  , Vikas Puri        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_PRASHANT_646       , Prashant Vihar/Power House          ,                   ,                  , Rohini            , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_HAIDERPUR_647      , Haiderpur Badli Metro               ,                   ,                  , Haiderpur         , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_ROHINI_JAIL_648    , Rohini Jail Mor                     ,                   ,                  , Rohini            , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_KARNAL_BYPASS_649  , Karnal Bypass Mubarka Chowk         ,                   ,                  , Karnal Bypass     , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_BHALSWA_650        , Bhalswa Dairy                       ,                   ,                  , Bhalswa           , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_MUKUNDPUR_651      , Mukundpur Gol Chakkar               ,                   ,                  , Mukundpur         , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_BURARI_652         , Burari Circle U Turn                ,                   ,                  , Burari            , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_MAJLIS_653         , Majlis Park Metro/Jahangirpuri      ,                   ,                  , Jahangirpuri      , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_KEBAL_654          , Kebal Park/Gopal Park               ,                   ,                  , Azadpur           , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_OUTER_RING_655     , Outer Ring Road                     ,                   ,                  , Delhi             , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_SHAHEEN_656        , Shaheen Bagh                        ,                   ,                  , Okhla             , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SARITA_657         , Sarita Vihar/Jasolla                ,                   ,                  , Sarita Vihar      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MADANPUR_658       , Madanpur Khadar                     ,                   ,                  , Sarita Vihar      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_PUL_PRAHALDPUR_659 , Pul Prahaldpur                      ,                   ,                  , Pul Pehlad Pur    , DELHI_NCR_SOUTH     , TRUE
+STOP_FBD_SURAJ_KUND_660     , Suraj Kund                          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_PALI_PC_661        , Pali Police Chowki                  ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_MANGAR_PC_662      , Mangar Police Chowki                ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_GGN_GHATA_663          , Ghata                               ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_JHJ_NEW_BUS_664        , New Bus Stand                       ,                   ,                  , Jhajjar           , JHAJJAR             , TRUE
+STOP_JHJ_BHAGAT_665         , Bhagat Singh Chowk                  ,                   ,                  , Jhajjar           , JHAJJAR             , TRUE
+STOP_JHJ_AMBEDKAR_666       , Ambedkar Chowk                      ,                   ,                  , Jhajjar           , JHAJJAR             , TRUE
+STOP_JHJ_SILANI_667         , Silani Gate                         ,                   ,                  , Jhajjar           , JHAJJAR             , TRUE
+STOP_JHJ_KALOI_668          , Kaloi                               ,                   ,                  , Jhajjar           , JHAJJAR             , TRUE
+STOP_JHJ_NAURANG_669        , Naurang Pur                         ,                   ,                  , Jhajjar           , JHAJJAR             , TRUE
+STOP_JHJ_DADRI_TOE_670      , Dadri Toe                           ,                   ,                  , Jhajjar           , JHAJJAR             , TRUE
+STOP_JHJ_RELIANCE_671       , Reliance Met City                   ,                   ,                  , Jhajjar           , JHAJJAR             , TRUE
+STOP_JHJ_SULTANPUR_672      , Sultanpur                           ,                   ,                  , Jhajjar           , JHAJJAR             , TRUE
+STOP_JHJ_FRK_BYPASS_673     , FRK Bypass                          ,                   ,                  , Jhajjar           , JHAJJAR             , TRUE
+STOP_JHJ_KMP_674            , KMP Exp                             ,                   ,                  , Jhajjar           , JHAJJAR             , TRUE
+STOP_DEL_NSIT_RL_675        , NSIT Chowk Red Light                ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_VENKTESHWAR_676    , Venkteshwar School/Hospital         ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SEC12_18_677       , Sec 12/18 Appartment Road           ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SACHDEVA_678       , Sachdeva School                     ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_ARVIND_679         , Arvind Society/Sec 19 B             ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DWK_25_680         , DWK Sec 25 Metro Bharthal           ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_KRMU_CAMPUS_999        , KRMU Campus                         ,                   ,                  , Sohna             , GURGAON             , TRUE
