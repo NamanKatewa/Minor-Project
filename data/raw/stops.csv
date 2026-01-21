@@ -98,9 +98,9 @@ STOP_DEL_BAKKAR_096         , Bakkarwala/Mundka Mor               ,             
 STOP_DEL_JAI_VIHAR_097      , Jai Vihar/Baani Camp                ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_DICHAU_098         , Dichau Depot                        ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_SHYAM_Z_099        , Shyam Vihar Z Block                 ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_TAJPUR_100         , Tajpur/Chhawla                      ,                   ,                  , Chhawla           , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_DEENPUR_101        , Deenpur/Goyla Khurd                 ,                   ,                  , Deenpur           , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_QUTUB_VIHAR_102    , Qutub Vihar                         ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_TAJPUR_100         , Tajpur/Chhawla                      , 28.573133849215147, 77.01581645492591,                   , Chhawla           , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DEENPUR_101        , Deenpur/Goyla Khurd                 ,  28.59628873213151, 76.99060901858104,                   , Deenpur           , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_QUTUB_VIHAR_102    , Qutub Vihar                         , 28.578335762982356, 77.03010814110586,                   , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_NALA_103           , Nala Road Holy Convent School       ,                   ,                  , Vikas Puri        , DELHI_NCR_WEST      , TRUE
 STOP_DEL_NAJAF_METRO_104    , Najafgarh Metro                     ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_NAGLI_105          , Nagli Dairy                         ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
