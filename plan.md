@@ -114,9 +114,9 @@ For each stop and time slot:
 - `confidence` level (low/medium/high, optional)
 - Notes for special cases (e.g., “only on Tue/Thu” if that exists later)
 
-#### E) Fleet (v1 uniform, v2 heterogenous)
+#### E) Fleet (v1 unifor
 
-For each bus:
+For each bus:dfiuhkadghdkajhgkjashgdkljsghsdkjhgkjsdhgjklsdghs
 
 - `bus_id`
 - `capacity` (v1: same for all; v2: real values)
