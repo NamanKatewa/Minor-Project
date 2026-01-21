@@ -20,7 +20,7 @@ STOP_DEL_BHARAT_018         , Bharat Darshan Park                 , 28.666993486
 STOP_DEL_RAJDHANI_019       , Rajdhani College                    , 28.655068035253088, 77.12559489967629, Raja Garden       , DELHI_NCR_WEST      , TRUE
 STOP_DEL_RAJOURI_020        , Rajouri Garden Footover Bridge      , 28.64663029126297 , 77.12658328145659, Rajouri Garden    , DELHI_NCR_WEST      , TRUE
 STOP_DEL_DHAULA_021         , Dhaula Kuan                         , 28.599269804553344, 77.16256125564085, Dhaula Kuan       , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_RITHALA_022        , Rithala Metro                       ,                   ,                  , Rohini            , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_RITHALA_022        , Rithala Metro                       ,28.71993251591986, 77.10797620581823, Rohini            , DELHI_NCR_NORTH     , TRUE
 STOP_DEL_ROHINI_W_023       , Rohini West Metro                   ,                   ,                  , Rohini            , DELHI_NCR_NORTH     , TRUE
 STOP_DEL_ROHINI_E_024       , Rohini East Metro                   ,                   ,                  , Rohini            , DELHI_NCR_NORTH     , TRUE
 STOP_DEL_PITAMPURA_025      , Pitampura Metro                     ,                   ,                  , Pitampura         , DELHI_NCR_NORTH     , TRUE
