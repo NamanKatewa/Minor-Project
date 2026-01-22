@@ -298,7 +298,7 @@ STOP_FBD_SEC22_23_296       , Sec 22/23 Red Light U turn          ,             
 STOP_FBD_NIT_297            , NIT Hardware Chowk                  ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_BABA_DEEP_298      , Baba Deep Singh Chowk/Piyali        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_3NO_299            , 3 No. Maszid                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_JAAT_300           , Jaat Chowk                          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_JAAT_300           , Jaat Chowk                          , 28.404035150243875, 77.37620289632424, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_CHANDILA_301       , Chandila Chowk                      ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_PRIDE_302          , Sec 77/78 Pride Chowk               ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_GURJAR_303         , Gurjar Chowk                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
