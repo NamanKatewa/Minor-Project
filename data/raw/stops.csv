@@ -101,17 +101,17 @@ STOP_DEL_SHYAM_Z_099        , Shyam Vihar Z Block                 ,             
 STOP_DEL_TAJPUR_100         , Tajpur/Chhawla                      , 28.573133849215147, 77.01581645492591,                   , Chhawla           , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_DEENPUR_101        , Deenpur/Goyla Khurd                 ,  28.59628873213151, 76.99060901858104,                   , Deenpur           , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_QUTUB_VIHAR_102    , Qutub Vihar                         , 28.578335762982356, 77.03010814110586,                   , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_NALA_103           , Nala Road Holy Convent School       ,                   ,                  , Vikas Puri        , DELHI_NCR_WEST      , TRUE
-STOP_DEL_NAJAF_METRO_104    , Najafgarh Metro                     ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_NAGLI_105          , Nagli Dairy                         ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_SAI_BABA_106       , Najafgarh/Sai Baba                  ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_BDO_107            , BDO Roshanpura                      ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_JHATIKRA_108       , Jhatikra Mor                        ,                   ,                  , Jhatikra          , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_BIJWASAN_109       , Bijwasan Flyover                    ,                   ,                  , Bijwasan          , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_SAMALKHA_110       , Samalkha                            ,                   ,                  , Samalkha          , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_KAPASHERA_111      , Kapashera Bijwasan Red Light        ,                   ,                  , Kapashera         , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_UTTAM_E_112        , Uttam Nagar East                    ,                   ,                  , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
-STOP_DEL_UTTAM_W_113        , Uttam Nagar West                    ,                   ,                  , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NALA_103           , Nala Road Holy Convent School       , 28.649040732287265, 77.03825680884165,                   , Vikas Puri        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NAJAF_METRO_104    , Najafgarh Metro                     , 28.612585740313765, 76.98580428038785,                   , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_NAGLI_105          , Nagli Dairy                         , 28.61913024631813 , 77.01497581333304,                   , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SAI_BABA_106       , Najafgarh/Sai Baba                  , 28.61359099916644 , 76.99932301941833,                   , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_BDO_107            , BDO Roshanpura                      , 28.6009984906827  , 76.98874203005718,                   , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_JHATIKRA_108       , Jhatikra Mor                        , 28.585843023495244, 76.99511378996898,                   , Jhatikra          , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_BIJWASAN_109       , Bijwasan Flyover                    , 28.534654857055482, 77.04709464959022,                   , Bijwasan          , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SAMALKHA_110       , Samalkha                            , 29.237034634194018, 77.01305746158586,                   , Samalkha          , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_KAPASHERA_111      , Kapashera Bijwasan Red Light        , 28.527550629107775, 77.07613466206037,                   , Kapashera         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_UTTAM_E_112        , Uttam Nagar East                    , 28.623981355268967, 77.06292561117793,                   , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_UTTAM_W_113        , Uttam Nagar West                    , 28.621076005974665, 77.05267093474863,                  , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
 STOP_DEL_NAWADA_114         , Nawada Metro                        ,                   ,                  , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
 STOP_DEL_MOHAN_765_115      , Mohan Garden Pillar No -765         ,                   ,                  , Mohan Garden      , DELHI_NCR_WEST      , TRUE
 STOP_DEL_DWARKA_MOR_116     , Dwarka Mor Metro                    ,                   ,                  , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
