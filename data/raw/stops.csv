@@ -111,13 +111,13 @@ STOP_DEL_BIJWASAN_109       , Bijwasan Flyover                    , 28.534654857
 STOP_DEL_SAMALKHA_110       , Samalkha                            , 29.237034634194018, 77.01305746158586,                   , Samalkha          , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_KAPASHERA_111      , Kapashera Bijwasan Red Light        , 28.527550629107775, 77.07613466206037,                   , Kapashera         , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_UTTAM_E_112        , Uttam Nagar East                    , 28.623981355268967, 77.06292561117793,                   , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
-STOP_DEL_UTTAM_W_113        , Uttam Nagar West                    , 28.621076005974665, 77.05267093474863,                  , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
-STOP_DEL_NAWADA_114         , Nawada Metro                        ,                   ,                  , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
-STOP_DEL_MOHAN_765_115      , Mohan Garden Pillar No -765         ,                   ,                  , Mohan Garden      , DELHI_NCR_WEST      , TRUE
-STOP_DEL_DWARKA_MOR_116     , Dwarka Mor Metro                    ,                   ,                  , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
-STOP_DEL_RAJAPURI_117       , Rajapuri                            ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_SEC5_118           , Sec 05                              ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_LOVELY_119         , Lovely Chowk                        ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_UTTAM_W_113        , Uttam Nagar West                    , 28.621076005974665, 77.05267093474863,                   , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NAWADA_114         , Nawada Metro                        , 28.620244931205878, 77.04551593571156,                   , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_MOHAN_765_115      , Mohan Garden Pillar No -765         , 28.61970425375254 , 77.0363326599463 ,                   , Mohan Garden      , DELHI_NCR_WEST      , TRUE
+STOP_DEL_DWARKA_MOR_116     , Dwarka Mor Metro                    , 28.619178616876503, 77.03149610962785,                   , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_RAJAPURI_117       , Rajapuri                            ,  28.60380785442832, 77.0551596580639 ,                   , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SEC5_118           , Sec 05                              ,  28.59804669972069, 77.05702912771112,                   , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_LOVELY_119         , Lovely Chowk                        ,  28.60270495219956, 77.04878932579524,                   , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_AMAN_120           , Aman Chowk                          ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_NAJAF_CIRCLE_121   , Najafgarh Circle                    ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_SEC19_122          , Sec-19 Welcome Hotel                ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
