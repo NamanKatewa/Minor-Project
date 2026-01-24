@@ -121,11 +121,11 @@ STOP_DEL_LOVELY_119         , Lovely Chowk                        ,  28.60270495
 STOP_DEL_AMAN_120           , Aman Chowk                          ,  28.58899264617509, 77.06131400458871, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_NAJAF_CIRCLE_121   , Najafgarh Circle                    , 28.612450609542716, 76.98645041319156, Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_SEC19_122          , Sec-19 Welcome Hotel                , 28.578562985747702, 77.05607475158598, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_DWARKA_EXP_123     , Dwarka Expressway                   ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_NAGLI_METRO_124    , Nagli Dairy Metro                   ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_GOLOK_125          , Golok Dham                          ,                   ,                  , Bijwasan          , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_PILLAR_772_126     , Metro Pillar 772                    ,                   ,                  , Uttam Nagar       , DELHI_NCR_WEST      , TRUE
-STOP_DEL_DPS_MATIYALA_127   , DPS Matiyala                        ,                   ,                  , Matiyala          , DELHI_NCR_WEST      , TRUE
+STOP_DEL_DWARKA_EXP_123     , Dwarka Expressway                   ,  28.50001826446381, 77.00712194520196, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_NAGLI_METRO_124    , Nagli Dairy Metro                   , 28.61950359834785 , 77.01714034071448, Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_GOLOK_125          , Golok Dham                          , 28.586191490188543, 77.059953746932  , Bijwasan          , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_PILLAR_772_126     , Metro Pillar 772                    , 28.61941200108642 , 77.03434954797878, Uttam Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_DPS_MATIYALA_127   , DPS Matiyala                        ,  28.60449295579867, 77.04631420703255, Matiyala          , DELHI_NCR_WEST      , TRUE
 STOP_DEL_RAJAPURI_PS_128    , Rajapuri Police Station             ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_DWK_SEC2_129       , Dwarka Sec 02                       ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_BAH_WORLD_130          , World School Bahadurgarh            ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
