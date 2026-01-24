@@ -126,11 +126,11 @@ STOP_DEL_NAGLI_METRO_124    , Nagli Dairy Metro                   , 28.619503598
 STOP_DEL_GOLOK_125          , Golok Dham                          , 28.586191490188543, 77.059953746932  , Bijwasan          , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_PILLAR_772_126     , Metro Pillar 772                    , 28.61941200108642 , 77.03434954797878, Uttam Nagar       , DELHI_NCR_WEST      , TRUE
 STOP_DEL_DPS_MATIYALA_127   , DPS Matiyala                        ,  28.60449295579867, 77.04631420703255, Matiyala          , DELHI_NCR_WEST      , TRUE
-STOP_DEL_RAJAPURI_PS_128    , Rajapuri Police Station             ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_DWK_SEC2_129       , Dwarka Sec 02                       ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_BAH_WORLD_130          , World School Bahadurgarh            ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_BRIG_131           , Brig Hoshiar Singh Metro            ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_CITY_132           , Bahadurgarh City Metro/Bus Stand    ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_DEL_RAJAPURI_PS_128    , Rajapuri Police Station             , 28.603652590232418, 77.03386156286601, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DWK_SEC2_129       , Dwarka Sec 02                       , 28.597494732764375, 77.0654065747963 , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_BAH_WORLD_130          , World School Bahadurgarh            , 28.690661684246127, 76.93412608749802, Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_BRIG_131           , Brig Hoshiar Singh Metro            ,  28.69757834010054, 76.91857206245983, Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_CITY_132           , Bahadurgarh City Metro/Bus Stand    ,    28.690528403938, 76.93650055616666, Bahadurgarh       , BAHADURGARH         , TRUE
 STOP_BAH_BRAHM_133          , Brahm Shakti Hosp                   ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
 STOP_BAH_JAATWADA_134       , Jaatwada Colony                     ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
 STOP_BAH_HARDYAL_135        , Hardyal School Sec 09               ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
