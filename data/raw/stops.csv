@@ -198,11 +198,11 @@ STOP_DEL_LADO_BUS_196       , Lado Sarai Bus Stand                ,             
 STOP_DEL_AHINSA_197         , Anhinsa Sathal Bus Stand            ,                   ,                  , Mehrauli          , DELHI_NCR_SOUTH     , TRUE
 STOP_DEL_GOVIND_METRO_198   , Govind Puri Metro                   ,                   ,                  , Govindpuri        , DELHI_NCR_SOUTH     , TRUE
 STOP_DEL_POOJA_199          , Pooja Masala                        ,                   ,                  , Govindpuri        , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_DDA_429_200        , DDA Flat 429 Bus Stop               ,                   ,                  , Kalkaji           , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_CHIRAG_201         , Chirag Delhi                        ,                   ,                  , Chirag Delhi      , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_SEKH_SARAI_202     , Sekh Sarai                          ,                   ,                  , Sheikh Sarai      , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_SAKET_COURT_203    , Saket Court                         ,                   ,                  , Saket             , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_SELECT_CITY_204    , Saket Select City Mall              ,                   ,                  , Saket             , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_DDA_429_200        , DDA Flat 429 Bus Stop               ,28.527473          , 77.255919        , Kalkaji           , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_CHIRAG_201         , Chirag Delhi                        ,28.541075          , 77.229501        , Chirag Delhi      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SEKH_SARAI_202     , Sekh Sarai                          ,28.533385          , 77.231769        , Sheikh Sarai      , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SAKET_COURT_203    , Saket Court                         ,28.529263          , 77.221227        , Saket             , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SELECT_CITY_204    , Saket Select City Mall              ,28.529902          , 77.218045, Saket             , DELHI_NCR_SOUTH     , TRUE
 STOP_DEL_MAX_205            , Max Hospital                        ,                   ,                  , Saket             , DELHI_NCR_SOUTH     , TRUE
 STOP_DEL_MALVIYA_206        , Malviya Nagar Metro                 ,                   ,                  , Malviya Nagar     , DELHI_NCR_SOUTH     , TRUE
 STOP_DEL_KHOKA_207          , Khoka Market                        ,                   ,                  , Saket             , DELHI_NCR_SOUTH     , TRUE
