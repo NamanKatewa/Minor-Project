@@ -21,7 +21,7 @@ STOP_DEL_RAJDHANI_019       , Rajdhani College                    , 28.655068035
 STOP_DEL_RAJOURI_020        , Rajouri Garden Footover Bridge      , 28.64663029126297 , 77.12658328145659, Rajouri Garden    , DELHI_NCR_WEST      , TRUE
 STOP_DEL_DHAULA_021         , Dhaula Kuan                         , 28.599269804553344, 77.16256125564085, Dhaula Kuan       , DELHI_NCR_SOUTH     , TRUE
 STOP_DEL_RITHALA_022        , Rithala Metro                       , 28.719876046812228, 77.10802985151908, Rohini            , DELHI_NCR_NORTH     , TRUE
-STOP_DEL_ROHINI_W_023       , Rohini West Metro                   ,                   ,                  , Rohini            , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_ROHINI_W_023       , Rohini West Metro                   , 28.715701056572843, 77.11441032712092, Rohini            , DELHI_NCR_NORTH     , TRUE
 STOP_DEL_ROHINI_E_024       , Rohini East Metro                   ,                   ,                  , Rohini            , DELHI_NCR_NORTH     , TRUE
 STOP_DEL_PITAMPURA_025      , Pitampura Metro                     ,                   ,                  , Pitampura         , DELHI_NCR_NORTH     , TRUE
 STOP_DEL_KOHAT_026          , Kohat Enclave Metro                 ,                   ,                  , Pitampura         , DELHI_NCR_NORTH     , TRUE
