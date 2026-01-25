@@ -202,15 +202,15 @@ STOP_DEL_DDA_429_200        , DDA Flat 429 Bus Stop               ,28.527473    
 STOP_DEL_CHIRAG_201         , Chirag Delhi                        ,28.541075          , 77.229501        , Chirag Delhi      , DELHI_NCR_SOUTH     , TRUE
 STOP_DEL_SEKH_SARAI_202     , Sekh Sarai                          ,28.533385          , 77.231769        , Sheikh Sarai      , DELHI_NCR_SOUTH     , TRUE
 STOP_DEL_SAKET_COURT_203    , Saket Court                         ,28.529263          , 77.221227        , Saket             , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_SELECT_CITY_204    , Saket Select City Mall              ,28.529902          , 77.218045, Saket             , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_MAX_205            , Max Hospital                        ,                   ,                  , Saket             , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_MALVIYA_206        , Malviya Nagar Metro                 ,                   ,                  , Malviya Nagar     , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_KHOKA_207          , Khoka Market                        ,                   ,                  , Saket             , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_SAKET_METRO_208    , Saket Metro                         ,                   ,                  , Saket             , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_LADO_209           , Lado Sarai                          ,                   ,                  , Lado Sarai        , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_QUTAB_210          , Qutab Metro                         ,                   ,                  , Mehrauli          , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_CDR_211            , CDR Chowk/ChattarPur Metro          ,                   ,                  , Chhatarpur        , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_MANGLAPURI_212     , New Manglapuri                      ,                   ,                  , Manglapuri        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SELECT_CITY_204    , Saket Select City Mall              ,28.529902          , 77.218045        , Saket             , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MAX_205            , Max Hospital                        ,28.528241          , 77.211579        , Saket             , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MALVIYA_206        , Malviya Nagar Metro                 ,28.527817          , 77.205234        , Malviya Nagar     , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_KHOKA_207          , Khoka Market                        ,28.562249          , 77.240563        , Saket             , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_SAKET_METRO_208    , Saket Metro                         ,28.520380318008073 , 77.20263836503304, Saket             , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_LADO_209           , Lado Sarai                          ,28.52713690957895, 77.18988720644312 , Lado Sarai        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_QUTAB_210          , Qutab Metro                         ,28.513200468006197, 77.18640747358413  , Mehrauli          , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_CDR_211            , CDR Chowk/ChattarPur Metro          ,28.507352608715948, 77.17654907928394, Chhatarpur        , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_MANGLAPURI_212     , New Manglapuri                      ,28.498795217667876, 77.16078341438624, Manglapuri        , DELHI_NCR_SOUTH     , TRUE
 STOP_DEL_SULTANPUR_213      , Sultanpur Metro                     ,                   ,                  , Sultanpur         , DELHI_NCR_SOUTH     , TRUE
 STOP_DEL_GHITORNI_214       , Ghitorni Metro                      ,                   ,                  , Ghitorni          , DELHI_NCR_SOUTH     , TRUE
 STOP_DEL_ARJAN_215          , Arjan Garh Metro                    ,                   ,                  , Arjan Garh        , DELHI_NCR_SOUTH     , TRUE
