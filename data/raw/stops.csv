@@ -298,45 +298,45 @@ STOP_FBD_SEC22_23_296       , Sec 22/23 Red Light U turn          ,28.3632051089
 STOP_FBD_NIT_297            , NIT Hardware Chowk                  ,28.3778138836262, 77.29741281632744   , Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_BABA_DEEP_298      , Baba Deep Singh Chowk/Piyali        ,28.376723364867466, 77.28931689409815 , Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_3NO_299            , 3 No. Maszid                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_JAAT_300           , Jaat Chowk                          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_CHANDILA_301       , Chandila Chowk                      ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_JAAT_300           , Jaat Chowk                          , 28.404035150243875, 77.37620289632424, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_CHANDILA_301       , Chandila Chowk                      , 28.387663603766487, 77.36274046690555, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_PRIDE_302          , Sec 77/78 Pride Chowk               ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_GURJAR_303         , Gurjar Chowk                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_SEC8_PUL_304       , Sec 8 Pul                           ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_TIGAON_305         , Tigaon Road                         ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_IMT_306            , IMT Chowk                           ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_CHANDWALI_307      , Chandwali                           ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_SEC65_308          , Sec 65                              ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_SAHAPURA_309       , Sahapura                            ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_JAJRU_310          , Jajru                               ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_JHADSETLI_311      , Jhadsetli                           ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_SIKRI_312          , Sikri                               ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_GADPURI_313        , Gadpuri Toll                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_DUDHOLA_314        , Dudhola                             ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_JAINDAPUR_315      , Jaindapur                           ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_FBD_SILONI_316         , Siloni                              ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_FBD_RPS_SAVANA_317     , RPS Savana                          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_SRS_ROYAL_318      , SRS Royal Hills                     ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_SEC17_CNG_319      , Sec 17 Flyover CNG Pump             ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_KHERI_320          , Kheri Pull                          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_28_29_MKT_321      , 28/29 Market                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_BADKHAL_322        , Badkhal                             ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_ANKHEER_VILL_323   , Ankheer Village                     ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_DELHI_MASJID_324   , Delhi Masjid                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_SAINIK_RL_325      , Sainik Colony Red Light             ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_PIYUSH_326         , Piyush Heights                      ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_SRS_RES_327        , SRS Residence                       ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_SEC15_328          , Sector 15                           ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_AZRONDA_329        , Azronda                             ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_BK_330             , BK Gol Chakkar                      ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_DAYANAND_331       , Dayanand College                    ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SEC8_PUL_304       , Sec 8 Pul                           , 28.359044946773757, 77.33969048456903, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_TIGAON_305         , Tigaon Road                         , 28.349443765401585, 77.37319385181125, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_IMT_306            , IMT Chowk                           , 28.33106847328701 , 77.3482068719083 , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_CHANDWALI_307      , Chandwali                           , 28.32036566398052 , 77.34899048102776, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SEC65_308          , Sec 65                              , 28.317184611779187, 77.34124295933445, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SAHAPURA_309       , Sahapura                            , 28.305008904312384, 77.3349460474881 , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_JAJRU_310          , Jajru                               , 28.2982500853239  , 77.30664818340856, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_JHADSETLI_311      , Jhadsetli                           , 28.308175373502362, 77.2999055852802 , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SIKRI_312          , Sikri                               , 28.275309880916982, 77.2887407690116 , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_GADPURI_313        , Gadpuri Toll                        , 28.25281861481844 , 77.28996631256419, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_DUDHOLA_314        , Dudhola                             , 28.20513453744023 , 77.26947590148363, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_JAINDAPUR_315      , Jaindapur                           , 28.204697084741756, 77.20618159582469, Palwal            , PALWAL              , TRUE
+STOP_FBD_SILONI_316         , Siloni                              , 28.14723823439932 , 77.32586555986634, Palwal            , PALWAL              , TRUE
+STOP_FBD_RPS_SAVANA_317     , RPS Savana                          , 28.410894450756516, 77.35753272503804, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SRS_ROYAL_318      , SRS Royal Hills                     , 28.410730402485758, 77.3440641040764 , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SEC17_CNG_319      , Sec 17 Flyover CNG Pump             , 28.411101474611673, 77.33189461719793, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_KHERI_320          , Kheri Pull                          , 28.420958238743715, 77.32914663197454, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_28_29_MKT_321      , 28/29 Market                        , 28.428282521776346, 77.32038026859256, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_BADKHAL_322        , Badkhal                             , 28.411891568570876, 77.28308440211161, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_ANKHEER_VILL_323   , Ankheer Village                     , 28.426208461412717, 77.29147595330312, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_DELHI_MASJID_324   , Delhi Masjid                        , 28.410081844286054, 77.28271682838746, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SAINIK_RL_325      , Sainik Colony Red Light             , 28.401897783349405, 77.27893122360449, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_PIYUSH_326         , Piyush Heights                      , 28.417512753446456, 77.36562747853223, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SRS_RES_327        , SRS Residence                       , 28.410922031193607, 77.35239977933819, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SEC15_328          , Sector 15                           , 28.395181596477858, 77.31948740347346, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_AZRONDA_329        , Azronda                             , 28.39543466343633 , 77.3151657574765 , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_BK_330             , BK Gol Chakkar                      , 28.3919930797256  , 77.3015338385271 , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_DAYANAND_331       , Dayanand College                    , 28.397566574328085, 77.29936567436525, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_MINI_BYPASS_332    , Mini By-Pass                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_MULLA_333          , Mulla Hotel                         ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_MULLA_333          , Mulla Hotel                         , 28.47446973005976 , 77.30596010746213, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_ACHIEVER_334       , Achiever                            ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_PALI_335           , Pali                                ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_PALI_335           , Pali                                , 28.379067767718414, 77.24725540845107, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_NUNHERA_336        , Nunhera                             ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_SEC3_337           , Sec 3                               ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_GOODYER_338        , Goodyer Chowk                       ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_SEC3_337           , Sec 3                               , 28.35202036635203 , 77.33696161400694, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_GOODYER_338        , Goodyer Chowk                       , 28.354156276798342, 77.3160042786159 , Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_BALLAB_SOHNA_339   , Ballabhgarh Sohna Mor               ,                   ,                  , Ballabgarh        , FARIDABAD           , TRUE
 STOP_FBD_GOCHI_340          , Gochi Police Post                   ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_DABUA_341          , Dabua Nala                          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
@@ -344,60 +344,60 @@ STOP_FBD_SARURPUR_342       , Sarurpur Chowk                      ,             
 STOP_FBD_NAGLA_343          , Nagla Chowk                         ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_KHADI_344          , Khadi Mor                           ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_PALI_CHOWK_345     , Pali Chowk                          ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_PAL_ALAWALPUR_VILL_346 , Alawalpur Village                   ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_ALAWALPUR_VILL_346 , Alawalpur Village                   , 28.172576476098005, 77.37162591959746, Palwal            , PALWAL              , TRUE
 STOP_PAL_NAYA_GAO_347       , Naya Gao                            ,                   ,                  , Palwal            , PALWAL              , TRUE
 STOP_PAL_MANDI_348          , Mandi Chowk                         ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_ALAWALPUR_CH_349   , Alawalpur Chowk Palwal              ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_BUS_STAND_350      , Palwal Bus Stand                    ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_KITHWADI_351       , Kithwadi Chowk                      ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_NEXA_352           , Nexa Showroom                       ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_RASOOLPUR_353      , Rasoolpur Chowk                     ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_AGRA_354           , Agra Chowk                          ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_ALAWALPUR_CH_349   , Alawalpur Chowk Palwal              , 28.150685579732084, 77.33270171551389, Palwal            , PALWAL              , TRUE
+STOP_PAL_BUS_STAND_350      , Palwal Bus Stand                    , 28.147311081921327, 77.33477698480793, Palwal            , PALWAL              , TRUE
+STOP_PAL_KITHWADI_351       , Kithwadi Chowk                      , 28.142976930929418, 77.33547013232132, Palwal            , PALWAL              , TRUE
+STOP_PAL_NEXA_352           , Nexa Showroom                       , 28.140138284223138, 77.33544282779849, Palwal            , PALWAL              , TRUE
+STOP_PAL_RASOOLPUR_353      , Rasoolpur Chowk                     , 28.141232977976916, 77.32741712796634, Palwal            , PALWAL              , TRUE
+STOP_PAL_AGRA_354           , Agra Chowk                          , 28.13572427514217 , 77.32914277285356, Palwal            , PALWAL              , TRUE
 STOP_PAL_OLD_SOHNA_355      , Old Sohna Mor                       ,                   ,                  , Palwal            , PALWAL              , TRUE
 STOP_PAL_HUDA_SOHNA_356     , Huda Sohna Road                     ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_DHATEER_357        , Dhateer                             ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_SOHNA_358          , Sohna                               ,                   ,                  , Sohna             , GURGAON             , TRUE
-STOP_PAL_PAPPAN_359         , Pappan Plaza                        ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_DHATEER_357        , Dhateer                             , 28.188466886381956, 77.24982436444779, Palwal            , PALWAL              , TRUE
+STOP_PAL_SOHNA_358          , Sohna                               , 28.246751000860634, 77.07231033912987, Sohna             , GURGAON             , TRUE
+STOP_PAL_PAPPAN_359         , Pappan Plaza                        , 28.154908566566935, 77.32797136686345, Palwal            , PALWAL              , TRUE
 STOP_PAL_HUDA_BRIDGE_360    , Huda Bridge/Flyover                 ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_GOVT_HOSP_361      , Govt Hospital                       ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_PANCHWATI_362      , Panchwati Chowk                     ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_MANDKOLA_RD_363    , Mandkola Road                       ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_KARNA_364          , Karna Gao Mor                       ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_MAHESH_365         , Mahesh Pur                          ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_MANDKOLA_VILL_366  , Mandkola Village                    ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_GOVT_HOSP_361      , Govt Hospital                       , 28.13647686598363 , 77.32807289462347, Palwal            , PALWAL              , TRUE
+STOP_PAL_PANCHWATI_362      , Panchwati Chowk                     , 28.136437351999554, 77.32243114350122, Palwal            , PALWAL              , TRUE
+STOP_PAL_MANDKOLA_RD_363    , Mandkola Road                       , 28.14059121047196 , 77.31823384515596, Palwal            , PALWAL              , TRUE
+STOP_PAL_KARNA_364          , Karna Gao Mor                       , 28.136987431102458, 77.27731385007418, Palwal            , PALWAL              , TRUE
+STOP_PAL_MAHESH_365         , Mahesh Pur                          , 28.135779778734623, 77.23735678376163, Palwal            , PALWAL              , TRUE
+STOP_PAL_MANDKOLA_VILL_366  , Mandkola Village                    , 28.13261792734583 , 77.1774587886702 , Palwal            , PALWAL              , TRUE
 STOP_PAL_MANUVASH_367       , Manuvash                            ,                   ,                  , Palwal            , PALWAL              , TRUE
 STOP_PAL_SHILANI_368        , Shilani Mor                         ,                   ,                  , Palwal            , PALWAL              , TRUE
 STOP_GGN_SEC7_369           , Sec 07 Gate                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_AMBEDKAR_370       , Sec-04/07 Ambedkar Chowk            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_ESI_09_371         , Sec 09 ESI Hospital                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SEC09_372          , Sector - 09                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ESI_09_371         , Sec 09 ESI Hospital                 , 28.46745831823201 , 77.00106078217618, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC09_372          , Sector - 09                         , 28.46547981191571 , 76.99543550362971, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_SIDDESH_373        , Slddeshvar School Sec 9             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_GREENWOOD_374      , Green Wood Public School            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_ALPINE_10A_375     , Alpine Convent/Sec 10A              ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_GREENWOOD_374      , Green Wood Public School            , 28.46239260309172 , 76.99046632006366, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ALPINE_10A_375     , Alpine Convent/Sec 10A              , 28.454998580880048, 76.99330106595671, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_ANAJ_376           , Anaj Mandi Under Pass               ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_RAJNAGAR_377       , Rajnagar Bery Bagh                  ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_DLF_PVR_378        , DLF PVR Phase 3                     ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_NATHU_PUR_379      , Nathu Pur                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_NEELKANTH_380      , Neelkanth Hospital                  ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_CITY_COURT_381     , City Court                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_NATHU_PUR_379      , Nathu Pur                           , 28.485844531005196, 77.09535589250272, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_NEELKANTH_380      , Neelkanth Hospital                  , 28.483318913623137, 77.1075638036671 , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_CITY_COURT_381     , City Court                          , 28.483030111606634, 77.09507594495545, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_LAZOR_382          , Lazor Valley                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_GWAL_PAHARI_383    , Gwal Pahari                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_BANDHWARI_384      , Bandhwari                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SEC61_385          , Sec 61                              ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_AIPL_386           , AIPL Business Club                  ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_WORLDMARK_387      , WorldMark/Paras Trinity             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_M3M_388            , M3M Merlin                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_GWAL_PAHARI_383    , Gwal Pahari                         , 28.434058846717626, 77.14687274536323, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BANDHWARI_384      , Bandhwari                           , 28.422642723407698, 77.1448454415394 , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC61_385          , Sec 61                              , 28.404917923387256, 77.09656248817778, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_AIPL_386           , AIPL Business Club                  , 28.400533715596442, 77.08587392081148, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_WORLDMARK_387      , WorldMark/Paras Trinity             , 28.400860927223295, 77.0924468286814 , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_M3M_388            , M3M Merlin                          , 28.390716343902966, 77.05767118065981, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_DLF1_389           , DLF1                                ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_BEHRAMPUR_390      , Behrampur                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BEHRAMPUR_390      , Behrampur                           , 28.415983414921104, 77.02224639988434, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_IREO_391           , Ireo Uptown                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_MG_METRO_392       , MG Road Metro                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SIKANDER_393       , Sikanderpur Metro                   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SUNCITY_394        , Sun City/Sec 54 Chowk               ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SEC55_56_395       , Sec 55-56 Rapid Metro               ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SURAJ_396          , Suraj School                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_HARISH_397         , Harish Bakery                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_JALVAYU_398        , Jalvayu Tower                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_WAZIRABAD_399      , Wazirabad Red Light                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MG_METRO_392       , MG Road Metro                       , 28.479680828376072, 77.08032960534757, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SIKANDER_393       , Sikanderpur Metro                   , 28.481340735144723, 77.09259234110453, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SUNCITY_394        , Sun City/Sec 54 Chowk               , 28.437293679114322, 77.10385722447545, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC55_56_395       , Sec 55-56 Rapid Metro               , 28.42378708573979 , 77.10534656811735, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SURAJ_396          , Suraj School                        , 28.42451280742166 , 77.10156922391508, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_HARISH_397         , Harish Bakery                       , 28.42797338994093 , 77.10029396669036, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_JALVAYU_398        , Jalvayu Tower                       , 28.431250038730624, 77.09579988317132, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_WAZIRABAD_399      , Wazirabad Red Light                 , 28.429589874819342, 77.09141956869414, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_HONGKONG_400       , Hong Kong Mkt Red Light             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_SEC57_401          , Sec 57 Tehsil                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_DHARAM_402         , Dharam Marg Society Cut             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
