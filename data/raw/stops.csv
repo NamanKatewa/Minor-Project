@@ -446,19 +446,19 @@ STOP_GGN_BIKANER_444        , Bikaner                             ,28.4582362902
 STOP_GGN_PURI_15_445        , Puri Pillar No 15                   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_DWK_EXP_33_446     , Dwarka Expressway Pillar 33         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_40FOOT_447         , 40 Foot Road                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_DWK_EXP_62_448     , Dwarka Expressway Pillar 62         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_CONSCIENT_449      , Conscient Mall                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DWK_EXP_62_448     , Dwarka Expressway Pillar 62         ,28.50004913381563  , 77.0072188416011 , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_CONSCIENT_449      , Conscient Mall                      ,28.50319303194057  , 77.00646506309748, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_DWK_EXP_95_450     , Dwarka Expressway Pillar 95         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_DAULATBAD_451      , Daulatbad Flyover                   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_RAILWAY_PP_452     , Railway Road P.P                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_PARKASH_453        , Parkash Puri Chowk                  ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_LAXMAN_454         , Laxman Vihar Red Light              ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SHANI_455          , Shani Dev Mandir                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_CCA_456            , CCA School                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SEC4_MKT_457       , Sector 4 Market                     ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SEC4_7_458         , Sector 4/7                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_PREM_MANDIR_459    , Prem Mandir                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SADAR_460          , Sadar Bazar                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DAULATBAD_451      , Daulatbad Flyover                   ,28.486071073443814 , 77.0080516523077 , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_RAILWAY_PP_452     , Railway Road P.P                    ,28.485021907931714 , 77.01277199638753, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PARKASH_453        , Parkash Puri Chowk                  ,28.480747063528565 , 77.01480278760658, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_LAXMAN_454         , Laxman Vihar Red Light              ,28.480817132442834 , 77.01504310041935, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SHANI_455          , Shani Dev Mandir                    ,28.47085881082615  , 77.02205645274186, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_CCA_456            , CCA School                          ,28.47741375418125  , 77.00508466627507, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC4_MKT_457       , Sector 4 Market                     ,28.47439097985596  , 77.0101906518272 , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC4_7_458         , Sector 4/7                          ,28.473550821219376 , 77.01769732957308, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PREM_MANDIR_459    , Prem Mandir                         ,28.464928521960502 , 77.0217999884908 , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SADAR_460          , Sadar Bazar                         ,28.658474001034566 , 77.21267279518742, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_DB_BHARAT_461      , DB Bharat PP /Railway Station       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_SHYAAM_NURS_462    , Shyaam Nursery                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_PURI_SOC_463       , Puri Society                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
