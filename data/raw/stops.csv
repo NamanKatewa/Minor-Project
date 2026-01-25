@@ -22,29 +22,29 @@ STOP_DEL_RAJOURI_020        , Rajouri Garden Footover Bridge      , 28.646630291
 STOP_DEL_DHAULA_021         , Dhaula Kuan                         , 28.599269804553344, 77.16256125564085, Dhaula Kuan       , DELHI_NCR_SOUTH     , TRUE
 STOP_DEL_RITHALA_022        , Rithala Metro                       , 28.719876046812228, 77.10802985151908, Rohini            , DELHI_NCR_NORTH     , TRUE
 STOP_DEL_ROHINI_W_023       , Rohini West Metro                   , 28.715701056572843, 77.11441032712092, Rohini            , DELHI_NCR_NORTH     , TRUE
-STOP_DEL_ROHINI_E_024       , Rohini East Metro                   ,                   ,                  , Rohini            , DELHI_NCR_NORTH     , TRUE
-STOP_DEL_PITAMPURA_025      , Pitampura Metro                     ,                   ,                  , Pitampura         , DELHI_NCR_NORTH     , TRUE
-STOP_DEL_KOHAT_026          , Kohat Enclave Metro                 ,                   ,                  , Pitampura         , DELHI_NCR_NORTH     , TRUE
-STOP_DEL_NARAINA_027        , Naraina                             ,                   ,                  , Naraina           , DELHI_NCR_WEST      , TRUE
-STOP_DEL_CANTT_028          , Delhi Cantt Metro/Ring Road         ,                   ,                  , Delhi Cantt       , DELHI_NCR_WEST      , TRUE
-STOP_DEL_ESI_029            , ESI Hospital                        ,                   ,                  , Basai Darapur     , DELHI_NCR_WEST      , TRUE
-STOP_DEL_RAJOURI_RL_030     , Rajouri Garden Red Light            ,                   ,                  , Rajouri Garden    , DELHI_NCR_WEST      , TRUE
-STOP_DEL_NARAINA_KM_031     , Naraina Kali Mandir                 ,                   ,                  , Naraina           , DELHI_NCR_WEST      , TRUE
-STOP_DEL_NARAINA_MANDI_032  , Naraina Mandi                       ,                   ,                  , Naraina           , DELHI_NCR_WEST      , TRUE
-STOP_DEL_CRPF_033           , CRPF Camp                           ,                   ,                  , Jharoda Kalan     , DELHI_NCR_WEST      , TRUE
-STOP_DEL_PASTRY_034         , Vikaspuri Mor/Pastry Palace         ,                   ,                  , Vikas Puri        , DELHI_NCR_WEST      , TRUE
-STOP_DEL_JANAK_035          , Janakpuri Metro                     ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
-STOP_DEL_TILAK_AG_036       , Tilak Nagar Agarwal                 ,                   ,                  , Tilak Nagar       , DELHI_NCR_WEST      , TRUE
-STOP_DEL_TILAK_HR_037       , Tilak Nagar Haldiram Red Light      ,                   ,                  , Tilak Nagar       , DELHI_NCR_WEST      , TRUE
-STOP_DEL_SUBHASH_RL_038     , Subhash Nagar Metro                 ,                   ,                  , Subhash Nagar     , DELHI_NCR_WEST      , TRUE
-STOP_DEL_CAMBRIDGE_039      , Cambridge School/MG Flats           ,                   ,                  , Subhash Nagar     , DELHI_NCR_WEST      , TRUE
-STOP_DEL_SUBHASH_MG_040     , Subhash Nagar Gol Chakkar           ,                   ,                  , Subhash Nagar     , DELHI_NCR_WEST      , TRUE
-STOP_DEL_SUBHASH_JC_041     , Subhash Nagar Junction              ,                   ,                  , Subhash Nagar     , DELHI_NCR_WEST      , TRUE
-STOP_DEL_SWARAG_042         , Swarag Ashram Bus Stop              ,                   ,                  , Hari Nagar        , DELHI_NCR_WEST      , TRUE
-STOP_DEL_DDU_043            , Din Dayal Hospital                  ,                   ,                  , Hari Nagar        , DELHI_NCR_WEST      , TRUE
-STOP_DEL_GHANTA_044         , Hari Nagar Ghanta Ghar              ,                   ,                  , Hari Nagar        , DELHI_NCR_WEST      , TRUE
-STOP_DEL_HARI_DEPOT_045     , Hari Nagar Depot                    ,                   ,                  , Hari Nagar        , DELHI_NCR_WEST      , TRUE
-STOP_DEL_JANAK_DBLOCK_046   , Janakpuri D Block Red Light         ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_ROHINI_E_024       , Rohini East Metro                   , 28.706801946059638, 77.1273590840638 , Rohini            , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_PITAMPURA_025      , Pitampura Metro                     , 28.702723962341473, 77.13328538083702, Pitampura         , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_KOHAT_026          , Kohat Enclave Metro                 , 28.697811599689842, 77.14151437242299, Pitampura         , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_NARAINA_027        , Naraina                             , 28.62670155039811 , 77.13411201126645, Naraina           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_CANTT_028          , Delhi Cantt Metro/Ring Road         , 28.60822607155233 , 77.14097891228207, Delhi Cantt       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_ESI_029            , ESI Hospital                        , 28.658204350638815, 77.12835520181102, Basai Darapur     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_RAJOURI_RL_030     , Rajouri Garden Red Light            , 28.650726698081904, 77.12515423588981, Rajouri Garden    , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NARAINA_KM_031     , Naraina Kali Mandir                 , 28.62418074198085 , 77.13523642237924, Naraina           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NARAINA_MANDI_032  , Naraina Mandi                       , 28.61909503136605 , 77.13651803689699, Naraina           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_CRPF_033           , CRPF Camp                           , 28.646669716536387, 77.08474215547886, Jharoda Kalan     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_PASTRY_034         , Vikaspuri Mor/Pastry Palace         , 28.639461043974315, 77.08209686241382, Vikas Puri        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_JANAK_035          , Janakpuri Metro                     , 28.632836672796508, 77.08519738239221, Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_TILAK_AG_036       , Tilak Nagar Agarwal                 , 28.634988270113027, 77.09166323896635, Tilak Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_TILAK_HR_037       , Tilak Nagar Haldiram Red Light      , 28.63899956009373 , 77.1007400086143 , Tilak Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SUBHASH_RL_038     , Subhash Nagar Metro                 , 28.640929913739306, 77.10573951409985, Subhash Nagar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_CAMBRIDGE_039      , Cambridge School/MG Flats           , 28.63996443227369 , 77.11336061475137, Subhash Nagar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SUBHASH_MG_040     , Subhash Nagar Gol Chakkar           , 28.637987070194995, 77.11318415194032, Subhash Nagar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SUBHASH_JC_041     , Subhash Nagar Junction              , 28.634163628814424, 77.11161888973376, Subhash Nagar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SWARAG_042         , Swarag Ashram Bus Stop              , 28.631050272488007, 77.11458516730627, Hari Nagar        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_DDU_043            , Din Dayal Hospital                  , 28.628455247406404, 77.11100532999656, Hari Nagar        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_GHANTA_044         , Hari Nagar Ghanta Ghar              , 28.62473440760064 , 77.1101488158523 , Hari Nagar        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_HARI_DEPOT_045     , Hari Nagar Depot                    , 28.6251299645663  , 77.10214513250347, Hari Nagar        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_JANAK_DBLOCK_046   , Janakpuri D Block Red Light         , 28.609594840668702, 77.09897951616948, Janakpuri         , DELHI_NCR_WEST      , TRUE
 STOP_DEL_VIKAS_BRO_047      , Vikaspuri/Brotherhood               ,                   ,                  , Vikas Puri        , DELHI_NCR_WEST      , TRUE
 STOP_DEL_NSIT_048           , NSIT/Sec 13                         ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_DWK_3_4_049        , Dwarka Sector 3 & 4                 ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
@@ -171,7 +171,7 @@ STOP_DEL_RAJENDRA_169       , Rajendra Palace Metro               , 28.642515489
 STOP_DEL_PATEL_METRO_170    , Patel Nagar Metro                   , 28.645626985509356, 77.1682300306122 , Patel Nagar       , DELHI_NCR_WEST      , TRUE
 STOP_DEL_SHADIPUR_171       , Shadipur Metro                      , 28.65168118591564 , 77.15785570928148, Shadipur          , DELHI_NCR_WEST      , TRUE
 STOP_DEL_TODAPUR_172        , TodaPur                             , 28.624052053606103, 77.15633921132944, Todapur           , DELHI_NCR_WEST      , TRUE
-STOP_DEL_NARAINA_VILL_173   , Naraina Village                     , 28.623967644215487, 77.13540602682205, Naraina           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NARAINA_VILL_173   , Naraina Village                     , 28.62337246132731 , 77.13565085164136, Naraina           , DELHI_NCR_WEST      , TRUE
 STOP_DEL_JHAREDA_174        , Jhareda Village                     , 28.582155186355006, 77.13861827534815, Delhi Cantt       , DELHI_NCR_WEST      , TRUE
 STOP_DEL_SHANKAR_175        , Shankar Vihar                       , 28.566353645157918, 77.13442605874693, Delhi Cantt       , DELHI_NCR_SOUTH     , TRUE
 STOP_DEL_MAHIPALPUR_176     , Mahipalpur/Vishal Mega Mart         , 28.546556512087268, 77.12484798354201, Mahipalpur        , DELHI_NCR_SOUTH     , TRUE
