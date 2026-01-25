@@ -398,25 +398,25 @@ STOP_GGN_SURAJ_396          , Suraj School                        ,             
 STOP_GGN_HARISH_397         , Harish Bakery                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_JALVAYU_398        , Jalvayu Tower                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_WAZIRABAD_399      , Wazirabad Red Light                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_HONGKONG_400       , Hong Kong Mkt Red Light             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SEC57_401          , Sec 57 Tehsil                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_DHARAM_402         , Dharam Marg Society Cut             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_DPS_403            , DPS School                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_HONGKONG_400       , Hong Kong Mkt Red Light             ,28.42131572228005  , 77.09029010482755, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC57_401          , Sec 57 Tehsil                       ,28.42320996872587  , 77.07628909071488, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DHARAM_402         , Dharam Marg Society Cut             ,                                      , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DPS_403            , DPS School                          ,28.44272773817143  , 77.06486286434516, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_XAVIER_404         , St. Xavier School/Marbella Villas   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_SAI_KUNJ_405       , Sai Kunj                            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_MAHENDRA_406       , Mahendra Aura                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_KRISHAN_407        , Krishan Chowk                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_PALAM_C12_408      , Palam Vihar C1/2 Gate               ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_VYAPAR_409         , Vayapar Kendra                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_GARMIN_410         , Garmin Bank                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MAHENDRA_406       , Mahendra Aura                       ,28.512901164825024 , 77.02548434246101, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_KRISHAN_407        , Krishan Chowk                       ,28.503592744213346 , 77.02845920464904, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PALAM_C12_408      , Palam Vihar C1/2 Gate               ,28.50435095488018  , 77.02796400653015, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_VYAPAR_409         , Vayapar Kendra                      ,28.46043222699513  , 77.0844377458422 , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_GARMIN_410         , Garmin Bank                         ,28.514143804401826 , 77.07668242974886, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_MAHINDRA_SHOW_411  , Mahindra Showroom                   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_ASHOK_C1_412       , Ashok Vihar C1 Gate                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ASHOK_C1_412       , Ashok Vihar C1 Gate                 ,28.497801276239535 , 77.02292712218895, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_ASHOK_C2_413       , Ashok Vihar C2 Gate                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SEC5_CIRCLE_414    , Sec 5 Circle                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC5_CIRCLE_414    , Sec 5 Circle                        ,28.484545367882816 , 77.018494832737  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_PALM_C1_415        , Palm C 1 Gate                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_RAM_MANDIR_416     , Ram Mandir Chowk                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_PALAM_CENTRAL_417  , Palam Central Chowk                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_REZANG_LA_418      , Rezangla Chowk/Sec 23 A             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PALAM_CENTRAL_417  , Palam Central Chowk                 ,28.503517604589906 , 77.06862773376363, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_REZANG_LA_418      , Rezangla Chowk/Sec 23 A             ,28.51049263646896  , 77.04189846041797, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_SEC23B_419         , Sector 23 B                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_SEC23C_420         , Sector 23 C                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_SEC22_23_MKT_421   , Sec 22-23 Market                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
