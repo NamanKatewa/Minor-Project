@@ -430,19 +430,19 @@ STOP_GGN_RAMLILA_428        , Ramlila Ground                      ,28.4699168894
 STOP_GGN_PETRO_SEC5_429     , Petro PP Sec 5                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_MATA_MANDIR_430    , Mata Mandir                         ,28.4791670065796   , 77.03103535885187, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_ATUL_KAT_431       , LT. Atul Katariya Chowk             ,28.480960456396687 , 77.0486113095071 , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SEC17_432          , Sec-17                              ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_GHODA_433          , Ghoda Chowk                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC17_432          , Sec-17                              ,28.476102003621065 , 77.0621768837409 , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_GHODA_433          , Ghoda Chowk                         ,28.47294154309733  , 77.05612423024893, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_SEC30_31_434       , Sec 30/31 Red Light                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_JHARSA_435         , Jharsa Chowk                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_CHINTAPURNI_436    , Chintapurni Mandir                  ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_ARYAN_437          , Aryan Hospital/SBI Bank             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_NEW_COLONY_438     , New Colony Mor                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_MADAN_PURI_439     , Madan Puri Gali No.2                ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_PATAUDI_CH_440     , Pataudi Chowk                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SETHI_441          , Sethi Hospital Shiv Chowk           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_BHUTESHWAR_442     , Bhuteshwar Mandir                   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_BAJGHERA_443       , Bajghera Reliance U Turn            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_BIKANER_444        , Bikaner                             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_JHARSA_435         , Jharsa Chowk                        ,28.45229004248799  , 77.042688411785  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_CHINTAPURNI_436    , Chintapurni Mandir                  ,28.473043456991263 , 77.03437650569916, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ARYAN_437          , Aryan Hospital/SBI Bank             ,28.469575555571385 , 77.01964836247636, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_NEW_COLONY_438     , New Colony Mor                      ,28.4656974388729   , 77.01677405747476, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MADAN_PURI_439     , Madan Puri Gali No.2                ,28.461388901023284 , 77.01835225538677, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PATAUDI_CH_440     , Pataudi Chowk                       ,28.4569857445337   , 77.01563406503364, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SETHI_441          , Sethi Hospital Shiv Chowk           ,28.45682400271955  , 77.02089030751549, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BHUTESHWAR_442     , Bhuteshwar Mandir                   ,28.45703083830195  , 77.02416366212675, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BAJGHERA_443       , Bajghera Reliance U Turn            ,28.454707425526994 , 77.0389328116665 , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_BIKANER_444        , Bikaner                             ,28.45823629026262  , 77.04478733222658, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_PURI_15_445        , Puri Pillar No 15                   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_DWK_EXP_33_446     , Dwarka Expressway Pillar 33         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_40FOOT_447         , 40 Foot Road                        ,                   ,                  , Gurgaon           , GURGAON             , TRUE
