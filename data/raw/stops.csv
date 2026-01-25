@@ -420,16 +420,16 @@ STOP_GGN_REZANG_LA_418      , Rezangla Chowk/Sec 23 A             ,28.5104926364
 STOP_GGN_SEC23B_419         , Sector 23 B                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_SEC23C_420         , Sector 23 C                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_SEC22_23_MKT_421   , Sec 22-23 Market                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_MARUTI_G2_422      , Maruti Gate No.2                    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_DUNDHAHERA_423     , Dundhahera Krishna Chowk            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_PARK_VIEW_424      , Park View Residence                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SAMRAT_425         , Samrat Garden                       ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_ASHOK_P2_426       , Ashok Vihar P 2                     ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SEC05_427          , Sector-05                           ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_RAMLILA_428        , Ramlila Ground                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MARUTI_G2_422      , Maruti Gate No.2                    ,28.36926678066271  , 76.89048695492588, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_DUNDHAHERA_423     , Dundhahera Krishna Chowk            ,28.50972518488136  , 77.07965139798819, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PARK_VIEW_424      , Park View Residence                 ,28.49812746787937  , 77.02282957022328, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SAMRAT_425         , Samrat Garden                       ,28.491193147205582 , 77.01972504567753, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ASHOK_P2_426       , Ashok Vihar P 2                     ,28.48505390194848  , 77.01893923902145, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC05_427          , Sector-05                           ,28.477715344338    , 77.01606486695995, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_RAMLILA_428        , Ramlila Ground                      ,28.469916889469353 , 77.02117777862735, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_PETRO_SEC5_429     , Petro PP Sec 5                      ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_MATA_MANDIR_430    , Mata Mandir                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_ATUL_KAT_431       , LT. Atul Katariya Chowk             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_MATA_MANDIR_430    , Mata Mandir                         ,28.4791670065796   , 77.03103535885187, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_ATUL_KAT_431       , LT. Atul Katariya Chowk             ,28.480960456396687 , 77.0486113095071 , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_SEC17_432          , Sec-17                              ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_GHODA_433          , Ghoda Chowk                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_SEC30_31_434       , Sec 30/31 Red Light                 ,                   ,                  , Gurgaon           , GURGAON             , TRUE
