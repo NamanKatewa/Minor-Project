@@ -131,25 +131,25 @@ STOP_DEL_DWK_SEC2_129       , Dwarka Sec 02                       , 28.597494732
 STOP_BAH_WORLD_130          , World School Bahadurgarh            , 28.690661684246127, 76.93412608749802, Bahadurgarh       , BAHADURGARH         , TRUE
 STOP_BAH_BRIG_131           , Brig Hoshiar Singh Metro            ,  28.69757834010054, 76.91857206245983, Bahadurgarh       , BAHADURGARH         , TRUE
 STOP_BAH_CITY_132           , Bahadurgarh City Metro/Bus Stand    ,    28.690528403938, 76.93650055616666, Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_BRAHM_133          , Brahm Shakti Hosp                   ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_JAATWADA_134       , Jaatwada Colony                     ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_HARDYAL_135        , Hardyal School Sec 09               ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_JHARODA_TOLL_136   , Jharoda Toll/Village                ,                   ,                  , Jharoda           , BAHADURGARH         , TRUE
-STOP_BAH_NAVYUG_137         , Navyug School                       ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_BRAHM_133          , Brahm Shakti Hosp                   , 28.690502595129438, 76.93981668917847, Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_JAATWADA_134       , Jaatwada Colony                     , 28.687722681286033, 76.93347543155126, Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_HARDYAL_135        , Hardyal School Sec 09               , 28.67863664582824 , 76.93441719899843, Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_JHARODA_TOLL_136   , Jharoda Toll/Village                , 28.666760594408533, 76.94206754187066, Jharoda           , BAHADURGARH         , TRUE
+STOP_BAH_NAVYUG_137         , Navyug School                       ,  28.66717543351553, 76.91167410208335, Bahadurgarh       , BAHADURGARH         , TRUE
 STOP_BAH_KALI_PYAU_138      , Kali Pyau/Suraj Kunj                ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_ANAJ_139           , Anaj Mandi                          ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_SURAKH_140         , Surakh Pur Mor                      ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_HOLY_141           , Holycross Petrol PP                 ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_DAULTAPUR_142      , Daultapur/Kanganheri Village        ,                   ,                  , Daultapur         , BAHADURGARH         , TRUE
-STOP_BAH_MATIYALA_143       , Matiyala/Jhatikra Village/Toll      ,                   ,                  , Matiyala          , BAHADURGARH         , TRUE
+STOP_BAH_ANAJ_139           , Anaj Mandi                          , 28.619027615317126, 76.9744603695351 , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_SURAKH_140         , Surakh Pur Mor                      , 28.615621431948757, 76.97586911609838, Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_HOLY_141           , Holycross Petrol PP                 ,   28.6139046222905, 76.9804808071698 , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_DAULTAPUR_142      , Daultapur/Kanganheri Village        , 28.545585513338324, 76.96548255579145, Daultapur         , BAHADURGARH         , TRUE
+STOP_BAH_MATIYALA_143       , Matiyala/Jhatikra Village/Toll      ,  28.52146667360698, 76.96524722996737, Matiyala          , BAHADURGARH         , TRUE
 STOP_BAH_DHARAMPUR_144      , Dharampur                           ,                   ,                  , Dharampur         , BAHADURGARH         , TRUE
-STOP_BAH_MOHAMMAD_145       , Mohammad Heri                       ,                   ,                  , Mohammadpur       , BAHADURGARH         , TRUE
-STOP_BAH_AXIS_146           , Axis Bank                           ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_RAILWAY_147        , Railway Road                        ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_BUS_STAND_148      , Bus Stand                           ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_OLA_149            , Ola Showroom                        ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_BALAJI_150         , Bala Ji Temple                      ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
-STOP_BAH_HL_CITY_151        , HL City                             ,                   ,                  , Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_MOHAMMAD_145       , Mohammad Heri                       , 28.501340300614643, 76.99079757558658, Mohammadpur       , BAHADURGARH         , TRUE
+STOP_BAH_AXIS_146           , Axis Bank                           , 28.682244653992818, 76.91170901186095, Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_RAILWAY_147        , Railway Road                        , 28.696844843505858, 76.93067122118784, Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_BUS_STAND_148      , Bus Stand                           , 28.690758315471754, 76.93433640956982, Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_OLA_149            , Ola Showroom                        ,  28.69963530725138, 76.94985787156112, Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_BALAJI_150         , Bala Ji Temple                      ,  28.68948649082246, 76.93247079835801, Bahadurgarh       , BAHADURGARH         , TRUE
+STOP_BAH_HL_CITY_151        , HL City                             ,  28.67169331720242, 76.89930323597632, Bahadurgarh       , BAHADURGARH         , TRUE
 STOP_BAH_MITRAU_152         , Mitrau                              ,                   ,                  , Mitrao            , DELHI_NCR_WEST      , TRUE
 STOP_BAH_SURHERA_153        , Surhera Village                     ,                   ,                  , Surhera           , DELHI_NCR_WEST      , TRUE
 STOP_BAH_RAWTA_154          , Rawta More                          ,                   ,                  , Rawta             , DELHI_NCR_WEST      , TRUE
