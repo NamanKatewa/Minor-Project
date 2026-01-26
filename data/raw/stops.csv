@@ -569,16 +569,16 @@ STOP_BHI_DWARKA_567         , Dwarka Dheesh                       ,             
 STOP_BHI_MOR_568            , Bhiwadi Mor                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_SAMTAL_569         , Samtal Chowk                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_NEELAM_570         , Neelam Chowk                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_RICCO_571          , Ricco Chowk                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_RICCO_571          , Ricco Chowk                         , 28.212113934917262, 76.84661282622815, Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_NANDRAM_572        , Nandram Pur Bans                    ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_ALALPUR_573        , Alalpur                             ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_BHAGAT_574         , Bhagat Singh Chowk                  ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_NAGARPALIKA_575    , Nagarpalika Gate/Sector 4 Mor       ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_ARAVLI_576         , Aravli Vihar                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_MANSA_577          , Mansa Chowk                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_HETRAM_578         , Hetram Chowk                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_AALUPUR_579        , AaluPur Mandir                      ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_KALI_KHOLI_580     , Kali Kholi Chowk                    ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_BHAGAT_574         , Bhagat Singh Chowk                  , 28.20558919888804 , 76.79133834008793, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_NAGARPALIKA_575    , Nagarpalika Gate/Sector 4 Mor       , 28.201211366943145, 76.82967634731853, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_ARAVLI_576         , Aravli Vihar                        , 28.20554445516337 , 76.81583909472589, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_MANSA_577          , Mansa Chowk                         , 28.201428589562017, 76.82779877493914, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_HETRAM_578         , Hetram Chowk                        , 28.201005774423216, 76.83100702348814, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_AALUPUR_579        , AaluPur Mandir                      , 28.20230940758342 , 76.83760502168909, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_KALI_KHOLI_580     , Kali Kholi Chowk                    , 28.202452620693236, 76.84184455002409, Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_UIT_581            , UIT Police Station                  , 28.200739591426252, 76.8372235005288 , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_CAPITAL_582        , Capital Mall                        , 28.20045391824663 , 76.84779061359285, Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_KHORI_583          , Khori Mor                           , 28.207464865410913, 76.88387694861048, Tauru             , TAURU               , TRUE
