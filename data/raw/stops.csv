@@ -253,7 +253,7 @@ STOP_NOIDA_VAISHALI_SCH_251 , Vaishali School                     , 28.646951811
 STOP_DEL_ANAND_VIHAR_252    , Anand Vihar Bus Stand               , 28.647221427573903, 77.31502209917359, Anand Vihar       , DELHI_NCR_EAST      , TRUE
 STOP_DEL_DILSHAD_253        , Dilshad Garden/Jhilmil Metro        , 28.679389539369758, 77.31231329042777, Dilshad Garden    , DELHI_NCR_EAST      , TRUE
 STOP_DEL_SAHADRA_254        , Sahadra Welcome /Metro              , 28.67181393853557 , 77.28039160476843, Shahdara          , DELHI_NCR_EAST      , TRUE
-STOP_DEL_SHASTRI_PARK_255   , Shastri Park                        ,                   ,                  , Shastri Park      , DELHI_NCR_EAST      , TRUE
+STOP_DEL_SHASTRI_PARK_255   , Shastri Park                        , 28.666885777358168, 77.25300313441235, Shastri Park      , DELHI_NCR_EAST      , TRUE
 STOP_DEL_CIVIL_LINES_256    , Ip College/Civil Lines Metro        , 28.679601821192804, 77.2240035121743 , Civil Lines       , DELHI_NCR_NORTH     , TRUE
 STOP_DEL_VIDHAN_257         , Vidhan Sabha Metro                  , 28.687346185549703, 77.2215302523313 , Civil Lines       , DELHI_NCR_NORTH     , TRUE
 STOP_DEL_VISHWA_258         , Vishwavidhalya Metro                , 28.695187019466594, 77.21451982188839, University Enclave, DELHI_NCR_NORTH     , TRUE
@@ -290,18 +290,18 @@ STOP_FBD_SAINIK_288         , Sainik Colony Parking               , 28.401822496
 STOP_FBD_SHRIRAM_289        , Shriram Millenium School            , 28.49834672610792 , 77.39487423131678, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_WORLD_ST_290       , World Street                        , 28.387793380594935, 77.3544525953878 , Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_BPTP_291           , BPTP Bridge                         , 28.389696783202723, 77.33762771950056, Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_ESCORT_292         , Escort Red Light                    ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_ESCORT_292         , Escort Red Light                    , 28.388729532480514, 77.31289622981319, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_MILAN_293          , Milan Sweet/Ashwini Hospital        , 28.437559000289585, 77.30807745655996, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_YMC_294            , YMC Flyover                         , 28.40412869037306 , 77.33366084298535, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_BATA_295           , Bata Chowk                          , 28.385736130652507, 77.31322037638283, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_SEC22_23_296       , Sec 22/23 Red Light U turn          , 28.36320510896488 , 77.29548694314839, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_NIT_297            , NIT Hardware Chowk                  , 28.3778138836262  , 77.29741281632744, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_BABA_DEEP_298      , Baba Deep Singh Chowk/Piyali        , 28.376723364867466, 77.28931689409815, Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_3NO_299            , 3 No. Maszid                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_3NO_299            , 3 No. Maszid                        , 28.392100976642613, 77.28503953718601, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_JAAT_300           , Jaat Chowk                          , 28.404035150243875, 77.37620289632424, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_CHANDILA_301       , Chandila Chowk                      , 28.387663603766487, 77.36274046690555, Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_PRIDE_302          , Sec 77/78 Pride Chowk               ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
-STOP_FBD_GURJAR_303         , Gurjar Chowk                        ,                   ,                  , Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_PRIDE_302          , Sec 77/78 Pride Chowk               , 28.3740927099374  , 77.36275065566555, Faridabad         , FARIDABAD           , TRUE
+STOP_FBD_GURJAR_303         , Gurjar Chowk                        , 28.374419312013078, 77.36840160166568, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_SEC8_PUL_304       , Sec 8 Pul                           , 28.359044946773757, 77.33969048456903, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_TIGAON_305         , Tigaon Road                         , 28.349443765401585, 77.37319385181125, Faridabad         , FARIDABAD           , TRUE
 STOP_FBD_IMT_306            , IMT Chowk                           , 28.33106847328701 , 77.3482068719083 , Faridabad         , FARIDABAD           , TRUE
