@@ -55,7 +55,7 @@ STOP_DEL_RAMPHAL_053        , Ganpati/Ramphal Chowk               , 28.581965671
 STOP_DEL_QUEENS_054         , Queens Valley Sector 8              , 28.57776770762728 , 77.07065278738237, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_SPG_055            , SPG Main Road                       , 28.567679328724147, 77.06627793308523, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_SEC21_056          , Sector 21 Metro/Taj Vivanta         , 28.55866503613158 , 77.06279259982207, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_PACIFIC_057        , Pacific Mall                        , 28.550901059331903, 77.05614245242971, Dwarka            , DELHI_NCR_WEST      , TRUE
+STOP_DEL_PACIFIC_057        , Pacific Mall                        , 28.550901059331903, 77.05614245242971, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_YASHO_058          , Yashobhoomi                         , 28.55441475452246 , 77.0517211561509 , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_CHANAN_059         , Chanan Devi/C1 Red Light            , 28.618028087652664, 77.07752039097873, Janakpuri         , DELHI_NCR_WEST      , TRUE
 STOP_DEL_DABRI_060          , Dabri Mor                           , 28.614187844330946, 77.0859792521869 , Dabri             , DELHI_NCR_SOUTH_WEST, TRUE
@@ -74,30 +74,30 @@ STOP_DEL_JANAK_CINE_072     , Janak Cinema                        , 28.610720717
 STOP_DEL_DASRATH_073        , Dasrath Puri Metro                  , 28.602133750234092, 77.08242408928454, Dasrath Puri      , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_SEC1_RL_074        , Sec 1 Red light                     , 28.59394665984514 , 77.0717183820861 , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_RAJOKRI_075        , Rajokri                             , 28.52079546963255 , 77.09771043056087, Rajokri           , DELHI_NCR_SOUTH     , TRUE
-STOP_DEL_KESHO_MANDI_076    , KeshoPur Mandi                      ,                   ,                  , Kesho Pur         , DELHI_NCR_WEST      , TRUE
-STOP_DEL_JANAK_E_077        , Janakpuri East Metro                ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
-STOP_DEL_AGARWAL_RL_078     , Agarwal Red Light                   ,                   ,                  , Tilak Nagar       , DELHI_NCR_WEST      , TRUE
-STOP_DEL_TILAK_METRO_079    , Tilak Nagar Metro                   ,                   ,                  , Tilak Nagar       , DELHI_NCR_WEST      , TRUE
-STOP_DEL_FATEH_080          , Fateh Nagar                         ,                   ,                  , Fateh Nagar       , DELHI_NCR_WEST      , TRUE
-STOP_DEL_LAJWANTI_081       , Lajwanti Red Light                  ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
-STOP_DEL_PANKHA_082         , Pankha Road/Peer Baba               ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
-STOP_DEL_SADAR_083          , Sadar Bazar                         ,                   ,                  , Delhi Cantt       , DELHI_NCR_WEST      , TRUE
-STOP_DEL_NANGLOI_H_084      , Vikaspuri School H Block            ,                   ,                  , Vikas Puri        , DELHI_NCR_WEST      , TRUE
-STOP_DEL_RADISSON_085       , Radisson Blu/Jawala Heri            ,                   ,                  , Paschim Vihar     , DELHI_NCR_WEST      , TRUE
-STOP_DEL_MIAWALI_086        , Mia Wali Nagar                      ,                   ,                  , Paschim Vihar     , DELHI_NCR_WEST      , TRUE
-STOP_DEL_NANGLOI_CH_087     , Nangloi Chowk/Agarwal Sweet         ,                   ,                  , Nangloi           , DELHI_NCR_WEST      , TRUE
-STOP_DEL_JAL_BOARD_088      , Jal Board Office                    ,                   ,                  , Nangloi           , DELHI_NCR_WEST      , TRUE
-STOP_DEL_MARGSHREE_089      , MargShree School                    ,                   ,                  , Nangloi           , DELHI_NCR_WEST      , TRUE
-STOP_DEL_NATHU_090          , Nathu Ram Convent School            ,                   ,                  , Nangloi           , DELHI_NCR_WEST      , TRUE
-STOP_DEL_NILOTHI_091        , Nilothi Mor                         ,                   ,                  , Nilothi           , DELHI_NCR_WEST      , TRUE
-STOP_DEL_KAWAR_092          , Kawar Nagar/Rishal Garden           ,                   ,                  , Nangloi           , DELHI_NCR_WEST      , TRUE
-STOP_DEL_RANHOLA_093        , Ranhola Police Station Mor          ,                   ,                  , Ranhola           , DELHI_NCR_WEST      , TRUE
-STOP_DEL_KOTLA_VILL_094     , Kotla Village                       ,                   ,                  , Kotla Vihar       , DELHI_NCR_WEST      , TRUE
-STOP_DEL_CHACHAL_095        , Chachal Park                        ,                   ,                  , Chanchal Park     , DELHI_NCR_WEST      , TRUE
-STOP_DEL_BAKKAR_096         , Bakkarwala/Mundka Mor               ,                   ,                  , Mundka            , DELHI_NCR_WEST      , TRUE
-STOP_DEL_JAI_VIHAR_097      , Jai Vihar/Baani Camp                ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_DICHAU_098         , Dichau Depot                        ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_SHYAM_Z_099        , Shyam Vihar Z Block                 ,                   ,                  , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_KESHO_MANDI_076    , KeshoPur Mandi                      , 28.651595795604194, 77.08703174653532, Kesho Pur         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_JANAK_E_077        , Janakpuri East Metro                , 28.63325131128348 , 77.08656811829171, Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_AGARWAL_RL_078     , Agarwal Red Light                   , 28.634956294779805, 77.09178603836715, Tilak Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_TILAK_METRO_079    , Tilak Nagar Metro                   , 28.63538731486504 , 77.09709240523281, Tilak Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_FATEH_080          , Fateh Nagar                         , 28.633470225332545, 77.09788006742536, Fateh Nagar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_LAJWANTI_081       , Lajwanti Red Light                  , 28.614458666064877, 77.10768920318944, Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_PANKHA_082         , Pankha Road/Peer Baba               , 28.604416349531217, 77.1144303301754 , Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SADAR_083          , Sadar Bazar                         , 28.596556965457054, 77.12341983556001, Delhi Cantt       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NANGLOI_H_084      , Vikaspuri School H Block            , 28.642996127975724, 77.07274931248148, Vikas Puri        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_RADISSON_085       , Radisson Blu/Jawala Heri            , 28.66737260768113 , 77.09243786410319, Paschim Vihar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_MIAWALI_086        , Mia Wali Nagar                      , 28.680102508589446, 77.08851832191776, Paschim Vihar     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NANGLOI_CH_087     , Nangloi Chowk/Agarwal Sweet         , 28.681989428116815, 77.06770055110363, Nangloi           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_JAL_BOARD_088      , Jal Board Office                    , 28.678015829615024, 77.06451298814207, Nangloi           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_MARGSHREE_089      , MargShree School                    , 28.676665942879257, 77.06292423130282, Nangloi           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NATHU_090          , Nathu Ram Convent School            , 28.663590381518272, 77.05182151519793, Nangloi           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NILOTHI_091        , Nilothi Mor                         , 28.664596291134842, 77.05304638044512, Nilothi           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_KAWAR_092          , Kawar Nagar/Rishal Garden           , 28.662080880459428, 77.04952915188002, Nangloi           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_RANHOLA_093        , Ranhola Police Station Mor          , 28.65358241177778 , 77.03603528775035, Ranhola           , DELHI_NCR_WEST      , TRUE
+STOP_DEL_KOTLA_VILL_094     , Kotla Village                       , 28.64936466564659 , 77.02721580093251, Kotla Vihar       , DELHI_NCR_WEST      , TRUE
+STOP_DEL_CHACHAL_095        , Chachal Park                        , 28.645398751036105, 77.01970367164162, Chanchal Park     , DELHI_NCR_WEST      , TRUE
+STOP_DEL_BAKKAR_096         , Bakkarwala/Mundka Mor               , 28.64420770935972 , 77.01658771993692, Mundka            , DELHI_NCR_WEST      , TRUE
+STOP_DEL_JAI_VIHAR_097      , Jai Vihar/Baani Camp                , 28.63331534151673 , 77.0024795867488 , Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DICHAU_098         , Dichau Depot                        , 28.62959847758325 , 76.99824460165176, Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SHYAM_Z_099        , Shyam Vihar Z Block                 , 28.59474284854764 , 77.00923042573389, Najafgarh         , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_TAJPUR_100         , Tajpur/Chhawla                      , 28.573133849215147, 77.01581645492591, Chhawla           , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_DEENPUR_101        , Deenpur/Goyla Khurd                 , 28.59628873213151 , 76.99060901858104, Deenpur           , DELHI_NCR_SOUTH_WEST, TRUE
 STOP_DEL_QUTUB_VIHAR_102    , Qutub Vihar                         , 28.578335762982356, 77.03010814110586, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
