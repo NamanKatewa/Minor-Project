@@ -567,8 +567,8 @@ STOP_BHI_ASHADEEP_565       , Ashadeep                            ,             
 STOP_BHI_MAHESHWARI_566     , Maheshwari                          ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_DWARKA_567         , Dwarka Dheesh                       ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_MOR_568            , Bhiwadi Mor                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_SAMTAL_569         , Samtal Chowk                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_NEELAM_570         , Neelam Chowk                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_SAMTAL_569         , Samtal Chowk                        , 28.211082418716085, 76.83770182361646, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_NEELAM_570         , Neelam Chowk                        , 28.211712493806967, 76.84342392246704, Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_RICCO_571          , Ricco Chowk                         , 28.212113934917262, 76.84661282622815, Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_NANDRAM_572        , Nandram Pur Bans                    ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_ALALPUR_573        , Alalpur                             ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
