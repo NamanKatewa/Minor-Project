@@ -579,7 +579,7 @@ STOP_BHI_MANSA_577          , Mansa Chowk                         ,             
 STOP_BHI_HETRAM_578         , Hetram Chowk                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_AALUPUR_579        , AaluPur Mandir                      ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_KALI_KHOLI_580     , Kali Kholi Chowk                    ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_UIT_581            , UIT Police Station                  ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_UIT_581            , UIT Police Station                  , 28.200739591426252, 76.8372235005288 , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_CAPITAL_582        , Capital Mall                        , 28.20045391824663 , 76.84779061359285, Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_KHORI_583          , Khori Mor                           , 28.207464865410913, 76.88387694861048, Tauru             , TAURU               , TRUE
 STOP_BHI_DHIDHARA_584       , Dhidhara                            , 28.208644531624277, 76.93174835658395, Tauru             , TAURU               , TRUE
