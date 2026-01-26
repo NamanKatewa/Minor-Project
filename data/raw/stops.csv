@@ -45,35 +45,35 @@ STOP_DEL_DDU_043            , Din Dayal Hospital                  , 28.628455247
 STOP_DEL_GHANTA_044         , Hari Nagar Ghanta Ghar              , 28.62473440760064 , 77.1101488158523 , Hari Nagar        , DELHI_NCR_WEST      , TRUE
 STOP_DEL_HARI_DEPOT_045     , Hari Nagar Depot                    , 28.6251299645663  , 77.10214513250347, Hari Nagar        , DELHI_NCR_WEST      , TRUE
 STOP_DEL_JANAK_DBLOCK_046   , Janakpuri D Block Red Light         , 28.609594840668702, 77.09897951616948, Janakpuri         , DELHI_NCR_WEST      , TRUE
-STOP_DEL_VIKAS_BRO_047      , Vikaspuri/Brotherhood               ,                   ,                  , Vikas Puri        , DELHI_NCR_WEST      , TRUE
-STOP_DEL_NSIT_048           , NSIT/Sec 13                         ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_DWK_3_4_049        , Dwarka Sector 3 & 4                 ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_KARGIL_050         , Kargil Chowk                        ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_AASHIRWAD_051      , Aashirwad Chowk                     ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_DWK_6_10_052       , Dwarka Sector 6 & 10                ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_RAMPHAL_053        , Ganpati/Ramphal Chowk               ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_QUEENS_054         , Queens Valley Sector 8              ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_SPG_055            , SPG Main Road                       ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_SEC21_056          , Sector 21 Metro/Taj Vivanta         ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_PACIFIC_057        , Pacific Mall                        ,                   ,                  , Subhash Nagar     , DELHI_NCR_WEST      , TRUE
-STOP_DEL_YASHO_058          , Yashobhoomi                         ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_CHANAN_059         , Chanan Devi/C1 Red Light            ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
-STOP_DEL_DABRI_060          , Dabri Mor                           ,                   ,                  , Dabri             , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_DADA_DEV_061       , Dada Dev Hospital                   ,                   ,                  , Dabri             , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_POWER_062          , Power House Road                    ,                   ,                  , Dabri             , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_DWK_1_063          , Dwarka Sector 1/Mahavir Enclave     ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_PALAM_MD_064       , Palam/Mother Dairy                  ,                   ,                  , Palam             , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_PALAM_FLY_065      , Palam Flyover Upper                 ,                   ,                  , Palam             , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_VEGAS_066          , Sector 3 Red Light (Near Vegas Mall),                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_PARAMOUNT_067      , Paramount School                    ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_POCHANPUR_068      , Sector 23/DDA Flat Pochanpur        ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_BHARTI_069         , Bharti College                      ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
-STOP_DEL_KALI_MATA_070      , Kali Mata Mandir                    ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
-STOP_DEL_SAGAR_071          , Sagar Pur C1                        ,                   ,                  , Sagar Pur         , DELHI_NCR_WEST      , TRUE
-STOP_DEL_JANAK_CINE_072     , Janak Cinema                        ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
-STOP_DEL_DASRATH_073        , Dasrath Puri Metro                  ,                   ,                  , Dasrath Puri      , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_SEC1_RL_074        , Sec 1 Red light                     ,                   ,                  , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
-STOP_DEL_RAJOKRI_075        , Rajokri                             ,                   ,                  , Rajokri           , DELHI_NCR_SOUTH     , TRUE
+STOP_DEL_VIKAS_BRO_047      , Vikaspuri/Brotherhood               , 28.64853459832141 , 77.07597015056008, Vikas Puri        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_NSIT_048           , NSIT/Sec 13                         , 28.607851967072165, 77.03519275700597, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DWK_3_4_049        , Dwarka Sector 3 & 4                 , 28.60096655142516 , 77.04167900630786, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_KARGIL_050         , Kargil Chowk                        , 28.588204898569884, 77.04185501647382, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_AASHIRWAD_051      , Aashirwad Chowk                     , 28.59633321713274 , 77.05070018268283, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DWK_6_10_052       , Dwarka Sector 6 & 10                , 28.588882521902324, 77.06197949569258, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_RAMPHAL_053        , Ganpati/Ramphal Chowk               , 28.581965671818004, 77.07033495879115, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_QUEENS_054         , Queens Valley Sector 8              , 28.57776770762728 , 77.07065278738237, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SPG_055            , SPG Main Road                       , 28.567679328724147, 77.06627793308523, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SEC21_056          , Sector 21 Metro/Taj Vivanta         , 28.55866503613158 , 77.06279259982207, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_PACIFIC_057        , Pacific Mall                        , 28.550901059331903, 77.05614245242971, Dwarka            , DELHI_NCR_WEST      , TRUE
+STOP_DEL_YASHO_058          , Yashobhoomi                         , 28.55441475452246 , 77.0517211561509 , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_CHANAN_059         , Chanan Devi/C1 Red Light            , 28.618028087652664, 77.07752039097873, Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_DABRI_060          , Dabri Mor                           , 28.614187844330946, 77.0859792521869 , Dabri             , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DADA_DEV_061       , Dada Dev Hospital                   , 28.610345094670322, 77.08198802898173, Dabri             , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_POWER_062          , Power House Road                    , 28.6034384598695  , 77.07109587627782, Dabri             , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_DWK_1_063          , Dwarka Sector 1/Mahavir Enclave     , 28.594642086834927, 77.07327079551607, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_PALAM_MD_064       , Palam/Mother Dairy                  , 28.593987415486257, 77.07588804355642, Palam             , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_PALAM_FLY_065      , Palam Flyover Upper                 , 28.585143378137353, 77.08972084983009, Palam             , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_VEGAS_066          , Sector 3 Red Light (Near Vegas Mall), 28.606468477957495, 77.03568222050889, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_PARAMOUNT_067      , Paramount School                    , 28.5629545108648  , 77.05806254561621, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_POCHANPUR_068      , Sector 23/DDA Flat Pochanpur        , 28.56343101163883 , 77.05050235859804, Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_BHARTI_069         , Bharti College                      , 28.622119805375977, 77.09432168556054, Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_KALI_MATA_070      , Kali Mata Mandir                    , 28.60904771748348 , 77.09849423732   , Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_SAGAR_071          , Sagar Pur C1                        , 28.609618713592553, 77.09557114119039, Sagar Pur         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_JANAK_CINE_072     , Janak Cinema                        , 28.610720717031768, 77.0929210974812 , Janakpuri         , DELHI_NCR_WEST      , TRUE
+STOP_DEL_DASRATH_073        , Dasrath Puri Metro                  , 28.602133750234092, 77.08242408928454, Dasrath Puri      , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_SEC1_RL_074        , Sec 1 Red light                     , 28.59394665984514 , 77.0717183820861 , Dwarka            , DELHI_NCR_SOUTH_WEST, TRUE
+STOP_DEL_RAJOKRI_075        , Rajokri                             , 28.52079546963255 , 77.09771043056087, Rajokri           , DELHI_NCR_SOUTH     , TRUE
 STOP_DEL_KESHO_MANDI_076    , KeshoPur Mandi                      ,                   ,                  , Kesho Pur         , DELHI_NCR_WEST      , TRUE
 STOP_DEL_JANAK_E_077        , Janakpuri East Metro                ,                   ,                  , Janakpuri         , DELHI_NCR_WEST      , TRUE
 STOP_DEL_AGARWAL_RL_078     , Agarwal Red Light                   ,                   ,                  , Tilak Nagar       , DELHI_NCR_WEST      , TRUE
