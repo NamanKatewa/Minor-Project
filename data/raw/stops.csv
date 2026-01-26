@@ -598,56 +598,56 @@ STOP_NUH_RESWASAN_596       , Reswasan/KMP                        ,             
 STOP_NUH_KAWARSIKA_597      , Kawarsika/Rojka Mev                 ,                   ,                  , Nuh               , NUH                 , TRUE
 STOP_NUH_RAIPUR_598         , Raipur                              ,                   ,                  , Nuh               , NUH                 , TRUE
 STOP_NUH_SOHNA_INDRI_599    , Sohna Indri Mor                     ,                   ,                  , Sohna             , GURGAON             , TRUE
-STOP_NUH_SOHNA_BUS_600      , Sohna Bus Stand                     ,28.246733251478755 , 77.07232767246649, Sohna             , GURGAON             , TRUE
-STOP_NUH_SOHNA_CHUNGI_601   , Sohna Chungi No.1                   ,28.258191216291685 , 77.06753550101446, Sohna             , GURGAON             , TRUE
-STOP_REW_NAIWALI_602        , Nai Wali                            ,28.19617665630407  , 76.60875184202766, Rewari            , REWARI              , TRUE
-STOP_REW_JHAJJAR_CH_603     , Jhajjar Chowk                       ,28.202711822820472 , 76.61582682041838, Rewari            , REWARI              , TRUE
-STOP_REW_CIVIL_604          , Civil Hosp                          ,28.203455390798673 , 76.62134382916405, Rewari            , REWARI              , TRUE
-STOP_REW_JAIN_605           , Jain School                         ,28.203530858050133 , 76.62090284371669, Rewari            , REWARI              , TRUE
-STOP_REW_AZAD_606           , Azad Chowk                          ,28.200188696065393 , 76.62399666142885, Rewari            , REWARI              , TRUE
-STOP_REW_DHARU_607          , Dharu Hera Chungi                   ,28.19767528128555  , 76.62422926941525, Rewari            , REWARI              , TRUE
-STOP_REW_ABHAY_608          , Abhay Singh Chowk                   ,28.19958247227736  , 76.63700918489458, Rewari            , REWARI              , TRUE
-STOP_REW_UTTAM_609          , Uttam Nagar                         ,28.20070366514162  , 76.64388216185985, Rewari            , REWARI              , TRUE
-STOP_REW_MASANI_610         , Masani                              ,28.201786794909633 , 76.72876434999938, Rewari            , REWARI              , TRUE
-STOP_REW_KHARKHDA_611       , Kharkhda                            ,28.204060301496632 , 76.76989917968112, Rewari            , REWARI              , TRUE
-STOP_REW_VIPUL_612          , Vipul Garden                        ,28.204317103909403 , 76.77511936723134, Rewari            , REWARI              , TRUE
-STOP_REW_MALPURA_613        , Malpura                             ,28.2249172325084   , 76.79972717484053, Rewari            , REWARI              , TRUE
-STOP_REW_SIDHRAWALI_614     , Sidhrawali                          ,28.263451058218326 , 76.83006839496566, Rewari            , REWARI              , TRUE
+STOP_NUH_SOHNA_BUS_600      , Sohna Bus Stand                     , 28.246733251478755, 77.07232767246649, Sohna             , GURGAON             , TRUE
+STOP_NUH_SOHNA_CHUNGI_601   , Sohna Chungi No.1                   , 28.258191216291685, 77.06753550101446, Sohna             , GURGAON             , TRUE
+STOP_REW_NAIWALI_602        , Nai Wali                            , 28.19617665630407 , 76.60875184202766, Rewari            , REWARI              , TRUE
+STOP_REW_JHAJJAR_CH_603     , Jhajjar Chowk                       , 28.202711822820472, 76.61582682041838, Rewari            , REWARI              , TRUE
+STOP_REW_CIVIL_604          , Civil Hosp                          , 28.203455390798673, 76.62134382916405, Rewari            , REWARI              , TRUE
+STOP_REW_JAIN_605           , Jain School                         , 28.203530858050133, 76.62090284371669, Rewari            , REWARI              , TRUE
+STOP_REW_AZAD_606           , Azad Chowk                          , 28.200188696065393, 76.62399666142885, Rewari            , REWARI              , TRUE
+STOP_REW_DHARU_607          , Dharu Hera Chungi                   , 28.19767528128555 , 76.62422926941525, Rewari            , REWARI              , TRUE
+STOP_REW_ABHAY_608          , Abhay Singh Chowk                   , 28.19958247227736 , 76.63700918489458, Rewari            , REWARI              , TRUE
+STOP_REW_UTTAM_609          , Uttam Nagar                         , 28.20070366514162 , 76.64388216185985, Rewari            , REWARI              , TRUE
+STOP_REW_MASANI_610         , Masani                              , 28.201786794909633, 76.72876434999938, Rewari            , REWARI              , TRUE
+STOP_REW_KHARKHDA_611       , Kharkhda                            , 28.204060301496632, 76.76989917968112, Rewari            , REWARI              , TRUE
+STOP_REW_VIPUL_612          , Vipul Garden                        , 28.204317103909403, 76.77511936723134, Rewari            , REWARI              , TRUE
+STOP_REW_MALPURA_613        , Malpura                             , 28.2249172325084  , 76.79972717484053, Rewari            , REWARI              , TRUE
+STOP_REW_SIDHRAWALI_614     , Sidhrawali                          , 28.263451058218326, 76.83006839496566, Rewari            , REWARI              , TRUE
 STOP_REW_PARKING_615        , Parking                             ,                   ,                  , Rewari            , REWARI              , TRUE
-STOP_REW_BUS_STAND_616      , Bus Stand                           ,28.191829054889485 , 76.61737052720842, Rewari            , REWARI              , TRUE
+STOP_REW_BUS_STAND_616      , Bus Stand                           , 28.191829054889485, 76.61737052720842, Rewari            , REWARI              , TRUE
 STOP_REW_AMBEDKAR_617       , Ambedkar Chowk                      ,                   ,                  , Rewari            , REWARI              , TRUE
-STOP_REW_SONU_618           , Sonu Juice Corner                   ,28.186752645585766 , 76.62042116707532, Rewari            , REWARI              , TRUE
-STOP_REW_SEC03_619          , Sec 03                              ,28.183483229169077 , 76.62229639132177, Rewari            , REWARI              , TRUE
-STOP_REW_PILOT_620          , Pilot Chowk                         ,28.178889901213058 , 76.62412654463175, Rewari            , REWARI              , TRUE
-STOP_REW_COLONEL_621        , Colonel Chowk                       ,28.18235786823236  , 76.63014172779125, Rewari            , REWARI              , TRUE
-STOP_REW_SEC4_MALL_622      , Sec 4 City Mall                     ,28.185898788720735 , 76.63227627874416, Rewari            , REWARI              , TRUE
-STOP_REW_POSWAL_623         , Poswal Chowk                        ,28.18895237944975  , 76.63411439587387, Rewari            , REWARI              , TRUE
-STOP_REW_KALKA_624          , Kalka Chowk                         ,28.188668445880364 , 76.61837403913582, Rewari            , REWARI              , TRUE
-STOP_REW_POLICE_625         , Police Line                         ,28.202825662760578 , 76.65785194064703, Rewari            , REWARI              , TRUE
-STOP_REW_OLD_RAO_626        , Old Rao/Kapdivas                    ,28.241274352498458 , 76.81172117217558, Rewari            , REWARI              , TRUE
+STOP_REW_SONU_618           , Sonu Juice Corner                   , 28.186752645585766, 76.62042116707532, Rewari            , REWARI              , TRUE
+STOP_REW_SEC03_619          , Sec 03                              , 28.183483229169077, 76.62229639132177, Rewari            , REWARI              , TRUE
+STOP_REW_PILOT_620          , Pilot Chowk                         , 28.178889901213058, 76.62412654463175, Rewari            , REWARI              , TRUE
+STOP_REW_COLONEL_621        , Colonel Chowk                       , 28.18235786823236 , 76.63014172779125, Rewari            , REWARI              , TRUE
+STOP_REW_SEC4_MALL_622      , Sec 4 City Mall                     , 28.185898788720735, 76.63227627874416, Rewari            , REWARI              , TRUE
+STOP_REW_POSWAL_623         , Poswal Chowk                        , 28.18895237944975 , 76.63411439587387, Rewari            , REWARI              , TRUE
+STOP_REW_KALKA_624          , Kalka Chowk                         , 28.188668445880364, 76.61837403913582, Rewari            , REWARI              , TRUE
+STOP_REW_POLICE_625         , Police Line                         , 28.202825662760578, 76.65785194064703, Rewari            , REWARI              , TRUE
+STOP_REW_OLD_RAO_626        , Old Rao/Kapdivas                    , 28.241274352498458, 76.81172117217558, Rewari            , REWARI              , TRUE
 STOP_REW_PANCHGAON_627      , Panchgaon/KMP                       ,                   ,                  , Panchgaon         , GURGAON             , TRUE
-STOP_PAT_BUS_STAND_628      , Pataudi Bus Stand                   ,28.32954327975456  , 76.77649684390838, Pataudi           , PATAUDI             , TRUE
-STOP_PAT_OLD_COURT_629      , Old Court                           ,28.338163883806715 , 76.76818492376609, Pataudi           , PATAUDI             , TRUE
-STOP_PAT_BHORA_630          , Bhora Kalan Village                 ,28.288601264862585 , 76.85975985388993, Pataudi           , PATAUDI             , TRUE
-STOP_PAT_BILASPUR_631       , Bilaspur Chowk                      ,28.4427382376383   , 77.01625879583874, Bilaspur          , GURGAON             , TRUE
+STOP_PAT_BUS_STAND_628      , Pataudi Bus Stand                   , 28.32954327975456 , 76.77649684390838, Pataudi           , PATAUDI             , TRUE
+STOP_PAT_OLD_COURT_629      , Old Court                           , 28.338163883806715, 76.76818492376609, Pataudi           , PATAUDI             , TRUE
+STOP_PAT_BHORA_630          , Bhora Kalan Village                 , 28.288601264862585, 76.85975985388993, Pataudi           , PATAUDI             , TRUE
+STOP_PAT_BILASPUR_631       , Bilaspur Chowk                      , 28.4427382376383  , 77.01625879583874, Bilaspur          , GURGAON             , TRUE
 STOP_PAT_PATHREDI_632       , Pathredi Village                    ,                   ,                  , Pataudi           , PATAUDI             , TRUE
-STOP_PAT_JORASI_633         , JORASI/Kalwari Bus Stand            ,28.332340378672527 , 76.77381704988359, Pataudi           , PATAUDI             , TRUE
+STOP_PAT_JORASI_633         , JORASI/Kalwari Bus Stand            , 28.332340378672527, 76.77381704988359, Pataudi           , PATAUDI             , TRUE
 STOP_PAT_TAURU_634          , Tauru                               ,                   ,                  , Tauru             , TAURU               , TRUE
-STOP_GGN_CIVIL_SEC10_635    , Civil Hospital Sec 10               ,28.45714555902604  , 76.99784146993996, Gurgaon           , GURGAON             , TRUE
-STOP_GGN_RAVI_NAGAR_636     , Ravi Nagar Petrol Pump              ,28.4571532860083   , 77.0011309786707 , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_PATAUDI_CHOWKI_637 , Pataudi Chowki                      ,28.324882887403113 , 76.78299261981785, Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SEC11_638          , Sec 11 Shakti Nagar                 ,28.454250151219473 , 77.01392011824133, Gurgaon           , GURGAON             , TRUE
-STOP_GGN_KADIPUR_639        , Kadipur Gali No. 01                 ,28.450001549848125 , 77.00102906363304, Gurgaon           , GURGAON             , TRUE
-STOP_GGN_GADOLI_640         , Gadoli/Gadhi Village                ,28.440120256868745 , 76.98004364040305, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_CIVIL_SEC10_635    , Civil Hospital Sec 10               , 28.45714555902604 , 76.99784146993996, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_RAVI_NAGAR_636     , Ravi Nagar Petrol Pump              , 28.4571532860083  , 77.0011309786707 , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_PATAUDI_CHOWKI_637 , Pataudi Chowki                      , 28.324882887403113, 76.78299261981785, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC11_638          , Sec 11 Shakti Nagar                 , 28.454250151219473, 77.01392011824133, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_KADIPUR_639        , Kadipur Gali No. 01                 , 28.450001549848125, 77.00102906363304, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_GADOLI_640         , Gadoli/Gadhi Village                , 28.440120256868745, 76.98004364040305, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_DWK_EXP_NH8_641    , Dwarka Exp Left turn towards NH-8   ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_AVL_36_642         , AVL Sec 36                          ,28.41389072165183  , 76.977826355854  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_NARSINGHPUR_643    , Nar Singhpur/NH8                    ,28.416973850686098 , 76.99660848217276, Gurgaon           , GURGAON             , TRUE
-STOP_GGN_KHANDSA_644        , Khandsa Village                     ,28.42614112849761  , 77.00172014621546, Gurgaon           , GURGAON             , TRUE
-STOP_DEL_VIKAS_WORLD_645    , Vikaspuri World School              ,28.64294223586406  , 77.07274157016901, Vikas Puri        , DELHI_NCR_WEST      , TRUE
-STOP_DEL_PRASHANT_646       , Prashant Vihar/Power House          ,28.716149898997354 , 77.13919943893401, Rohini            , DELHI_NCR_NORTH     , TRUE
-STOP_DEL_HAIDERPUR_647      , Haiderpur Badli Metro               ,28.73009337830734  , 77.1490288897555 , Haiderpur         , DELHI_NCR_NORTH     , TRUE
-STOP_DEL_ROHINI_JAIL_648    , Rohini Jail Mor                     ,28.727104694119692 , 77.1437245997401 , Rohini            , DELHI_NCR_NORTH     , TRUE
-STOP_DEL_KARNAL_BYPASS_649  , Karnal Bypass Mubarka Chowk         ,28.738612149282364 , 77.15422921347636, Karnal Bypass     , DELHI_NCR_NORTH     , TRUE
+STOP_GGN_AVL_36_642         , AVL Sec 36                          , 28.41389072165183 , 76.977826355854  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_NARSINGHPUR_643    , Nar Singhpur/NH8                    , 28.416973850686098, 76.99660848217276, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_KHANDSA_644        , Khandsa Village                     , 28.42614112849761 , 77.00172014621546, Gurgaon           , GURGAON             , TRUE
+STOP_DEL_VIKAS_WORLD_645    , Vikaspuri World School              , 28.64294223586406 , 77.07274157016901, Vikas Puri        , DELHI_NCR_WEST      , TRUE
+STOP_DEL_PRASHANT_646       , Prashant Vihar/Power House          , 28.716149898997354, 77.13919943893401, Rohini            , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_HAIDERPUR_647      , Haiderpur Badli Metro               , 28.73009337830734 , 77.1490288897555 , Haiderpur         , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_ROHINI_JAIL_648    , Rohini Jail Mor                     , 28.727104694119692, 77.1437245997401 , Rohini            , DELHI_NCR_NORTH     , TRUE
+STOP_DEL_KARNAL_BYPASS_649  , Karnal Bypass Mubarka Chowk         , 28.738612149282364, 77.15422921347636, Karnal Bypass     , DELHI_NCR_NORTH     , TRUE
 STOP_DEL_BHALSWA_650        , Bhalswa Dairy                       ,                   ,                  , Bhalswa           , DELHI_NCR_NORTH     , TRUE
 STOP_DEL_MUKUNDPUR_651      , Mukundpur Gol Chakkar               ,                   ,                  , Mukundpur         , DELHI_NCR_NORTH     , TRUE
 STOP_DEL_BURARI_652         , Burari Circle U Turn                ,                   ,                  , Burari            , DELHI_NCR_NORTH     , TRUE
