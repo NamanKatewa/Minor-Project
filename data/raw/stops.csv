@@ -548,10 +548,10 @@ STOP_FRK_HYATTPUR_MORE_546  , Hyattpur More/Police Chowki         ,             
 STOP_FRK_RPS_547            , RPS School                          ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_FRK_BAMDOLI_548        , Bamdoli                             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_FRK_DPS_549            , DPS School/Siknderpur Chowk         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_FRK_CHAITNYA_550       , Chaitnya School                     ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_FRK_CHAITNYA_550       , Chaitnya School                     , 28.71934415068068 , 77.10699628141823, Gurgaon           , GURGAON             , TRUE
 STOP_FRK_ROYAL_551          , Royal Villa                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_FRK_SAPPHIRE_552       , Suphire Mall/Vatika Sec 83 Chowk    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_BHI_HONDA_553          , Honda Chowk                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_HONDA_553          , Honda Chowk                         , 28.42957607174847 , 77.01951895721548, Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_PIYUSH_554         , Piyush City                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_ASHIYANA_555       , Ashiyana Town                       ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_TAREHAN_556        , Tarehan City                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
@@ -580,24 +580,24 @@ STOP_BHI_HETRAM_578         , Hetram Chowk                        ,             
 STOP_BHI_AALUPUR_579        , AaluPur Mandir                      ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_KALI_KHOLI_580     , Kali Kholi Chowk                    ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_UIT_581            , UIT Police Station                  ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_CAPITAL_582        , Capital Mall                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_KHORI_583          , Khori Mor                           ,                   ,                  , Tauru             , TAURU               , TRUE
-STOP_BHI_DHIDHARA_584       , Dhidhara                            ,                   ,                  , Tauru             , TAURU               , TRUE
-STOP_BHI_TAURU_PH_585       , Tauru Power House                   ,                   ,                  , Tauru             , TAURU               , TRUE
-STOP_BHI_TAURU_VIJAY_586    , Tauru Vijay Chowk                   ,                   ,                  , Tauru             , TAURU               , TRUE
-STOP_BHI_KRISH_CITY_587     , Krish City                          ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_TAPUKARA_588       , Tapukara                            ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_SEC4_6_589         , Sec 4/6 Mor                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_TAURU_BYPASS_590   , Tauru By Pass                       ,                   ,                  , Tauru             , TAURU               , TRUE
-STOP_NUH_NAGINA_591         , Nagina                              ,                   ,                  , Nuh               , NUH                 , TRUE
-STOP_NUH_BADKALI_592        , Badkali Chowk                       ,                   ,                  , Nuh               , NUH                 , TRUE
-STOP_NUH_BHADAS_593         , Bhadas                              ,                   ,                  , Nuh               , NUH                 , TRUE
-STOP_NUH_MALAB_594          , Malab                               ,                   ,                  , Nuh               , NUH                 , TRUE
-STOP_NUH_BUS_STAND_595      , Nuh Bus Stand/PNB Bank              ,                   ,                  , Nuh               , NUH                 , TRUE
+STOP_BHI_CAPITAL_582        , Capital Mall                        , 28.20045391824663 , 76.84779061359285, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_KHORI_583          , Khori Mor                           , 28.207464865410913, 76.88387694861048, Tauru             , TAURU               , TRUE
+STOP_BHI_DHIDHARA_584       , Dhidhara                            , 28.208644531624277, 76.93174835658395, Tauru             , TAURU               , TRUE
+STOP_BHI_TAURU_PH_585       , Tauru Power House                   , 28.209558309481032, 76.94332780671884, Tauru             , TAURU               , TRUE
+STOP_BHI_TAURU_VIJAY_586    , Tauru Vijay Chowk                   , 28.212391215389598, 76.95174484439153, Tauru             , TAURU               , TRUE
+STOP_BHI_KRISH_CITY_587     , Krish City                          , 28.097389014429528, 76.83079874680203, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_TAPUKARA_588       , Tapukara                            , 28.109446930802996, 76.82759731983607, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_SEC4_6_589         , Sec 4/6 Mor                         , 28.48034068741988 , 77.01361821359964, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_TAURU_BYPASS_590   , Tauru By Pass                       , 28.20266001174506 , 76.95358905244957, Tauru             , TAURU               , TRUE
+STOP_NUH_NAGINA_591         , Nagina                              , 27.919599995173485, 76.980147256161  , Nuh               , NUH                 , TRUE
+STOP_NUH_BADKALI_592        , Badkali Chowk                       , 27.912933348404106, 76.99979537611804, Nuh               , NUH                 , TRUE
+STOP_NUH_BHADAS_593         , Bhadas                              , 27.939490816927083, 77.00713469126599, Nuh               , NUH                 , TRUE
+STOP_NUH_MALAB_594          , Malab                               , 28.038055023240624, 77.01378327018064, Nuh               , NUH                 , TRUE
+STOP_NUH_BUS_STAND_595      , Nuh Bus Stand/PNB Bank              , 28.10316570502936 , 77.00909808336696, Nuh               , NUH                 , TRUE
 STOP_NUH_RESWASAN_596       , Reswasan/KMP                        ,                   ,                  , Nuh               , NUH                 , TRUE
-STOP_NUH_KAWARSIKA_597      , Kawarsika/Rojka Mev                 ,                   ,                  , Nuh               , NUH                 , TRUE
-STOP_NUH_RAIPUR_598         , Raipur                              ,                   ,                  , Nuh               , NUH                 , TRUE
-STOP_NUH_SOHNA_INDRI_599    , Sohna Indri Mor                     ,                   ,                  , Sohna             , GURGAON             , TRUE
+STOP_NUH_KAWARSIKA_597      , Kawarsika/Rojka Mev                 , 28.216629518466494, 77.05964648380957, Nuh               , NUH                 , TRUE
+STOP_NUH_RAIPUR_598         , Raipur                              , 28.222985381887288, 77.06280258820269, Nuh               , NUH                 , TRUE
+STOP_NUH_SOHNA_INDRI_599    , Sohna Indri Mor                     , 28.239277128547858, 77.07013084648838, Sohna             , GURGAON             , TRUE
 STOP_NUH_SOHNA_BUS_600      , Sohna Bus Stand                     , 28.246733251478755, 77.07232767246649, Sohna             , GURGAON             , TRUE
 STOP_NUH_SOHNA_CHUNGI_601   , Sohna Chungi No.1                   , 28.258191216291685, 77.06753550101446, Sohna             , GURGAON             , TRUE
 STOP_REW_NAIWALI_602        , Nai Wali                            , 28.19617665630407 , 76.60875184202766, Rewari            , REWARI              , TRUE
