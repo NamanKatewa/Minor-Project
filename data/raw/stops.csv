@@ -553,20 +553,20 @@ STOP_FRK_ROYAL_551          , Royal Villa                         ,             
 STOP_FRK_SAPPHIRE_552       , Suphire Mall/Vatika Sec 83 Chowk    ,                   ,                  , Gurgaon           , GURGAON             , TRUE
 STOP_BHI_HONDA_553          , Honda Chowk                         , 28.42957607174847 , 77.01951895721548, Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_PIYUSH_554         , Piyush City                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_ASHIYANA_555       , Ashiyana Town                       ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_TAREHAN_556        , Tarehan City                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_THADDA_557         , Thadda Mor                          ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_OMAXE_558          , Omaxe City                          ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_ASHIYANA_555       , Ashiyana Town                       , 28.163872255129764, 76.81351150098213, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_TAREHAN_556        , Tarehan City                        , 28.099813249420226, 76.83028033571084, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_THADDA_557         , Thadda Mor                          , 28.156661229464053, 76.82266761572464, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_OMAXE_558          , Omaxe City                          , 28.143331451242236, 76.81768454943962, Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_TOLL_559           , Bhiwadi Toll                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_NIMAI_560          , Nimai                               ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_AVALON_561         , Avalon Garden                       ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_KRISH_562          , Krish Vatika                        ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_COSMOS_563         , Cosmos                              ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_ASHIYANA_ANGAN_564 , Ashiyana Angan                      ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_ASHADEEP_565       , Ashadeep                            ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_MAHESHWARI_566     , Maheshwari                          ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_NIMAI_560          , Nimai                               ,  28.18231134754367, 76.8205428518371 , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_AVALON_561         , Avalon Garden                       , 28.187407554293866, 76.8179973620508 , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_KRISH_562          , Krish Vatika                        ,  28.18663388089413, 76.81651356208512, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_COSMOS_563         , Cosmos                              , 28.194844744379253, 76.81749698284052, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_ASHIYANA_ANGAN_564 , Ashiyana Angan                      , 28.197475522123792, 76.81125910045773, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_ASHADEEP_565       , Ashadeep                            , 28.20059585550538 , 76.80664602154398, Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_MAHESHWARI_566     , Maheshwari                          , 28.209809586785656, 76.8226108794106 , Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_DWARKA_567         , Dwarka Dheesh                       ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
-STOP_BHI_MOR_568            , Bhiwadi Mor                         ,                   ,                  , Bhiwadi           , BHIWADI             , TRUE
+STOP_BHI_MOR_568            , Bhiwadi Mor                         , 28.21070074934517 , 76.83395221892883, Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_SAMTAL_569         , Samtal Chowk                        , 28.211082418716085, 76.83770182361646, Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_NEELAM_570         , Neelam Chowk                        , 28.211712493806967, 76.84342392246704, Bhiwadi           , BHIWADI             , TRUE
 STOP_BHI_RICCO_571          , Ricco Chowk                         , 28.212113934917262, 76.84661282622815, Bhiwadi           , BHIWADI             , TRUE
