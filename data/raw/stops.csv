@@ -358,20 +358,20 @@ STOP_PAL_HUDA_SOHNA_356     , Huda Sohna Road                     , 28.147047438
 STOP_PAL_DHATEER_357        , Dhateer                             , 28.188466886381956, 77.24982436444779, Palwal            , PALWAL              , TRUE
 STOP_PAL_SOHNA_358          , Sohna                               , 28.246751000860634, 77.07231033912987, Sohna             , GURGAON             , TRUE
 STOP_PAL_PAPPAN_359         , Pappan Plaza                        , 28.154908566566935, 77.32797136686345, Palwal            , PALWAL              , TRUE
-STOP_PAL_HUDA_BRIDGE_360    , Huda Bridge/Flyover                 ,                   ,                  , Palwal            , PALWAL              , TRUE
+STOP_PAL_HUDA_BRIDGE_360    , Huda Bridge/Flyover                 , 28.15068661807308 , 77.33427990859808, Palwal            , PALWAL              , TRUE
 STOP_PAL_GOVT_HOSP_361      , Govt Hospital                       , 28.13647686598363 , 77.32807289462347, Palwal            , PALWAL              , TRUE
 STOP_PAL_PANCHWATI_362      , Panchwati Chowk                     , 28.136437351999554, 77.32243114350122, Palwal            , PALWAL              , TRUE
 STOP_PAL_MANDKOLA_RD_363    , Mandkola Road                       , 28.14059121047196 , 77.31823384515596, Palwal            , PALWAL              , TRUE
 STOP_PAL_KARNA_364          , Karna Gao Mor                       , 28.136987431102458, 77.27731385007418, Palwal            , PALWAL              , TRUE
 STOP_PAL_MAHESH_365         , Mahesh Pur                          , 28.135779778734623, 77.23735678376163, Palwal            , PALWAL              , TRUE
 STOP_PAL_MANDKOLA_VILL_366  , Mandkola Village                    , 28.13261792734583 , 77.1774587886702 , Palwal            , PALWAL              , TRUE
-STOP_PAL_MANUVASH_367       , Manuvash                            ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_PAL_SHILANI_368        , Shilani Mor                         ,                   ,                  , Palwal            , PALWAL              , TRUE
-STOP_GGN_SEC7_369           , Sec 07 Gate                         ,                   ,                  , Gurgaon           , GURGAON             , TRUE
-STOP_GGN_AMBEDKAR_370       , Sec-04/07 Ambedkar Chowk            ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_PAL_MANUVASH_367       , Manuwas                             , 28.20684075306171 , 77.15834769901551, Palwal            , PALWAL              , TRUE
+STOP_PAL_SHILANI_368        , Shilani Mor                         , 28.223352017117566, 77.14770846329455, Palwal            , PALWAL              , TRUE
+STOP_GGN_SEC7_369           , Sec 07 Gate                         , 28.467186451571255, 77.02091503608587, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_AMBEDKAR_370       , Sec-04/07 Ambedkar Chowk            , 28.473479004797582, 77.017907686393  , Gurgaon           , GURGAON             , TRUE
 STOP_GGN_ESI_09_371         , Sec 09 ESI Hospital                 , 28.46745831823201 , 77.00106078217618, Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SEC09_372          , Sector - 09                         , 28.46547981191571 , 76.99543550362971, Gurgaon           , GURGAON             , TRUE
-STOP_GGN_SIDDESH_373        , Slddeshvar School Sec 9             ,                   ,                  , Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SEC09_372          , Sector - 09                         , 28.46680271347879 , 76.99917265668287, Gurgaon           , GURGAON             , TRUE
+STOP_GGN_SIDDESH_373        , Slddeshvar School Sec 9             , 28.46547981191571 , 76.99543550362971, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_GREENWOOD_374      , Green Wood Public School            , 28.46239260309172 , 76.99046632006366, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_ALPINE_10A_375     , Alpine Convent/Sec 10A              , 28.454998580880048, 76.99330106595671, Gurgaon           , GURGAON             , TRUE
 STOP_GGN_ANAJ_376           , Anaj Mandi Under Pass               ,                   ,                  , Gurgaon           , GURGAON             , TRUE
