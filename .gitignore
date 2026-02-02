@@ -44,3 +44,6 @@
 
 # idea files
 /web/.idea
+
+# osm data
+/data/osm/india.osm.pbf
