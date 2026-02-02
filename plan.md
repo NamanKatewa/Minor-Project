@@ -1,197 +1,305 @@
 # University Fleet Optimization System (UFOS) - Master Execution Plan
 
-**Region:** Extended NCR (Sohna, Gurugram, Faridabad, Palwal, Noida, Bhiwadi)
+**Region:** Extended NCR (Delhi, Gurugram, Faridabad, Noida, Palwal, Sohna, Bhiwadi, Bahadurgarh, Najafgarh, Rewari, Jhajjar, Nuh, Tauru, Pataudi)
 **Architecture:** Zero-Operational Cost (Self-Hosted Open Source)
 
 ---
 
 ## 1. Project Goal
+
 To automate the routing and scheduling of the university bus fleet (40+ buses) using mathematical optimization. The system replaces manual planning with a data-driven approach, reducing fuel costs and ensuring equitable service across the extended NCR region. The architecture is strictly **Zero-Cost**, utilizing self-hosted open-source engines instead of paid APIs.
 
 ---
 
-## 2. Directory Structure
-*Strict adherence required to keep the monorepo clean.*
+## 2. Technical Architecture
 
-```text
-university-fleet-optimizer/
-├── data/                          # Project Data
-│   ├── raw/                       # Human inputs (Excel/CSV of stops, demand)
-│   ├── processed/                 # Cleaned JSON/SQL ready for import
-│   └── osm/                       # RAW MAP DATA (Ignored by Git)
-│       └── india.osm.pbf   # Downloaded from Geofabrik
-│
-├── routing/                       # Routing Engine Config
-│   ├── docker-compose.yml         # Runs OSRM container locally
-│   └── profiles/                  # Custom speed profiles (bus.lua)
-│
-├── api/                           # Backend Service
-│   ├── main.py                    # App Entry point
-│   ├── config.py                  # Env variables
-│   ├── database.py                # DB Connection
-│   ├── solver.py                  # Google OR-Tools Logic
-│   └── routers/                   # API Endpoints
-│
-├── web/                           # Frontend Application
-│   ├── src/
-│   │   ├── app/                   # Next.js Pages & Layouts
-│   │   ├── components/            # Map.tsx, Sidebar.tsx, Forms
-│   │   └── hooks/                 # useRoutes.ts (TanStack Query)
-│   └── public/                    # Static assets
-│
-├── docker-compose.yml             # Orchestration (Web + API + DB)
-└── README.md
+### Stack Overview
 
+| Layer | Technology | Notes |
+|-------|-----------|-------|
+| **Frontend** | Next.js + Tailwind CSS | React-based, TanStack Query for data fetching |
+| **Backend** | Python FastAPI | SQLAlchemy ORM, Pydantic validation |
+| **Optimization** | Google OR-Tools | CVRPTW solver for vehicle routing |
+| **Routing Engine** | OSRM (Docker) | Self-hosted, uses OpenStreetMap data |
+| **Database** | PostgreSQL | Dockerized, persisted volumes |
+| **Map Tiles** | Offline PMTiles | Pre-downloaded for NCR region |
+| **Auth** | NextAuth (JWT) | Shared tokens verified by FastAPI |
+
+### Full-Stack Type Safety
+
+```
+FastAPI (Python) → OpenAPI spec → openapi-typescript → TypeScript types → Next.js
+```
+
+### Authentication Flow
+
+```
+User → NextAuth (Next.js) → JWT Token → FastAPI (verify JWT) → Protected Routes
 ```
 
 ---
 
-## 3. Phase-by-Phase Execution Plan
+## 3. Directory Structure
 
-### Phase 1: Infrastructure & Data Foundation
-
-**Goal:** A running server, a connected database, and clean data ready for ingestion.
-
-* **Project Setup:**
-* Initialize the monorepo structure.
-* Set up FastAPI with SQLAlchemy and Pydantic models.
-* Initialize Next.js (T3 stack or standard) with Tailwind CSS.
-* Create the root `docker-compose.yml` to spin up `api` and `postgres` services.
-
-
-* **Database Engineering:**
-* Design DB Schema:
-* `Stops`: `id, name, lat, lon, zone`
-* `Buses`: `id, capacity, depot_id`
-* `Depots`: `id, lat, lon`
-
-
-* Write `scripts/import_stops.py` to parse CSVs and insert into DB securely.
-
-
-* **Routing Setup:**
-* Download `india.osm.pbf` from Geofabrik into `data/osm/`.
-* Configure OSRM Docker container to mount the data volume and extract the graph.
-
-
-* **Frontend Foundation:**
-* Build the "App Shell": Sidebar navigation, Topbar, and layout containers.
-* Create a "Hello World" Map component using `react-leaflet` to prove tiles load from OpenStreetMap public servers.
-
-
-
-**Definition of Done:** `docker-compose up` runs without errors. The DB has tables. The Frontend shows a basic map.
+```text
+university-fleet-optimizer/
+├── data/
+│   ├── raw/                       # CSV inputs (stops, buses, demand)
+│   ├── processed/                 # Cleaned data for import
+│   ├── osm/                       # india.osm.pbf (Git-ignored)
+│   └── tiles/                     # Offline PMTiles (Git-ignored)
+│
+├── routing/                       # OSRM config + bus.lua profile
+│
+├── api/                           # Python FastAPI backend
+│   ├── models/                    # SQLAlchemy models
+│   ├── routers/                   # API endpoints
+│   ├── services/                  # OSRM client, OR-Tools solver
+│   └── scripts/                   # Data import scripts
+│
+├── web/                           # Next.js frontend
+│   ├── src/app/                   # Pages (dashboard, stops, optimize, etc.)
+│   ├── src/components/            # Map, DataGrid, Sidebar, etc.
+│   └── generated/                 # Auto-generated TypeScript types
+│
+├── docker-compose.yml             # Development orchestration
+└── docker-compose.prod.yml        # Production deployment
+```
 
 ---
 
-### Phase 2: The Intelligence Layer (Routing & Matrices)
+## 4. Data Schemas
 
-**Goal:** The system can calculate accurate travel times between any two points in NCR.
+### CSV Input Formats
 
-* **Routing Logic:**
-* **Profile Tuning:** Create `bus.lua` profile for OSRM (lower max speed than cars, higher penalties for U-turns).
-* **Validation:** Manually verify travel times (e.g., "Does Palwal -> Sohna take ~50 mins?").
+| File | Columns |
+|------|---------|
+| stops.csv | stop_id, stop_name, latitude, longitude, locality, zone, active |
+| buses.csv | bus_id, bus_no, capacity, depot_name |
+| demand.csv | stop_id, student_count, semester |
 
+### Database Tables
 
-* **Backend Implementation:**
-* Build Endpoint: `POST /api/matrix/build`.
-* Logic: Fetch all active stops -> Request OSRM `table` service -> Receive 100x100 matrix.
-* Implement Caching: Save the calculated matrix to a file/DB to avoid re-calculating on every request.
-* Create `DistanceMatrices` table to version-control the travel data.
-
-
-* **Frontend Implementation:**
-* Build "Manage Stops" Screen: A Data Grid to view, edit, and delete stops.
-
-
-
-**Definition of Done:** Hitting the API endpoint generates and saves a valid Time/Distance matrix for all university stops.
+| Table | Key Columns |
+|-------|-------------|
+| stops | id, name, lat, lon, zone, active |
+| buses | id, bus_no, capacity, depot_id |
+| depots | id, name, lat, lon |
+| demand | stop_id, student_count, semester |
+| distance_matrices | id, matrix_json, created_at |
+| solutions | id, scenario_type, routes_json, stats_json, cost_estimate |
 
 ---
 
-### Phase 3: The Optimization Engine (The Core)
+## 5. Key Constraints
 
-**Goal:** Converting demand and distance into actual bus routes.
-
-* **Optimization Logic:**
-* **Implement Solver:** Code the Google OR-Tools `CVRPTW` logic.
-* **Hard Constraints:**
-* Capacity <= 50 students.
-* Max Ride Time <= 120 mins.
-* Morning Deadline: 08:45 AM at Campus.
-
-
-* **Response Formatting:** Convert raw solver output into rich JSON (`Route 1: Stop A -> Stop B -> Campus`).
-
-
-* **Data Persistence:**
-* Design `Solutions` schema to store optimized results (`run_id`, `bus_id`, `stop_sequence`, `arrival_times`).
-
-
-* **Debugging:**
-* Identify and resolve "Unreachable Stops" (nodes isolated on the map graph).
-
-
-
-**Definition of Done:** Sending stop data to the `POST /optimize` endpoint returns a valid JSON schedule that respects all constraints.
+| Constraint | Value |
+|------------|-------|
+| Max bus capacity | 50 students |
+| Max ride time | 120 minutes |
+| Campus arrival deadline | 08:45 AM |
+| Fleet size | ~40 buses |
+| Total stops | 682 |
+| Campus location | KRMU Sohna (TBD) |
 
 ---
 
-### Phase 4: Frontend Visualization & Dashboard
-
-**Goal:** Making the math visible and interactive.
-
-* **Map Visualization:**
-* **Route Rendering:** Parse the optimized JSON geometry and draw colored `Polylines` on the Leaflet map.
-* **Interactivity:** Clicking a route in the sidebar highlights it on the map; hovering a stop shows student count.
-
-
-* **Dashboard UI:**
-* **Stats Cards:** Build cards for "Total KM", "Fleet Usage", "Avg Commute Time".
-* **Route List:** A sidebar component listing generated routes (Bus 01 to Bus 40).
-* **API Integration:** Use **TanStack Query** to fetch optimization results and handle loading states.
-
-
-* **Geometry Service:**
-* Update API to fetch "Turn-by-Turn" geometry from OSRM for the final routes (so lines follow roads, not just straight dots).
-
-
-
-**Definition of Done:** The Admin can click "Optimize" and see routes draw dynamically on the map.
+## 6. Phase-by-Phase Execution Plan
 
 ---
 
-### Phase 5: Advanced Comparison Features
+### Phase 1: Infrastructure & Core Setup
 
-**Goal:** The "Strict" vs "Suggested" analysis.
+**Goal:** All services running, database connected, map displaying with offline tiles.
 
-* **Backend Scenarios:**
-* **Scenario Logic:** Add `allow_dropped_stops` flag to the solver.
-* **Comparison Endpoint:** Return two solution objects: `solution_strict` and `solution_suggested`.
+**Backend:**
+- Create `api/` directory with FastAPI structure
+- SQLAlchemy models for all tables
+- JWT verification middleware (validate NextAuth tokens)
+- PostgreSQL in Docker with persisted volume
 
+**Frontend:**
+- Keep Next.js T3 stack, add TanStack Query
+- Integrate `react-leaflet` with PMTiles (offline tiles)
+- Setup `openapi-typescript` for type generation
+- Build App Shell: Sidebar, Topbar, Layout
+- **Dark Mode toggle** (theme context + Tailwind dark classes)
 
-* **Frontend Comparison:**
-* **Split View:** Build a UI to compare two scenarios side-by-side.
-* **Diff Engine:** Highlight changes (e.g., "Stop X Dropped", "Fuel Savings: 12%").
-* **Visual Diff:** Render dropped stops as grey/ghost markers on the map.
+**Infrastructure:**
+- Root `docker-compose.yml` (postgres, api, web, osrm)
+- Generate PMTiles for NCR region (all zones from stops.csv)
+- Configure OSRM Docker with `india.osm.pbf`
 
+**Definition of Done:** `docker-compose up` runs all services. Map shows NCR with offline tiles in light/dark mode.
 
-* **Exports:**
-* Build "Export to CSV" for driver route sheets.
+---
 
+### Phase 2: Data Management
 
+**Goal:** Full CRUD for stops, buses, demand with CSV upload + visual editing.
 
-**Definition of Done:** Admin can simulate "What if we drop low-demand stops?" and see the cost impact.
+**Backend:**
+- CSV upload endpoints: `POST /api/{stops,buses,demand}/upload`
+- CRUD endpoints for all entities
+- **Multi-semester support:** Demand table has `semester` column, filter by active semester
+
+**Frontend:**
+- Data grid component with inline editing
+- CSV upload dropzone with validation feedback
+- Map preview showing stop locations
+- **Semester selector:** Dropdown to switch between semesters
+- Duplicate detection and missing data warnings
+
+**Definition of Done:** Admin can upload CSVs, edit visually, switch semesters. Data persists correctly.
 
 ---
 
-### Phase 6: Polish & Deployment
+### Phase 3: Routing & Distance Matrix
 
-**Goal:** Production readiness.
+**Goal:** Calculate accurate travel times between any stops.
 
-* **Testing:** Full system testing (End-to-End).
-* **Deployment:** Create `docker-compose.prod.yml` for single-command deployment.
-* **UX Refinement:** Ensure responsiveness for tablet use.
-* **Documentation:** Write `README.md` documentation and "How to Update Data" guides.
+**Backend:**
+- Create `bus.lua` OSRM profile (50 km/h urban, U-turn penalties)
+- `POST /api/matrix/build` - Generate N×N time/distance matrix
+- `GET /api/matrix/latest` - Retrieve cached matrix
+- **Stop clustering suggestions:** Analyze proximity, suggest merges for stops <500m apart
+
+**Frontend:**
+- Matrix build UI with progress indicator
+- **Clustering suggestions panel:** Show "Consider merging stops A, B, C" with accept/dismiss
+
+**Validation:** Palwal → Sohna should be ~50 mins.
+
+**Definition of Done:** API returns valid matrix. Clustering suggestions appear for nearby stops.
 
 ---
+
+### Phase 4: Optimization Engine
+
+**Goal:** Generate optimal bus routes from demand data.
+
+**Backend (OR-Tools CVRPTW):**
+- Hard constraints: Capacity ≤50, Ride time ≤120 min, Arrive by 08:45
+- Objective: Minimize total distance/time
+- Store results in `solutions` table
+- **Cost estimation:** Calculate fuel cost (input: ₹/km, output: total route cost)
+- Handle edge cases: unreachable stops, infeasible scenarios
+
+**Frontend:**
+- Optimization trigger UI
+- **Cost display:** Show estimated fuel cost per optimization run
+- Loading state with progress
+
+**Definition of Done:** API returns valid routes. Cost estimate displayed.
+
+---
+
+### Phase 5: Visualization & Dashboard
+
+**Goal:** Interactive map and dashboard for route analysis.
+
+**Map Visualization:**
+- Color-coded stop markers (by zone)
+- Route polylines (unique color per bus, real road geometry from OSRM)
+- Click route in sidebar → highlight on map
+- Hover stop → popup with student count
+- **Demand heatmap layer:** Toggle to show student density
+
+**Route Animation:**
+- **Playback mode:** Animate buses moving along routes
+- Play/pause controls, speed slider
+
+**Dashboard:**
+- KPI Cards: Total KM, Fleet Usage %, Avg Commute, **Estimated Cost**
+- Route list with stop count, time, capacity status
+
+**Alerts & Warnings:**
+- ⚠️ Route exceeds 120 min ride time
+- ⚠️ Bus at >95% capacity
+- ⚠️ Stop has 0 students assigned
+- Warnings displayed inline on dashboard
+
+**Definition of Done:** Admin sees animated routes on heatmap, warnings displayed automatically.
+
+---
+
+### Phase 6: Comparison & Analysis
+
+**Goal:** Scenario comparison, what-if analysis, historical tracking.
+
+**Backend:**
+- `POST /api/scenarios/compare` - Run strict vs suggested optimization
+- **Historical solutions:** Store all runs with timestamps
+- `GET /api/solutions/history` - List past optimizations
+
+**Frontend:**
+- **Split-view comparison:** Strict vs Suggested side-by-side
+- Diff highlighting: "Stop X dropped", "Savings: ₹5,000"
+- Ghost markers for dropped stops
+
+**What-If Analysis:**
+- Sliders: "Add X buses", "Change capacity to Y"
+- Quick re-calculation without full optimization
+- Show impact on KPIs in real-time
+
+**Historical Comparison:**
+- Compare current solution vs previous runs
+- Trend graphs: Total KM over time, Cost reduction %
+
+**Definition of Done:** Admin can compare scenarios, adjust what-if sliders, view history trends.
+
+---
+
+### Phase 7: Export & Mobile
+
+**Goal:** Driver-friendly views and exportable reports.
+
+**Exports:**
+- `GET /api/export/routes/csv` - Driver route sheets
+- `GET /api/export/routes/pdf` - Printable schedules with turn-by-turn
+
+**Driver Mobile View:**
+- Read-only responsive page: `/driver/{bus_id}`
+- Shows: Route name, stop list with times, basic directions
+- Works on phone/tablet
+- PWA support for offline access
+
+**Definition of Done:** Drivers can view their routes on mobile. Admin can export CSV/PDF.
+
+---
+
+### Phase 8: Polish & Deployment
+
+**Goal:** Production-ready system.
+
+**Testing:**
+- API unit tests (pytest)
+- Frontend type checking
+- E2E tests (Playwright)
+
+**Deployment:**
+- `docker-compose.prod.yml` with optimized images
+- Database backup strategy
+- Environment variable management
+
+**UX Polish:**
+- Loading skeletons throughout
+- Error handling with user-friendly messages
+- Responsive design verification
+
+**Documentation:**
+- README with setup instructions
+- "How to Update Data" guide
+- API docs (auto from OpenAPI)
+
+**Definition of Done:** Single command deploys production system. Documentation complete.
+
+---
+
+## 7. Open Items
+
+- [ ] Campus coordinates (KRMU Sohna exact location)
+- [ ] Bus fleet CSV data
+- [ ] Demand CSV data (student counts per stop)
+- [ ] Depot locations (where buses start)
+- [ ] Fuel cost per km (for cost estimation)
