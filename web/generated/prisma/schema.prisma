@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -8,26 +5,9 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
-  // Further reading:
-  // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
-  // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  createdBy   User   @relation(fields: [createdById], references: [id])
-  createdById String
-
-  @@index([name])
-}
-
-// Necessary for Next auth
 model Account {
   id                       String  @id @default(cuid())
   userId                   String
@@ -63,7 +43,6 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  posts         Post[]
 }
 
 model VerificationToken {
@@ -72,4 +51,58 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Bus {
+  bus_id         Int    @id @default(autoincrement())
+  bus_no         String
+  capacity       Int
+  route_id       String
+  route_name     String
+  arrival_time   String
+  departure_time String
+
+  driver    Driver?
+  conductor Conductor?
+  passes    StudentPass[]
+}
+
+model Driver {
+  driver_id  Int    @id @default(autoincrement())
+  name       String
+  phone      String
+  license_no String
+
+  bus_id Int @unique
+  bus    Bus @relation(fields: [bus_id], references: [bus_id])
+}
+
+model Conductor {
+  conductor_id Int    @id @default(autoincrement())
+  name         String
+  phone        String
+
+  bus_id Int @unique
+  bus    Bus @relation(fields: [bus_id], references: [bus_id])
+}
+
+model Stop {
+  stop_id     Int    @id @default(autoincrement())
+  stop_name   String
+  area        String
+  distance_km Float
+
+  passes StudentPass[]
+}
+
+model StudentPass {
+  pass_id    Int      @id @default(autoincrement())
+  issue_date DateTime
+  valid_till DateTime
+  amount     Float
+  bus_id     Int
+  stop_id    Int
+
+  bus  Bus  @relation(fields: [bus_id], references: [bus_id])
+  stop Stop @relation(fields: [stop_id], references: [stop_id])
 }
