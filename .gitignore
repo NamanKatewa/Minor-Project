@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /web/node_modules
 /.pnp
@@ -31,10 +29,9 @@
 /web/yarn-error.log*
 /web/.pnpm-debug.log*
 
-# local env files
-# do not commit any .env files to git, except for the .env.example file. https://create.t3.gg/en/usage/env-variables#using-environment-variables
-/web/.env
-/web/.env*.local
+# env
+.env*
+.env*.local
 
 # vercel
 /web/.vercel
@@ -47,3 +44,6 @@
 
 # osm data
 /data/osm/india.osm.pbf
+
+# python cache
+__pycache__/
