@@ -47,3 +47,6 @@
 
 # osm data
 /data/osm/india.osm.pbf
+
+# pmtiles data
+/data/tiles/ncr-extended.pmtiles
