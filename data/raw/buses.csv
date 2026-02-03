@@ -1,0 +1,43 @@
+bus_id,bus_no,capacity,depot_name
+BUS_001,HR04U5506,45,KRMU Campus Depot
+BUS_002,HR18U2679,50,KRMU Campus Depot
+BUS_003,HR70A7912,45,KRMU Campus Depot
+BUS_004,HR12B4811,50,KRMU Campus Depot
+BUS_005,HR04T4257,50,KRMU Campus Depot
+BUS_006,HR90T7873,45,KRMU Campus Depot
+BUS_007,HR76C1106,50,KRMU Campus Depot
+BUS_008,HR21U7924,45,KRMU Campus Depot
+BUS_009,HR20B6514,50,KRMU Campus Depot
+BUS_010,HR49A6881,50,KRMU Campus Depot
+BUS_011,HR78C1711,45,Gurgaon Central Depot
+BUS_012,HR69A7201,45,Gurgaon Central Depot
+BUS_013,HR38V6925,50,Gurgaon Central Depot
+BUS_014,HR91A1750,50,Gurgaon Central Depot
+BUS_015,HR99C2307,45,Gurgaon Central Depot
+BUS_016,HR13S5554,45,Gurgaon Central Depot
+BUS_017,HR47B7065,50,Gurgaon Central Depot
+BUS_018,HR86C2169,50,Gurgaon Central Depot
+BUS_019,HR22T5010,45,Delhi West Depot
+BUS_020,HR49C4598,50,Delhi West Depot
+BUS_021,HR99V1916,45,Delhi West Depot
+BUS_022,HR05V6168,50,Delhi West Depot
+BUS_023,HR09B6155,50,Delhi West Depot
+BUS_024,HR64S8517,50,Delhi West Depot
+BUS_025,HR18B9830,50,Delhi South Depot
+BUS_026,HR75S7543,50,Delhi South Depot
+BUS_027,HR18T9085,50,Delhi South Depot
+BUS_028,HR07V2796,50,Delhi South Depot
+BUS_029,HR21V7916,50,Delhi South Depot
+BUS_030,HR50S8668,50,Faridabad Depot
+BUS_031,HR71V1188,50,Faridabad Depot
+BUS_032,HR15U9797,45,Faridabad Depot
+BUS_033,HR99U6573,45,Faridabad Depot
+BUS_034,HR56B8433,50,Faridabad Depot
+BUS_035,HR93U5315,50,Bahadurgarh Depot
+BUS_036,HR98B9317,45,Bahadurgarh Depot
+BUS_037,HR81C9317,45,Bahadurgarh Depot
+BUS_038,HR20C3646,45,Palwal Depot
+BUS_039,HR68A6310,50,Palwal Depot
+BUS_040,HR15C6038,50,Palwal Depot
+BUS_041,HR31T2290,50,Bhiwadi Depot
+BUS_042,HR63V2133,50,Bhiwadi Depot
