@@ -5,7 +5,6 @@ import { useEffect, useRef } from "react";
 import "leaflet/dist/leaflet.css";
 import { leafletLayer } from "protomaps-leaflet";
 
-// NCR region center (approximately KRMU Sohna area)
 const NCR_CENTER: [number, number] = [28.4, 77.1];
 const DEFAULT_ZOOM = 10;
 
@@ -20,7 +19,6 @@ export default function MapView({ className = "" }: MapViewProps) {
 	useEffect(() => {
 		if (!mapRef.current || mapInstanceRef.current) return;
 
-		// Initialize the map
 		const map = L.map(mapRef.current, {
 			center: NCR_CENTER,
 			zoom: DEFAULT_ZOOM,
@@ -28,8 +26,6 @@ export default function MapView({ className = "" }: MapViewProps) {
 
 		mapInstanceRef.current = map;
 
-		// Create the protomaps layer with the local PMTiles file
-		// Using the 'flavor' option which applies built-in styling
 		const layer = leafletLayer({
 			url: "/tiles/ncr-extended.pmtiles",
 			flavor: "light",
@@ -37,7 +33,6 @@ export default function MapView({ className = "" }: MapViewProps) {
 
 		layer.addTo(map);
 
-		// Cleanup on unmount
 		return () => {
 			if (mapInstanceRef.current) {
 				mapInstanceRef.current.remove();
