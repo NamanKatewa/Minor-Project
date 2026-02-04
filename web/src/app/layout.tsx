@@ -21,7 +21,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html className={`${geist.variable}`} lang="en" suppressHydrationWarning>
-			<body className="bg-white text-slate-900 transition-colors dark:bg-slate-950 dark:text-slate-100">
+			<body className="bg-background text-foreground antialiased">
 				<ThemeProvider>
 					<QueryProvider>{children}</QueryProvider>
 				</ThemeProvider>
