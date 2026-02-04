@@ -110,13 +110,13 @@ university-fleet-optimizer/
 
 ### Phase 1: Infrastructure & Core Setup
 
-**Goal:** All services running, database connected, map displaying with offline tiles.
+**Goal:** All services running locally, database connected, map displaying with offline tiles.
 
 **Backend:**
 - Create `api/` directory with FastAPI structure
 - SQLAlchemy models for all tables
 - JWT verification middleware (validate NextAuth tokens)
-- PostgreSQL in Docker with persisted volume
+- Local PostgreSQL setup
 
 **Frontend:**
 - Keep Next.js T3 stack, add TanStack Query
@@ -126,11 +126,10 @@ university-fleet-optimizer/
 - **Dark Mode toggle** (theme context + Tailwind dark classes)
 
 **Infrastructure:**
-- Root `docker-compose.yml` (postgres, api, web, osrm)
 - Generate PMTiles for NCR region (all zones from stops.csv)
-- Configure OSRM Docker with `india.osm.pbf`
+- OSRM routing engine setup (local installation)
 
-**Definition of Done:** `docker-compose up` runs all services. Map shows NCR with offline tiles in light/dark mode.
+**Definition of Done:** All services run locally. Map shows NCR with offline tiles in light/dark mode.
 
 ---
 
@@ -268,19 +267,14 @@ university-fleet-optimizer/
 
 ---
 
-### Phase 8: Polish & Deployment
+### Phase 8: Polish & Testing
 
-**Goal:** Production-ready system.
+**Goal:** Polished, well-tested system ready for deployment.
 
 **Testing:**
 - API unit tests (pytest)
 - Frontend type checking
 - E2E tests (Playwright)
-
-**Deployment:**
-- `docker-compose.prod.yml` with optimized images
-- Database backup strategy
-- Environment variable management
 
 **UX Polish:**
 - Loading skeletons throughout
@@ -292,7 +286,28 @@ university-fleet-optimizer/
 - "How to Update Data" guide
 - API docs (auto from OpenAPI)
 
-**Definition of Done:** Single command deploys production system. Documentation complete.
+**Definition of Done:** All tests pass. Documentation complete.
+
+---
+
+### Phase 9: Docker & Deployment
+
+**Goal:** Production-ready containerized deployment.
+
+**Docker Setup:**
+- Create `Dockerfile` for FastAPI backend
+- Create `Dockerfile` for Next.js frontend
+- Root `docker-compose.yml` (postgres, api, web, osrm)
+- `docker-compose.prod.yml` with optimized images
+- Configure OSRM Docker with `india.osm.pbf`
+
+**Deployment:**
+- Database backup strategy
+- Environment variable management
+- Health checks and restart policies
+- Volume configuration for persistent data
+
+**Definition of Done:** `docker-compose up` runs all services in production mode. System is fully containerized and deployable.
 
 ---
 
