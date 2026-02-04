@@ -30,8 +30,9 @@
 /web/.pnpm-debug.log*
 
 # env
-.env*
-.env*.local
+.env
+.env.*
+!.env.example
 
 # vercel
 /web/.vercel
