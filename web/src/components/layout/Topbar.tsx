@@ -1,31 +1,44 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import { LogOut, User } from "lucide-react";
+import { signOut } from "next-auth/react";
+import { ThemeToggle } from "~/components/layout/ThemeToggle";
 import { Button } from "~/components/ui/button";
 import { SidebarTrigger } from "~/components/ui/sidebar";
+import { useAuth } from "~/hooks/useAuth";
 
 export function Topbar() {
-	const { theme, setTheme } = useTheme();
+	const { user, isAuthenticated } = useAuth();
 
 	return (
 		<header className="flex h-14 shrink-0 items-center justify-between border-border border-b bg-background px-4">
 			<div className="flex items-center gap-2">
 				<SidebarTrigger />
-				<span className="font-semibold text-foreground">
-					University Fleet Optimization System
-				</span>
 			</div>
-			<div className="flex items-center gap-3">
-				<Button
-					aria-label="Toggle theme"
-					onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-					size="icon"
-					variant="outline"
-				>
-					<Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-					<Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-				</Button>
+
+			<div className="flex items-center gap-4">
+				{isAuthenticated && user ? (
+					<div className="flex items-center gap-3">
+						<div className="flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-1.5">
+							<User className="h-4 w-4 text-muted-foreground" />
+							<span className="text-foreground text-sm">{user.email}</span>
+						</div>
+						<Button
+							className="gap-2"
+							onClick={() => signOut({ callbackUrl: "/auth/login" })}
+							size="sm"
+							variant="outline"
+						>
+							<LogOut className="h-4 w-4" />
+							Sign Out
+						</Button>
+					</div>
+				) : (
+					<Button asChild size="sm" variant="default">
+						<a href="/auth/login">Sign In</a>
+					</Button>
+				)}
+				<ThemeToggle />
 			</div>
 		</header>
 	);

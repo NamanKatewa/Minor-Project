@@ -14,6 +14,7 @@ class User(Base):
     email: Mapped[str | None] = mapped_column(String(255), unique=True, nullable=True)
     email_verified: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
     image: Mapped[str | None] = mapped_column(Text, nullable=True)
+    hashed_password: Mapped[str | None] = mapped_column(String(255), nullable=True)
 
     accounts: Mapped[list["Account"]] = relationship("Account", back_populates="user", cascade="all, delete-orphan")
     sessions: Mapped[list["Session"]] = relationship("Session", back_populates="user", cascade="all, delete-orphan")

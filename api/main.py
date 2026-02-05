@@ -5,7 +5,7 @@ from sqlalchemy import text
 
 from config import get_settings
 from database import engine
-from routers import health_router
+from routers import health_router, auth_router
 
 settings = get_settings()
 
@@ -30,13 +30,14 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=settings.allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 app.include_router(health_router)
+app.include_router(auth_router)
 
 
 @app.get("/")
