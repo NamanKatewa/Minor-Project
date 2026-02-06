@@ -11,6 +11,8 @@ class Settings(BaseSettings):
 
     osrm_url: str = "http://localhost:5000"
 
+    allowed_origins: list[str] = ["http://localhost:3000"]
+
     debug: bool = False
 
     @computed_field

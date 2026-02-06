@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
 import { QueryProvider } from "~/components/QueryProvider";
 import { ThemeProvider } from "~/components/ThemeProvider";
 
@@ -22,9 +23,11 @@ export default function RootLayout({
 	return (
 		<html className={`${geist.variable}`} lang="en" suppressHydrationWarning>
 			<body className="bg-background text-foreground antialiased">
-				<ThemeProvider>
-					<QueryProvider>{children}</QueryProvider>
-				</ThemeProvider>
+				<SessionProvider>
+					<ThemeProvider>
+						<QueryProvider>{children}</QueryProvider>
+					</ThemeProvider>
+				</SessionProvider>
 			</body>
 		</html>
 	);

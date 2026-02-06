@@ -1,5 +1,5 @@
 import type { DefaultSession, NextAuthConfig } from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
+import Credentials from "next-auth/providers/credentials";
 
 /**
  * Module augmentation for `next-auth` types.
@@ -8,16 +8,69 @@ declare module "next-auth" {
 	interface Session extends DefaultSession {
 		user: {
 			id: string;
+			accessToken: string;
 		} & DefaultSession["user"];
 	}
+
+	interface User {
+		id?: string;
+		email?: string | null;
+		name?: string | null;
+		accessToken?: string;
+	}
 }
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 /**
  * NextAuth config with JWT-only sessions (no database adapter).
  * Auth data is stored in FastAPI backend via SQLAlchemy.
  */
 export const authConfig = {
-	providers: [DiscordProvider],
+	providers: [
+		Credentials({
+			name: "credentials",
+			credentials: {
+				email: { label: "Email", type: "email" },
+				password: { label: "Password", type: "password" },
+			},
+			async authorize(credentials) {
+				if (!credentials?.email || !credentials?.password) {
+					return null;
+				}
+
+				try {
+					const response = await fetch(`${API_URL}/auth/login`, {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+							email: credentials.email,
+							password: credentials.password,
+						}),
+					});
+
+					if (!response.ok) {
+						return null;
+					}
+
+					const data = (await response.json()) as {
+						access_token: string;
+						user: { id: string; email: string; name: string | null };
+					};
+
+					return {
+						id: data.user.id,
+						email: data.user.email,
+						name: data.user.name,
+						accessToken: data.access_token,
+					};
+				} catch (error) {
+					console.error("Auth error:", error);
+					return null;
+				}
+			},
+		}),
+	],
 	session: {
 		strategy: "jwt",
 	},
@@ -25,6 +78,7 @@ export const authConfig = {
 		jwt: ({ token, user }) => {
 			if (user) {
 				token.id = user.id;
+				token.accessToken = user.accessToken;
 			}
 			return token;
 		},
@@ -33,7 +87,11 @@ export const authConfig = {
 			user: {
 				...session.user,
 				id: token.id as string,
+				accessToken: token.accessToken as string,
 			},
 		}),
+	},
+	pages: {
+		signIn: "/auth/login",
 	},
 } satisfies NextAuthConfig;
