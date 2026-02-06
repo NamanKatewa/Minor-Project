@@ -27,8 +27,8 @@ export function AppSidebar() {
 
 	return (
 		<Sidebar>
-			<SidebarHeader className="border-sidebar-border border-b p-4">
-				<h1 className="font-bold text-2xl text-emerald-500">UFOS</h1>
+			<SidebarHeader className="border-sidebar-border border-b-2 p-6">
+				<h1 className="font-black font-serif text-3xl">UFOS</h1>
 			</SidebarHeader>
 			<SidebarContent>
 				<SidebarGroup>

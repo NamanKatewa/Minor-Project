@@ -1,9 +1,6 @@
 import type { DefaultSession, NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
-/**
- * Module augmentation for `next-auth` types.
- */
 declare module "next-auth" {
 	interface Session extends DefaultSession {
 		user: {
@@ -22,10 +19,6 @@ declare module "next-auth" {
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-/**
- * NextAuth config with JWT-only sessions (no database adapter).
- * Auth data is stored in FastAPI backend via SQLAlchemy.
- */
 export const authConfig = {
 	providers: [
 		Credentials({

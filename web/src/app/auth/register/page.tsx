@@ -5,8 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
+import { Topbar } from "~/components/layout/Topbar";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -26,7 +25,6 @@ export default function RegisterPage() {
 			email: string;
 			password: string;
 		}) => {
-			// Step 1: Register user with FastAPI backend
 			const response = await fetch(`${API_URL}/auth/register`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
@@ -38,7 +36,6 @@ export default function RegisterPage() {
 				throw new Error(error.detail || "Registration failed");
 			}
 
-			// Step 2: Sign in with NextAuth
 			const result = await signIn("credentials", {
 				email,
 				password,
@@ -65,104 +62,103 @@ export default function RegisterPage() {
 	};
 
 	return (
-		<div className="flex min-h-screen items-center justify-center bg-background">
-			<div className="w-full max-w-md space-y-8 rounded-xl border border-border bg-card p-8 shadow-lg">
-				<div className="text-center">
-					<h1 className="font-bold text-3xl text-emerald-500">UFOS</h1>
-					<h2 className="mt-2 text-foreground text-xl">Create your account</h2>
+		<>
+			<Topbar showSidebarTrigger={false} />
+			<div className="flex min-h-[calc(100vh-3.5rem)]">
+				<div className="flex flex-1 items-center justify-center bg-background p-16">
+					<div className="w-full max-w-md">
+						<h2 className="mb-12 font-black font-serif text-6xl">JOIN UFOS</h2>
+
+						<form className="space-y-6" onSubmit={handleSubmit}>
+							{registerMutation.error && (
+								<div className="border-accent border-b-2 bg-accent/10 px-4 py-3 font-sans text-accent text-sm">
+									{registerMutation.error.message}
+								</div>
+							)}
+
+							<div>
+								<label
+									className="mb-3 block font-sans font-semibold text-xs uppercase tracking-widest"
+									htmlFor="name"
+								>
+									Name
+								</label>
+								<input
+									autoComplete="name"
+									className="w-full border-foreground border-b-2 bg-transparent py-3 font-sans text-lg outline-none transition-colors focus:border-accent"
+									id="name"
+									onChange={(e) => setName(e.target.value)}
+									placeholder="John Doe"
+									required
+									type="text"
+									value={name}
+								/>
+							</div>
+
+							<div>
+								<label
+									className="mb-3 block font-sans font-semibold text-xs uppercase tracking-widest"
+									htmlFor="email"
+								>
+									Email
+								</label>
+								<input
+									autoComplete="email"
+									className="w-full border-foreground border-b-2 bg-transparent py-3 font-sans text-lg outline-none transition-colors focus:border-accent"
+									id="email"
+									onChange={(e) => setEmail(e.target.value)}
+									placeholder="your@email.com"
+									required
+									type="email"
+									value={email}
+								/>
+							</div>
+
+							<div>
+								<label
+									className="mb-3 block font-sans font-semibold text-xs uppercase tracking-widest"
+									htmlFor="password"
+								>
+									Password
+								</label>
+								<input
+									autoComplete="new-password"
+									className="w-full border-foreground border-b-2 bg-transparent py-3 font-sans text-lg outline-none transition-colors focus:border-accent"
+									id="password"
+									onChange={(e) => setPassword(e.target.value)}
+									placeholder="••••••••"
+									required
+									type="password"
+									value={password}
+								/>
+							</div>
+
+							<button
+								className="w-full bg-foreground px-8 py-4 font-sans font-semibold text-background text-sm uppercase tracking-widest transition-colors hover:bg-accent hover:text-accent-foreground disabled:opacity-50"
+								disabled={registerMutation.isPending}
+								type="submit"
+							>
+								{registerMutation.isPending
+									? "Creating Account..."
+									: "Create Account"}
+							</button>
+
+							<p className="text-center font-sans text-sm">
+								Have Account?{" "}
+								<Link className="font-semibold underline" href="/auth/login">
+									Sign In
+								</Link>
+							</p>
+						</form>
+					</div>
 				</div>
 
-				<form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-					{registerMutation.error && (
-						<div className="rounded-md border border-destructive bg-destructive/10 p-3 text-center text-destructive text-sm">
-							{registerMutation.error.message}
-						</div>
-					)}
-
-					<div className="space-y-4">
-						<div>
-							<label
-								className="block font-medium text-foreground text-sm"
-								htmlFor="name"
-							>
-								Full Name
-							</label>
-							<Input
-								autoComplete="name"
-								className="mt-1"
-								id="name"
-								onChange={(e) => setName(e.target.value)}
-								placeholder="John Doe"
-								required
-								type="text"
-								value={name}
-							/>
-						</div>
-
-						<div>
-							<label
-								className="block font-medium text-foreground text-sm"
-								htmlFor="email"
-							>
-								Email
-							</label>
-							<Input
-								autoComplete="email"
-								className="mt-1"
-								id="email"
-								onChange={(e) => setEmail(e.target.value)}
-								placeholder="your@email.com"
-								required
-								type="email"
-								value={email}
-							/>
-						</div>
-
-						<div>
-							<label
-								className="block font-medium text-foreground text-sm"
-								htmlFor="password"
-							>
-								Password
-							</label>
-							<Input
-								autoComplete="new-password"
-								className="mt-1"
-								id="password"
-								minLength={8}
-								onChange={(e) => setPassword(e.target.value)}
-								placeholder="••••••••"
-								required
-								type="password"
-								value={password}
-							/>
-							<p className="mt-1 text-muted-foreground text-xs">
-								Minimum 8 characters
-							</p>
-						</div>
-					</div>
-
-					<Button
-						className="w-full"
-						disabled={registerMutation.isPending}
-						type="submit"
-					>
-						{registerMutation.isPending
-							? "Creating account..."
-							: "Create account"}
-					</Button>
-
-					<p className="text-center text-muted-foreground text-sm">
-						Already have an account?{" "}
-						<Link
-							className="text-emerald-500 hover:underline"
-							href="/auth/login"
-						>
-							Sign in
-						</Link>
-					</p>
-				</form>
+				<div className="flex flex-1 items-center justify-center bg-foreground text-background">
+					<h1 className="origin-center rotate-6 font-black font-serif text-8xl text-accent">
+						WELCOME!
+					</h1>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }

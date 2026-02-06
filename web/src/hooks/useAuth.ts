@@ -1,9 +1,5 @@
 import { useSession } from "next-auth/react";
 
-/**
- * Hook to get the current user session with access token.
- * Use this to access user data and the FastAPI JWT token.
- */
 export function useAuth() {
 	const { data: session, status } = useSession();
 
