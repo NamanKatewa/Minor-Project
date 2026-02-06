@@ -29,7 +29,6 @@ export default function MapView({ className = "" }: MapViewProps) {
 
 		mapInstanceRef.current = map;
 
-		// Initial layer - will be replaced by theme effect
 		const initialFlavor = resolvedTheme === "dark" ? "dark" : "light";
 		const layer = leafletLayer({
 			url: "/tiles/ncr-extended.pmtiles",
@@ -47,18 +46,15 @@ export default function MapView({ className = "" }: MapViewProps) {
 		};
 	}, [resolvedTheme]);
 
-	// Handle theme changes
 	useEffect(() => {
 		if (!mapInstanceRef.current || !layerRef.current) return;
 
 		const currentFlavor = resolvedTheme === "dark" ? "dark" : "light";
 
-		// Remove old layer
 		if (layerRef.current) {
 			mapInstanceRef.current.removeLayer(layerRef.current);
 		}
 
-		// Add new layer with updated flavor
 		const newLayer = leafletLayer({
 			url: "/tiles/ncr-extended.pmtiles",
 			flavor: currentFlavor,
