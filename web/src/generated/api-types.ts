@@ -81,6 +81,229 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
+	"/api/stops": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** List Stops */
+		get: operations["list_stops_api_stops_get"];
+		put?: never;
+		/** Create Stop */
+		post: operations["create_stop_api_stops_post"];
+		/**
+		 * Delete All Stops
+		 * @description Delete all stops
+		 */
+		delete: operations["delete_all_stops_api_stops_delete"];
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/stops/{stop_id}": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Stop */
+		get: operations["get_stop_api_stops__stop_id__get"];
+		/** Update Stop */
+		put: operations["update_stop_api_stops__stop_id__put"];
+		post?: never;
+		/** Delete Stop */
+		delete: operations["delete_stop_api_stops__stop_id__delete"];
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/stops/bulk": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		get?: never;
+		put?: never;
+		/**
+		 * Bulk Create Stops
+		 * @description Bulk create stops
+		 */
+		post: operations["bulk_create_stops_api_stops_bulk_post"];
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/buses": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** List Buses */
+		get: operations["list_buses_api_buses_get"];
+		put?: never;
+		/** Create Bus */
+		post: operations["create_bus_api_buses_post"];
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/buses/{bus_id}": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Bus */
+		get: operations["get_bus_api_buses__bus_id__get"];
+		/** Update Bus */
+		put: operations["update_bus_api_buses__bus_id__put"];
+		post?: never;
+		/** Delete Bus */
+		delete: operations["delete_bus_api_buses__bus_id__delete"];
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/buses/upload": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		get?: never;
+		put?: never;
+		/** Upload Buses Csv */
+		post: operations["upload_buses_csv_api_buses_upload_post"];
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/depots": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** List Depots */
+		get: operations["list_depots_api_depots_get"];
+		put?: never;
+		/** Create Depot */
+		post: operations["create_depot_api_depots_post"];
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/depots/{depot_id}": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Depot */
+		get: operations["get_depot_api_depots__depot_id__get"];
+		/** Update Depot */
+		put: operations["update_depot_api_depots__depot_id__put"];
+		post?: never;
+		/** Delete Depot */
+		delete: operations["delete_depot_api_depots__depot_id__delete"];
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/demand/semesters": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** List Semesters */
+		get: operations["list_semesters_api_demand_semesters_get"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/demand": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** List Demand */
+		get: operations["list_demand_api_demand_get"];
+		put?: never;
+		/** Create Demand */
+		post: operations["create_demand_api_demand_post"];
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/demand/{demand_id}": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Demand */
+		get: operations["get_demand_api_demand__demand_id__get"];
+		/** Update Demand */
+		put: operations["update_demand_api_demand__demand_id__put"];
+		post?: never;
+		/** Delete Demand */
+		delete: operations["delete_demand_api_demand__demand_id__delete"];
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/demand/upload": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		get?: never;
+		put?: never;
+		/** Upload Demand Csv */
+		post: operations["upload_demand_csv_api_demand_upload_post"];
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
 	"/": {
 		parameters: {
 			query?: never;
@@ -116,6 +339,136 @@ export interface components {
 				[key: string]: unknown;
 			};
 		};
+		/** Body_upload_buses_csv_api_buses_upload_post */
+		Body_upload_buses_csv_api_buses_upload_post: {
+			/**
+			 * File
+			 * Format: binary
+			 */
+			file: string;
+		};
+		/** Body_upload_demand_csv_api_demand_upload_post */
+		Body_upload_demand_csv_api_demand_upload_post: {
+			/**
+			 * File
+			 * Format: binary
+			 */
+			file: string;
+		};
+		/** BusCreate */
+		BusCreate: {
+			/** Bus No */
+			bus_no: string;
+			/**
+			 * Capacity
+			 * @default 50
+			 */
+			capacity: number;
+			/** Depot Id */
+			depot_id?: string | null;
+		};
+		/** BusRead */
+		BusRead: {
+			/** Bus No */
+			bus_no: string;
+			/**
+			 * Capacity
+			 * @default 50
+			 */
+			capacity: number;
+			/** Depot Id */
+			depot_id?: string | null;
+			/**
+			 * Id
+			 * Format: uuid
+			 */
+			id: string;
+		};
+		/** BusUpdate */
+		BusUpdate: {
+			/** Bus No */
+			bus_no?: string | null;
+			/** Capacity */
+			capacity?: number | null;
+			/** Depot Id */
+			depot_id?: string | null;
+		};
+		/** DemandCreate */
+		DemandCreate: {
+			/**
+			 * Stop Id
+			 * Format: uuid
+			 */
+			stop_id: string;
+			/**
+			 * Student Count
+			 * @default 0
+			 */
+			student_count: number;
+			/** Semester */
+			semester: string;
+		};
+		/** DemandRead */
+		DemandRead: {
+			/**
+			 * Stop Id
+			 * Format: uuid
+			 */
+			stop_id: string;
+			/**
+			 * Student Count
+			 * @default 0
+			 */
+			student_count: number;
+			/** Semester */
+			semester: string;
+			/**
+			 * Id
+			 * Format: uuid
+			 */
+			id: string;
+		};
+		/** DemandUpdate */
+		DemandUpdate: {
+			/** Stop Id */
+			stop_id?: string | null;
+			/** Student Count */
+			student_count?: number | null;
+			/** Semester */
+			semester?: string | null;
+		};
+		/** DepotCreate */
+		DepotCreate: {
+			/** Name */
+			name: string;
+			/** Lat */
+			lat?: number | null;
+			/** Lon */
+			lon?: number | null;
+		};
+		/** DepotRead */
+		DepotRead: {
+			/** Name */
+			name: string;
+			/** Lat */
+			lat?: number | null;
+			/** Lon */
+			lon?: number | null;
+			/**
+			 * Id
+			 * Format: uuid
+			 */
+			id: string;
+		};
+		/** DepotUpdate */
+		DepotUpdate: {
+			/** Name */
+			name?: string | null;
+			/** Lat */
+			lat?: number | null;
+			/** Lon */
+			lon?: number | null;
+		};
 		/** HTTPValidationError */
 		HTTPValidationError: {
 			/** Detail */
@@ -142,6 +495,68 @@ export interface components {
 			password: string;
 			/** Name */
 			name: string;
+		};
+		/** StopCreate */
+		StopCreate: {
+			/** Stop Code */
+			stop_code?: string | null;
+			/** Name */
+			name: string;
+			/** Lat */
+			lat?: number | null;
+			/** Lon */
+			lon?: number | null;
+			/** Locality */
+			locality?: string | null;
+			/** Zone */
+			zone?: string | null;
+			/**
+			 * Active
+			 * @default true
+			 */
+			active: boolean;
+		};
+		/** StopRead */
+		StopRead: {
+			/** Stop Code */
+			stop_code?: string | null;
+			/** Name */
+			name: string;
+			/** Lat */
+			lat?: number | null;
+			/** Lon */
+			lon?: number | null;
+			/** Locality */
+			locality?: string | null;
+			/** Zone */
+			zone?: string | null;
+			/**
+			 * Active
+			 * @default true
+			 */
+			active: boolean;
+			/**
+			 * Id
+			 * Format: uuid
+			 */
+			id: string;
+		};
+		/** StopUpdate */
+		StopUpdate: {
+			/** Stop Code */
+			stop_code?: string | null;
+			/** Name */
+			name?: string | null;
+			/** Lat */
+			lat?: number | null;
+			/** Lon */
+			lon?: number | null;
+			/** Locality */
+			locality?: string | null;
+			/** Zone */
+			zone?: string | null;
+			/** Active */
+			active?: boolean | null;
 		};
 		/** UserResponse */
 		UserResponse: {
@@ -274,6 +689,774 @@ export interface operations {
 				};
 				content: {
 					"application/json": components["schemas"]["UserResponse"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	list_stops_api_stops_get: {
+		parameters: {
+			query?: {
+				zone?: string | null;
+				active?: boolean | null;
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["StopRead"][];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	create_stop_api_stops_post: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"application/json": components["schemas"]["StopCreate"];
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			201: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["StopRead"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	delete_all_stops_api_stops_delete: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			204: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+		};
+	};
+	get_stop_api_stops__stop_id__get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				stop_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["StopRead"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	update_stop_api_stops__stop_id__put: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				stop_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"application/json": components["schemas"]["StopUpdate"];
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["StopRead"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	delete_stop_api_stops__stop_id__delete: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				stop_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			204: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	bulk_create_stops_api_stops_bulk_post: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"application/json": components["schemas"]["StopCreate"][];
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			201: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["StopRead"][];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	list_buses_api_buses_get: {
+		parameters: {
+			query?: {
+				depot_id?: string | null;
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["BusRead"][];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	create_bus_api_buses_post: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"application/json": components["schemas"]["BusCreate"];
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			201: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["BusRead"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	get_bus_api_buses__bus_id__get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				bus_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["BusRead"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	update_bus_api_buses__bus_id__put: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				bus_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"application/json": components["schemas"]["BusUpdate"];
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["BusRead"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	delete_bus_api_buses__bus_id__delete: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				bus_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			204: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	upload_buses_csv_api_buses_upload_post: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"multipart/form-data": components["schemas"]["Body_upload_buses_csv_api_buses_upload_post"];
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": {
+						[key: string]: unknown;
+					};
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	list_depots_api_depots_get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["DepotRead"][];
+				};
+			};
+		};
+	};
+	create_depot_api_depots_post: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"application/json": components["schemas"]["DepotCreate"];
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			201: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["DepotRead"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	get_depot_api_depots__depot_id__get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				depot_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["DepotRead"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	update_depot_api_depots__depot_id__put: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				depot_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"application/json": components["schemas"]["DepotUpdate"];
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["DepotRead"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	delete_depot_api_depots__depot_id__delete: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				depot_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			204: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	list_semesters_api_demand_semesters_get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": string[];
+				};
+			};
+		};
+	};
+	list_demand_api_demand_get: {
+		parameters: {
+			query?: {
+				semester?: string | null;
+				stop_id?: string | null;
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["DemandRead"][];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	create_demand_api_demand_post: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"application/json": components["schemas"]["DemandCreate"];
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			201: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["DemandRead"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	get_demand_api_demand__demand_id__get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				demand_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["DemandRead"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	update_demand_api_demand__demand_id__put: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				demand_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"application/json": components["schemas"]["DemandUpdate"];
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["DemandRead"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	delete_demand_api_demand__demand_id__delete: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				demand_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			204: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	upload_demand_csv_api_demand_upload_post: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"multipart/form-data": components["schemas"]["Body_upload_demand_csv_api_demand_upload_post"];
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": {
+						[key: string]: unknown;
+					};
 				};
 			};
 			/** @description Validation Error */

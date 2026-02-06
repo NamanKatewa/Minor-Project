@@ -5,7 +5,7 @@ from sqlalchemy import text
 
 from config import get_settings
 from database import engine
-from routers import health_router, auth_router
+from routers import health_router, auth_router, stops_router, buses_router, depots_router, demand_router
 
 settings = get_settings()
 
@@ -38,6 +38,10 @@ app.add_middleware(
 
 app.include_router(health_router)
 app.include_router(auth_router)
+app.include_router(stops_router)
+app.include_router(buses_router)
+app.include_router(depots_router)
+app.include_router(demand_router)
 
 
 @app.get("/")

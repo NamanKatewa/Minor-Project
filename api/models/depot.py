@@ -1,6 +1,7 @@
 """Depot model"""
 
-from sqlalchemy import String, Float
+from uuid import UUID, uuid4
+from sqlalchemy import String, Float, Uuid
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from database import Base
 
@@ -8,10 +9,10 @@ from database import Base
 class Depot(Base):
     __tablename__ = "depots"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, default=uuid4)
     name: Mapped[str] = mapped_column(String(255))
-    lat: Mapped[float] = mapped_column(Float)
-    lon: Mapped[float] = mapped_column(Float)
+    lat: Mapped[float | None] = mapped_column(Float, nullable=True)
+    lon: Mapped[float | None] = mapped_column(Float, nullable=True)
 
     buses: Mapped[list["Bus"]] = relationship("Bus", back_populates="depot")
 

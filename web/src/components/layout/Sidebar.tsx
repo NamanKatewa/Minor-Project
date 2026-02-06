@@ -1,6 +1,6 @@
 "use client";
 
-import { Bus, LayoutDashboard, MapPin, Settings, Zap } from "lucide-react";
+import { Database, LayoutDashboard, Settings, Zap } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -16,8 +16,7 @@ import {
 
 const navItems = [
 	{ href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-	{ href: "/stops", label: "Stops", icon: MapPin },
-	{ href: "/buses", label: "Buses", icon: Bus },
+	{ href: "/dashboard/data", label: "Data", icon: Database },
 	{ href: "/optimize", label: "Optimize", icon: Zap },
 	{ href: "/settings", label: "Settings", icon: Settings },
 ];

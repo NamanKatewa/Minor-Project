@@ -5,6 +5,7 @@ import { Playfair_Display, Work_Sans } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 import { QueryProvider } from "~/components/QueryProvider";
 import { ThemeProvider } from "~/components/ThemeProvider";
+import { Toaster } from "~/components/ui/sonner";
 
 export const metadata: Metadata = {
 	title: "UFOS - University Fleet Optimization System",
@@ -36,7 +37,10 @@ export default function RootLayout({
 			<body className="bg-background text-foreground antialiased">
 				<SessionProvider>
 					<ThemeProvider>
-						<QueryProvider>{children}</QueryProvider>
+						<QueryProvider>
+							{children}
+							<Toaster />
+						</QueryProvider>
 					</ThemeProvider>
 				</SessionProvider>
 			</body>
