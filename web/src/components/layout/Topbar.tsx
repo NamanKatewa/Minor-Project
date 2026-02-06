@@ -30,24 +30,30 @@ export function Topbar({
 				<NavigationMenu>
 					<NavigationMenuList>
 						<NavigationMenuItem>
-							<Link href="/" legacyBehavior passHref>
-								<NavigationMenuLink className={navigationMenuTriggerStyle()}>
+							<NavigationMenuLink
+								asChild
+								className={navigationMenuTriggerStyle()}
+							>
+								<Link href="/">
 									<span className="font-sans font-semibold text-xs uppercase tracking-wider">
 										Home
 									</span>
-								</NavigationMenuLink>
-							</Link>
+								</Link>
+							</NavigationMenuLink>
 						</NavigationMenuItem>
 
 						{isAuthenticated && (
 							<NavigationMenuItem>
-								<Link href="/dashboard" legacyBehavior passHref>
-									<NavigationMenuLink className={navigationMenuTriggerStyle()}>
+								<NavigationMenuLink
+									asChild
+									className={navigationMenuTriggerStyle()}
+								>
+									<Link href="/dashboard">
 										<span className="font-sans font-semibold text-xs uppercase tracking-wider">
 											Dashboard
 										</span>
-									</NavigationMenuLink>
-								</Link>
+									</Link>
+								</NavigationMenuLink>
 							</NavigationMenuItem>
 						)}
 					</NavigationMenuList>
