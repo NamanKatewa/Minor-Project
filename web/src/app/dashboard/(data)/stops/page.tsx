@@ -82,6 +82,7 @@ export default function StopsDataPage() {
 			if (
 				stop.lat === undefined ||
 				stop.lat === null ||
+				stop.lat === 0 ||
 				Number.isNaN(stop.lat)
 			) {
 				status = "invalid";
@@ -90,6 +91,7 @@ export default function StopsDataPage() {
 			if (
 				stop.lon === undefined ||
 				stop.lon === null ||
+				stop.lon === 0 ||
 				Number.isNaN(stop.lon)
 			) {
 				status = "invalid";
@@ -165,8 +167,8 @@ export default function StopsDataPage() {
 				const parsedStops: AugmentedStop[] = results.data.map((row) => ({
 					stop_code: row.stop_id?.trim() || row.stop_code?.trim() || null,
 					name: row.stop_name?.trim() || row.name?.trim() || "",
-					lat: parseFloat(row.latitude || row.lat || "0"),
-					lon: parseFloat(row.longitude || row.long || row.lon || "0"),
+					lat: parseFloat(row.latitude || row.lat || "NaN"),
+					lon: parseFloat(row.longitude || row.long || row.lon || "NaN"),
 					locality: row.locality?.trim() || null,
 					zone: row.zone?.trim() || null,
 					active: row.active?.toString().toLowerCase() === "true" || true,
