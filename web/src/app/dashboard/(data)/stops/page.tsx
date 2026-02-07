@@ -420,26 +420,32 @@ export default function StopsDataPage() {
 					</Card>
 
 					<Card className="flex min-h-0 flex-1 flex-col overflow-hidden">
-						<CardHeader className="flex flex-row items-center justify-between py-4">
-							<div>
-								<CardTitle>
-									{pendingStops.length > 0 ? "Review Data" : "Existing Stops"}
-								</CardTitle>
-								<CardDescription>
-									{pendingStops.length > 0
-										? "Edit invalid rows in CSV and re-upload"
-										: `${stops.length} stops recorded`}
-								</CardDescription>
-							</div>
+						<CardHeader>
+							<CardTitle>
+								{pendingStops.length > 0 ? "Review Data" : "Existing Stops"}
+							</CardTitle>
+							<CardDescription>
+								{pendingStops.length > 0
+									? "Edit invalid rows in CSV and re-upload"
+									: `${stops.length} stops recorded`}
+							</CardDescription>
 						</CardHeader>
-						<CardContent className="flex-1 overflow-auto p-0">
+						<CardContent className="flex flex-col">
 							{pendingStops.length > 0 ? (
 								<DataTable
 									columns={reviewColumns}
+									containerClassName="h-[450px] overflow-y-auto"
 									data={validatedPendingStops}
+									enablePagination={false}
 								/>
 							) : (
-								<DataTable columns={columns} data={stops} filterColumn="name" />
+								<DataTable
+									columns={columns}
+									containerClassName="h-[450px] overflow-y-auto"
+									data={stops}
+									enablePagination={false}
+									filterColumn="name"
+								/>
 							)}
 						</CardContent>
 					</Card>

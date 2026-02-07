@@ -23,19 +23,22 @@ import {
 } from "~/components/ui/dropdown-menu";
 import { Input } from "~/components/ui/input";
 import {
-	Table,
 	TableBody,
 	TableCell,
 	TableHead,
 	TableHeader,
 	TableRow,
 } from "~/components/ui/table";
+import { cn } from "~/lib/utils";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data: TData[];
 	filterColumn?: string;
 	filterPlaceholder?: string;
+	enablePagination?: boolean;
+	className?: string;
+	containerClassName?: string;
 }
 
 export function DataTable<TData, TValue>({
@@ -43,6 +46,9 @@ export function DataTable<TData, TValue>({
 	data,
 	filterColumn,
 	filterPlaceholder = "Filter...",
+	enablePagination = true,
+	className,
+	containerClassName,
 }: DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -53,7 +59,9 @@ export function DataTable<TData, TValue>({
 		data,
 		columns,
 		getCoreRowModel: getCoreRowModel(),
-		getPaginationRowModel: getPaginationRowModel(),
+		getPaginationRowModel: enablePagination
+			? getPaginationRowModel()
+			: undefined,
 		onSortingChange: setSorting,
 		getSortedRowModel: getSortedRowModel(),
 		onColumnFiltersChange: setColumnFilters,
@@ -69,7 +77,7 @@ export function DataTable<TData, TValue>({
 	});
 
 	return (
-		<div className="space-y-4">
+		<div className={cn("space-y-4", className)}>
 			<div className="flex items-center justify-between py-4">
 				{filterColumn && (
 					<Input
@@ -113,9 +121,15 @@ export function DataTable<TData, TValue>({
 				</DropdownMenu>
 			</div>
 
-			<div className="rounded-md border">
-				<Table>
-					<TableHeader>
+			<div
+				className={cn(
+					"rounded-md border",
+					"overflow-auto rounded-md border",
+					containerClassName,
+				)}
+			>
+				<table className="w-full caption-bottom text-sm">
+					<TableHeader className="sticky top-0 z-10 bg-background shadow-sm">
 						{table.getHeaderGroups().map((headerGroup) => (
 							<TableRow key={headerGroup.id}>
 								{headerGroup.headers.map((header) => {
@@ -161,29 +175,31 @@ export function DataTable<TData, TValue>({
 							</TableRow>
 						)}
 					</TableBody>
-				</Table>
+				</table>
 			</div>
 
-			<div className="flex items-center justify-end space-x-2 py-4">
-				<Button
-					disabled={!table.getCanPreviousPage()}
-					onClick={() => table.previousPage()}
-					size="sm"
-					variant="outline"
-				>
-					<ChevronLeft className="mr-2 h-4 w-4" />
-					Previous
-				</Button>
-				<Button
-					disabled={!table.getCanNextPage()}
-					onClick={() => table.nextPage()}
-					size="sm"
-					variant="outline"
-				>
-					Next
-					<ChevronRight className="ml-2 h-4 w-4" />
-				</Button>
-			</div>
+			{enablePagination && (
+				<div className="flex items-center justify-end space-x-2 py-4">
+					<Button
+						disabled={!table.getCanPreviousPage()}
+						onClick={() => table.previousPage()}
+						size="sm"
+						variant="outline"
+					>
+						<ChevronLeft className="mr-2 h-4 w-4" />
+						Previous
+					</Button>
+					<Button
+						disabled={!table.getCanNextPage()}
+						onClick={() => table.nextPage()}
+						size="sm"
+						variant="outline"
+					>
+						Next
+						<ChevronRight className="ml-2 h-4 w-4" />
+					</Button>
+				</div>
+			)}
 		</div>
 	);
 }
