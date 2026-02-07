@@ -111,7 +111,7 @@ export default function HomePage() {
 					</div>
 				</div>
 				<div>
-					<div className="mb-4 font-black font-serif text-7xl">682</div>
+					<div className="mb-4 font-black font-serif text-7xl">650+</div>
 					<div className="font-sans text-lg uppercase tracking-widest">
 						Stops
 					</div>
