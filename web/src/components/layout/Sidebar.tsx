@@ -16,7 +16,7 @@ import {
 
 const navItems = [
 	{ href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-	{ href: "/dashboard/data", label: "Data", icon: Database },
+	{ href: "/dashboard/stops", label: "Data", icon: Database },
 	{ href: "/optimize", label: "Optimize", icon: Zap },
 	{ href: "/settings", label: "Settings", icon: Settings },
 ];

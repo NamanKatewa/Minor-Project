@@ -112,7 +112,7 @@ export default function LoginPage() {
 
 							<p className="text-center font-sans text-sm">
 								New?{" "}
-								<Link className="font-semibold underline" href="/auth/register">
+								<Link className="font-semibold underline" href="/register">
 									Create Account
 								</Link>
 							</p>

@@ -26,7 +26,7 @@ export default function DataLayout({
 			</div>
 			<Tabs
 				className="space-y-4"
-				onValueChange={(value) => router.push(`/dashboard/data/${value}`)}
+				onValueChange={(value) => router.push(`/dashboard/${value}`)}
 				value={activeTab}
 			>
 				<TabsList>

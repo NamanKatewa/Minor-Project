@@ -145,7 +145,7 @@ export default function RegisterPage() {
 
 							<p className="text-center font-sans text-sm">
 								Have Account?{" "}
-								<Link className="font-semibold underline" href="/auth/login">
+								<Link className="font-semibold underline" href="/login">
 									Sign In
 								</Link>
 							</p>

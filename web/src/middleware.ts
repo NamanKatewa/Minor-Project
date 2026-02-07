@@ -13,11 +13,11 @@ export async function middleware(request: NextRequest) {
 		request.nextUrl.pathname.startsWith("/settings");
 
 	const isAuthRoute =
-		request.nextUrl.pathname.startsWith("/auth/login") ||
-		request.nextUrl.pathname.startsWith("/auth/register");
+		request.nextUrl.pathname.startsWith("/login") ||
+		request.nextUrl.pathname.startsWith("/register");
 
 	if (isProtectedRoute && !session) {
-		const loginUrl = new URL("/auth/login", request.url);
+		const loginUrl = new URL("/login", request.url);
 		return NextResponse.redirect(loginUrl);
 	}
 
@@ -36,6 +36,7 @@ export const config = {
 		"/buses/:path*",
 		"/optimize/:path*",
 		"/settings/:path*",
-		"/auth/:path*",
+		"/login",
+		"/register",
 	],
 };

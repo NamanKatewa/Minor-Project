@@ -71,7 +71,7 @@ export function Topbar({
 						</div>
 						<Button
 							className="gap-2"
-							onClick={() => signOut({ callbackUrl: "/auth/login" })}
+							onClick={() => signOut({ callbackUrl: "/login" })}
 							size="sm"
 							variant="outline"
 						>
@@ -81,7 +81,7 @@ export function Topbar({
 					</div>
 				) : (
 					<Button asChild size="sm" variant="default">
-						<a href="/auth/login">Sign In</a>
+						<a href="/login">Sign In</a>
 					</Button>
 				)}
 				<ThemeToggle />

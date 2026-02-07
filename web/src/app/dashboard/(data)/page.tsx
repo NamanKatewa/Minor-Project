@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function DataPage() {
-	redirect("/dashboard/data/stops");
+	redirect("/dashboard/stops");
 }
