@@ -9,7 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_db
 from models import Stop
-from schemas import StopCreate, StopUpdate, StopRead
+from schemas import StopCreate, StopUpdate, StopRead, StopBulkResponse
 
 router = APIRouter(prefix="/api/stops", tags=["stops"])
 
@@ -85,7 +85,7 @@ async def delete_all_stops(session: AsyncSession = Depends(get_db)):
     await session.commit()
 
 
-@router.post("/bulk", response_model=list[StopRead], status_code=201)
+@router.post("/bulk", response_model=StopBulkResponse, status_code=201)
 async def bulk_create_stops(
     stops: list[StopCreate], session: AsyncSession = Depends(get_db)
 ):
@@ -93,6 +93,4 @@ async def bulk_create_stops(
     db_stops = [Stop(**stop.model_dump()) for stop in stops]
     session.add_all(db_stops)
     await session.commit()
-    for stop in db_stops:
-        await session.refresh(stop)
-    return db_stops
+    return {"count": len(db_stops)}

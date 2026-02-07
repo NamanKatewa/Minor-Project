@@ -496,6 +496,11 @@ export interface components {
 			/** Name */
 			name: string;
 		};
+		/** StopBulkResponse */
+		StopBulkResponse: {
+			/** Count */
+			count: number;
+		};
 		/** StopCreate */
 		StopCreate: {
 			/** Stop Code */
@@ -899,7 +904,7 @@ export interface operations {
 					[name: string]: unknown;
 				};
 				content: {
-					"application/json": components["schemas"]["StopRead"][];
+					"application/json": components["schemas"]["StopBulkResponse"];
 				};
 			};
 			/** @description Validation Error */

@@ -33,3 +33,7 @@ class StopRead(StopBase):
 
     class Config:
         from_attributes = True
+
+
+class StopBulkResponse(BaseModel):
+    count: int

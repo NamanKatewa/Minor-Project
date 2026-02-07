@@ -2,7 +2,7 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import type { ColumnDef } from "@tanstack/react-table";
-import { Edit, Maximize2, Trash2 } from "lucide-react";
+import { Edit, Loader2, Maximize2, Trash2 } from "lucide-react";
 import dynamic from "next/dynamic";
 import Papa from "papaparse";
 import { useMemo, useState } from "react";
@@ -111,7 +111,7 @@ export default function StopsDataPage() {
 		mutationFn: api.stops.bulkCreate,
 		onSuccess: (data) => {
 			queryClient.invalidateQueries({ queryKey: ["stops"] });
-			toast.success(`Successfully imported ${data.length} stops`);
+			toast.success(`Successfully imported ${data.count} stops`);
 			setPendingStops([]);
 			setIsEditMode(false);
 		},
@@ -351,11 +351,19 @@ export default function StopsDataPage() {
 								Cancel
 							</Button>
 							<Button
+								className="min-w-[120px]"
 								disabled={deleteAllMutation.isPending}
 								onClick={() => deleteAllMutation.mutate()}
 								variant="destructive"
 							>
-								{deleteAllMutation.isPending ? "Deleting..." : "Delete All"}
+								{deleteAllMutation.isPending ? (
+									<>
+										<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+										Deleting...
+									</>
+								) : (
+									"Delete All"
+								)}
 							</Button>
 						</DialogFooter>
 					</DialogContent>
@@ -391,20 +399,29 @@ export default function StopsDataPage() {
 										</p>
 										<div className="space-x-2">
 											<Button
+												disabled={bulkCreateMutation.isPending}
 												onClick={() => setPendingStops([])}
 												variant="outline"
 											>
 												Cancel
 											</Button>
 											<Button
+												className="min-w-[140px]"
 												disabled={
 													validatedPendingStops.filter(
 														(s) => s.validationStatus === "valid",
-													).length === 0
+													).length === 0 || bulkCreateMutation.isPending
 												}
 												onClick={handleCommit}
 											>
-												Import Valid
+												{bulkCreateMutation.isPending ? (
+													<>
+														<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+														Importing...
+													</>
+												) : (
+													"Import Valid"
+												)}
 											</Button>
 										</div>
 									</div>

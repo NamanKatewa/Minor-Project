@@ -42,7 +42,7 @@ export const api = {
 		delete: (id: string) => fetcher(`/stops/${id}`, { method: "DELETE" }),
 		deleteAll: () => fetcher("/stops", { method: "DELETE" }),
 		bulkCreate: (data: components["schemas"]["StopCreate"][]) =>
-			fetcher<components["schemas"]["StopRead"][]>("/stops/bulk", {
+			fetcher<{ count: number }>("/stops/bulk", {
 				method: "POST",
 				body: JSON.stringify(data),
 			}),
