@@ -8,9 +8,9 @@ export default function HomePage() {
 		<div className="min-h-screen bg-background">
 			<Topbar showSidebarTrigger={false} />
 
-			<section className="grid min-h-[85vh] grid-cols-[1.2fr_0.8fr]">
-				<div className="flex flex-col justify-center px-16 py-20">
-					<h2 className="mb-8 font-black font-serif text-8xl leading-[0.95]">
+			<section className="grid min-h-[85vh] grid-cols-1 lg:grid-cols-[1.2fr_0.8fr]">
+				<div className="flex flex-col justify-center px-6 py-20 lg:px-12 xl:px-16">
+					<h2 className="mb-8 font-black font-serif text-4xl leading-[1.1] sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl">
 						UNIVERSITY
 						<br />
 						FLEET

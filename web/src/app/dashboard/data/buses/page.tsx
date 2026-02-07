@@ -53,9 +53,8 @@ export default function BusesDataPage() {
 		{
 			accessorKey: "depot_name",
 			header: "Depot",
-			cell: (
-				{ row }: { row: Row<BusWithDepot> },
-			) => row.original.depot_name || "Unassigned",
+			cell: ({ row }: { row: Row<BusWithDepot> }) =>
+				row.original.depot_name || "Unassigned",
 		},
 		{
 			id: "actions",

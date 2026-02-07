@@ -108,7 +108,6 @@ export default function StopsMap({
 					className: isEditMode ? "cursor-move" : "",
 				});
 
-
 				if (isEditMode) {
 					const editMarker = L.marker([stop.lat, stop.lon], {
 						draggable: true,
