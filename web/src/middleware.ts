@@ -12,9 +12,18 @@ export async function middleware(request: NextRequest) {
 		request.nextUrl.pathname.startsWith("/optimize") ||
 		request.nextUrl.pathname.startsWith("/settings");
 
+	const isAuthRoute =
+		request.nextUrl.pathname.startsWith("/auth/login") ||
+		request.nextUrl.pathname.startsWith("/auth/register");
+
 	if (isProtectedRoute && !session) {
 		const loginUrl = new URL("/auth/login", request.url);
 		return NextResponse.redirect(loginUrl);
+	}
+
+	if (isAuthRoute && session) {
+		const dashboardUrl = new URL("/dashboard", request.url);
+		return NextResponse.redirect(dashboardUrl);
 	}
 
 	return NextResponse.next();
@@ -27,5 +36,6 @@ export const config = {
 		"/buses/:path*",
 		"/optimize/:path*",
 		"/settings/:path*",
+		"/auth/:path*",
 	],
 };

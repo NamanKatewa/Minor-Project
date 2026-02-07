@@ -65,7 +65,9 @@ export function Topbar({
 					<div className="flex items-center gap-3">
 						<div className="flex items-center gap-2 border border-border bg-background px-3 py-1.5">
 							<User className="h-4 w-4 text-muted-foreground" />
-							<span className="text-foreground text-sm">{user.email}</span>
+							<span className="text-foreground text-sm">
+								{user.name ?? user.email}
+							</span>
 						</div>
 						<Button
 							className="gap-2"
