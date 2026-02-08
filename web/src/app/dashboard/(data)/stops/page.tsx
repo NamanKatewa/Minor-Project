@@ -17,17 +17,11 @@ import {
 	CardHeader,
 	CardTitle,
 } from "~/components/ui/card";
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from "~/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import type { components } from "~/generated/api-types";
 import { api } from "~/lib/api";
+import { DeleteStopsDialog } from "./_components/delete-stops-dialog";
+import { ImportStopsDialog } from "./_components/import-stops-dialog";
 
 const StopsMap = dynamic(() => import("~/components/stops-map"), {
 	ssr: false,
@@ -52,7 +46,9 @@ export default function StopsDataPage() {
 	const [selectedStopId, setSelectedStopId] = useState<string | null>(null);
 	const [pendingStops, setPendingStops] = useState<AugmentedStop[]>([]);
 	const [isEditMode, setIsEditMode] = useState(false);
+
 	const [isDeleteAllOpen, setIsDeleteAllOpen] = useState(false);
+	const [isImportConfirmOpen, setIsImportConfirmOpen] = useState(false);
 
 	const { data: stops = [] } = useQuery({
 		queryKey: ["stops"],
@@ -113,10 +109,14 @@ export default function StopsDataPage() {
 			queryClient.invalidateQueries({ queryKey: ["stops"] });
 			toast.success(`Successfully imported ${data.count} stops`);
 			setPendingStops([]);
+			toast.success(`Successfully imported ${data.count} stops`);
+			setPendingStops([]);
 			setIsEditMode(false);
+			setIsImportConfirmOpen(false);
 		},
 		onError: (error: Error) => {
 			toast.error(`Import failed: ${error.message}`);
+			setIsImportConfirmOpen(false);
 		},
 	});
 
@@ -193,6 +193,13 @@ export default function StopsDataPage() {
 			toast.error("No valid stops to import.");
 			return;
 		}
+		setIsImportConfirmOpen(true);
+	};
+
+	const confirmImport = () => {
+		const validStops = validatedPendingStops.filter(
+			(s) => s.validationStatus === "valid",
+		);
 
 		const stopsToCreate: StopCreate[] = validStops.map((s) => ({
 			name: s.name,
@@ -327,47 +334,25 @@ export default function StopsDataPage() {
 		<div className="flex h-full flex-col space-y-6">
 			<div className="flex items-center justify-between">
 				<h2 className="font-bold text-3xl tracking-tight">Stops Management</h2>
-				<Dialog onOpenChange={setIsDeleteAllOpen} open={isDeleteAllOpen}>
-					<DialogTrigger asChild>
-						<Button disabled={stops.length === 0} variant="destructive">
-							<Trash2 className="mr-2 h-4 w-4" /> Delete All Stops
-						</Button>
-					</DialogTrigger>
-					<DialogContent>
-						<DialogHeader>
-							<DialogTitle>Are you absolutely sure?</DialogTitle>
-							<DialogDescription>
-								This action cannot be undone. This will permanently delete ALL
-								stops from the database.
-							</DialogDescription>
-						</DialogHeader>
-						<DialogFooter>
-							<Button
-								className="hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
-								disabled={deleteAllMutation.isPending}
-								onClick={() => setIsDeleteAllOpen(false)}
-								variant="outline"
-							>
-								Cancel
-							</Button>
-							<Button
-								className="min-w-[120px]"
-								disabled={deleteAllMutation.isPending}
-								onClick={() => deleteAllMutation.mutate()}
-								variant="destructive"
-							>
-								{deleteAllMutation.isPending ? (
-									<>
-										<Loader2 className="mr-2 h-4 w-4 animate-spin" />
-										Deleting...
-									</>
-								) : (
-									"Delete All"
-								)}
-							</Button>
-						</DialogFooter>
-					</DialogContent>
-				</Dialog>
+				<DeleteStopsDialog
+					isDisabled={stops.length === 0}
+					isPending={deleteAllMutation.isPending}
+					onConfirm={() => deleteAllMutation.mutate()}
+					onOpenChange={setIsDeleteAllOpen}
+					open={isDeleteAllOpen}
+				/>
+
+				<ImportStopsDialog
+					isPending={bulkCreateMutation.isPending}
+					onConfirm={confirmImport}
+					onOpenChange={setIsImportConfirmOpen}
+					open={isImportConfirmOpen}
+					totalCount={validatedPendingStops.length}
+					validCount={
+						validatedPendingStops.filter((s) => s.validationStatus === "valid")
+							.length
+					}
+				/>
 			</div>
 
 			<div className="grid h-full min-h-0 flex-1 grid-cols-1 gap-6 lg:grid-cols-2">
@@ -451,12 +436,51 @@ export default function StopsDataPage() {
 						</CardHeader>
 						<CardContent className="flex flex-col">
 							{pendingStops.length > 0 ? (
-								<DataTable
-									columns={reviewColumns}
-									containerClassName="h-[450px] overflow-y-auto"
-									data={validatedPendingStops}
-									enablePagination={false}
-								/>
+								<Tabs className="flex h-full flex-col" defaultValue="valid">
+									<TabsList>
+										<TabsTrigger value="valid">
+											Valid Stops (
+											{
+												validatedPendingStops.filter(
+													(s) => s.validationStatus === "valid",
+												).length
+											}
+											)
+										</TabsTrigger>
+										<TabsTrigger value="invalid">
+											Invalid Stops (
+											{
+												validatedPendingStops.filter(
+													(s) => s.validationStatus !== "valid",
+												).length
+											}
+											)
+										</TabsTrigger>
+									</TabsList>
+									<TabsContent className="flex-1 overflow-hidden" value="valid">
+										<DataTable
+											columns={reviewColumns}
+											containerClassName="h-[400px] overflow-y-auto"
+											data={validatedPendingStops.filter(
+												(s) => s.validationStatus === "valid",
+											)}
+											enablePagination={false}
+										/>
+									</TabsContent>
+									<TabsContent
+										className="flex-1 overflow-hidden"
+										value="invalid"
+									>
+										<DataTable
+											columns={reviewColumns}
+											containerClassName="h-[400px] overflow-y-auto"
+											data={validatedPendingStops.filter(
+												(s) => s.validationStatus !== "valid",
+											)}
+											enablePagination={false}
+										/>
+									</TabsContent>
+								</Tabs>
 							) : (
 								<DataTable
 									columns={columns}
