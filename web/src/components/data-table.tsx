@@ -13,7 +13,7 @@ import {
 	type VisibilityState,
 } from "@tanstack/react-table";
 import { ChevronLeft, ChevronRight, SlidersHorizontal } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "~/components/ui/button";
 import {
 	DropdownMenu,
@@ -39,6 +39,9 @@ interface DataTableProps<TData, TValue> {
 	enablePagination?: boolean;
 	className?: string;
 	containerClassName?: string;
+	selectedRowId?: string | null;
+	onRowClick?: (row: TData) => void;
+	getRowId?: (row: TData, index: number) => string;
 }
 
 export function DataTable<TData, TValue>({
@@ -49,6 +52,9 @@ export function DataTable<TData, TValue>({
 	enablePagination = true,
 	className,
 	containerClassName,
+	selectedRowId,
+	onRowClick,
+	getRowId,
 }: DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -68,6 +74,9 @@ export function DataTable<TData, TValue>({
 		getFilteredRowModel: getFilteredRowModel(),
 		onColumnVisibilityChange: setColumnVisibility,
 		onRowSelectionChange: setRowSelection,
+		getRowId,
+		enableRowSelection: true,
+		enableMultiRowSelection: false,
 		state: {
 			sorting,
 			columnFilters,
@@ -75,6 +84,25 @@ export function DataTable<TData, TValue>({
 			rowSelection,
 		},
 	});
+
+	// Sync rowSelection with selectedRowId
+	useEffect(() => {
+		if (selectedRowId) {
+			setRowSelection({ [selectedRowId]: true });
+		} else {
+			setRowSelection({});
+		}
+	}, [selectedRowId]);
+
+	// Auto-scroll to selected row
+	useEffect(() => {
+		if (selectedRowId) {
+			const row = document.getElementById(`row-${selectedRowId}`);
+			if (row) {
+				row.scrollIntoView({ behavior: "smooth", block: "center" });
+			}
+		}
+	}, [selectedRowId]);
 
 	return (
 		<div className={cn("space-y-4", className)}>
@@ -149,21 +177,31 @@ export function DataTable<TData, TValue>({
 					</TableHeader>
 					<TableBody>
 						{table.getRowModel().rows?.length ? (
-							table.getRowModel().rows.map((row) => (
-								<TableRow
-									data-state={row.getIsSelected() && "selected"}
-									key={row.id}
-								>
-									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id}>
-											{flexRender(
-												cell.column.columnDef.cell,
-												cell.getContext(),
-											)}
-										</TableCell>
-									))}
-								</TableRow>
-							))
+							table.getRowModel().rows.map((row) => {
+								return (
+									<TableRow
+										className={cn(
+											"cursor-pointer transition-colors",
+											row.getIsSelected()
+												? "bg-primary/20 hover:bg-primary/20"
+												: "hover:bg-muted/50",
+										)}
+										data-state={row.getIsSelected() && "selected"}
+										id={`row-${row.id}`}
+										key={row.id}
+										onClick={() => onRowClick?.(row.original)}
+									>
+										{row.getVisibleCells().map((cell) => (
+											<TableCell key={cell.id}>
+												{flexRender(
+													cell.column.columnDef.cell,
+													cell.getContext(),
+												)}
+											</TableCell>
+										))}
+									</TableRow>
+								);
+							})
 						) : (
 							<TableRow>
 								<TableCell

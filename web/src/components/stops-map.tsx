@@ -2,7 +2,7 @@
 
 import L from "leaflet";
 import { useTheme } from "next-themes";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import { leafletLayer } from "protomaps-leaflet";
 import type { components } from "~/generated/api-types";
@@ -31,11 +31,18 @@ export default function StopsMap({
 	onStopMove,
 }: StopsMapProps) {
 	const mapRef = useRef<HTMLDivElement>(null);
+	const [zoom, setZoom] = useState(DEFAULT_ZOOM);
 	const mapInstanceRef = useRef<L.Map | null>(null);
 	const layerRef = useRef<L.Layer | null>(null);
 	const markersRef = useRef<L.LayerGroup | null>(null);
 	const { resolvedTheme } = useTheme();
 
+	const markerRegistry = useRef<Map<string, L.CircleMarker | L.Marker>>(
+		new Map(),
+	);
+	const prevSelectedStopId = useRef<string | null>(null);
+
+	// Initialize map instance
 	useEffect(() => {
 		if (!mapRef.current || mapInstanceRef.current) return;
 
@@ -47,6 +54,10 @@ export default function StopsMap({
 			maxBounds: NCR_BOUNDS,
 			maxBoundsViscosity: 1.0,
 			attributionControl: false,
+		});
+
+		map.on("zoomend", () => {
+			setZoom(map.getZoom());
 		});
 
 		mapInstanceRef.current = map;
@@ -61,59 +72,68 @@ export default function StopsMap({
 		layer.addTo(map);
 		layerRef.current = layer as unknown as L.Layer;
 
+		// Cleanup
 		return () => {
 			if (mapInstanceRef.current) {
 				mapInstanceRef.current.remove();
 				mapInstanceRef.current = null;
 			}
 		};
-	}, [resolvedTheme]);
+	}, [resolvedTheme]); // Run once on mount (guarded by mapInstanceRef check)
 
+	// Handle theme changes
 	useEffect(() => {
 		if (!mapInstanceRef.current || !layerRef.current) return;
-
 		const currentFlavor = resolvedTheme === "dark" ? "dark" : "light";
-
 		if (layerRef.current) {
 			mapInstanceRef.current.removeLayer(layerRef.current);
 		}
-
 		const newLayer = leafletLayer({
 			url: "/tiles/ncr-extended.pmtiles",
 			flavor: currentFlavor,
 		});
-
 		newLayer.addTo(mapInstanceRef.current);
 		layerRef.current = newLayer as unknown as L.Layer;
 	}, [resolvedTheme]);
 
+	// Render markers (only when stops or edit mode changes)
 	useEffect(() => {
 		if (!mapInstanceRef.current || !markersRef.current) return;
 
+		// console.log("Rendering markers...", stops.length);
 		markersRef.current.clearLayers();
+		markerRegistry.current.clear();
+
+		const defaultStyle = {
+			radius: 4,
+			fillColor: "#10b981", // green-500
+			color: "#fff",
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8,
+		};
+
+		const selectedStyle = {
+			radius: 8,
+			fillColor: "#ef4444", // red-500
+			color: "#fff",
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8,
+		};
 
 		stops.forEach((stop) => {
 			if (stop.lat && stop.lon) {
 				const isSelected = stop.id === selectedStopId;
-				const color = isSelected ? "#ef4444" : "#10b981";
-				const radius = isSelected ? 8 : 4;
-
-				const marker = L.circleMarker([stop.lat, stop.lon], {
-					radius: radius,
-					fillColor: color,
-					color: "#fff",
-					weight: 1,
-					opacity: 1,
-					fillOpacity: 0.8,
-					className: isEditMode ? "cursor-move" : "",
-				});
+				const currentStyle = isSelected ? selectedStyle : defaultStyle;
 
 				if (isEditMode) {
+					// Edit mode markers (draggable)
 					const editMarker = L.marker([stop.lat, stop.lon], {
 						draggable: true,
 						icon: L.divIcon({
 							className: "bg-transparent",
-							html: `<div style="background-color: ${color}; width: 16px; height: 16px; border-radius: 50%; border: 2px solid white;"></div>`,
+							html: `<div style="background-color: ${isSelected ? "#ef4444" : "#10b981"}; width: 16px; height: 16px; border-radius: 50%; border: 2px solid white;"></div>`,
 							iconSize: [16, 16],
 							iconAnchor: [8, 8],
 						}),
@@ -131,22 +151,107 @@ export default function StopsMap({
 						`<b>${stop.name}</b><br>Lat: ${stop.lat.toFixed(4)}<br>Lng: ${stop.lon.toFixed(4)}`,
 					);
 					markersRef.current?.addLayer(editMarker);
+					markerRegistry.current.set(stop.id, editMarker);
 				} else {
-					marker.bindPopup(`<b>${stop.name}</b><br>${stop.locality || ""}`);
+					// Normal mode markers (circle markers)
+					const marker = L.circleMarker([stop.lat, stop.lon], {
+						...currentStyle,
+						className: "",
+					});
+
+					const tooltip = L.tooltip({
+						permanent: true,
+						direction: "top",
+						interactive: true,
+						className:
+							"bg-background text-foreground border shadow-sm px-2 py-1 rounded text-xs font-medium cursor-pointer",
+					}).setContent(stop.name);
+
+					tooltip.on("click", (e) => {
+						L.DomEvent.stopPropagation(e);
+						onStopClick?.(stop);
+					});
+
+					marker.bindTooltip(tooltip);
 					marker.on("click", () => {
 						onStopClick?.(stop);
 					});
+
 					markersRef.current?.addLayer(marker);
+					markerRegistry.current.set(stop.id, marker);
 				}
 			}
 		});
-	}, [stops, selectedStopId, onStopClick, isEditMode, onStopMove]);
+
+		// Sync prevSelectedStopId
+		prevSelectedStopId.current = selectedStopId || null;
+	}, [stops, isEditMode, onStopMove, onStopClick, selectedStopId]); // Removed selectedStopId from dependencies
+
+	// Handle selection changes efficiently
+	useEffect(() => {
+		if (isEditMode) return; // Edit mode re-renders anyway for now, or handles styles differently
+		if (!selectedStopId && !prevSelectedStopId.current) return;
+		if (selectedStopId === prevSelectedStopId.current) return;
+
+		const defaultStyle = {
+			radius: 4,
+			fillColor: "#10b981",
+			fillOpacity: 0.8,
+		};
+
+		const selectedStyle = {
+			radius: 8,
+			fillColor: "#ef4444",
+			fillOpacity: 0.8,
+		};
+
+		// Reset previous
+		if (prevSelectedStopId.current) {
+			const prevMarker = markerRegistry.current.get(prevSelectedStopId.current);
+			if (prevMarker && prevMarker instanceof L.CircleMarker) {
+				prevMarker.setStyle(defaultStyle);
+			}
+		}
+
+		// Highlight new
+		if (selectedStopId) {
+			const newMarker = markerRegistry.current.get(selectedStopId);
+			if (newMarker && newMarker instanceof L.CircleMarker) {
+				newMarker.setStyle(selectedStyle);
+				// Bring to front
+				newMarker.bringToFront();
+			}
+		}
+
+		prevSelectedStopId.current = selectedStopId || null;
+	}, [selectedStopId, isEditMode]);
+
+	// Sync map view with selected stop
+	useEffect(() => {
+		if (selectedStopId && mapInstanceRef.current && stops.length > 0) {
+			const selectedStop = stops.find((s) => s.id === selectedStopId);
+			if (selectedStop?.lat && selectedStop?.lon) {
+				mapInstanceRef.current.setView(
+					[selectedStop.lat, selectedStop.lon],
+					15,
+					{
+						animate: true,
+					},
+				);
+			}
+		}
+	}, [selectedStopId, stops]);
 
 	return (
-		<div className={`relative h-full w-full ${className}`}>
+		<div
+			className={`relative h-full w-full ${className} ${zoom < 13 ? "hide-tooltips" : ""}`}
+		>
 			<style>{`
             .leaflet-container {
                 z-index: 0;
+            }
+            .hide-tooltips .leaflet-tooltip {
+                display: none !important;
             }
         `}</style>
 			<div

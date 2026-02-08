@@ -36,6 +36,7 @@ type StopCreate = components["schemas"]["StopCreate"];
 type StopValidationStatus = "valid" | "duplicate" | "invalid";
 
 interface AugmentedStop extends StopCreate {
+	id: string; // Add ID property for local state management (pending stops)
 	validationStatus: StopValidationStatus;
 	validationErrors?: string[];
 	originalId?: string;
@@ -46,6 +47,8 @@ export default function StopsDataPage() {
 	const [selectedStopId, setSelectedStopId] = useState<string | null>(null);
 	const [pendingStops, setPendingStops] = useState<AugmentedStop[]>([]);
 	const [isEditMode, setIsEditMode] = useState(false);
+	const [_stopFormOpen, setStopFormOpen] = useState(false);
+	const [_editStopId, setEditStopId] = useState<string | null>(null);
 
 	const [isDeleteAllOpen, setIsDeleteAllOpen] = useState(false);
 	const [isImportConfirmOpen, setIsImportConfirmOpen] = useState(false);
@@ -164,16 +167,20 @@ export default function StopsDataPage() {
 			header: true,
 			skipEmptyLines: true,
 			complete: (results) => {
-				const parsedStops: AugmentedStop[] = results.data.map((row) => ({
-					stop_code: row.stop_id?.trim() || row.stop_code?.trim() || null,
-					name: row.stop_name?.trim() || row.name?.trim() || "",
-					lat: parseFloat(row.latitude || row.lat || "NaN"),
-					lon: parseFloat(row.longitude || row.long || row.lon || "NaN"),
-					locality: row.locality?.trim() || null,
-					zone: row.zone?.trim() || null,
-					active: row.active?.toString().toLowerCase() === "true" || true,
-					validationStatus: "valid",
-				}));
+				const parsedStops: AugmentedStop[] = results.data.map((row, index) => {
+					const stopCode = row.stop_id?.trim() || row.stop_code?.trim() || null;
+					return {
+						id: stopCode || `temp-${index}`,
+						stop_code: stopCode,
+						name: row.stop_name?.trim() || row.name?.trim() || "",
+						lat: parseFloat(row.latitude || row.lat || "NaN"),
+						lon: parseFloat(row.longitude || row.long || row.lon || "NaN"),
+						locality: row.locality?.trim() || null,
+						zone: row.zone?.trim() || null,
+						active: row.active?.toString().toLowerCase() === "true" || true,
+						validationStatus: "valid",
+					};
+				});
 				setPendingStops(parsedStops);
 				toast.info(
 					`Parsed ${parsedStops.length} rows. Please review before importing.`,
@@ -238,97 +245,111 @@ export default function StopsDataPage() {
 		return stops;
 	}, [stops, validatedPendingStops, pendingStops.length]);
 
-	const columns: ColumnDef<StopRead>[] = [
-		{
-			accessorKey: "name",
-			header: "Stop Name",
-		},
-		{
-			accessorKey: "locality",
-			header: "Locality",
-		},
-		{
-			accessorKey: "active",
-			header: "Active",
-			cell: ({ row }) => (
-				<span
-					className={row.original.active ? "text-green-600" : "text-red-500"}
-				>
-					{row.original.active ? "Yes" : "No"}
-				</span>
-			),
-		},
-		{
-			id: "actions",
-			cell: ({ row }) => {
-				const stop = row.original;
-				return (
-					<div className="flex gap-2">
-						<Button
-							onClick={() => setSelectedStopId(stop.id)}
-							size="icon"
-							variant="ghost"
-						>
-							<Edit className="h-4 w-4" />
-						</Button>
-						<Button
-							className="text-destructive hover:text-destructive"
-							onClick={() => {
-								if (confirm("Delete this stop?")) {
-									deleteMutation.mutate(stop.id);
-								}
-							}}
-							size="icon"
-							variant="ghost"
-						>
-							<Trash2 className="h-4 w-4" />
-						</Button>
-					</div>
-				);
+	const columns: ColumnDef<StopRead>[] = useMemo(
+		() => [
+			{
+				accessorKey: "name",
+				header: "Stop Name",
 			},
-		},
-	];
-
-	const reviewColumns: ColumnDef<AugmentedStop>[] = [
-		{
-			accessorKey: "stop_code",
-			header: "Code",
-		},
-		{
-			accessorKey: "name",
-			header: "Name",
-		},
-		{
-			accessorKey: "lat",
-			header: "Lat",
-			cell: ({ row }) => row.original.lat?.toFixed(4),
-		},
-		{
-			accessorKey: "lon",
-			header: "Lon",
-			cell: ({ row }) => row.original.lon?.toFixed(4),
-		},
-		{
-			header: "Status",
-			cell: ({ row }) => {
-				const { validationStatus, validationErrors } = row.original;
-				let color = "text-green-600";
-				if (validationStatus === "duplicate") color = "text-yellow-600";
-				if (validationStatus === "invalid") color = "text-red-600";
-
-				return (
-					<div className={`flex flex-col ${color}`}>
-						<span className="font-bold capitalize">{validationStatus}</span>
-						{validationErrors?.map((err) => (
-							<span className="text-xs" key={err}>
-								{err}
-							</span>
-						))}
-					</div>
-				);
+			{
+				accessorKey: "locality",
+				header: "Locality",
 			},
-		},
-	];
+			{
+				accessorKey: "active",
+				header: "Active",
+				cell: ({ row }) => (
+					<span
+						className={`inline-flex items-center rounded-full px-2 py-1 font-medium text-xs ring-1 ring-inset ${
+							row.original.active
+								? "bg-green-50 text-green-700 ring-green-600/20"
+								: "bg-red-50 text-red-700 ring-red-600/20"
+						}`}
+					>
+						{row.original.active ? "Active" : "Inactive"}
+					</span>
+				),
+			},
+			{
+				id: "actions",
+				cell: ({ row }) => {
+					return (
+						<div className="flex justify-end gap-2">
+							<Button
+								onClick={(e) => {
+									e.stopPropagation();
+									setEditStopId(row.original.id);
+									setStopFormOpen(true);
+								}}
+								size="icon"
+								variant="ghost"
+							>
+								<Edit className="h-4 w-4" />
+							</Button>
+							<Button
+								className="text-destructive hover:text-destructive"
+								onClick={(e) => {
+									e.stopPropagation();
+									if (confirm("Are you sure you want to delete this stop?")) {
+										deleteMutation.mutate(row.original.id);
+									}
+								}}
+								size="icon"
+								variant="ghost"
+							>
+								<Trash2 className="h-4 w-4" />
+							</Button>
+						</div>
+					);
+				},
+			},
+		],
+		[deleteMutation],
+	);
+
+	const reviewColumns: ColumnDef<AugmentedStop>[] = useMemo(
+		() => [
+			{
+				accessorKey: "stop_code",
+				header: "Code",
+			},
+			{
+				accessorKey: "name",
+				header: "Name",
+			},
+			{
+				accessorKey: "lat",
+				header: "Lat",
+				cell: ({ row }) => row.original.lat?.toFixed(4),
+			},
+			{
+				accessorKey: "lon",
+				header: "Lon",
+				cell: ({ row }) => row.original.lon?.toFixed(4),
+			},
+			{
+				header: "Status",
+				cell: ({ row }) => {
+					const { validationStatus, validationErrors } = row.original;
+					let color = "text-green-600";
+					if (validationStatus === "duplicate") color = "text-yellow-600";
+					if (validationStatus === "invalid") color = "text-red-600";
+
+					return (
+						<div className={`flex flex-col ${color}`}>
+							<span className="font-bold capitalize">{validationStatus}</span>
+							{validationErrors?.map((err) => (
+								<span className="text-xs" key={err}>
+									{err}
+								</span>
+							))}
+						</div>
+					);
+				},
+			},
+		],
+		[],
+	);
 
 	return (
 		<div className="flex h-full flex-col space-y-6">
@@ -465,6 +486,9 @@ export default function StopsDataPage() {
 												(s) => s.validationStatus === "valid",
 											)}
 											enablePagination={false}
+											getRowId={(row) => row.id}
+											onRowClick={(row) => setSelectedStopId(row.id)}
+											selectedRowId={selectedStopId}
 										/>
 									</TabsContent>
 									<TabsContent
@@ -488,6 +512,9 @@ export default function StopsDataPage() {
 									data={stops}
 									enablePagination={false}
 									filterColumn="name"
+									getRowId={(row) => row.id}
+									onRowClick={(row) => setSelectedStopId(row.id)}
+									selectedRowId={selectedStopId}
 								/>
 							)}
 						</CardContent>
