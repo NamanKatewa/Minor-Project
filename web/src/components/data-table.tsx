@@ -22,6 +22,7 @@ import {
 	DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import { Input } from "~/components/ui/input";
+import { Skeleton } from "~/components/ui/skeleton";
 import {
 	TableBody,
 	TableCell,
@@ -42,6 +43,7 @@ interface DataTableProps<TData, TValue> {
 	selectedRowId?: string | null;
 	onRowClick?: (row: TData) => void;
 	getRowId?: (row: TData, index: number) => string;
+	isLoading?: boolean;
 }
 
 export function DataTable<TData, TValue>({
@@ -55,6 +57,7 @@ export function DataTable<TData, TValue>({
 	selectedRowId,
 	onRowClick,
 	getRowId,
+	isLoading = false,
 }: DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -176,7 +179,19 @@ export function DataTable<TData, TValue>({
 						))}
 					</TableHeader>
 					<TableBody>
-						{table.getRowModel().rows?.length ? (
+						{isLoading ? (
+							Array.from({ length: 5 }).map((_, i) => (
+								// biome-ignore lint/suspicious/noArrayIndexKey: Skeleton rows are static
+								<TableRow key={i}>
+									{columns.map((_column, j) => (
+										// biome-ignore lint/suspicious/noArrayIndexKey: Skeleton columns are static
+										<TableCell key={j}>
+											<Skeleton className="h-4 w-full" />
+										</TableCell>
+									))}
+								</TableRow>
+							))
+						) : table.getRowModel().rows?.length ? (
 							table.getRowModel().rows.map((row) => {
 								return (
 									<TableRow

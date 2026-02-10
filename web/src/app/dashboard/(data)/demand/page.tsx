@@ -56,7 +56,7 @@ export default function DemandDataPage() {
 		setSelectedSemester(semesters[0]);
 	}
 
-	const { data: demand = [] } = useQuery({
+	const { data: demand = [], isLoading } = useQuery({
 		queryKey: ["demand", selectedSemester],
 		queryFn: () =>
 			api.demand.list(selectedSemester) as Promise<DemandWithStop[]>,
@@ -396,6 +396,7 @@ export default function DemandDataPage() {
 								data={demand}
 								enablePagination={false}
 								filterColumn="stop_name"
+								isLoading={isLoading}
 							/>
 						)}
 					</CardContent>

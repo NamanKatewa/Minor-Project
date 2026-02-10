@@ -28,7 +28,7 @@ export default function DepotsDataPage() {
 	const [depotToDelete, setDepotToDelete] = useState<DepotRead | null>(null);
 	const [depotToEdit, setDepotToEdit] = useState<DepotRead | null>(null);
 
-	const { data: depots = [] } = useQuery({
+	const { data: depots = [], isLoading } = useQuery({
 		queryKey: ["depots"],
 		queryFn: api.depots.list,
 	});
@@ -123,6 +123,7 @@ export default function DepotsDataPage() {
 							data={depots}
 							enablePagination={false}
 							filterColumn="name"
+							isLoading={isLoading}
 						/>
 					</CardContent>
 				</Card>
@@ -134,7 +135,7 @@ export default function DepotsDataPage() {
 				onConfirm={() =>
 					depotToDelete && deleteMutation.mutate(depotToDelete.id)
 				}
-				onOpenChange={(open) => !open && setDepotToDelete(null)}
+				onOpenChange={(open: boolean) => !open && setDepotToDelete(null)}
 				open={!!depotToDelete}
 			/>
 

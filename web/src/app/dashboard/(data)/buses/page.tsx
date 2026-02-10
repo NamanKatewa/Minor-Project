@@ -45,7 +45,7 @@ export default function BusesDataPage() {
 	const [busToDelete, setBusToDelete] = useState<BusWithDepot | null>(null);
 	const [busToEdit, setBusToEdit] = useState<BusWithDepot | null>(null);
 
-	const { data: buses = [] } = useQuery({
+	const { data: buses = [], isLoading } = useQuery({
 		queryKey: ["buses"],
 		queryFn: () => api.buses.list() as Promise<BusWithDepot[]>,
 	});
@@ -380,6 +380,7 @@ export default function BusesDataPage() {
 								data={buses}
 								enablePagination={false}
 								filterColumn="bus_no"
+								isLoading={isLoading}
 							/>
 						)}
 					</CardContent>

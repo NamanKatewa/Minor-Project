@@ -57,7 +57,7 @@ export default function StopsDataPage() {
 	const [isDeleteAllOpen, setIsDeleteAllOpen] = useState(false);
 	const [isImportConfirmOpen, setIsImportConfirmOpen] = useState(false);
 
-	const { data: stops = [] } = useQuery({
+	const { data: stops = [], isLoading } = useQuery({
 		queryKey: ["stops"],
 		queryFn: api.stops.list,
 	});
@@ -513,6 +513,7 @@ export default function StopsDataPage() {
 									enablePagination={false}
 									filterColumn="name"
 									getRowId={(row) => row.id}
+									isLoading={isLoading}
 									onRowClick={(row) => setSelectedStopId(row.id)}
 									selectedRowId={selectedStopId}
 								/>
