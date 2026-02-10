@@ -1,9 +1,7 @@
 """Stops CRUD router"""
 
-import csv
-import io
 from uuid import UUID
-from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -79,7 +77,6 @@ async def delete_stop(stop_id: UUID, session: AsyncSession = Depends(get_db)):
 @router.delete("", status_code=204)
 async def delete_all_stops(session: AsyncSession = Depends(get_db)):
     """Delete all stops"""
-    await session.execute(select(Stop).where(Stop.active == True))
     from sqlalchemy import delete
     await session.execute(delete(Stop))
     await session.commit()

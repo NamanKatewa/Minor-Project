@@ -48,18 +48,8 @@ export const api = {
 			}),
 	},
 	buses: {
-		list: () => fetcher<components["schemas"]["BusRead"][]>("/buses"),
-		upload: (file: File) => {
-			const formData = new FormData();
-			formData.append("file", file);
-			return fetch(`${API_Base}/buses/upload`, {
-				method: "POST",
-				body: formData,
-			}).then(
-				(res) =>
-					res.json() as Promise<{ created: number; depots_created: number }>,
-			);
-		},
+		list: () => fetcher<components["schemas"]["BusWithDepot"][]>("/buses"),
+
 		delete: (id: string) => fetcher(`/buses/${id}`, { method: "DELETE" }),
 		deleteAll: () => fetcher("/buses", { method: "DELETE" }),
 		bulkCreate: (data: components["schemas"]["BusImport"][]) =>
@@ -75,21 +65,11 @@ export const api = {
 	},
 	demand: {
 		list: (semester?: string) =>
-			fetcher<components["schemas"]["DemandRead"][]>(
+			fetcher<components["schemas"]["DemandWithStop"][]>(
 				`/demand${semester ? `?semester=${semester}` : ""}`,
 			),
 		semesters: () => fetcher<string[]>("/demand/semesters"),
-		upload: (file: File) => {
-			const formData = new FormData();
-			formData.append("file", file);
-			return fetch(`${API_Base}/demand/upload`, {
-				method: "POST",
-				body: formData,
-			}).then(
-				(res) =>
-					res.json() as Promise<{ created: number; total_errors: number }>,
-			);
-		},
+
 		deleteAll: () => fetcher("/demand", { method: "DELETE" }),
 		bulkCreate: (data: components["schemas"]["DemandImport"][]) =>
 			fetcher<{ created: number; skipped: number }>("/demand/bulk", {

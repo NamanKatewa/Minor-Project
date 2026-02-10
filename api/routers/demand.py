@@ -93,9 +93,6 @@ async def delete_demand(demand_id: UUID, session: AsyncSession = Depends(get_db)
     await session.commit()
 
 
-    await session.commit()
-
-
 @router.delete("", status_code=204)
 async def delete_all_demand(session: AsyncSession = Depends(get_db)):
     """Delete all demand"""

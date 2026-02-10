@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_db
 from models import Depot
-from schemas import DepotCreate, DepotUpdate, DepotRead, DepotImport
+from schemas import DepotCreate, DepotUpdate, DepotRead
 
 router = APIRouter(prefix="/api/depots", tags=["depots"])
 

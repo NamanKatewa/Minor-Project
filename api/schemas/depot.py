@@ -23,6 +23,9 @@ class DepotUpdate(BaseModel):
 class DepotRead(DepotBase):
     id: UUID
 
+    class Config:
+        from_attributes = True
+
 
 class DepotImport(BaseModel):
     name: str
