@@ -20,7 +20,9 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import type { components } from "~/generated/api-types";
 import { api } from "~/lib/api";
+import { DeleteStopDialog } from "./_components/delete-stop-dialog";
 import { DeleteStopsDialog } from "./_components/delete-stops-dialog";
+import { EditStopDialog } from "./_components/edit-stop-dialog";
 import { ImportStopsDialog } from "./_components/import-stops-dialog";
 
 const StopsMap = dynamic(() => import("~/components/stops-map"), {
@@ -47,8 +49,10 @@ export default function StopsDataPage() {
 	const [selectedStopId, setSelectedStopId] = useState<string | null>(null);
 	const [pendingStops, setPendingStops] = useState<AugmentedStop[]>([]);
 	const [isEditMode, setIsEditMode] = useState(false);
-	const [_stopFormOpen, setStopFormOpen] = useState(false);
-	const [_editStopId, setEditStopId] = useState<string | null>(null);
+
+	// Dialog states
+	const [stopToEdit, setStopToEdit] = useState<StopRead | null>(null);
+	const [stopToDelete, setStopToDelete] = useState<StopRead | null>(null);
 
 	const [isDeleteAllOpen, setIsDeleteAllOpen] = useState(false);
 	const [isImportConfirmOpen, setIsImportConfirmOpen] = useState(false);
@@ -112,8 +116,6 @@ export default function StopsDataPage() {
 			queryClient.invalidateQueries({ queryKey: ["stops"] });
 			toast.success(`Successfully imported ${data.count} stops`);
 			setPendingStops([]);
-			toast.success(`Successfully imported ${data.count} stops`);
-			setPendingStops([]);
 			setIsEditMode(false);
 			setIsImportConfirmOpen(false);
 		},
@@ -141,6 +143,7 @@ export default function StopsDataPage() {
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["stops"] });
 			toast.success("Stop deleted");
+			setStopToDelete(null);
 		},
 		onError: (error: Error) => {
 			toast.error(`Delete failed: ${error.message}`);
@@ -278,8 +281,7 @@ export default function StopsDataPage() {
 							<Button
 								onClick={(e) => {
 									e.stopPropagation();
-									setEditStopId(row.original.id);
-									setStopFormOpen(true);
+									setStopToEdit(row.original);
 								}}
 								size="icon"
 								variant="ghost"
@@ -290,9 +292,7 @@ export default function StopsDataPage() {
 								className="text-destructive hover:text-destructive"
 								onClick={(e) => {
 									e.stopPropagation();
-									if (confirm("Are you sure you want to delete this stop?")) {
-										deleteMutation.mutate(row.original.id);
-									}
+									setStopToDelete(row.original);
 								}}
 								size="icon"
 								variant="ghost"
@@ -304,7 +304,7 @@ export default function StopsDataPage() {
 				},
 			},
 		],
-		[deleteMutation],
+		[],
 	);
 
 	const reviewColumns: ColumnDef<AugmentedStop>[] = useMemo(
@@ -550,6 +550,19 @@ export default function StopsDataPage() {
 					</CardContent>
 				</Card>
 			</div>
+
+			<EditStopDialog
+				onOpenChange={(open) => !open && setStopToEdit(null)}
+				open={!!stopToEdit}
+				stop={stopToEdit}
+			/>
+			<DeleteStopDialog
+				isPending={deleteMutation.isPending}
+				onConfirm={() => stopToDelete && deleteMutation.mutate(stopToDelete.id)}
+				onOpenChange={(open) => !open && setStopToDelete(null)}
+				open={!!stopToDelete}
+				stopName={stopToDelete?.name || ""}
+			/>
 		</div>
 	);
 }
