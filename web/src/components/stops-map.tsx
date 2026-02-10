@@ -54,6 +54,7 @@ export default function StopsMap({
 			maxBounds: NCR_BOUNDS,
 			maxBoundsViscosity: 1.0,
 			attributionControl: false,
+			preferCanvas: true,
 		});
 
 		map.on("zoomend", () => {
@@ -105,7 +106,7 @@ export default function StopsMap({
 		markerRegistry.current.clear();
 
 		const defaultStyle = {
-			radius: 4,
+			radius: 6,
 			fillColor: "#10b981", // green-500
 			color: "#fff",
 			weight: 1,
@@ -117,7 +118,7 @@ export default function StopsMap({
 			radius: 8,
 			fillColor: "#ef4444", // red-500
 			color: "#fff",
-			weight: 1,
+			weight: 2,
 			opacity: 1,
 			fillOpacity: 0.8,
 		};
@@ -133,9 +134,9 @@ export default function StopsMap({
 						draggable: true,
 						icon: L.divIcon({
 							className: "bg-transparent",
-							html: `<div style="background-color: ${isSelected ? "#ef4444" : "#10b981"}; width: 16px; height: 16px; border-radius: 50%; border: 2px solid white;"></div>`,
-							iconSize: [16, 16],
-							iconAnchor: [8, 8],
+							html: `<div style="background-color: ${isSelected ? "#ef4444" : "#10b981"}; width: 12px; height: 12px; border-radius: 50%; border: 1px solid white;"></div>`,
+							iconSize: [12, 12],
+							iconAnchor: [6, 6],
 						}),
 					});
 
@@ -146,6 +147,15 @@ export default function StopsMap({
 							onStopMove(stop.id, position.lat, position.lng);
 						}
 					});
+
+					const tooltip = L.tooltip({
+						permanent: true,
+						direction: "top",
+						interactive: true,
+						className:
+							"bg-background text-foreground border shadow-sm px-2 py-1 rounded text-xs font-medium cursor-pointer",
+					}).setContent(stop.name);
+					editMarker.bindTooltip(tooltip);
 
 					editMarker.bindPopup(
 						`<b>${stop.name}</b><br>Lat: ${stop.lat.toFixed(4)}<br>Lng: ${stop.lon.toFixed(4)}`,
@@ -194,15 +204,19 @@ export default function StopsMap({
 		if (selectedStopId === prevSelectedStopId.current) return;
 
 		const defaultStyle = {
-			radius: 4,
+			radius: 6,
 			fillColor: "#10b981",
 			fillOpacity: 0.8,
+			weight: 1,
+			color: "#fff",
 		};
 
 		const selectedStyle = {
 			radius: 8,
 			fillColor: "#ef4444",
 			fillOpacity: 0.8,
+			weight: 2,
+			color: "#fff",
 		};
 
 		// Reset previous
@@ -235,7 +249,7 @@ export default function StopsMap({
 					[selectedStop.lat, selectedStop.lon],
 					15,
 					{
-						animate: true,
+						animate: false,
 					},
 				);
 			}
@@ -253,6 +267,12 @@ export default function StopsMap({
             .hide-tooltips .leaflet-tooltip {
                 display: none !important;
             }
+			/* Prevent global transitions from affecting Leaflet markers (fixes drifting) */
+			.leaflet-marker-icon,
+			.leaflet-marker-shadow,
+			.leaflet-zoom-animated {
+				transition: none !important;
+			}
         `}</style>
 			<div
 				className="h-full w-full rounded-md border"

@@ -522,7 +522,7 @@ export default function StopsDataPage() {
 				</div>
 
 				<Card
-					className={`flex h-full flex-col transition-all duration-300 ${isEditMode ? "fixed inset-4 z-50 h-[calc(100vh-2rem)] border-2 shadow-2xl" : "min-h-[500px]"}`}
+					className={`flex h-full flex-col transition-all duration-300 ${isEditMode ? "fixed inset-x-32 inset-y-4 z-50 h-[calc(100vh-2rem)] border-2 shadow-2xl" : "min-h-[500px]"}`}
 				>
 					<CardHeader className={isEditMode ? "hidden" : "block"}>
 						<CardTitle>Map View</CardTitle>
@@ -532,6 +532,7 @@ export default function StopsDataPage() {
 						<StopsMap
 							className="absolute inset-0 h-full w-full rounded-b-lg"
 							isEditMode={isEditMode}
+							key={isEditMode ? "edit" : "view"}
 							onStopClick={(stop) => setSelectedStopId(stop.id)}
 							onStopMove={handleStopMove}
 							selectedStopId={selectedStopId}
