@@ -27,5 +27,13 @@ class DemandRead(DemandBase):
         from_attributes = True
 
 
+
+
 class DemandWithStop(DemandRead):
     stop_name: str | None = None
+
+
+class DemandImport(BaseModel):
+    stop_code: str
+    student_count: int = 0
+    semester: str

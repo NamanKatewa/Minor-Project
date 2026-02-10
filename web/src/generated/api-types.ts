@@ -154,7 +154,11 @@ export interface paths {
 		put?: never;
 		/** Create Bus */
 		post: operations["create_bus_api_buses_post"];
-		delete?: never;
+		/**
+		 * Delete All Buses
+		 * @description Delete all buses
+		 */
+		delete: operations["delete_all_buses_api_buses_delete"];
 		options?: never;
 		head?: never;
 		patch?: never;
@@ -179,7 +183,7 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
-	"/api/buses/upload": {
+	"/api/buses/bulk": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -188,8 +192,11 @@ export interface paths {
 		};
 		get?: never;
 		put?: never;
-		/** Upload Buses Csv */
-		post: operations["upload_buses_csv_api_buses_upload_post"];
+		/**
+		 * Bulk Create Buses
+		 * @description Bulk create buses with optimized depot handling
+		 */
+		post: operations["bulk_create_buses_api_buses_bulk_post"];
 		delete?: never;
 		options?: never;
 		head?: never;
@@ -208,7 +215,11 @@ export interface paths {
 		put?: never;
 		/** Create Depot */
 		post: operations["create_depot_api_depots_post"];
-		delete?: never;
+		/**
+		 * Delete All Depots
+		 * @description Delete all depots
+		 */
+		delete: operations["delete_all_depots_api_depots_delete"];
 		options?: never;
 		head?: never;
 		patch?: never;
@@ -228,6 +239,26 @@ export interface paths {
 		post?: never;
 		/** Delete Depot */
 		delete: operations["delete_depot_api_depots__depot_id__delete"];
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/depots/bulk": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		get?: never;
+		put?: never;
+		/**
+		 * Bulk Create Depots
+		 * @description Bulk create depots
+		 */
+		post: operations["bulk_create_depots_api_depots_bulk_post"];
+		delete?: never;
 		options?: never;
 		head?: never;
 		patch?: never;
@@ -262,7 +293,11 @@ export interface paths {
 		put?: never;
 		/** Create Demand */
 		post: operations["create_demand_api_demand_post"];
-		delete?: never;
+		/**
+		 * Delete All Demand
+		 * @description Delete all demand
+		 */
+		delete: operations["delete_all_demand_api_demand_delete"];
 		options?: never;
 		head?: never;
 		patch?: never;
@@ -287,7 +322,7 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
-	"/api/demand/upload": {
+	"/api/demand/bulk": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -296,8 +331,11 @@ export interface paths {
 		};
 		get?: never;
 		put?: never;
-		/** Upload Demand Csv */
-		post: operations["upload_demand_csv_api_demand_upload_post"];
+		/**
+		 * Bulk Create Demand
+		 * @description Bulk create demand
+		 */
+		post: operations["bulk_create_demand_api_demand_bulk_post"];
 		delete?: never;
 		options?: never;
 		head?: never;
@@ -339,22 +377,6 @@ export interface components {
 				[key: string]: unknown;
 			};
 		};
-		/** Body_upload_buses_csv_api_buses_upload_post */
-		Body_upload_buses_csv_api_buses_upload_post: {
-			/**
-			 * File
-			 * Format: binary
-			 */
-			file: string;
-		};
-		/** Body_upload_demand_csv_api_demand_upload_post */
-		Body_upload_demand_csv_api_demand_upload_post: {
-			/**
-			 * File
-			 * Format: binary
-			 */
-			file: string;
-		};
 		/** BusCreate */
 		BusCreate: {
 			/** Bus No */
@@ -366,6 +388,18 @@ export interface components {
 			capacity: number;
 			/** Depot Id */
 			depot_id?: string | null;
+		};
+		/** BusImport */
+		BusImport: {
+			/** Bus No */
+			bus_no: string;
+			/**
+			 * Capacity
+			 * @default 50
+			 */
+			capacity: number;
+			/** Depot Name */
+			depot_name?: string | null;
 		};
 		/** BusRead */
 		BusRead: {
@@ -393,6 +427,25 @@ export interface components {
 			/** Depot Id */
 			depot_id?: string | null;
 		};
+		/** BusWithDepot */
+		BusWithDepot: {
+			/** Bus No */
+			bus_no: string;
+			/**
+			 * Capacity
+			 * @default 50
+			 */
+			capacity: number;
+			/** Depot Id */
+			depot_id?: string | null;
+			/**
+			 * Id
+			 * Format: uuid
+			 */
+			id: string;
+			/** Depot Name */
+			depot_name?: string | null;
+		};
 		/** DemandCreate */
 		DemandCreate: {
 			/**
@@ -400,6 +453,18 @@ export interface components {
 			 * Format: uuid
 			 */
 			stop_id: string;
+			/**
+			 * Student Count
+			 * @default 0
+			 */
+			student_count: number;
+			/** Semester */
+			semester: string;
+		};
+		/** DemandImport */
+		DemandImport: {
+			/** Stop Code */
+			stop_code: string;
 			/**
 			 * Student Count
 			 * @default 0
@@ -437,8 +502,39 @@ export interface components {
 			/** Semester */
 			semester?: string | null;
 		};
+		/** DemandWithStop */
+		DemandWithStop: {
+			/**
+			 * Stop Id
+			 * Format: uuid
+			 */
+			stop_id: string;
+			/**
+			 * Student Count
+			 * @default 0
+			 */
+			student_count: number;
+			/** Semester */
+			semester: string;
+			/**
+			 * Id
+			 * Format: uuid
+			 */
+			id: string;
+			/** Stop Name */
+			stop_name?: string | null;
+		};
 		/** DepotCreate */
 		DepotCreate: {
+			/** Name */
+			name: string;
+			/** Lat */
+			lat?: number | null;
+			/** Lon */
+			lon?: number | null;
+		};
+		/** DepotImport */
+		DepotImport: {
 			/** Name */
 			name: string;
 			/** Lat */
@@ -935,7 +1031,7 @@ export interface operations {
 					[name: string]: unknown;
 				};
 				content: {
-					"application/json": components["schemas"]["BusRead"][];
+					"application/json": components["schemas"]["BusWithDepot"][];
 				};
 			};
 			/** @description Validation Error */
@@ -979,6 +1075,24 @@ export interface operations {
 				content: {
 					"application/json": components["schemas"]["HTTPValidationError"];
 				};
+			};
+		};
+	};
+	delete_all_buses_api_buses_delete: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			204: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
 			};
 		};
 	};
@@ -1077,7 +1191,7 @@ export interface operations {
 			};
 		};
 	};
-	upload_buses_csv_api_buses_upload_post: {
+	bulk_create_buses_api_buses_bulk_post: {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -1086,12 +1200,12 @@ export interface operations {
 		};
 		requestBody: {
 			content: {
-				"multipart/form-data": components["schemas"]["Body_upload_buses_csv_api_buses_upload_post"];
+				"application/json": components["schemas"]["BusImport"][];
 			};
 		};
 		responses: {
 			/** @description Successful Response */
-			200: {
+			201: {
 				headers: {
 					[name: string]: unknown;
 				};
@@ -1162,6 +1276,24 @@ export interface operations {
 				content: {
 					"application/json": components["schemas"]["HTTPValidationError"];
 				};
+			};
+		};
+	};
+	delete_all_depots_api_depots_delete: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			204: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
 			};
 		};
 	};
@@ -1260,6 +1392,41 @@ export interface operations {
 			};
 		};
 	};
+	bulk_create_depots_api_depots_bulk_post: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"application/json": components["schemas"]["DepotImport"][];
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			201: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": {
+						[key: string]: unknown;
+					};
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
 	list_semesters_api_demand_semesters_get: {
 		parameters: {
 			query?: never;
@@ -1298,7 +1465,7 @@ export interface operations {
 					[name: string]: unknown;
 				};
 				content: {
-					"application/json": components["schemas"]["DemandRead"][];
+					"application/json": components["schemas"]["DemandWithStop"][];
 				};
 			};
 			/** @description Validation Error */
@@ -1342,6 +1509,24 @@ export interface operations {
 				content: {
 					"application/json": components["schemas"]["HTTPValidationError"];
 				};
+			};
+		};
+	};
+	delete_all_demand_api_demand_delete: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			204: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
 			};
 		};
 	};
@@ -1440,7 +1625,7 @@ export interface operations {
 			};
 		};
 	};
-	upload_demand_csv_api_demand_upload_post: {
+	bulk_create_demand_api_demand_bulk_post: {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -1449,12 +1634,12 @@ export interface operations {
 		};
 		requestBody: {
 			content: {
-				"multipart/form-data": components["schemas"]["Body_upload_demand_csv_api_demand_upload_post"];
+				"application/json": components["schemas"]["DemandImport"][];
 			};
 		};
 		responses: {
 			/** @description Successful Response */
-			200: {
+			201: {
 				headers: {
 					[name: string]: unknown;
 				};

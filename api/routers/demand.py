@@ -8,8 +8,9 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_db
+from sqlalchemy.orm import joinedload
 from models import Demand, Stop
-from schemas import DemandCreate, DemandUpdate, DemandRead
+from schemas import DemandCreate, DemandUpdate, DemandRead, DemandImport, DemandWithStop
 
 router = APIRouter(prefix="/api/demand", tags=["demand"])
 
@@ -22,19 +23,27 @@ async def list_semesters(session: AsyncSession = Depends(get_db)):
     return [row[0] for row in result.fetchall()]
 
 
-@router.get("", response_model=list[DemandRead])
+@router.get("", response_model=list[DemandWithStop])
 async def list_demand(
     semester: str | None = None,
     stop_id: UUID | None = None,
     session: AsyncSession = Depends(get_db),
 ):
-    query = select(Demand)
+    query = select(Demand).options(joinedload(Demand.stop))
     if semester:
         query = query.where(Demand.semester == semester)
     if stop_id:
         query = query.where(Demand.stop_id == stop_id)
     result = await session.execute(query)
-    return result.scalars().all()
+    demands = result.scalars().all()
+
+    response = []
+    for d in demands:
+        item = DemandWithStop.model_validate(d)
+        if d.stop:
+            item.stop_name = d.stop.name
+        response.append(item)
+    return response
 
 
 @router.get("/{demand_id}", response_model=DemandRead)
@@ -84,57 +93,50 @@ async def delete_demand(demand_id: UUID, session: AsyncSession = Depends(get_db)
     await session.commit()
 
 
-@router.post("/upload", response_model=dict)
-async def upload_demand_csv(
-    file: UploadFile = File(...),
-    session: AsyncSession = Depends(get_db),
-):
-    if not file.filename or not file.filename.endswith(".csv"):
-        raise HTTPException(status_code=400, detail="File must be a CSV")
-    
-    content = await file.read()
-    text = content.decode("utf-8")
-    reader = csv.DictReader(io.StringIO(text))
-    
-    stop_cache: dict[str, Stop | None] = {}
-    created = 0
-    skipped = 0
-    errors = []
-    
-    for i, row in enumerate(reader, start=2):
-        try:
-            stop_code = row.get("stop_id", "").strip()
-            student_count_str = row.get("student_count", "0").strip()
-            semester = row.get("semester", "").strip()
-            
-            student_count = int(student_count_str) if student_count_str else 0
-            
-            if stop_code not in stop_cache:
-                result = await session.execute(
-                    select(Stop).where(Stop.stop_code == stop_code)
-                )
-                stop_cache[stop_code] = result.scalar_one_or_none()
-            
-            stop = stop_cache[stop_code]
-            if not stop:
-                skipped += 1
-                continue
-            
-            demand = Demand(
-                stop_id=stop.id,
-                student_count=student_count,
-                semester=semester,
-            )
-            session.add(demand)
-            created += 1
-        except Exception as e:
-            errors.append(f"Row {i}: {str(e)}")
-    
     await session.commit()
+
+
+@router.delete("", status_code=204)
+async def delete_all_demand(session: AsyncSession = Depends(get_db)):
+    """Delete all demand"""
+    from sqlalchemy import delete
+    await session.execute(delete(Demand))
+    await session.commit()
+
+
+@router.post("/bulk", response_model=dict, status_code=201)
+async def bulk_create_demand(
+    demands: list[DemandImport], session: AsyncSession = Depends(get_db)
+):
+    """Bulk create demand"""
+    if not demands:
+        return {"created": 0, "skipped": 0}
+
+    # 1. Resolve Stop IDs from codes
+    stop_codes = {d.stop_code for d in demands}
+    stops_result = await session.execute(
+        select(Stop.stop_code, Stop.id).where(Stop.stop_code.in_(stop_codes))
+    )
+    stop_map = {code: id for code, id in stops_result.fetchall()}
+
+    # 2. Create Demand objects
+    new_demands = []
+    skipped = 0
     
-    return {
-        "created": created,
-        "skipped": skipped,
-        "errors": errors[:10],
-        "total_errors": len(errors),
-    }
+    for d in demands:
+        if d.stop_code in stop_map:
+            new_demands.append(
+                Demand(
+                    stop_id=stop_map[d.stop_code],
+                    student_count=d.student_count,
+                    semester=d.semester,
+                )
+            )
+        else:
+            skipped += 1
+    
+    if new_demands:
+        session.add_all(new_demands)
+        await session.commit()
+    
+    return {"created": len(new_demands), "skipped": skipped}

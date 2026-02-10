@@ -12,7 +12,7 @@ class Bus(Base):
     id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, default=uuid4)
     bus_no: Mapped[str] = mapped_column(String(50))
     capacity: Mapped[int] = mapped_column(Integer, default=50)
-    depot_id: Mapped[UUID | None] = mapped_column(Uuid, ForeignKey("depots.id"), nullable=True)
+    depot_id: Mapped[UUID | None] = mapped_column(Uuid, ForeignKey("depots.id", ondelete="SET NULL"), nullable=True)
 
     depot: Mapped["Depot"] = relationship("Depot", back_populates="buses")
 

@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_db
 from models import Depot
-from schemas import DepotCreate, DepotUpdate, DepotRead
+from schemas import DepotCreate, DepotUpdate, DepotRead, DepotImport
 
 router = APIRouter(prefix="/api/depots", tags=["depots"])
 
@@ -62,4 +62,12 @@ async def delete_depot(depot_id: UUID, session: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Depot not found")
     
     await session.delete(db_depot)
+    await session.commit()
+
+
+@router.delete("", status_code=204)
+async def delete_all_depots(session: AsyncSession = Depends(get_db)):
+    """Delete all depots"""
+    from sqlalchemy import delete
+    await session.execute(delete(Depot))
     await session.commit()

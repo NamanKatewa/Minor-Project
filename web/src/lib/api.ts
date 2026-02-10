@@ -60,6 +60,18 @@ export const api = {
 					res.json() as Promise<{ created: number; depots_created: number }>,
 			);
 		},
+		delete: (id: string) => fetcher(`/buses/${id}`, { method: "DELETE" }),
+		deleteAll: () => fetcher("/buses", { method: "DELETE" }),
+		bulkCreate: (data: components["schemas"]["BusImport"][]) =>
+			fetcher<{ created: number; depots_created: number }>("/buses/bulk", {
+				method: "POST",
+				body: JSON.stringify(data),
+			}),
+		update: (id: string, data: components["schemas"]["BusUpdate"]) =>
+			fetcher<components["schemas"]["BusRead"]>(`/buses/${id}`, {
+				method: "PUT",
+				body: JSON.stringify(data),
+			}),
 	},
 	demand: {
 		list: (semester?: string) =>
@@ -78,8 +90,21 @@ export const api = {
 					res.json() as Promise<{ created: number; total_errors: number }>,
 			);
 		},
+		deleteAll: () => fetcher("/demand", { method: "DELETE" }),
+		bulkCreate: (data: components["schemas"]["DemandImport"][]) =>
+			fetcher<{ created: number; skipped: number }>("/demand/bulk", {
+				method: "POST",
+				body: JSON.stringify(data),
+			}),
 	},
 	depots: {
 		list: () => fetcher<components["schemas"]["DepotRead"][]>("/depots"),
+		deleteAll: () => fetcher("/depots", { method: "DELETE" }),
+		delete: (id: string) => fetcher(`/depots/${id}`, { method: "DELETE" }),
+		update: (id: string, data: components["schemas"]["DepotUpdate"]) =>
+			fetcher<components["schemas"]["DepotRead"]>(`/depots/${id}`, {
+				method: "PUT",
+				body: JSON.stringify(data),
+			}),
 	},
 };

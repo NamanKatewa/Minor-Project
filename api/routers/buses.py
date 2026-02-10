@@ -8,22 +8,31 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_db
+from sqlalchemy.orm import joinedload
 from models import Bus, Depot
-from schemas import BusCreate, BusUpdate, BusRead
+from schemas import BusCreate, BusUpdate, BusRead, BusImport, BusWithDepot
 
 router = APIRouter(prefix="/api/buses", tags=["buses"])
 
 
-@router.get("", response_model=list[BusRead])
+@router.get("", response_model=list[BusWithDepot])
 async def list_buses(
     depot_id: UUID | None = None,
     session: AsyncSession = Depends(get_db),
 ):
-    query = select(Bus)
+    query = select(Bus).options(joinedload(Bus.depot))
     if depot_id:
         query = query.where(Bus.depot_id == depot_id)
     result = await session.execute(query)
-    return result.scalars().all()
+    buses = result.scalars().all()
+
+    response = []
+    for bus in buses:
+        item = BusWithDepot.model_validate(bus)
+        if bus.depot:
+            item.depot_name = bus.depot.name
+        response.append(item)
+    return response
 
 
 @router.get("/{bus_id}", response_model=BusRead)
@@ -73,55 +82,56 @@ async def delete_bus(bus_id: UUID, session: AsyncSession = Depends(get_db)):
     await session.commit()
 
 
-@router.post("/upload", response_model=dict)
-async def upload_buses_csv(
-    file: UploadFile = File(...),
-    session: AsyncSession = Depends(get_db),
+@router.delete("", status_code=204)
+async def delete_all_buses(session: AsyncSession = Depends(get_db)):
+    """Delete all buses"""
+    from sqlalchemy import delete
+    await session.execute(delete(Bus))
+    await session.commit()
+
+
+@router.post("/bulk", response_model=dict, status_code=201)
+async def bulk_create_buses(
+    buses: list[BusImport], session: AsyncSession = Depends(get_db)
 ):
-    if not file.filename or not file.filename.endswith(".csv"):
-        raise HTTPException(status_code=400, detail="File must be a CSV")
+    """Bulk create buses with optimized depot handling"""
+    if not buses:
+        return {"created": 0, "depots_created": 0}
+
+    # 1. Extract unique depot names
+    depot_names = {b.depot_name for b in buses if b.depot_name}
     
-    content = await file.read()
-    text = content.decode("utf-8")
-    reader = csv.DictReader(io.StringIO(text))
+    # 2. Fetch existing depots
+    existing_depots_result = await session.execute(
+        select(Depot).where(Depot.name.in_(depot_names))
+    )
+    existing_depots = existing_depots_result.scalars().all()
+    depot_map = {d.name: d.id for d in existing_depots}
     
-    depot_cache: dict[str, Depot] = {}
-    created = 0
-    errors = []
+    # 3. Identify and create missing depots
+    missing_depot_names = depot_names - set(depot_map.keys())
+    new_depots = [Depot(name=name) for name in missing_depot_names]
     
-    for i, row in enumerate(reader, start=2):
-        try:
-            bus_no = row.get("bus_no", "").strip()
-            capacity_str = row.get("capacity", "50").strip()
-            depot_name = row.get("depot_name", "").strip()
+    if new_depots:
+        session.add_all(new_depots)
+        await session.flush()  # to get IDs
+        for depot in new_depots:
+            depot_map[depot.name] = depot.id
             
-            capacity = int(capacity_str) if capacity_str else 50
-            
-            depot_id = None
-            if depot_name:
-                if depot_name not in depot_cache:
-                    result = await session.execute(
-                        select(Depot).where(Depot.name == depot_name)
-                    )
-                    depot = result.scalar_one_or_none()
-                    if not depot:
-                        depot = Depot(name=depot_name)
-                        session.add(depot)
-                        await session.flush()
-                    depot_cache[depot_name] = depot
-                depot_id = depot_cache[depot_name].id
-            
-            bus = Bus(bus_no=bus_no, capacity=capacity, depot_id=depot_id)
-            session.add(bus)
-            created += 1
-        except Exception as e:
-            errors.append(f"Row {i}: {str(e)}")
+    # 4. Create buses
+    new_buses = [
+        Bus(
+            bus_no=bus.bus_no,
+            capacity=bus.capacity,
+            depot_id=depot_map.get(bus.depot_name) if bus.depot_name else None
+        )
+        for bus in buses
+    ]
     
+    session.add_all(new_buses)
     await session.commit()
     
     return {
-        "created": created,
-        "depots_created": len([d for d in depot_cache.values()]),
-        "errors": errors[:10],
-        "total_errors": len(errors),
+        "created": len(new_buses),
+        "depots_created": len(new_depots)
     }
