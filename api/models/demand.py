@@ -10,7 +10,7 @@ class Demand(Base):
     __tablename__ = "demand"
 
     id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, default=uuid4)
-    stop_id: Mapped[UUID] = mapped_column(Uuid, ForeignKey("stops.id"))
+    stop_id: Mapped[UUID] = mapped_column(Uuid, ForeignKey("stops.id", ondelete="CASCADE"))
     student_count: Mapped[int] = mapped_column(Integer, default=0)
     semester: Mapped[str] = mapped_column(String(50))
 
