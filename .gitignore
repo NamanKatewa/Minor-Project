@@ -43,8 +43,9 @@
 # idea files
 /web/.idea
 
-# osm data
-/data/osm/india.osm.pbf
+# osm data & OSRM
+/data/osm/
+.osrm-backend/
 
 # python cache
 __pycache__/
