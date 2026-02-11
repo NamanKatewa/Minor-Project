@@ -18,8 +18,8 @@ OSRM_BUILD_DIR="$PROJECT_DIR/.osrm-backend"
 # Format for osmium: left,bottom,right,top (lon_min,lat_min,lon_max,lat_max)
 NCR_BBOX="76.5,27.83,77.65,28.98"
 
-# Default profile (can be overridden: bash setup_osrm.sh /path/to/bus.lua)
-PROFILE="${1:-$OSRM_BUILD_DIR/profiles/car.lua}"
+# Default profile: bus.lua (can be overridden: bash setup_osrm.sh /path/to/other.lua)
+PROFILE="${1:-$PROJECT_DIR/routing/bus.lua}"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -112,8 +112,13 @@ if [ -f "$OSM_DIR/ncr.osrm.cell_metrics" ]; then
     echo -e "${YELLOW}  To re-process with a different profile, delete existing files:${NC}"
     echo -e "${YELLOW}  wsl rm /mnt/c/Users/naman/Documents/GitHub/Minor-Project/data/osm/ncr.osrm*${NC}"
 else
+    # Copy profile to OSRM profiles dir so it can find lib/ modules
+    PROFILE_NAME="$(basename "$PROFILE")"
+    cp "$PROFILE" "$OSRM_BUILD_DIR/profiles/$PROFILE_NAME"
+    EXTRACT_PROFILE="$OSRM_BUILD_DIR/profiles/$PROFILE_NAME"
+
     log "5a: Extracting road network from NCR data..."
-    osrm-extract -p "$PROFILE" "$NCR_PBF"
+    osrm-extract -p "$EXTRACT_PROFILE" "$NCR_PBF"
     ok "Extract complete"
 
     log "5b: Partitioning..."
