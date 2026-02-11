@@ -1,6 +1,12 @@
 "use client";
 
-import { Database, LayoutDashboard, Settings, Zap } from "lucide-react";
+import {
+	Database,
+	LayoutDashboard,
+	Network,
+	Settings,
+	Zap,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -17,6 +23,7 @@ import {
 const navItems = [
 	{ href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
 	{ href: "/dashboard/stops", label: "Data", icon: Database },
+	{ href: "/dashboard/routes", label: "Routes", icon: Network },
 	{ href: "/optimize", label: "Optimize", icon: Zap },
 	{ href: "/settings", label: "Settings", icon: Settings },
 ];

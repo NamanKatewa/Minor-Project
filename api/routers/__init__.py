@@ -4,6 +4,8 @@ from .stops import router as stops_router
 from .buses import router as buses_router
 from .depots import router as depots_router
 from .demand import router as demand_router
+from .matrix import router as matrix_router
+from .clustering import router as clustering_router
 
 __all__ = [
     "health_router",
@@ -12,4 +14,6 @@ __all__ = [
     "buses_router",
     "depots_router",
     "demand_router",
+    "matrix_router",
+    "clustering_router",
 ]

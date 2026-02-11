@@ -2,7 +2,7 @@
 
 from uuid import UUID, uuid4
 from datetime import datetime
-from sqlalchemy import String, Float, DateTime, JSON, Uuid
+from sqlalchemy import String, Float, Integer, DateTime, JSON, Uuid
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.sql import func
 from database import Base
@@ -13,6 +13,9 @@ class DistanceMatrix(Base):
 
     id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, default=uuid4)
     matrix_json: Mapped[dict] = mapped_column(JSON)
+    stop_count: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    build_time_seconds: Mapped[float | None] = mapped_column(Float, nullable=True)
+    stop_ids_json: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
 
 

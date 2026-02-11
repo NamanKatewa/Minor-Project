@@ -87,4 +87,52 @@ export const api = {
 				body: JSON.stringify(data),
 			}),
 	},
+	routes: {
+		build: (stopIds?: string[]) =>
+			fetcher<{
+				id: string;
+				stop_count: number;
+				build_time_seconds: number;
+				created_at: string;
+			}>("/routes/build", {
+				method: "POST",
+				body: JSON.stringify(stopIds ? { stop_ids: stopIds } : {}),
+			}),
+		latest: () =>
+			fetcher<{
+				id: string;
+				matrix_json: Record<string, unknown>;
+				stop_count: number | null;
+				build_time_seconds: number | null;
+				stop_ids_json: Record<string, unknown> | null;
+				created_at: string;
+			}>("/routes/latest"),
+		get: (id: string) =>
+			fetcher<{
+				id: string;
+				matrix_json: Record<string, unknown>;
+				stop_count: number | null;
+				build_time_seconds: number | null;
+				stop_ids_json: Record<string, unknown> | null;
+				created_at: string;
+			}>(`/routes/${id}`),
+	},
+	clustering: {
+		suggestions: (thresholdM?: number) =>
+			fetcher<{
+				suggestions: Array<{
+					stops: Array<{
+						id: string;
+						name: string;
+						lat: number;
+						lon: number;
+					}>;
+					max_distance_m: number;
+				}>;
+				threshold_m: number;
+				total_groups: number;
+			}>(
+				`/clustering/suggestions${thresholdM ? `?threshold_m=${thresholdM}` : ""}`,
+			),
+	},
 };

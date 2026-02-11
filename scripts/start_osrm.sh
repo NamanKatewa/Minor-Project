@@ -30,4 +30,4 @@ echo -e "${GREEN}Starting OSRM server on http://localhost:5000${NC}"
 echo "Press Ctrl+C to stop"
 echo ""
 
-osrm-routed --algorithm mld "$OSRM_FILE" --port 5000
+osrm-routed --algorithm mld "$OSRM_FILE" --port 5000 --max-table-size 1000
