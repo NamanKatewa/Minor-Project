@@ -45,9 +45,10 @@ export function AppSidebar() {
 									<SidebarMenuButton
 										asChild
 										isActive={
-											pathname === item.href ||
-											(item.href !== "/dashboard" &&
-												pathname.startsWith(`${item.href}/`))
+											item.href === "/dashboard"
+												? pathname === "/dashboard"
+												: pathname === item.href ||
+													pathname.startsWith(`${item.href}/`)
 										}
 										tooltip={item.label}
 									>
