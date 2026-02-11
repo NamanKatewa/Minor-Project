@@ -46,7 +46,8 @@ export function AppSidebar() {
 										asChild
 										isActive={
 											pathname === item.href ||
-											pathname.startsWith(`${item.href}/`)
+											(item.href !== "/dashboard" &&
+												pathname.startsWith(`${item.href}/`))
 										}
 										tooltip={item.label}
 									>
