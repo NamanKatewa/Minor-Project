@@ -3,6 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
 	AlertTriangle,
+	ArrowRight,
 	Calendar,
 	CheckCircle2,
 	Clock,
@@ -12,10 +13,12 @@ import {
 	Play,
 	RefreshCw,
 	Route,
+	Search,
 } from "lucide-react";
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
+import { StopCombobox } from "~/components/stop-combobox";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import {
@@ -37,6 +40,8 @@ const ClusterMap = dynamic(() => import("~/components/cluster-map"), {
 export default function RoutesPage() {
 	const queryClient = useQueryClient();
 	const [selectedGroup, setSelectedGroup] = useState<number | null>(null);
+	const [spotFrom, setSpotFrom] = useState<string | null>(null);
+	const [spotTo, setSpotTo] = useState<string | null>(null);
 
 	// Scroll selected group into view
 	useEffect(() => {
@@ -86,6 +91,49 @@ export default function RoutesPage() {
 		currentStops?.filter((s) => s.active && s.lat != null && s.lon != null)
 			.length ?? 0;
 	const hasNoStops = !isLoadingStops && activeStopCount === 0;
+
+	// Spot-check: stop options from the matrix
+	const matrixStopOptions = useMemo(() => {
+		if (!latestMatrix?.matrix_json) return [];
+		const mj = latestMatrix.matrix_json as {
+			stop_ids?: string[];
+			stop_names?: Record<string, string>;
+		};
+		if (!mj.stop_ids || !mj.stop_names) return [];
+		return mj.stop_ids.map((id) => ({
+			id,
+			name: mj.stop_names?.[id] ?? id,
+		}));
+	}, [latestMatrix]);
+
+	const spotResult = useMemo(() => {
+		if (!spotFrom || !spotTo || spotFrom === spotTo) return null;
+		if (!latestMatrix?.matrix_json) return null;
+		const mj = latestMatrix.matrix_json as {
+			stop_ids?: string[];
+			durations?: number[][];
+			distances?: number[][];
+		};
+		if (!mj.stop_ids || !mj.durations || !mj.distances) return null;
+
+		const fromIdx = mj.stop_ids.indexOf(spotFrom);
+		const toIdx = mj.stop_ids.indexOf(spotTo);
+		if (fromIdx === -1 || toIdx === -1) return null;
+
+		const durationSec = mj.durations[fromIdx]?.[toIdx];
+		const distanceM = mj.distances[fromIdx]?.[toIdx];
+		if (durationSec == null || distanceM == null) return null;
+		if (durationSec < 0 || distanceM < 0) return { unreachable: true };
+
+		const mins = Math.round(durationSec / 60);
+		const km = (distanceM / 1000).toFixed(1);
+		return { mins, km, unreachable: false };
+	}, [spotFrom, spotTo, latestMatrix]);
+
+	const handleSwap = useCallback(() => {
+		setSpotFrom(spotTo);
+		setSpotTo(spotFrom);
+	}, [spotFrom, spotTo]);
 
 	const buildMutation = useMutation({
 		mutationFn: () => api.routes.build(),
@@ -257,6 +305,115 @@ export default function RoutesPage() {
 					</CardContent>
 				</Card>
 			</div>
+
+			{/* Spot-check tool */}
+			{latestMatrix && (
+				<Card>
+					<CardHeader className="pb-3">
+						<CardTitle className="flex items-center gap-2 text-base">
+							<Search className="h-4 w-4" />
+							Travel Time Lookup
+						</CardTitle>
+						<CardDescription>
+							Pick any two stops to check the travel time and distance between
+							them
+						</CardDescription>
+					</CardHeader>
+					<CardContent className="space-y-4">
+						<div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+							<div className="flex-1 space-y-1.5">
+								<span className="font-medium text-sm">From</span>
+								<StopCombobox
+									onSelect={setSpotFrom}
+									placeholder="Select origin stop..."
+									stops={matrixStopOptions}
+									value={spotFrom}
+								/>
+							</div>
+							<button
+								className="hidden shrink-0 self-end pb-1 text-muted-foreground transition-colors hover:text-foreground sm:block"
+								onClick={handleSwap}
+								title="Swap stops"
+								type="button"
+							>
+								<ArrowRight className="h-5 w-5" />
+							</button>
+							<div className="flex-1 space-y-1.5">
+								<span className="font-medium text-sm">To</span>
+								<StopCombobox
+									onSelect={setSpotTo}
+									placeholder="Select destination stop..."
+									stops={matrixStopOptions}
+									value={spotTo}
+								/>
+							</div>
+						</div>
+
+						{/* Result display */}
+						{spotResult && (
+							<div className="rounded-lg border bg-muted/30 p-4">
+								{spotResult.unreachable ? (
+									<div className="flex items-center justify-center gap-2 py-2 text-yellow-600 dark:text-yellow-400">
+										<AlertTriangle className="h-5 w-5" />
+										<span className="font-semibold">
+											No route found between these stops
+										</span>
+									</div>
+								) : (
+									<div className="flex items-center gap-4">
+										{/* From stop */}
+										<div className="min-w-0 flex-1">
+											<p className="truncate font-medium text-sm">
+												{matrixStopOptions.find((s) => s.id === spotFrom)?.name}
+											</p>
+										</div>
+
+										{/* Visual connector with stats */}
+										<div className="flex shrink-0 items-center gap-3">
+											<div className="hidden h-px w-6 bg-border sm:block" />
+											<div className="flex items-center gap-3 rounded-full border bg-background px-4 py-2 shadow-sm">
+												<div className="flex items-center gap-1.5">
+													<Clock className="h-3.5 w-3.5 text-muted-foreground" />
+													<span className="font-bold text-lg tabular-nums">
+														{spotResult.mins}
+													</span>
+													<span className="text-muted-foreground text-xs">
+														min
+													</span>
+												</div>
+												<div className="h-5 w-px bg-border" />
+												<div className="flex items-center gap-1.5">
+													<Route className="h-3.5 w-3.5 text-muted-foreground" />
+													<span className="font-bold text-lg tabular-nums">
+														{spotResult.km}
+													</span>
+													<span className="text-muted-foreground text-xs">
+														km
+													</span>
+												</div>
+											</div>
+											<div className="hidden h-px w-6 bg-border sm:block" />
+										</div>
+
+										{/* To stop */}
+										<div className="min-w-0 flex-1 text-right">
+											<p className="truncate font-medium text-sm">
+												{matrixStopOptions.find((s) => s.id === spotTo)?.name}
+											</p>
+										</div>
+									</div>
+								)}
+							</div>
+						)}
+
+						{spotFrom && spotTo && spotFrom === spotTo && (
+							<p className="text-center text-muted-foreground text-sm italic">
+								Select two different stops
+							</p>
+						)}
+					</CardContent>
+				</Card>
+			)}
 
 			{/* Nearby stops with map */}
 			<div className="grid gap-6 lg:grid-cols-2">
