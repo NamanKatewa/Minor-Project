@@ -88,6 +88,7 @@ export function EditBusDialog({ open, onOpenChange, bus }: EditBusDialogProps) {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["buses"] });
+			queryClient.invalidateQueries({ queryKey: ["depots"] });
 			toast.success("Bus updated successfully");
 			onOpenChange(false);
 		},

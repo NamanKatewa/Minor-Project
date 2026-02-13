@@ -75,6 +75,7 @@ export function EditDepotDialog({
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["depots"] });
+			queryClient.invalidateQueries({ queryKey: ["buses"] });
 			toast.success("Depot updated successfully");
 			onOpenChange(false);
 		},

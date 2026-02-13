@@ -54,6 +54,7 @@ export default function BusesDataPage() {
 		mutationFn: api.buses.bulkCreate,
 		onSuccess: (data) => {
 			queryClient.invalidateQueries({ queryKey: ["buses"] });
+			queryClient.invalidateQueries({ queryKey: ["depots"] });
 			toast.success(
 				`Imported ${data.created} buses, created ${data.depots_created} depots`,
 			);
@@ -70,6 +71,7 @@ export default function BusesDataPage() {
 		mutationFn: api.buses.deleteAll,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["buses"] });
+			queryClient.invalidateQueries({ queryKey: ["depots"] });
 			toast.success("All buses deleted");
 			setIsDeleteAllOpen(false);
 		},
@@ -83,6 +85,7 @@ export default function BusesDataPage() {
 		mutationFn: api.buses.delete,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["buses"] });
+			queryClient.invalidateQueries({ queryKey: ["depots"] });
 			toast.success("Bus deleted");
 			setBusToDelete(null);
 		},

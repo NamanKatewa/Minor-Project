@@ -37,6 +37,7 @@ export default function DepotsDataPage() {
 		mutationFn: api.depots.deleteAll,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["depots"] });
+			queryClient.invalidateQueries({ queryKey: ["buses"] });
 			toast.success("All depots deleted");
 			setIsDeleteAllOpen(false);
 		},
@@ -50,6 +51,7 @@ export default function DepotsDataPage() {
 		mutationFn: api.depots.delete,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["depots"] });
+			queryClient.invalidateQueries({ queryKey: ["buses"] });
 			toast.success("Depot deleted");
 			setDepotToDelete(null);
 		},
