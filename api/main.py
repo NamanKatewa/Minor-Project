@@ -5,7 +5,7 @@ from sqlalchemy import text
 
 from config import get_settings
 from database import engine
-from routers import health_router, auth_router, stops_router, buses_router, depots_router, demand_router, matrix_router, clustering_router
+from routers import health_router, auth_router, stops_router, buses_router, depots_router, demand_router, matrix_router, clustering_router, dashboard_router
 
 settings = get_settings()
 
@@ -44,6 +44,7 @@ app.include_router(depots_router)
 app.include_router(demand_router)
 app.include_router(matrix_router)
 app.include_router(clustering_router)
+app.include_router(dashboard_router)
 
 
 @app.get("/")

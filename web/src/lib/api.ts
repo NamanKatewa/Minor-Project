@@ -135,4 +135,21 @@ export const api = {
 				`/clustering/suggestions${thresholdM ? `?threshold_m=${thresholdM}` : ""}`,
 			),
 	},
+	dashboard: {
+		summary: () =>
+			fetcher<{
+				stops_count: number;
+				buses_count: number;
+				depots_count: number;
+				demand_records_count: number;
+				total_fleet_capacity: number;
+				semesters: string[];
+				latest_matrix: {
+					id: string;
+					stop_count: number | null;
+					build_time_seconds: number | null;
+					created_at: string;
+				} | null;
+			}>("/dashboard/summary"),
+	},
 };

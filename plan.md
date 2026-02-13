@@ -281,6 +281,13 @@ university-fleet-optimizer/
 - Error handling with user-friendly messages
 - Responsive design verification
 
+**Settings & Configuration:**
+- Profile & Account Management
+- OSRM Routing Engine Configuration (Health, Profile)
+- Clustering Threshold Preferences
+- System Data Summary & Backup
+- Appearance & Theme Settings
+
 **Documentation:**
 - README with setup instructions
 - "How to Update Data" guide

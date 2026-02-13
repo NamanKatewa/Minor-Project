@@ -244,26 +244,6 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
-	"/api/depots/bulk": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		get?: never;
-		put?: never;
-		/**
-		 * Bulk Create Depots
-		 * @description Bulk create depots
-		 */
-		post: operations["bulk_create_depots_api_depots_bulk_post"];
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
 	"/api/demand/semesters": {
 		parameters: {
 			query?: never;
@@ -336,6 +316,95 @@ export interface paths {
 		 * @description Bulk create demand
 		 */
 		post: operations["bulk_create_demand_api_demand_bulk_post"];
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/routes/build": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		get?: never;
+		put?: never;
+		/** Build Matrix */
+		post: operations["build_matrix_api_routes_build_post"];
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/routes/latest": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Latest Matrix */
+		get: operations["get_latest_matrix_api_routes_latest_get"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/routes/{matrix_id}": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Matrix */
+		get: operations["get_matrix_api_routes__matrix_id__get"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/clustering/suggestions": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Clustering Suggestions */
+		get: operations["get_clustering_suggestions_api_clustering_suggestions_get"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/dashboard/summary": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Get Dashboard Summary
+		 * @description Get high-level summary statistics for the dashboard.
+		 *     Optimized to use COUNT/SUM queries instead of fetching all rows.
+		 */
+		get: operations["get_dashboard_summary_api_dashboard_summary_get"];
+		put?: never;
+		post?: never;
 		delete?: never;
 		options?: never;
 		head?: never;
@@ -446,6 +515,52 @@ export interface components {
 			/** Depot Name */
 			depot_name?: string | null;
 		};
+		/** ClusteringSuggestion */
+		ClusteringSuggestion: {
+			/** Stops */
+			stops: components["schemas"]["StopInfo"][];
+			/** Max Distance M */
+			max_distance_m: number;
+		};
+		/** ClusteringSuggestionsResponse */
+		ClusteringSuggestionsResponse: {
+			/** Suggestions */
+			suggestions: components["schemas"]["ClusteringSuggestion"][];
+			/** Threshold M */
+			threshold_m: number;
+			/** Total Groups */
+			total_groups: number;
+		};
+		/** DashboardMatrixInfo */
+		DashboardMatrixInfo: {
+			/** Id */
+			id: string;
+			/** Stop Count */
+			stop_count: number | null;
+			/** Build Time Seconds */
+			build_time_seconds: number | null;
+			/**
+			 * Created At
+			 * Format: date-time
+			 */
+			created_at: string;
+		};
+		/** DashboardSummary */
+		DashboardSummary: {
+			/** Stops Count */
+			stops_count: number;
+			/** Buses Count */
+			buses_count: number;
+			/** Depots Count */
+			depots_count: number;
+			/** Demand Records Count */
+			demand_records_count: number;
+			/** Total Fleet Capacity */
+			total_fleet_capacity: number;
+			/** Semesters */
+			semesters: string[];
+			latest_matrix: components["schemas"]["DashboardMatrixInfo"] | null;
+		};
 		/** DemandCreate */
 		DemandCreate: {
 			/**
@@ -533,15 +648,6 @@ export interface components {
 			/** Lon */
 			lon?: number | null;
 		};
-		/** DepotImport */
-		DepotImport: {
-			/** Name */
-			name: string;
-			/** Lat */
-			lat?: number | null;
-			/** Lon */
-			lon?: number | null;
-		};
 		/** DepotRead */
 		DepotRead: {
 			/** Name */
@@ -580,6 +686,53 @@ export interface components {
 			/** Password */
 			password: string;
 		};
+		/** MatrixBuildRequest */
+		MatrixBuildRequest: {
+			/** Stop Ids */
+			stop_ids?: string[] | null;
+		};
+		/** MatrixBuildResponse */
+		MatrixBuildResponse: {
+			/**
+			 * Id
+			 * Format: uuid
+			 */
+			id: string;
+			/** Stop Count */
+			stop_count: number;
+			/** Build Time Seconds */
+			build_time_seconds: number;
+			/**
+			 * Created At
+			 * Format: date-time
+			 */
+			created_at: string;
+		};
+		/** MatrixRead */
+		MatrixRead: {
+			/**
+			 * Id
+			 * Format: uuid
+			 */
+			id: string;
+			/** Matrix Json */
+			matrix_json: {
+				[key: string]: unknown;
+			};
+			/** Stop Count */
+			stop_count?: number | null;
+			/** Build Time Seconds */
+			build_time_seconds?: number | null;
+			/** Stop Ids Json */
+			stop_ids_json?: {
+				[key: string]: unknown;
+			} | null;
+			/**
+			 * Created At
+			 * Format: date-time
+			 */
+			created_at: string;
+		};
 		/** RegisterRequest */
 		RegisterRequest: {
 			/**
@@ -616,6 +769,17 @@ export interface components {
 			 * @default true
 			 */
 			active: boolean;
+		};
+		/** StopInfo */
+		StopInfo: {
+			/** Id */
+			id: string;
+			/** Name */
+			name: string;
+			/** Lat */
+			lat: number;
+			/** Lon */
+			lon: number;
 		};
 		/** StopRead */
 		StopRead: {
@@ -1392,41 +1556,6 @@ export interface operations {
 			};
 		};
 	};
-	bulk_create_depots_api_depots_bulk_post: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["DepotImport"][];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			201: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": {
-						[key: string]: unknown;
-					};
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
 	list_semesters_api_demand_semesters_get: {
 		parameters: {
 			query?: never;
@@ -1656,6 +1785,141 @@ export interface operations {
 				};
 				content: {
 					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	build_matrix_api_routes_build_post: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: {
+			content: {
+				"application/json": components["schemas"]["MatrixBuildRequest"] | null;
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["MatrixBuildResponse"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	get_latest_matrix_api_routes_latest_get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["MatrixRead"];
+				};
+			};
+		};
+	};
+	get_matrix_api_routes__matrix_id__get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				matrix_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["MatrixRead"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	get_clustering_suggestions_api_clustering_suggestions_get: {
+		parameters: {
+			query?: {
+				threshold_m?: number;
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["ClusteringSuggestionsResponse"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	get_dashboard_summary_api_dashboard_summary_get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["DashboardSummary"];
 				};
 			};
 		};

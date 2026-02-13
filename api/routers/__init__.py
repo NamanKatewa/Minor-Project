@@ -6,6 +6,7 @@ from .depots import router as depots_router
 from .demand import router as demand_router
 from .matrix import router as matrix_router
 from .clustering import router as clustering_router
+from .dashboard import router as dashboard_router
 
 __all__ = [
     "health_router",
@@ -16,4 +17,5 @@ __all__ = [
     "demand_router",
     "matrix_router",
     "clustering_router",
+    "dashboard_router",
 ]
