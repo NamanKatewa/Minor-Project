@@ -13,18 +13,19 @@ import csv
 import random
 from pathlib import Path
 
-FLEET_SIZE = 42
+FLEET_SIZE = 250  # Increased to handle ~10k+ students
 OUTPUT_PATH = Path(__file__).parent.parent / "data" / "raw" / "buses.csv"
 
 DEPOTS = [
-    {"name": "KRMU Campus Depot", "bus_count": 10},
-    {"name": "Gurgaon Central Depot", "bus_count": 8},
-    {"name": "Delhi West Depot", "bus_count": 6},
-    {"name": "Delhi South Depot", "bus_count": 5},
-    {"name": "Faridabad Depot", "bus_count": 5},
-    {"name": "Bahadurgarh Depot", "bus_count": 3},
-    {"name": "Palwal Depot", "bus_count": 3},
-    {"name": "Bhiwadi Depot", "bus_count": 2},
+    {"name": "KRMU Campus Depot", "bus_count": 50},
+    {"name": "Gurgaon Central Depot", "bus_count": 40},
+    {"name": "Delhi West Depot", "bus_count": 35},
+    {"name": "Delhi South Depot", "bus_count": 30},
+    {"name": "Faridabad Depot", "bus_count": 30},
+    {"name": "Bahadurgarh Depot", "bus_count": 20},
+    {"name": "Palwal Depot", "bus_count": 20},
+    {"name": "Bhiwadi Depot", "bus_count": 15},
+    {"name": "Noida Depot", "bus_count": 10},
 ]
 
 CAPACITY_OPTIONS = [

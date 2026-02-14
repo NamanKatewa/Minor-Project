@@ -10,3 +10,5 @@ bcrypt==4.0.1
 httpx==0.28.1
 alembic==1.16.5
 email-validator==2.1.1
+ortools==9.12.4544
+numpy==1.26.4

@@ -18,7 +18,12 @@ export async function fetcher<T = unknown>(
 		const error = await res
 			.json()
 			.catch(() => ({ detail: "An error occurred" }));
-		throw new Error(error.detail || res.statusText);
+		// Handle structured error objects by stringifying them
+		const errorMessage =
+			typeof error.detail === "object"
+				? JSON.stringify(error.detail)
+				: error.detail || res.statusText;
+		throw new Error(errorMessage);
 	}
 
 	return res.status === 204 ? ({} as T) : res.json();
@@ -151,5 +156,29 @@ export const api = {
 					created_at: string;
 				} | null;
 			}>("/dashboard/summary"),
+	},
+	optimization: {
+		run: (data: components["schemas"]["OptimizationRequest"]) =>
+			fetcher<components["schemas"]["OptimizationResponse"]>(
+				"/optimization/run",
+				{
+					method: "POST",
+					body: JSON.stringify(data),
+				},
+			),
+		listSolutions: (limit = 20, offset = 0, scenario_type?: string | null) =>
+			fetcher<components["schemas"]["OptimizationListResponse"]>(
+				`/optimization/solutions?limit=${limit}&offset=${offset}${scenario_type ? `&scenario_type=${scenario_type}` : ""}`,
+			),
+		getLatest: () =>
+			fetcher<components["schemas"]["OptimizationResponse"]>(
+				"/optimization/solutions/latest",
+			),
+		get: (id: string) =>
+			fetcher<components["schemas"]["OptimizationResponse"]>(
+				`/optimization/solutions/${id}`,
+			),
+		delete: (id: string) =>
+			fetcher(`/optimization/solutions/${id}`, { method: "DELETE" }),
 	},
 };

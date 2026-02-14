@@ -15,6 +15,15 @@ class Settings(BaseSettings):
 
     debug: bool = False
 
+    # Optimization settings
+    fuel_cost_per_km: float = 50.0
+    campus_lat: float = 28.26
+    campus_lon: float = 77.07
+    max_bus_capacity: int = 50
+    max_ride_time_min: int = 120
+    arrival_deadline: str = "08:45"
+    optimization_timeout_sec: int = 60
+
     @computed_field
     @property
     def async_database_url(self) -> str:

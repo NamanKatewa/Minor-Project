@@ -49,3 +49,5 @@
 
 # python cache
 __pycache__/
+
+opencode.json

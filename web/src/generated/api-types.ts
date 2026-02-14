@@ -411,6 +411,101 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
+	"/api/optimization/run": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		get?: never;
+		put?: never;
+		/**
+		 * Run Optimization
+		 * @description Run route optimization and store the solution.
+		 *
+		 *     This endpoint triggers the CVRPTW solver which:
+		 *     - Assigns stops to buses based on demand
+		 *     - Respects capacity constraints (max 50 students)
+		 *     - Ensures campus arrival by specified deadline
+		 *     - Minimizes total travel distance
+		 *
+		 *     Returns the generated solution with routes, stats, and cost estimate.
+		 */
+		post: operations["run_optimization_api_optimization_run_post"];
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/optimization/solutions": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * List Solutions
+		 * @description List all optimization runs (history).
+		 *
+		 *     Returns a paginated list of solutions with summary information.
+		 *     Use this to view historical optimization results.
+		 */
+		get: operations["list_solutions_api_optimization_solutions_get"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/optimization/solutions/latest": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Get Latest Solution
+		 * @description Get the most recent optimization solution.
+		 */
+		get: operations["get_latest_solution_api_optimization_solutions_latest_get"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/optimization/solutions/{solution_id}": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Get Solution
+		 * @description Get a specific optimization solution by ID.
+		 */
+		get: operations["get_solution_api_optimization_solutions__solution_id__get"];
+		put?: never;
+		post?: never;
+		/**
+		 * Delete Solution
+		 * @description Delete an optimization solution from history.
+		 */
+		delete: operations["delete_solution_api_optimization_solutions__solution_id__delete"];
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
 	"/": {
 		parameters: {
 			query?: never;
@@ -486,6 +581,36 @@ export interface components {
 			 * Format: uuid
 			 */
 			id: string;
+		};
+		/**
+		 * BusRoute
+		 * @description Complete route for one bus
+		 */
+		BusRoute: {
+			/**
+			 * Bus Id
+			 * Format: uuid
+			 */
+			bus_id: string;
+			/** Bus No */
+			bus_no: string;
+			/** Capacity */
+			capacity: number;
+			/** Stops */
+			stops: components["schemas"]["RouteStop"][];
+			/** Total Students */
+			total_students: number;
+			/** Total Distance Km */
+			total_distance_km: number;
+			/** Total Time Min */
+			total_time_min: number;
+			/** Capacity Utilization */
+			capacity_utilization: number;
+			/**
+			 * Warnings
+			 * @default []
+			 */
+			warnings: string[];
 		};
 		/** BusUpdate */
 		BusUpdate: {
@@ -733,6 +858,137 @@ export interface components {
 			 */
 			created_at: string;
 		};
+		/**
+		 * OptimizationListResponse
+		 * @description Response for listing optimization solutions
+		 */
+		OptimizationListResponse: {
+			/** Solutions */
+			solutions: components["schemas"]["OptimizationSummary"][];
+			/** Count */
+			count: number;
+			/** Limit */
+			limit: number;
+			/** Offset */
+			offset: number;
+		};
+		/**
+		 * OptimizationRequest
+		 * @description Request to run route optimization
+		 */
+		OptimizationRequest: {
+			/**
+			 * Scenario Type
+			 * @default strict
+			 */
+			scenario_type: string;
+			/** Semester */
+			semester?: string | null;
+			/** Matrix Id */
+			matrix_id?: string | null;
+			/**
+			 * Fuel Cost Per Km
+			 * @default 50
+			 */
+			fuel_cost_per_km: number;
+			/** Bus Ids */
+			bus_ids?: string[] | null;
+			/** Max Ride Time Min */
+			max_ride_time_min?: number | null;
+			/** Arrival Deadline */
+			arrival_deadline?: string | null;
+		};
+		/**
+		 * OptimizationResponse
+		 * @description Full optimization solution response
+		 */
+		OptimizationResponse: {
+			/**
+			 * Id
+			 * Format: uuid
+			 */
+			id: string;
+			/** Scenario Type */
+			scenario_type: string;
+			/** Routes */
+			routes: components["schemas"]["BusRoute"][];
+			stats: components["schemas"]["OptimizationStats"];
+			/** Cost Estimate */
+			cost_estimate: number;
+			/** Fuel Cost Per Km */
+			fuel_cost_per_km: number;
+			/**
+			 * Created At
+			 * Format: date-time
+			 */
+			created_at: string;
+			/** Semester */
+			semester?: string | null;
+		};
+		/**
+		 * OptimizationStats
+		 * @description Summary statistics for an optimization run
+		 */
+		OptimizationStats: {
+			/** Total Buses Used */
+			total_buses_used: number;
+			/** Total Distance Km */
+			total_distance_km: number;
+			/** Total Time Min */
+			total_time_min: number;
+			/** Avg Utilization */
+			avg_utilization: number;
+			/** Total Students Assigned */
+			total_students_assigned: number;
+			/** Total Students Requested */
+			total_students_requested: number;
+			/** Coverage Percentage */
+			coverage_percentage: number;
+			/**
+			 * Unassigned Stops
+			 * @default []
+			 */
+			unassigned_stops: components["schemas"]["UnassignedStop"][];
+			/**
+			 * Global Warnings
+			 * @default []
+			 */
+			global_warnings: string[];
+			/** Solve Time Seconds */
+			solve_time_seconds: number;
+			/** Model Build Time Seconds */
+			model_build_time_seconds: number;
+		};
+		/**
+		 * OptimizationSummary
+		 * @description Lightweight summary for listing solutions
+		 */
+		OptimizationSummary: {
+			/**
+			 * Id
+			 * Format: uuid
+			 */
+			id: string;
+			/** Scenario Type */
+			scenario_type: string;
+			/** Total Buses */
+			total_buses: number;
+			/** Total Distance Km */
+			total_distance_km: number;
+			/** Total Students */
+			total_students: number;
+			/** Cost Estimate */
+			cost_estimate: number;
+			/** Coverage Percentage */
+			coverage_percentage: number;
+			/** Has Warnings */
+			has_warnings: boolean;
+			/**
+			 * Created At
+			 * Format: date-time
+			 */
+			created_at: string;
+		};
 		/** RegisterRequest */
 		RegisterRequest: {
 			/**
@@ -744,6 +1000,35 @@ export interface components {
 			password: string;
 			/** Name */
 			name: string;
+		};
+		/**
+		 * RouteStop
+		 * @description A single stop in a bus route sequence
+		 */
+		RouteStop: {
+			/**
+			 * Stop Id
+			 * Format: uuid
+			 */
+			stop_id: string;
+			/** Stop Name */
+			stop_name: string;
+			/** Stop Code */
+			stop_code?: string | null;
+			/** Lat */
+			lat: number;
+			/** Lon */
+			lon: number;
+			/** Arrival Time */
+			arrival_time: string;
+			/** Students Boarding */
+			students_boarding: number;
+			/** Cumulative Time Min */
+			cumulative_time_min: number;
+			/** Distance From Prev Km */
+			distance_from_prev_km: number;
+			/** Zone */
+			zone?: string | null;
 		};
 		/** StopBulkResponse */
 		StopBulkResponse: {
@@ -822,6 +1107,18 @@ export interface components {
 			zone?: string | null;
 			/** Active */
 			active?: boolean | null;
+		};
+		/**
+		 * UnassignedStop
+		 * @description An unassigned stop with reason
+		 */
+		UnassignedStop: {
+			/** Stop Id */
+			stop_id: string;
+			/** Name */
+			name: string;
+			/** Reason */
+			reason: string;
 		};
 		/** UserResponse */
 		UserResponse: {
@@ -1920,6 +2217,152 @@ export interface operations {
 				};
 				content: {
 					"application/json": components["schemas"]["DashboardSummary"];
+				};
+			};
+		};
+	};
+	run_optimization_api_optimization_run_post: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"application/json": components["schemas"]["OptimizationRequest"];
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			201: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["OptimizationResponse"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	list_solutions_api_optimization_solutions_get: {
+		parameters: {
+			query?: {
+				limit?: number;
+				offset?: number;
+				scenario_type?: string | null;
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["OptimizationListResponse"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	get_latest_solution_api_optimization_solutions_latest_get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["OptimizationResponse"];
+				};
+			};
+		};
+	};
+	get_solution_api_optimization_solutions__solution_id__get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				solution_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["OptimizationResponse"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	delete_solution_api_optimization_solutions__solution_id__delete: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				solution_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			204: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
 				};
 			};
 		};

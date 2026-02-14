@@ -2,6 +2,7 @@
 
 import {
 	Database,
+	History,
 	LayoutDashboard,
 	Network,
 	Settings,
@@ -24,7 +25,8 @@ const navItems = [
 	{ href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
 	{ href: "/dashboard/stops", label: "Data", icon: Database },
 	{ href: "/dashboard/routes", label: "Routes", icon: Network },
-	{ href: "/optimize", label: "Optimize", icon: Zap },
+	{ href: "/dashboard/optimize", label: "Optimize", icon: Zap },
+	{ href: "/dashboard/solutions", label: "Solutions", icon: History },
 	{ href: "/settings", label: "Settings", icon: Settings },
 ];
 
