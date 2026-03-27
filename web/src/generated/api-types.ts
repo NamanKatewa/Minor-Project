@@ -194,7 +194,7 @@ export interface paths {
 		put?: never;
 		/**
 		 * Bulk Create Buses
-		 * @description Bulk create buses with optimized depot handling
+		 * @description Bulk create buses
 		 */
 		post: operations["bulk_create_buses_api_buses_bulk_post"];
 		delete?: never;
@@ -239,6 +239,26 @@ export interface paths {
 		post?: never;
 		/** Delete Depot */
 		delete: operations["delete_depot_api_depots__depot_id__delete"];
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/depots/bulk": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		get?: never;
+		put?: never;
+		/**
+		 * Bulk Create Depots
+		 * @description Bulk create depots
+		 */
+		post: operations["bulk_create_depots_api_depots_bulk_post"];
+		delete?: never;
 		options?: never;
 		head?: never;
 		patch?: never;
@@ -550,8 +570,6 @@ export interface components {
 			 * @default 50
 			 */
 			capacity: number;
-			/** Depot Id */
-			depot_id?: string | null;
 		};
 		/** BusImport */
 		BusImport: {
@@ -562,8 +580,6 @@ export interface components {
 			 * @default 50
 			 */
 			capacity: number;
-			/** Depot Name */
-			depot_name?: string | null;
 		};
 		/** BusRead */
 		BusRead: {
@@ -574,8 +590,6 @@ export interface components {
 			 * @default 50
 			 */
 			capacity: number;
-			/** Depot Id */
-			depot_id?: string | null;
 			/**
 			 * Id
 			 * Format: uuid
@@ -618,8 +632,6 @@ export interface components {
 			bus_no?: string | null;
 			/** Capacity */
 			capacity?: number | null;
-			/** Depot Id */
-			depot_id?: string | null;
 		};
 		/** BusWithDepot */
 		BusWithDepot: {
@@ -630,8 +642,6 @@ export interface components {
 			 * @default 50
 			 */
 			capacity: number;
-			/** Depot Id */
-			depot_id?: string | null;
 			/**
 			 * Id
 			 * Format: uuid
@@ -1841,6 +1851,41 @@ export interface operations {
 					[name: string]: unknown;
 				};
 				content?: never;
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	bulk_create_depots_api_depots_bulk_post: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody: {
+			content: {
+				"application/json": components["schemas"]["DepotCreate"][];
+			};
+		};
+		responses: {
+			/** @description Successful Response */
+			201: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": {
+						[key: string]: unknown;
+					};
+				};
 			};
 			/** @description Validation Error */
 			422: {

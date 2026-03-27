@@ -7,7 +7,6 @@ from pydantic import BaseModel
 class BusBase(BaseModel):
     bus_no: str
     capacity: int = 50
-    depot_id: UUID | None = None
 
 
 class BusCreate(BusBase):
@@ -17,7 +16,6 @@ class BusCreate(BusBase):
 class BusUpdate(BaseModel):
     bus_no: str | None = None
     capacity: int | None = None
-    depot_id: UUID | None = None
 
 
 class BusRead(BusBase):
@@ -35,4 +33,3 @@ class BusWithDepot(BusRead):
 class BusImport(BaseModel):
     bus_no: str
     capacity: int = 50
-    depot_name: str | None = None

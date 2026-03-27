@@ -71,3 +71,35 @@ async def delete_all_depots(session: AsyncSession = Depends(get_db)):
     from sqlalchemy import delete
     await session.execute(delete(Depot))
     await session.commit()
+
+
+@router.post("/bulk", response_model=dict, status_code=201)
+async def bulk_create_depots(
+    depots: list[DepotCreate], session: AsyncSession = Depends(get_db)
+):
+    """Bulk create depots"""
+    if not depots:
+        return {"count": 0}
+
+    # Extract depot names
+    depot_names = {d.name for d in depots if d.name}
+
+    # Fetch existing depots
+    result = await session.execute(
+        select(Depot).where(Depot.name.in_(depot_names))
+    )
+    existing_depots = result.scalars().all()
+    existing_names = {d.name for d in existing_depots}
+
+    # Create only new depots (skip duplicates)
+    new_depots = [
+        Depot(name=d.name, lat=d.lat, lon=d.lon)
+        for d in depots
+        if d.name and d.name not in existing_names
+    ]
+
+    if new_depots:
+        session.add_all(new_depots)
+        await session.commit()
+
+    return {"count": len(new_depots)}

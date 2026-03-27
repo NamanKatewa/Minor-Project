@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -25,23 +25,14 @@ import {
 	FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "~/components/ui/select";
 import type { components } from "~/generated/api-types";
 import { api } from "~/lib/api";
 
 type BusRead = components["schemas"]["BusRead"];
-type DepotRead = components["schemas"]["DepotRead"];
 
 const formSchema = z.object({
 	bus_no: z.string().min(1, "Bus number is required"),
 	capacity: z.number().min(1, "Capacity must be at least 1"),
-	depot_id: z.string().nullable().optional(),
 });
 
 interface EditBusDialogProps {
@@ -53,17 +44,11 @@ interface EditBusDialogProps {
 export function EditBusDialog({ open, onOpenChange, bus }: EditBusDialogProps) {
 	const queryClient = useQueryClient();
 
-	const { data: depots = [] } = useQuery({
-		queryKey: ["depots"],
-		queryFn: api.depots.list,
-	});
-
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			bus_no: "",
 			capacity: 50,
-			depot_id: null,
 		},
 	});
 
@@ -72,7 +57,6 @@ export function EditBusDialog({ open, onOpenChange, bus }: EditBusDialogProps) {
 			form.reset({
 				bus_no: bus.bus_no,
 				capacity: bus.capacity,
-				depot_id: bus.depot_id,
 			});
 		}
 	}, [bus, form]);
@@ -80,15 +64,10 @@ export function EditBusDialog({ open, onOpenChange, bus }: EditBusDialogProps) {
 	const mutation = useMutation({
 		mutationFn: (values: z.infer<typeof formSchema>) => {
 			if (!bus) throw new Error("No bus selected");
-			const payload = {
-				...values,
-				depot_id: values.depot_id === "unassigned" ? null : values.depot_id,
-			};
-			return api.buses.update(bus.id, payload);
+			return api.buses.update(bus.id, values);
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["buses"] });
-			queryClient.invalidateQueries({ queryKey: ["depots"] });
 			toast.success("Bus updated successfully");
 			onOpenChange(false);
 		},
@@ -140,36 +119,6 @@ export function EditBusDialog({ open, onOpenChange, bus }: EditBusDialogProps) {
 											}
 										/>
 									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
-							name="depot_id"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Depot</FormLabel>
-									<Select
-										onValueChange={(value) =>
-											field.onChange(value === "unassigned" ? null : value)
-										}
-										value={field.value || "unassigned"}
-									>
-										<FormControl>
-											<SelectTrigger>
-												<SelectValue placeholder="Select a depot" />
-											</SelectTrigger>
-										</FormControl>
-										<SelectContent>
-											<SelectItem value="unassigned">Unassigned</SelectItem>
-											{depots.map((depot: DepotRead) => (
-												<SelectItem key={depot.id} value={depot.id}>
-													{depot.name}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
 									<FormMessage />
 								</FormItem>
 							)}

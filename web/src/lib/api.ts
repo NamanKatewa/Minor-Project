@@ -91,6 +91,11 @@ export const api = {
 				method: "PUT",
 				body: JSON.stringify(data),
 			}),
+		bulkCreate: (data: components["schemas"]["DepotCreate"][]) =>
+			fetcher<{ count: number }>("/depots/bulk", {
+				method: "POST",
+				body: JSON.stringify(data),
+			}),
 	},
 	routes: {
 		build: (stopIds?: string[]) =>

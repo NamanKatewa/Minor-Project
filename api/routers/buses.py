@@ -1,15 +1,12 @@
 """Buses CRUD router"""
 
-import csv
-import io
 from uuid import UUID
-from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_db
-from sqlalchemy.orm import joinedload
-from models import Bus, Depot
+from models import Bus
 from schemas import BusCreate, BusUpdate, BusRead, BusImport, BusWithDepot
 
 router = APIRouter(prefix="/api/buses", tags=["buses"])
@@ -20,7 +17,7 @@ async def list_buses(
     depot_id: UUID | None = None,
     session: AsyncSession = Depends(get_db),
 ):
-    query = select(Bus).options(joinedload(Bus.depot))
+    query = select(Bus)
     if depot_id:
         query = query.where(Bus.depot_id == depot_id)
     result = await session.execute(query)
@@ -29,8 +26,7 @@ async def list_buses(
     response = []
     for bus in buses:
         item = BusWithDepot.model_validate(bus)
-        if bus.depot:
-            item.depot_name = bus.depot.name
+        item.depot_name = None
         response.append(item)
     return response
 
@@ -94,44 +90,16 @@ async def delete_all_buses(session: AsyncSession = Depends(get_db)):
 async def bulk_create_buses(
     buses: list[BusImport], session: AsyncSession = Depends(get_db)
 ):
-    """Bulk create buses with optimized depot handling"""
+    """Bulk create buses"""
     if not buses:
-        return {"created": 0, "depots_created": 0}
+        return {"created": 0}
 
-    # 1. Extract unique depot names
-    depot_names = {b.depot_name for b in buses if b.depot_name}
-    
-    # 2. Fetch existing depots
-    existing_depots_result = await session.execute(
-        select(Depot).where(Depot.name.in_(depot_names))
-    )
-    existing_depots = existing_depots_result.scalars().all()
-    depot_map = {d.name: d.id for d in existing_depots}
-    
-    # 3. Identify and create missing depots
-    missing_depot_names = depot_names - set(depot_map.keys())
-    new_depots = [Depot(name=name) for name in missing_depot_names]
-    
-    if new_depots:
-        session.add_all(new_depots)
-        await session.flush()  # to get IDs
-        for depot in new_depots:
-            depot_map[depot.name] = depot.id
-            
-    # 4. Create buses
     new_buses = [
-        Bus(
-            bus_no=bus.bus_no,
-            capacity=bus.capacity,
-            depot_id=depot_map.get(bus.depot_name) if bus.depot_name else None
-        )
+        Bus(bus_no=bus.bus_no, capacity=bus.capacity)
         for bus in buses
     ]
-    
+
     session.add_all(new_buses)
     await session.commit()
-    
-    return {
-        "created": len(new_buses),
-        "depots_created": len(new_depots)
-    }
+
+    return {"created": len(new_buses)}

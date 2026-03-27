@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import type { ColumnDef, Row } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import { Edit, Loader2, Trash2 } from "lucide-react";
 import Papa from "papaparse";
 import { useMemo, useState } from "react";
@@ -25,14 +25,15 @@ import { EditBusDialog } from "./_components/edit-bus-dialog";
 import { ImportBusesDialog } from "./_components/import-buses-dialog";
 
 type BusRead = components["schemas"]["BusRead"];
-type BusImport = components["schemas"]["BusImport"];
 
 interface BusWithDepot extends BusRead {
 	depot_name?: string | null;
 }
 
-interface AugmentedBusImport extends BusImport {
+interface AugmentedBusImport {
 	id: string;
+	bus_no: string;
+	capacity: number;
 	validationStatus: "valid" | "invalid";
 	validationErrors: string[];
 }
@@ -97,7 +98,6 @@ export default function BusesDataPage() {
 	interface CsvRow {
 		bus_no?: string;
 		capacity?: string;
-		depot_name?: string;
 	}
 
 	const handleDrop = (file: File) => {
@@ -125,7 +125,6 @@ export default function BusesDataPage() {
 							id: `temp-${index}`,
 							bus_no: row.bus_no?.trim() || "",
 							capacity,
-							depot_name: row.depot_name?.trim() || null,
 							validationStatus: status,
 							validationErrors: errors,
 						};
@@ -158,10 +157,9 @@ export default function BusesDataPage() {
 	const confirmImport = () => {
 		const validBuses = validatedPendingBuses
 			.filter((b) => b.validationStatus === "valid")
-			.map(({ bus_no, capacity, depot_name }) => ({
+			.map(({ bus_no, capacity }) => ({
 				bus_no,
 				capacity,
-				depot_name,
 			}));
 
 		bulkCreateMutation.mutate(validBuses);
@@ -175,14 +173,6 @@ export default function BusesDataPage() {
 		{
 			accessorKey: "capacity",
 			header: "Capacity",
-		},
-		{
-			accessorKey: "depot_name",
-			header: "Depot",
-			cell: ({ row }: { row: Row<BusWithDepot> }) =>
-				row.original.depot_name || (
-					<span className="text-muted-foreground italic">Unassigned</span>
-				),
 		},
 		{
 			id: "actions",
@@ -216,10 +206,6 @@ export default function BusesDataPage() {
 		{
 			accessorKey: "capacity",
 			header: "Capacity",
-		},
-		{
-			accessorKey: "depot_name",
-			header: "Depot",
 		},
 		{
 			header: "Status",
@@ -270,7 +256,7 @@ export default function BusesDataPage() {
 					<CardHeader>
 						<CardTitle>Import Buses</CardTitle>
 						<CardDescription>
-							Upload CSV (Header mapping: bus_no, capacity, depot_name)
+							Upload CSV (Header mapping: bus_no, capacity)
 						</CardDescription>
 					</CardHeader>
 					<CardContent>
