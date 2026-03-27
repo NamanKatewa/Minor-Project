@@ -20,9 +20,9 @@ class Settings(BaseSettings):
     campus_lat: float = 28.26
     campus_lon: float = 77.07
     max_bus_capacity: int = 50
-    max_ride_time_min: int = 120
+    max_ride_time_min: int = 350
     arrival_deadline: str = "08:45"
-    optimization_timeout_sec: int = 60
+    optimization_timeout_sec: int = 120
 
     @computed_field
     @property

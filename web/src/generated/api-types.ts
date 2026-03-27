@@ -610,6 +610,14 @@ export interface components {
 			bus_no: string;
 			/** Capacity */
 			capacity: number;
+			/** Depot Id */
+			depot_id: string;
+			/** Depot Name */
+			depot_name?: string | null;
+			/** Depot Lat */
+			depot_lat: number;
+			/** Depot Lon */
+			depot_lon: number;
 			/** Stops */
 			stops: components["schemas"]["RouteStop"][];
 			/** Total Students */

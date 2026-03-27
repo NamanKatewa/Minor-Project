@@ -13,6 +13,7 @@ from schemas import (
     OptimizationListResponse,
     OptimizationSummary,
     OptimizationStats,
+    BusRoute,
 )
 from services.optimizer import optimizer_service
 
@@ -183,17 +184,21 @@ def _format_solution_response(solution: Solution) -> OptimizationResponse:
     # Parse routes with proper typing
     formatted_routes = []
     for route in routes_data:
-        formatted_route = {
-            "bus_id": route["bus_id"],
-            "bus_no": route["bus_no"],
-            "capacity": route["capacity"],
-            "stops": route["stops"],
-            "total_students": route["total_students"],
-            "total_distance_km": route["total_distance_km"],
-            "total_time_min": route["total_time_min"],
-            "capacity_utilization": route["capacity_utilization"],
-            "warnings": route.get("warnings", []),
-        }
+        formatted_route = BusRoute(
+            bus_id=route["bus_id"],
+            bus_no=route["bus_no"],
+            capacity=route["capacity"],
+            depot_id=route.get("depot_id") or route.get("depot_id", ""),
+            depot_name=route.get("depot_name"),
+            depot_lat=route.get("depot_lat", 0.0),
+            depot_lon=route.get("depot_lon", 0.0),
+            stops=route["stops"],
+            total_students=route["total_students"],
+            total_distance_km=route["total_distance_km"],
+            total_time_min=route["total_time_min"],
+            capacity_utilization=route["capacity_utilization"],
+            warnings=route.get("warnings", []),
+        )
         formatted_routes.append(formatted_route)
     
     # Parse stats

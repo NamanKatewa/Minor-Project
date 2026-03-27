@@ -7,6 +7,7 @@ import {
 	Bus,
 	Clock,
 	Coins,
+	MapPin,
 	Route,
 	Users,
 	XCircle,
@@ -317,6 +318,13 @@ function RouteCard({ route, index }: { route: BusRoute; index: number }) {
 						</Badge>
 					</div>
 				</div>
+			</div>
+
+			{/* Depot Info */}
+			<div className="mb-3 flex items-center gap-2 rounded bg-muted/50 p-2 text-sm">
+				<MapPin className="h-4 w-4 text-muted-foreground" />
+				<span className="text-muted-foreground">Depot:</span>
+				<span className="font-medium">{route.depot_name || "Unknown"}</span>
 			</div>
 
 			{route.warnings.length > 0 && (

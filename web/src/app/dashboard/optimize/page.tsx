@@ -57,7 +57,7 @@ export default function OptimizePage() {
 	const [scenarioType, setScenarioType] = useState("strict");
 	const [semester, setSemester] = useState("");
 	const [fuelCostPerKm, setFuelCostPerKm] = useState("50");
-	const [maxRideTime, setMaxRideTime] = useState("120");
+	const [maxRideTime, setMaxRideTime] = useState("350");
 	const [arrivalDeadline, setArrivalDeadline] = useState("08:45");
 	const [lastError, setLastError] = useState<OptimizationError | null>(null);
 

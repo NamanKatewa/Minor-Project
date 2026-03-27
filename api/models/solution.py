@@ -4,7 +4,6 @@ from uuid import UUID, uuid4
 from datetime import datetime
 from sqlalchemy import String, Float, Integer, DateTime, JSON, Uuid
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy.sql import func
 from database import Base
 
 
@@ -16,7 +15,7 @@ class DistanceMatrix(Base):
     stop_count: Mapped[int | None] = mapped_column(Integer, nullable=True)
     build_time_seconds: Mapped[float | None] = mapped_column(Float, nullable=True)
     stop_ids_json: Mapped[dict | None] = mapped_column(JSON, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now())
 
 
 class Solution(Base):
@@ -27,4 +26,4 @@ class Solution(Base):
     routes_json: Mapped[dict] = mapped_column(JSON)
     stats_json: Mapped[dict] = mapped_column(JSON)
     cost_estimate: Mapped[float | None] = mapped_column(Float, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now())

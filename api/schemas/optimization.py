@@ -46,6 +46,12 @@ class BusRoute(BaseModel):
     bus_no: str
     capacity: int
     
+    # Depot info (assigned by algorithm)
+    depot_id: str  # Changed from UUID to str for flexibility
+    depot_name: str | None = None
+    depot_lat: float
+    depot_lon: float
+    
     # Route sequence (ordered stops)
     stops: list[RouteStop]
     
