@@ -34,11 +34,6 @@ export default function DashboardPage() {
 		queryFn: api.dashboard.summary,
 	});
 
-	const { data: stops } = useQuery({
-		queryKey: ["stops", "active"],
-		queryFn: () => api.stops.list(),
-	});
-
 	if (isLoadingSummary) {
 		return <DashboardSkeleton />;
 	}
@@ -51,6 +46,7 @@ export default function DashboardPage() {
 		total_fleet_capacity: 0,
 		semesters: [],
 		latest_matrix: null,
+		stops: [],
 	};
 
 	// Data readiness checks
@@ -118,7 +114,7 @@ export default function DashboardPage() {
 				<div className="lg:col-span-3">
 					<div className="overflow-hidden rounded-xl border bg-card shadow-sm">
 						<div className="h-[500px]">
-							<StopsMap isEditMode={false} stops={stops || []} />
+							<StopsMap isEditMode={false} stops={s.stops || []} />
 						</div>
 					</div>
 				</div>

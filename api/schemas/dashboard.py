@@ -22,3 +22,4 @@ class DashboardSummary(BaseModel):
     total_fleet_capacity: int
     semesters: List[str]
     latest_matrix: Optional[DashboardMatrixInfo]
+    stops: List[DashboardStop] = []

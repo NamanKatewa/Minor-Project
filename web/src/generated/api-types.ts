@@ -420,7 +420,7 @@ export interface paths {
 		/**
 		 * Get Dashboard Summary
 		 * @description Get high-level summary statistics for the dashboard.
-		 *     Optimized to use COUNT/SUM queries instead of fetching all rows.
+		 *     Optimized to use minimal queries.
 		 */
 		get: operations["get_dashboard_summary_api_dashboard_summary_get"];
 		put?: never;
@@ -680,6 +680,17 @@ export interface components {
 			 */
 			created_at: string;
 		};
+		/** DashboardStop */
+		DashboardStop: {
+			/** Id */
+			id: string;
+			/** Name */
+			name: string;
+			/** Lat */
+			lat: number;
+			/** Lon */
+			lon: number;
+		};
 		/** DashboardSummary */
 		DashboardSummary: {
 			/** Stops Count */
@@ -695,6 +706,11 @@ export interface components {
 			/** Semesters */
 			semesters: string[];
 			latest_matrix: components["schemas"]["DashboardMatrixInfo"] | null;
+			/**
+			 * Stops
+			 * @default []
+			 */
+			stops: components["schemas"]["DashboardStop"][];
 		};
 		/** DemandCreate */
 		DemandCreate: {

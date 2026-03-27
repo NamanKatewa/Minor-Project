@@ -5,18 +5,29 @@ import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import { leafletLayer } from "protomaps-leaflet";
-import type { components } from "~/generated/api-types";
 
 const NCR_CENTER: [number, number] = [28.405, 77.075];
 const DEFAULT_ZOOM = 10;
 const NCR_BOUNDS = L.latLngBounds([27.83, 76.5], [28.98, 77.65]);
 
-type StopRead = components["schemas"]["StopRead"];
-
 interface StopsMapProps {
-	stops: StopRead[];
+	stops: {
+		id: string;
+		name: string;
+		lat?: number | null;
+		lon?: number | null;
+		stop_code?: string | null;
+		locality?: string | null;
+		zone?: string | null;
+		active?: boolean;
+	}[];
 	className?: string;
-	onStopClick?: (stop: StopRead) => void;
+	onStopClick?: (stop: {
+		id: string;
+		name: string;
+		lat?: number | null;
+		lon?: number | null;
+	}) => void;
 	selectedStopId?: string | null;
 	isEditMode?: boolean;
 	onStopMove?: (stopId: string, lat: number, lng: number) => void;
