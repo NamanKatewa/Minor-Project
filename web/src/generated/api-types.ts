@@ -1153,6 +1153,10 @@ export interface components {
 			name: string;
 			/** Reason */
 			reason: string;
+			/** Lat */
+			lat?: number | null;
+			/** Lon */
+			lon?: number | null;
 		};
 		/** UserResponse */
 		UserResponse: {

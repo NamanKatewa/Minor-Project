@@ -13,6 +13,7 @@ import {
 	Users,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { DataTable } from "~/components/data-table";
@@ -45,6 +46,7 @@ import { api } from "~/lib/api";
 type OptimizationSummary = components["schemas"]["OptimizationSummary"];
 
 export default function SolutionsPage() {
+	const router = useRouter();
 	const queryClient = useQueryClient();
 	const [solutionToDelete, setSolutionToDelete] =
 		useState<OptimizationSummary | null>(null);
@@ -160,7 +162,7 @@ export default function SolutionsPage() {
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align="end">
 						<DropdownMenuItem asChild>
-							<Link href={`/solutions/${row.original.id}`}>
+							<Link href={`/dashboard/solutions/${row.original.id}`}>
 								<Eye className="mr-2 h-4 w-4" />
 								View Details
 							</Link>
@@ -209,7 +211,9 @@ export default function SolutionsPage() {
 						data={solutionsData?.solutions || []}
 						enablePagination={true}
 						filterColumn="scenario_type"
+						getRowId={(row) => row.id}
 						isLoading={isLoading}
+						onRowClick={(row) => router.push(`/dashboard/solutions/${row.id}`)}
 					/>
 				</CardContent>
 			</Card>

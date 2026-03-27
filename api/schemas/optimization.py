@@ -70,6 +70,8 @@ class UnassignedStop(BaseModel):
     stop_id: str
     name: str
     reason: str
+    lat: float | None = None
+    lon: float | None = None
 
 
 class OptimizationStats(BaseModel):

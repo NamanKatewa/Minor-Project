@@ -16,6 +16,7 @@ import { nanoid } from "nanoid";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import {
@@ -25,13 +26,12 @@ import {
 	CardHeader,
 	CardTitle,
 } from "~/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import type { components } from "~/generated/api-types";
 import { api } from "~/lib/api";
 
 type BusRoute = components["schemas"]["BusRoute"];
 
-const _RouteMap = dynamic(() => import("~/components/cluster-map"), {
+const SolutionMap = dynamic(() => import("~/components/solution-map"), {
 	ssr: false,
 	loading: () => (
 		<div className="h-full w-full animate-pulse rounded-md bg-muted" />
@@ -41,12 +41,25 @@ const _RouteMap = dynamic(() => import("~/components/cluster-map"), {
 export default function SolutionDetailPage() {
 	const params = useParams();
 	const solutionId = params.id as string;
+	const [selectedRouteIndex, setSelectedRouteIndex] = useState<number | null>(
+		null,
+	);
 
 	const { data: solution, isLoading } = useQuery({
 		queryKey: ["solution", solutionId],
 		queryFn: () => api.optimization.get(solutionId),
 		enabled: !!solutionId,
 	});
+
+	// Scroll selected route into view
+	useEffect(() => {
+		if (selectedRouteIndex !== null) {
+			const element = document.getElementById(`route-${selectedRouteIndex}`);
+			if (element) {
+				element.scrollIntoView({ behavior: "smooth", block: "nearest" });
+			}
+		}
+	}, [selectedRouteIndex]);
 
 	const formatDate = (dateStr: string) => {
 		return new Date(dateStr).toLocaleString("en-IN", {
@@ -235,44 +248,69 @@ export default function SolutionDetailPage() {
 				</Card>
 			)}
 
-			{/* Routes Tabs */}
-			<Card>
-				<CardHeader>
-					<CardTitle>Route Details</CardTitle>
-					<CardDescription>
-						{solution.routes.length} routes generated with an average
-						utilization of {solution.stats.avg_utilization.toFixed(1)}%
-					</CardDescription>
-				</CardHeader>
-				<CardContent>
-					<Tabs className="space-y-4" defaultValue="routes">
-						<TabsList>
-							<TabsTrigger value="routes">Route List</TabsTrigger>
-							<TabsTrigger value="map">Route Map</TabsTrigger>
-						</TabsList>
-
-						<TabsContent className="space-y-4" value="routes">
+			{/* Routes Overview */}
+			<div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+				{/* Route List */}
+				<div className="flex flex-col gap-4 lg:col-span-4">
+					<Card className="flex flex-1 flex-col overflow-hidden">
+						<CardHeader>
+							<CardTitle>Route List</CardTitle>
+							<CardDescription>
+								{solution.routes.length} routes generated
+							</CardDescription>
+						</CardHeader>
+						<CardContent className="max-h-[700px] flex-1 space-y-4 overflow-y-auto">
 							{solution.routes.map((route, idx) => (
-								<RouteCard index={idx} key={route.bus_id} route={route} />
+								<RouteCard
+									index={idx}
+									isSelected={selectedRouteIndex === idx}
+									key={`${route.bus_id}-${idx}`}
+									onSelect={setSelectedRouteIndex}
+									route={route}
+								/>
 							))}
-						</TabsContent>
+						</CardContent>
+					</Card>
+				</div>
 
-						<TabsContent value="map">
-							<div className="h-[500px] rounded-lg border">
-								{/* TODO: Create a proper route map component */}
-								<div className="flex h-full items-center justify-center text-muted-foreground">
-									Route map visualization coming soon
-								</div>
+				{/* Route Map */}
+				<div className="lg:col-span-8">
+					<Card className="flex h-full flex-col overflow-hidden">
+						<CardHeader>
+							<CardTitle>Route Map</CardTitle>
+							<CardDescription>
+								Interactive visualization of all routes
+							</CardDescription>
+						</CardHeader>
+						<CardContent className="flex-1 p-0">
+							<div className="h-[700px] w-full">
+								<SolutionMap
+									className="h-full w-full"
+									onRouteSelect={setSelectedRouteIndex}
+									routes={solution.routes}
+									selectedRouteIndex={selectedRouteIndex}
+									unassignedStops={solution.stats.unassigned_stops}
+								/>
 							</div>
-						</TabsContent>
-					</Tabs>
-				</CardContent>
-			</Card>
+						</CardContent>
+					</Card>
+				</div>
+			</div>
 		</div>
 	);
 }
 
-function RouteCard({ route, index }: { route: BusRoute; index: number }) {
+function RouteCard({
+	route,
+	index,
+	isSelected,
+	onSelect,
+}: {
+	route: BusRoute;
+	index: number;
+	isSelected: boolean;
+	onSelect: (index: number | null) => void;
+}) {
 	const colors = [
 		"bg-red-500",
 		"bg-blue-500",
@@ -286,29 +324,38 @@ function RouteCard({ route, index }: { route: BusRoute; index: number }) {
 	const color = colors[index % colors.length];
 
 	return (
-		<div className="rounded-lg border p-4">
-			<div className="mb-4 flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<div className={`h-3 w-3 rounded-full ${color}`} />
-					<div>
-						<h3 className="font-semibold">Bus {route.bus_no}</h3>
-						<p className="text-muted-foreground text-sm">
+		<button
+			className={`w-full cursor-pointer rounded-lg border p-4 text-left transition-all ${
+				isSelected
+					? "ring-2 ring-primary ring-offset-2"
+					: "hover:border-primary/50"
+			}`}
+			id={`route-${index}`}
+			onClick={() => onSelect(isSelected ? null : index)}
+			type="button"
+		>
+			<span className="mb-4 flex items-center justify-between">
+				<span className="flex items-center gap-3">
+					<span className={`h-3 w-3 rounded-full ${color}`} />
+					<span>
+						<span className="block font-semibold">Bus {route.bus_no}</span>
+						<span className="block text-muted-foreground text-sm">
 							Capacity: {route.total_students}/{route.capacity} students
-						</p>
-					</div>
-				</div>
-				<div className="text-right">
-					<div className="flex items-center gap-4 text-sm">
-						<div className="flex items-center gap-1">
+						</span>
+					</span>
+				</span>
+				<span className="text-right">
+					<span className="flex items-center gap-4 text-sm">
+						<span className="flex items-center gap-1">
 							<Route className="h-4 w-4 text-muted-foreground" />
 							<span>{route.total_distance_km.toFixed(1)} km</span>
-						</div>
-						<div className="flex items-center gap-1">
+						</span>
+						<span className="flex items-center gap-1">
 							<Clock className="h-4 w-4 text-muted-foreground" />
 							<span>{route.total_time_min} min</span>
-						</div>
-					</div>
-					<div className="mt-1">
+						</span>
+					</span>
+					<span className="mt-1 block">
 						<Badge
 							variant={
 								route.capacity_utilization > 90 ? "destructive" : "secondary"
@@ -316,48 +363,50 @@ function RouteCard({ route, index }: { route: BusRoute; index: number }) {
 						>
 							{route.capacity_utilization.toFixed(0)}% utilized
 						</Badge>
-					</div>
-				</div>
-			</div>
+					</span>
+				</span>
+			</span>
 
 			{/* Depot Info */}
-			<div className="mb-3 flex items-center gap-2 rounded bg-muted/50 p-2 text-sm">
+			<span className="mb-3 flex items-center gap-2 rounded bg-muted/50 p-2 text-sm">
 				<MapPin className="h-4 w-4 text-muted-foreground" />
 				<span className="text-muted-foreground">Depot:</span>
 				<span className="font-medium">{route.depot_name || "Unknown"}</span>
-			</div>
+			</span>
 
 			{route.warnings.length > 0 && (
-				<div className="mb-3 flex items-center gap-2 rounded bg-yellow-50 p-2 text-sm text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-300">
+				<span className="mb-3 flex items-center gap-2 rounded bg-yellow-50 p-2 text-sm text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-300">
 					<AlertTriangle className="h-4 w-4" />
 					{route.warnings.join(", ")}
-				</div>
+				</span>
 			)}
 
-			<div className="space-y-2">
+			<span className="block space-y-2">
 				{route.stops.map((stop, stopIdx) => (
-					<div
+					<span
 						className="flex items-center gap-3 rounded-md bg-muted/50 p-2"
-						key={stop.stop_id}
+						key={`${stop.stop_id}-${stopIdx}`}
 					>
-						<div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted font-medium text-xs">
+						<span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted font-medium text-xs">
 							{stopIdx + 1}
-						</div>
-						<div className="min-w-0 flex-1">
-							<p className="truncate font-medium text-sm">{stop.stop_name}</p>
-							<p className="text-muted-foreground text-xs">
+						</span>
+						<span className="min-w-0 flex-1">
+							<span className="block truncate font-medium text-sm">
+								{stop.stop_name}
+							</span>
+							<span className="block text-muted-foreground text-xs">
 								{stop.stop_code} • {stop.students_boarding} students
-							</p>
-						</div>
-						<div className="text-right text-sm">
-							<p className="font-medium">{stop.arrival_time}</p>
-							<p className="text-muted-foreground text-xs">
+							</span>
+						</span>
+						<span className="text-right text-sm">
+							<span className="block font-medium">{stop.arrival_time}</span>
+							<span className="block text-muted-foreground text-xs">
 								+{stop.cumulative_time_min} min
-							</p>
-						</div>
-					</div>
+							</span>
+						</span>
+					</span>
 				))}
-			</div>
-		</div>
+			</span>
+		</button>
 	);
 }

@@ -714,7 +714,9 @@ class OptimizerService:
                 unassigned.append({
                     "stop_id": stop_data["id"],
                     "name": stop_data["name"],
-                    "reason": "Could not fit in any route within constraints"
+                    "reason": "Could not fit in any route within constraints",
+                    "lat": stop_data["lat"],
+                    "lon": stop_data["lon"]
                 })
         
         # Stats
