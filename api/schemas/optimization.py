@@ -147,6 +147,11 @@ class OptimizationListResponse(BaseModel):
     offset: int
 
 
+class OptimizationHistoryResponse(BaseModel):
+    """Simplified response for the solutions history dashboard"""
+    solutions_data: OptimizationListResponse
+
+
 # ============================================================================
 # UTILITY SCHEMAS
 # ============================================================================

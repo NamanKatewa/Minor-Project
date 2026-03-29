@@ -2,7 +2,7 @@
 
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy import select, text, distinct, desc
+from sqlalchemy import select, text, distinct, desc, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_db
@@ -15,10 +15,70 @@ from schemas import (
     OptimizationStats,
     BusRoute,
     OptimizationReadyResponse,
+    OptimizationHistoryResponse,
 )
 from services.optimizer import optimizer_service
 
 router = APIRouter(prefix="/api/optimization", tags=["optimization"])
+
+
+@router.get("/history", response_model=OptimizationHistoryResponse)
+async def get_optimization_history(
+    limit: int = 20,
+    offset: int = 0,
+    scenario_type: str | None = None,
+    session: AsyncSession = Depends(get_db)
+):
+    """
+    Get optimization history with minimal data transfer.
+    """
+    # Optimized query: only select metadata and summary stats from JSON
+    # This avoids loading the massive routes_json blob for every history item
+    query = select(
+        Solution.id,
+        Solution.scenario_type,
+        Solution.cost_estimate,
+        Solution.created_at,
+        Solution.stats_json
+    )
+    
+    if scenario_type:
+        query = query.where(Solution.scenario_type == scenario_type)
+    
+    # Run count and data fetch sequentially (SQLAlchemy sessions are not thread-safe for parallel calls)
+    count_res = await session.execute(select(func.count()).select_from(query.subquery()))
+    total_count = count_res.scalar() or 0
+    
+    result = await session.execute(
+        query.order_by(Solution.created_at.desc()).limit(limit).offset(offset)
+    )
+    solutions = result.all()
+
+    solution_summaries = []
+    for s in solutions:
+        stats_json = s.stats_json or {}
+        solution_summaries.append(
+            OptimizationSummary(
+                id=s.id,
+                scenario_type=s.scenario_type,
+                total_buses=stats_json.get("total_buses_used", 0),
+                total_distance_km=stats_json.get("total_distance_km", 0.0),
+                total_students=stats_json.get("total_students_assigned", 0),
+                cost_estimate=s.cost_estimate or 0.0,
+                coverage_percentage=stats_json.get("coverage_percentage", 0.0),
+                has_warnings=len(stats_json.get("global_warnings", [])) > 0,
+                created_at=s.created_at,
+            )
+        )
+
+    return OptimizationHistoryResponse(
+        solutions_data=OptimizationListResponse(
+            solutions=solution_summaries,
+            count=total_count,
+            limit=limit,
+            offset=offset
+        )
+    )
 
 
 @router.get("/ready", response_model=OptimizationReadyResponse)

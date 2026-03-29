@@ -136,6 +136,10 @@ export const api = {
 			fetcher<components["schemas"]["DashboardSummary"]>("/dashboard/summary"),
 	},
 	optimization: {
+		history: (limit = 20, offset = 0, scenario_type?: string | null) =>
+			fetcher<components["schemas"]["OptimizationHistoryResponse"]>(
+				`/optimization/history?limit=${limit}&offset=${offset}${scenario_type ? `&scenario_type=${scenario_type}` : ""}`,
+			),
 		ready: () =>
 			fetcher<components["schemas"]["OptimizationReadyResponse"]>(
 				"/optimization/ready",

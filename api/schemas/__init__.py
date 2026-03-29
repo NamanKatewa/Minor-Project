@@ -13,4 +13,5 @@ from .optimization import (
     OptimizationStats,
     UnassignedStop,
     OptimizationReadyResponse,
+    OptimizationHistoryResponse,
 )

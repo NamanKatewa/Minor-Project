@@ -438,6 +438,26 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
+	"/api/optimization/history": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Get Optimization History
+		 * @description Get optimization history with minimal data transfer.
+		 */
+		get: operations["get_optimization_history_api_optimization_history_get"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
 	"/api/optimization/ready": {
 		parameters: {
 			query?: never;
@@ -921,6 +941,13 @@ export interface components {
 			 * Format: date-time
 			 */
 			created_at: string;
+		};
+		/**
+		 * OptimizationHistoryResponse
+		 * @description Simplified response for the solutions history dashboard
+		 */
+		OptimizationHistoryResponse: {
+			solutions_data: components["schemas"]["OptimizationListResponse"];
 		};
 		/**
 		 * OptimizationListResponse
@@ -2365,6 +2392,39 @@ export interface operations {
 				};
 				content: {
 					"application/json": components["schemas"]["DashboardSummary"];
+				};
+			};
+		};
+	};
+	get_optimization_history_api_optimization_history_get: {
+		parameters: {
+			query?: {
+				limit?: number;
+				offset?: number;
+				scenario_type?: string | null;
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["OptimizationHistoryResponse"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
 				};
 			};
 		};

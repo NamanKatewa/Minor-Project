@@ -51,9 +51,9 @@ export default function SolutionsPage() {
 	const [solutionToDelete, setSolutionToDelete] =
 		useState<OptimizationSummary | null>(null);
 
-	const { data: solutionsData, isLoading } = useQuery({
-		queryKey: ["solutions"],
-		queryFn: () => api.optimization.listSolutions(50, 0),
+	const { data: historyData, isLoading } = useQuery({
+		queryKey: ["solutions", "history"],
+		queryFn: () => api.optimization.history(50, 0),
 	});
 
 	const deleteMutation = useMutation({
@@ -185,30 +185,34 @@ export default function SolutionsPage() {
 			{/* Header */}
 			<div className="flex items-center justify-between">
 				<div>
-					<h2 className="font-bold text-3xl tracking-tight">
+					<h2 className="font-bold text-3xl uppercase tracking-tight">
 						Optimization History
 					</h2>
-					<p className="text-muted-foreground">
+					<p className="text-muted-foreground text-xs uppercase tracking-widest">
 						View and manage past optimization runs
 					</p>
 				</div>
 				<Link href="/dashboard/optimize">
-					<Button>New Optimization</Button>
+					<Button className="uppercase tracking-widest">
+						New Optimization
+					</Button>
 				</Link>
 			</div>
 
 			{/* Solutions Table */}
 			<Card>
 				<CardHeader>
-					<CardTitle>All Solutions</CardTitle>
-					<CardDescription>
-						{solutionsData?.solutions?.length || 0} optimization runs found
+					<CardTitle className="uppercase tracking-widest">
+						All Solutions
+					</CardTitle>
+					<CardDescription className="text-xs uppercase">
+						{historyData?.solutions_data.count || 0} optimization runs found
 					</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<DataTable
 						columns={columns}
-						data={solutionsData?.solutions || []}
+						data={historyData?.solutions_data.solutions || []}
 						enablePagination={true}
 						filterColumn="scenario_type"
 						getRowId={(row) => row.id}
