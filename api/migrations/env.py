@@ -19,7 +19,8 @@ from database import Base
 from models import (
     User, Account, Session, VerificationToken,
     Stop, Bus, Depot, Demand,
-    Solution, DistanceMatrix
+    RoutePlan, DistanceMatrix,
+
 )
 
 # this is the Alembic Config object, which provides

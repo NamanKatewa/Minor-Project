@@ -32,14 +32,14 @@ import { api } from "~/lib/api";
 
 type BusRoute = components["schemas"]["BusRoute"];
 
-const SolutionMap = dynamic(() => import("~/components/solution-map"), {
+const RoutesMap = dynamic(() => import("~/components/solution-map"), {
 	ssr: false,
 	loading: () => (
 		<div className="h-full w-full animate-pulse rounded-md bg-muted" />
 	),
 });
 
-export default function SolutionDetailPage() {
+export default function RouteDetailPage() {
 	const params = useParams();
 	const solutionId = params.id as string;
 	const [selectedRouteIndex, setSelectedRouteIndex] = useState<number | null>(
@@ -47,8 +47,8 @@ export default function SolutionDetailPage() {
 	);
 
 	const { data: solution, isLoading } = useQuery({
-		queryKey: ["solution", solutionId],
-		queryFn: () => api.optimization.get(solutionId),
+		queryKey: ["route-plan", solutionId],
+		queryFn: () => api.routes.get(solutionId),
 		enabled: !!solutionId,
 	});
 
@@ -105,7 +105,7 @@ export default function SolutionDetailPage() {
 			{/* Header */}
 			<div className="flex items-center justify-between">
 				<div className="flex items-center gap-4">
-					<Link href="/dashboard/solutions">
+					<Link href="/dashboard/routes">
 						<Button size="icon" variant="outline">
 							<ArrowLeft className="h-4 w-4" />
 						</Button>
@@ -113,7 +113,7 @@ export default function SolutionDetailPage() {
 					<div>
 						<div className="flex items-center gap-2">
 							<h2 className="font-bold text-3xl uppercase tracking-tight">
-								Solution Overview
+								Route Plan Overview
 							</h2>
 							<Badge
 								variant={
@@ -236,7 +236,7 @@ export default function SolutionDetailPage() {
 						</CardHeader>
 						<CardContent className="flex-1 p-0">
 							<div className="h-[700px] w-full">
-								<SolutionMap
+								<RoutesMap
 									className="h-full w-full"
 									onRouteSelect={setSelectedRouteIndex}
 									routes={solution.routes}

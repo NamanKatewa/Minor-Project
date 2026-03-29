@@ -1,4 +1,4 @@
-"""Solution and DistanceMatrix models"""
+"""RoutePlan and DistanceMatrix models"""
 
 from uuid import UUID, uuid4
 from datetime import datetime
@@ -18,8 +18,8 @@ class DistanceMatrix(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now())
 
 
-class Solution(Base):
-    __tablename__ = "solutions"
+class RoutePlan(Base):
+    __tablename__ = "route_plans"
 
     id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, default=uuid4)
     scenario_type: Mapped[str] = mapped_column(String(50))

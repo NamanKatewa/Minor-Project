@@ -52,7 +52,7 @@ interface OptimizationError {
 	suggestions?: string[];
 }
 
-export default function OptimizePage() {
+export default function GenerateRoutesPage() {
 	const queryClient = useQueryClient();
 	const [scenarioType, setScenarioType] = useState("strict");
 	const [semester, setSemester] = useState("");
@@ -62,19 +62,19 @@ export default function OptimizePage() {
 	const [lastError, setLastError] = useState<OptimizationError | null>(null);
 
 	const { data: readyData, isLoading } = useQuery({
-		queryKey: ["optimization", "ready"],
-		queryFn: api.optimization.ready,
+		queryKey: ["generate-routes", "ready"],
+		queryFn: api.generateRoutes.ready,
 	});
 
 	const semesters = readyData?.semesters;
 
 	const optimizeMutation = useMutation({
-		mutationFn: api.optimization.run,
+		mutationFn: api.generateRoutes.run,
 		onSuccess: (data) => {
 			setLastError(null);
-			queryClient.invalidateQueries({ queryKey: ["solutions"] });
+			queryClient.invalidateQueries({ queryKey: ["routes"] });
 			toast.success(
-				`Optimization complete! Generated ${data.routes.length} routes covering ${data.stats.total_students_assigned} students.`,
+				`Route generation complete! Generated ${data.routes.length} routes covering ${data.stats.total_students_assigned} students.`,
 			);
 		},
 		onError: (error: Error) => {
@@ -129,11 +129,11 @@ export default function OptimizePage() {
 			{/* Header */}
 			<div className="flex items-center justify-between">
 				<div>
-					<h2 className="font-bold text-3xl tracking-tight">
-						Route Optimization
+					<h2 className="font-bold text-3xl uppercase tracking-tight">
+						Generate Routes
 					</h2>
-					<p className="text-muted-foreground">
-						Run the CVRPTW solver to generate optimal bus routes
+					<p className="text-muted-foreground text-xs uppercase tracking-widest">
+						Run the solver to create optimal bus routes
 					</p>
 				</div>
 			</div>
@@ -440,7 +440,7 @@ export default function OptimizePage() {
 								</div>
 							)}
 
-							<Link href={`/dashboard/solutions/${optimizeMutation.data.id}`}>
+							<Link href={`/dashboard/routes/${optimizeMutation.data.id}`}>
 								<Button className="w-full" variant="secondary">
 									View Full Solution Details
 								</Button>

@@ -97,74 +97,52 @@ export const api = {
 				body: JSON.stringify(data),
 			}),
 	},
-	routes: {
+	demandMap: {
 		analysis: (thresholdM?: number) =>
 			fetcher<components["schemas"]["RouteAnalysisResponse"]>(
-				`/routes/analysis${thresholdM ? `?threshold_m=${thresholdM}` : ""}`,
+				`/demand-map/analysis${thresholdM ? `?threshold_m=${thresholdM}` : ""}`,
 			),
-		build: (stopIds?: string[]) =>
-			fetcher<{
-				id: string;
-				stop_count: number;
-				build_time_seconds: number;
-				created_at: string;
-			}>("/routes/build", {
-				method: "POST",
-				body: JSON.stringify(stopIds ? { stop_ids: stopIds } : {}),
-			}),
-		latest: () =>
-			fetcher<{
-				id: string;
-				matrix_json: Record<string, unknown>;
-				stop_count: number | null;
-				build_time_seconds: number | null;
-				stop_ids_json: Record<string, unknown> | null;
-				created_at: string;
-			}>("/routes/latest"),
-		get: (id: string) =>
-			fetcher<{
-				id: string;
-				matrix_json: Record<string, unknown>;
-				stop_count: number | null;
-				build_time_seconds: number | null;
-				stop_ids_json: Record<string, unknown> | null;
-				created_at: string;
-			}>(`/routes/${id}`),
+		buildMatrix: (stopIds?: string[]) =>
+			fetcher<components["schemas"]["MatrixBuildResponse"]>(
+				"/demand-map/build-matrix",
+				{
+					method: "POST",
+					body: JSON.stringify(stopIds ? { stop_ids: stopIds } : {}),
+				},
+			),
+		latestMatrix: () =>
+			fetcher<components["schemas"]["MatrixRead"]>("/demand-map/latest-matrix"),
+		getMatrix: (id: string) =>
+			fetcher<components["schemas"]["MatrixRead"]>(`/demand-map/matrix/${id}`),
 	},
 	dashboard: {
 		summary: () =>
 			fetcher<components["schemas"]["DashboardSummary"]>("/dashboard/summary"),
 	},
-	optimization: {
-		history: (limit = 20, offset = 0, scenario_type?: string | null) =>
-			fetcher<components["schemas"]["OptimizationHistoryResponse"]>(
-				`/optimization/history?limit=${limit}&offset=${offset}${scenario_type ? `&scenario_type=${scenario_type}` : ""}`,
-			),
+	generateRoutes: {
 		ready: () =>
-			fetcher<components["schemas"]["OptimizationReadyResponse"]>(
-				"/optimization/ready",
+			fetcher<components["schemas"]["RouteGenerationReadyResponse"]>(
+				"/generate-routes/ready",
 			),
-		run: (data: components["schemas"]["OptimizationRequest"]) =>
-			fetcher<components["schemas"]["OptimizationResponse"]>(
-				"/optimization/run",
-				{
-					method: "POST",
-					body: JSON.stringify(data),
-				},
+		run: (data: components["schemas"]["RouteGenerationRequest"]) =>
+			fetcher<components["schemas"]["RoutePlanRead"]>("/generate-routes/run", {
+				method: "POST",
+				body: JSON.stringify(data),
+			}),
+	},
+	routes: {
+		history: (limit = 20, offset = 0, scenario_type?: string | null) =>
+			fetcher<components["schemas"]["RoutePlanHistoryResponse"]>(
+				`/routes/history?limit=${limit}&offset=${offset}${scenario_type ? `&scenario_type=${scenario_type}` : ""}`,
 			),
-		listSolutions: (limit = 20, offset = 0, scenario_type?: string | null) =>
-			fetcher<components["schemas"]["OptimizationListResponse"]>(
-				`/optimization/solutions?limit=${limit}&offset=${offset}${scenario_type ? `&scenario_type=${scenario_type}` : ""}`,
+		list: (limit = 20, offset = 0, scenario_type?: string | null) =>
+			fetcher<components["schemas"]["RoutePlanListResponse"]>(
+				`/routes?limit=${limit}&offset=${offset}${scenario_type ? `&scenario_type=${scenario_type}` : ""}`,
 			),
-		getLatest: () =>
-			fetcher<components["schemas"]["OptimizationResponse"]>(
-				"/optimization/solutions/latest",
-			),
+		latest: () =>
+			fetcher<components["schemas"]["RoutePlanRead"]>("/routes/latest"),
 		get: (id: string) =>
-			fetcher<components["schemas"]["OptimizationResponse"]>(
-				`/optimization/solutions/${id}`,
-			),
-		delete: (id: string) =>
-			fetcher(`/optimization/solutions/${id}`, { method: "DELETE" }),
+			fetcher<components["schemas"]["RoutePlanRead"]>(`/routes/${id}`),
+		delete: (id: string) => fetcher(`/routes/${id}`, { method: "DELETE" }),
 	},
 };

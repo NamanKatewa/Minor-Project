@@ -342,7 +342,7 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
-	"/api/routes/analysis": {
+	"/api/demand-map/analysis": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -350,14 +350,14 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Route Analysis
-		 * @description Get all data required for the Route Analysis dashboard in a single call.
+		 * Get Demand Analysis
+		 * @description Get all data required for the Demand Map dashboard in a single call.
 		 *     Combines:
 		 *     - Latest distance matrix
 		 *     - List of active stops
 		 *     - Clustering suggestions
 		 */
-		get: operations["get_route_analysis_api_routes_analysis_get"];
+		get: operations["get_demand_analysis_api_demand_map_analysis_get"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -366,7 +366,7 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
-	"/api/routes/build": {
+	"/api/demand-map/build-matrix": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -375,15 +375,18 @@ export interface paths {
 		};
 		get?: never;
 		put?: never;
-		/** Build Matrix */
-		post: operations["build_matrix_api_routes_build_post"];
+		/**
+		 * Build Demand Matrix
+		 * @description Build or rebuild the distance matrix for all active stops and depots.
+		 */
+		post: operations["build_demand_matrix_api_demand_map_build_matrix_post"];
 		delete?: never;
 		options?: never;
 		head?: never;
 		patch?: never;
 		trace?: never;
 	};
-	"/api/routes/latest": {
+	"/api/demand-map/latest-matrix": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -391,7 +394,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/** Get Latest Matrix */
-		get: operations["get_latest_matrix_api_routes_latest_get"];
+		get: operations["get_latest_matrix_api_demand_map_latest_matrix_get"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -400,7 +403,7 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
-	"/api/routes/{matrix_id}": {
+	"/api/demand-map/matrix/{matrix_id}": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -408,7 +411,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/** Get Matrix */
-		get: operations["get_matrix_api_routes__matrix_id__get"];
+		get: operations["get_matrix_api_demand_map_matrix__matrix_id__get"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -438,7 +441,7 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
-	"/api/optimization/history": {
+	"/api/generate-routes/ready": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -446,31 +449,11 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Optimization History
-		 * @description Get optimization history with minimal data transfer.
-		 */
-		get: operations["get_optimization_history_api_optimization_history_get"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/optimization/ready": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/**
-		 * Get Optimization Ready
-		 * @description Get all data needed to prepare for an optimization run in a single call.
+		 * Get Route Generation Ready
+		 * @description Get all data needed to prepare for a route generation run in a single call.
 		 *     Checks prerequisites like stops, buses, demand, and matrix status.
 		 */
-		get: operations["get_optimization_ready_api_optimization_ready_get"];
+		get: operations["get_route_generation_ready_api_generate_routes_ready_get"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -479,7 +462,7 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
-	"/api/optimization/run": {
+	"/api/generate-routes/run": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -489,25 +472,25 @@ export interface paths {
 		get?: never;
 		put?: never;
 		/**
-		 * Run Optimization
-		 * @description Run route optimization and store the solution.
+		 * Run Route Generation
+		 * @description Run route optimization and store the resulting route plan.
 		 *
 		 *     This endpoint triggers the CVRPTW solver which:
 		 *     - Assigns stops to buses based on demand
-		 *     - Respects capacity constraints (max 50 students)
+		 *     - Respects capacity constraints
 		 *     - Ensures campus arrival by specified deadline
 		 *     - Minimizes total travel distance
 		 *
-		 *     Returns the generated solution with routes, stats, and cost estimate.
+		 *     Returns the generated route plan with routes, stats, and cost estimate.
 		 */
-		post: operations["run_optimization_api_optimization_run_post"];
+		post: operations["run_route_generation_api_generate_routes_run_post"];
 		delete?: never;
 		options?: never;
 		head?: never;
 		patch?: never;
 		trace?: never;
 	};
-	"/api/optimization/solutions": {
+	"/api/routes/history": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -515,13 +498,10 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * List Solutions
-		 * @description List all optimization runs (history).
-		 *
-		 *     Returns a paginated list of solutions with summary information.
-		 *     Use this to view historical optimization results.
+		 * Get Route Plan History
+		 * @description Get route plan history with minimal data transfer.
 		 */
-		get: operations["list_solutions_api_optimization_solutions_get"];
+		get: operations["get_route_plan_history_api_routes_history_get"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -530,7 +510,7 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
-	"/api/optimization/solutions/latest": {
+	"/api/routes/": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -538,10 +518,10 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Latest Solution
-		 * @description Get the most recent optimization solution.
+		 * List Route Plans
+		 * @description List all route plans (history).
 		 */
-		get: operations["get_latest_solution_api_optimization_solutions_latest_get"];
+		get: operations["list_route_plans_api_routes__get"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -550,7 +530,7 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
-	"/api/optimization/solutions/{solution_id}": {
+	"/api/routes/latest": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -558,17 +538,37 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Solution
-		 * @description Get a specific optimization solution by ID.
+		 * Get Latest Route Plan
+		 * @description Get the most recent route plan.
 		 */
-		get: operations["get_solution_api_optimization_solutions__solution_id__get"];
+		get: operations["get_latest_route_plan_api_routes_latest_get"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/routes/{route_plan_id}": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Get Route Plan
+		 * @description Get a specific route plan by ID.
+		 */
+		get: operations["get_route_plan_api_routes__route_plan_id__get"];
 		put?: never;
 		post?: never;
 		/**
-		 * Delete Solution
-		 * @description Delete an optimization solution from history.
+		 * Delete Route Plan
+		 * @description Delete a route plan from history.
 		 */
-		delete: operations["delete_solution_api_optimization_solutions__solution_id__delete"];
+		delete: operations["delete_route_plan_api_routes__route_plan_id__delete"];
 		options?: never;
 		head?: never;
 		patch?: never;
@@ -942,32 +942,30 @@ export interface components {
 			 */
 			created_at: string;
 		};
-		/**
-		 * OptimizationHistoryResponse
-		 * @description Simplified response for the solutions history dashboard
-		 */
-		OptimizationHistoryResponse: {
-			solutions_data: components["schemas"]["OptimizationListResponse"];
+		/** RegisterRequest */
+		RegisterRequest: {
+			/**
+			 * Email
+			 * Format: email
+			 */
+			email: string;
+			/** Password */
+			password: string;
+			/** Name */
+			name: string;
+		};
+		/** RouteAnalysisResponse */
+		RouteAnalysisResponse: {
+			latest_matrix?: components["schemas"]["MatrixRead"] | null;
+			/** Stops */
+			stops: components["schemas"]["StopReadMinimal"][];
+			clustering: components["schemas"]["ClusteringSuggestionsResponse"];
 		};
 		/**
-		 * OptimizationListResponse
-		 * @description Response for listing optimization solutions
+		 * RouteGenerationReadyResponse
+		 * @description Data needed to prepare for a route generation run
 		 */
-		OptimizationListResponse: {
-			/** Solutions */
-			solutions: components["schemas"]["OptimizationSummary"][];
-			/** Count */
-			count: number;
-			/** Limit */
-			limit: number;
-			/** Offset */
-			offset: number;
-		};
-		/**
-		 * OptimizationReadyResponse
-		 * @description Data needed to prepare for an optimization run
-		 */
-		OptimizationReadyResponse: {
+		RouteGenerationReadyResponse: {
 			/** Semesters */
 			semesters: string[];
 			/** Stops Count */
@@ -986,10 +984,10 @@ export interface components {
 			has_matrix: boolean;
 		};
 		/**
-		 * OptimizationRequest
+		 * RouteGenerationRequest
 		 * @description Request to run route optimization
 		 */
-		OptimizationRequest: {
+		RouteGenerationRequest: {
 			/**
 			 * Scenario Type
 			 * @default strict
@@ -1012,10 +1010,31 @@ export interface components {
 			arrival_deadline?: string | null;
 		};
 		/**
-		 * OptimizationResponse
-		 * @description Full optimization solution response
+		 * RoutePlanHistoryResponse
+		 * @description Simplified response for the route plans history dashboard
 		 */
-		OptimizationResponse: {
+		RoutePlanHistoryResponse: {
+			solutions_data: components["schemas"]["RoutePlanListResponse"];
+		};
+		/**
+		 * RoutePlanListResponse
+		 * @description Response for listing route plans
+		 */
+		RoutePlanListResponse: {
+			/** Solutions */
+			solutions: components["schemas"]["RoutePlanSummary"][];
+			/** Count */
+			count: number;
+			/** Limit */
+			limit: number;
+			/** Offset */
+			offset: number;
+		};
+		/**
+		 * RoutePlanRead
+		 * @description Full route plan response
+		 */
+		RoutePlanRead: {
 			/**
 			 * Id
 			 * Format: uuid
@@ -1025,7 +1044,7 @@ export interface components {
 			scenario_type: string;
 			/** Routes */
 			routes: components["schemas"]["BusRoute"][];
-			stats: components["schemas"]["OptimizationStats"];
+			stats: components["schemas"]["RoutePlanStats"];
 			/** Cost Estimate */
 			cost_estimate: number;
 			/** Fuel Cost Per Km */
@@ -1039,10 +1058,10 @@ export interface components {
 			semester?: string | null;
 		};
 		/**
-		 * OptimizationStats
-		 * @description Summary statistics for an optimization run
+		 * RoutePlanStats
+		 * @description Summary statistics for a route plan
 		 */
-		OptimizationStats: {
+		RoutePlanStats: {
 			/** Total Buses Used */
 			total_buses_used: number;
 			/** Total Distance Km */
@@ -1073,10 +1092,10 @@ export interface components {
 			model_build_time_seconds: number;
 		};
 		/**
-		 * OptimizationSummary
-		 * @description Lightweight summary for listing solutions
+		 * RoutePlanSummary
+		 * @description Lightweight summary for listing route plans
 		 */
-		OptimizationSummary: {
+		RoutePlanSummary: {
 			/**
 			 * Id
 			 * Format: uuid
@@ -1101,25 +1120,6 @@ export interface components {
 			 * Format: date-time
 			 */
 			created_at: string;
-		};
-		/** RegisterRequest */
-		RegisterRequest: {
-			/**
-			 * Email
-			 * Format: email
-			 */
-			email: string;
-			/** Password */
-			password: string;
-			/** Name */
-			name: string;
-		};
-		/** RouteAnalysisResponse */
-		RouteAnalysisResponse: {
-			latest_matrix?: components["schemas"]["MatrixRead"] | null;
-			/** Stops */
-			stops: components["schemas"]["StopReadMinimal"][];
-			clustering: components["schemas"]["ClusteringSuggestionsResponse"];
 		};
 		/**
 		 * RouteStop
@@ -2261,7 +2261,7 @@ export interface operations {
 			};
 		};
 	};
-	get_route_analysis_api_routes_analysis_get: {
+	get_demand_analysis_api_demand_map_analysis_get: {
 		parameters: {
 			query?: {
 				threshold_m?: number;
@@ -2292,7 +2292,7 @@ export interface operations {
 			};
 		};
 	};
-	build_matrix_api_routes_build_post: {
+	build_demand_matrix_api_demand_map_build_matrix_post: {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -2325,7 +2325,7 @@ export interface operations {
 			};
 		};
 	};
-	get_latest_matrix_api_routes_latest_get: {
+	get_latest_matrix_api_demand_map_latest_matrix_get: {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -2345,7 +2345,7 @@ export interface operations {
 			};
 		};
 	};
-	get_matrix_api_routes__matrix_id__get: {
+	get_matrix_api_demand_map_matrix__matrix_id__get: {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -2396,40 +2396,7 @@ export interface operations {
 			};
 		};
 	};
-	get_optimization_history_api_optimization_history_get: {
-		parameters: {
-			query?: {
-				limit?: number;
-				offset?: number;
-				scenario_type?: string | null;
-			};
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["OptimizationHistoryResponse"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	get_optimization_ready_api_optimization_ready_get: {
+	get_route_generation_ready_api_generate_routes_ready_get: {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -2444,12 +2411,12 @@ export interface operations {
 					[name: string]: unknown;
 				};
 				content: {
-					"application/json": components["schemas"]["OptimizationReadyResponse"];
+					"application/json": components["schemas"]["RouteGenerationReadyResponse"];
 				};
 			};
 		};
 	};
-	run_optimization_api_optimization_run_post: {
+	run_route_generation_api_generate_routes_run_post: {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -2458,7 +2425,7 @@ export interface operations {
 		};
 		requestBody: {
 			content: {
-				"application/json": components["schemas"]["OptimizationRequest"];
+				"application/json": components["schemas"]["RouteGenerationRequest"];
 			};
 		};
 		responses: {
@@ -2468,7 +2435,7 @@ export interface operations {
 					[name: string]: unknown;
 				};
 				content: {
-					"application/json": components["schemas"]["OptimizationResponse"];
+					"application/json": components["schemas"]["RoutePlanRead"];
 				};
 			};
 			/** @description Validation Error */
@@ -2482,7 +2449,7 @@ export interface operations {
 			};
 		};
 	};
-	list_solutions_api_optimization_solutions_get: {
+	get_route_plan_history_api_routes_history_get: {
 		parameters: {
 			query?: {
 				limit?: number;
@@ -2501,7 +2468,7 @@ export interface operations {
 					[name: string]: unknown;
 				};
 				content: {
-					"application/json": components["schemas"]["OptimizationListResponse"];
+					"application/json": components["schemas"]["RoutePlanHistoryResponse"];
 				};
 			};
 			/** @description Validation Error */
@@ -2515,7 +2482,40 @@ export interface operations {
 			};
 		};
 	};
-	get_latest_solution_api_optimization_solutions_latest_get: {
+	list_route_plans_api_routes__get: {
+		parameters: {
+			query?: {
+				limit?: number;
+				offset?: number;
+				scenario_type?: string | null;
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["RoutePlanListResponse"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
+	get_latest_route_plan_api_routes_latest_get: {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -2530,17 +2530,17 @@ export interface operations {
 					[name: string]: unknown;
 				};
 				content: {
-					"application/json": components["schemas"]["OptimizationResponse"];
+					"application/json": components["schemas"]["RoutePlanRead"];
 				};
 			};
 		};
 	};
-	get_solution_api_optimization_solutions__solution_id__get: {
+	get_route_plan_api_routes__route_plan_id__get: {
 		parameters: {
 			query?: never;
 			header?: never;
 			path: {
-				solution_id: string;
+				route_plan_id: string;
 			};
 			cookie?: never;
 		};
@@ -2552,7 +2552,7 @@ export interface operations {
 					[name: string]: unknown;
 				};
 				content: {
-					"application/json": components["schemas"]["OptimizationResponse"];
+					"application/json": components["schemas"]["RoutePlanRead"];
 				};
 			};
 			/** @description Validation Error */
@@ -2566,12 +2566,12 @@ export interface operations {
 			};
 		};
 	};
-	delete_solution_api_optimization_solutions__solution_id__delete: {
+	delete_route_plan_api_routes__route_plan_id__delete: {
 		parameters: {
 			query?: never;
 			header?: never;
 			path: {
-				solution_id: string;
+				route_plan_id: string;
 			};
 			cookie?: never;
 		};

@@ -3,4 +3,4 @@ from .stop import Stop
 from .bus import Bus
 from .depot import Depot
 from .demand import Demand
-from .solution import Solution, DistanceMatrix
+from .route_plan import RoutePlan, DistanceMatrix

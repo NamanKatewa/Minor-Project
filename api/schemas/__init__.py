@@ -3,15 +3,15 @@ from .bus import BusCreate, BusUpdate, BusRead, BusWithDepot, BusImport
 from .depot import DepotCreate, DepotUpdate, DepotRead, DepotImport
 from .demand import DemandCreate, DemandUpdate, DemandRead, DemandWithStop, DemandImport
 from .matrix import MatrixBuildRequest, MatrixBuildResponse, MatrixRead, ClusteringSuggestion, ClusteringSuggestionsResponse
-from .optimization import (
-    OptimizationRequest,
-    OptimizationResponse,
-    OptimizationListResponse,
-    OptimizationSummary,
+from .route_generation import (
+    RouteGenerationRequest,
+    RoutePlanRead,
+    RoutePlanListResponse,
+    RoutePlanSummary,
     RouteStop,
     BusRoute,
-    OptimizationStats,
+    RoutePlanStats,
     UnassignedStop,
-    OptimizationReadyResponse,
-    OptimizationHistoryResponse,
+    RouteGenerationReadyResponse,
+    RoutePlanHistoryResponse,
 )

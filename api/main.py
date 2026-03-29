@@ -11,7 +11,18 @@ logging.basicConfig(
 
 from config import get_settings
 from database import engine
-from routers import health_router, auth_router, stops_router, buses_router, depots_router, demand_router, matrix_router, dashboard_router, optimization_router
+from routers import (
+    health_router,
+    auth_router,
+    stops_router,
+    buses_router,
+    depots_router,
+    demand_router,
+    demand_map_router,
+    dashboard_router,
+    generate_routes_router,
+    routes_router,
+)
 
 settings = get_settings()
 
@@ -48,9 +59,10 @@ app.include_router(stops_router)
 app.include_router(buses_router)
 app.include_router(depots_router)
 app.include_router(demand_router)
-app.include_router(matrix_router)
+app.include_router(demand_map_router)
 app.include_router(dashboard_router)
-app.include_router(optimization_router)
+app.include_router(generate_routes_router)
+app.include_router(routes_router)
 
 
 @app.get("/")

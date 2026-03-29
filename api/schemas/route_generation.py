@@ -9,7 +9,7 @@ from pydantic import BaseModel, Field
 # REQUEST SCHEMAS
 # ============================================================================
 
-class OptimizationRequest(BaseModel):
+class RouteGenerationRequest(BaseModel):
     """Request to run route optimization"""
     scenario_type: str = Field(default="strict", pattern="^(strict|suggested)$")
     semester: str | None = None
@@ -77,8 +77,8 @@ class UnassignedStop(BaseModel):
     lon: float | None = None
 
 
-class OptimizationStats(BaseModel):
-    """Summary statistics for an optimization run"""
+class RoutePlanStats(BaseModel):
+    """Summary statistics for a route plan"""
     total_buses_used: int
     total_distance_km: float
     total_time_min: int
@@ -98,14 +98,14 @@ class OptimizationStats(BaseModel):
     model_build_time_seconds: float
 
 
-class OptimizationResponse(BaseModel):
-    """Full optimization solution response"""
+class RoutePlanRead(BaseModel):
+    """Full route plan response"""
     id: UUID
     scenario_type: str
     
     # Solution data
     routes: list[BusRoute]
-    stats: OptimizationStats
+    stats: RoutePlanStats
     
     # Cost
     cost_estimate: float
@@ -123,8 +123,8 @@ class OptimizationResponse(BaseModel):
 # LIST/HISTORY SCHEMAS
 # ============================================================================
 
-class OptimizationSummary(BaseModel):
-    """Lightweight summary for listing solutions"""
+class RoutePlanSummary(BaseModel):
+    """Lightweight summary for listing route plans"""
     id: UUID
     scenario_type: str
     total_buses: int
@@ -139,40 +139,40 @@ class OptimizationSummary(BaseModel):
         from_attributes = True
 
 
-class OptimizationListResponse(BaseModel):
-    """Response for listing optimization solutions"""
-    solutions: list[OptimizationSummary]
+class RoutePlanListResponse(BaseModel):
+    """Response for listing route plans"""
+    solutions: list[RoutePlanSummary]
     count: int
     limit: int
     offset: int
 
 
-class OptimizationHistoryResponse(BaseModel):
-    """Simplified response for the solutions history dashboard"""
-    solutions_data: OptimizationListResponse
+class RoutePlanHistoryResponse(BaseModel):
+    """Simplified response for the route plans history dashboard"""
+    solutions_data: RoutePlanListResponse
 
 
 # ============================================================================
 # UTILITY SCHEMAS
 # ============================================================================
 
-class OptimizationValidationError(BaseModel):
+class RouteGenerationValidationError(BaseModel):
     """Validation error details"""
     field: str
     message: str
     value: str | None = None
 
 
-class OptimizationErrorResponse(BaseModel):
-    """Error response when optimization fails"""
+class RouteGenerationErrorResponse(BaseModel):
+    """Error response when route generation fails"""
     detail: str
     error_type: str
-    validation_errors: list[OptimizationValidationError] = []
+    validation_errors: list[RouteGenerationValidationError] = []
     suggestions: list[str] = []
 
 
-class OptimizationReadyResponse(BaseModel):
-    """Data needed to prepare for an optimization run"""
+class RouteGenerationReadyResponse(BaseModel):
+    """Data needed to prepare for a route generation run"""
     semesters: list[str]
     stops_count: int
     buses_count: int

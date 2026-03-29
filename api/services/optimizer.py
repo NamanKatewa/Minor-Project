@@ -14,7 +14,7 @@ from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 
 from config import get_settings, Settings
-from models import Solution, DistanceMatrix, Stop, Bus, Demand, Depot
+from models import RoutePlan, DistanceMatrix, Stop, Bus, Demand, Depot
 
 logger = logging.getLogger(__name__)
 
@@ -41,9 +41,9 @@ class OptimizerService:
         bus_ids: list[UUID] | None,
         max_ride_time_min: int | None,
         arrival_deadline: str | None,
-    ) -> Solution:
+    ) -> RoutePlan:
         """
-        Run CVRPTW optimization and return stored solution.
+        Run CVRPTW optimization and return stored route plan.
         
         Algorithm Overview:
         1. Load distance matrix (latest or specified)
@@ -53,7 +53,7 @@ class OptimizerService:
         5. Solve using OR-Tools
         6. Parse solution into routes
         7. Calculate cost and stats
-        8. Store and return Solution
+        8. Store and return RoutePlan
         """
         
         # Check if already running
@@ -83,8 +83,9 @@ class OptimizerService:
         bus_ids: list[UUID] | None,
         max_ride_time_min: int | None,
         arrival_deadline: str | None,
-    ) -> Solution:
+    ) -> RoutePlan:
         """Internal optimization logic"""
+
         
         logger.info("=" * 60)
         logger.info("=== OPTIMIZATION STARTED ===")
@@ -208,8 +209,8 @@ class OptimizerService:
             logger.info(f"  Total distance: {total_distance}km")
             logger.info(f"  Cost estimate: ₹{cost_estimate:.2f}")
             
-            # Step 7: Create solution
-            solution = Solution(
+            # Step 7: Create route plan
+            route_plan = RoutePlan(
                 scenario_type=scenario_type,
                 routes_json={"routes": routes},
                 stats_json={
@@ -220,16 +221,16 @@ class OptimizerService:
                 cost_estimate=cost_estimate,
             )
             
-            logger.info(f"[STEP 7] Storing solution in database...")
-            session.add(solution)
+            logger.info(f"[STEP 7] Storing route plan in database...")
+            session.add(route_plan)
             await session.commit()
-            await session.refresh(solution)
+            await session.refresh(route_plan)
             
-            logger.info(f"  Solution ID: {solution.id}")
+            logger.info(f"  Route Plan ID: {route_plan.id}")
             logger.info("=== OPTIMIZATION COMPLETED SUCCESSFULLY ===")
             logger.info("=" * 60)
             
-            return solution
+            return route_plan
             
         except HTTPException:
             raise

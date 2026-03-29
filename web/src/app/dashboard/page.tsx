@@ -175,7 +175,7 @@ export default function DashboardPage() {
 										Not Built
 									</div>
 									<div className="text-muted-foreground text-xs">
-										Distance matrix missing. Go to Routes page to build.
+										Distance matrix missing. Go to Demand Map to build.
 									</div>
 								</div>
 							)}

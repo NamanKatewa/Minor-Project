@@ -4,9 +4,10 @@ from .stops import router as stops_router
 from .buses import router as buses_router
 from .depots import router as depots_router
 from .demand import router as demand_router
-from .matrix import router as matrix_router
+from .demand_map import router as demand_map_router
 from .dashboard import router as dashboard_router
-from .optimization import router as optimization_router
+from .generate_routes import router as generate_routes_router
+from .routes import router as routes_router
 
 __all__ = [
     "health_router",
@@ -15,7 +16,8 @@ __all__ = [
     "buses_router",
     "depots_router",
     "demand_router",
-    "matrix_router",
+    "demand_map_router",
     "dashboard_router",
-    "optimization_router",
+    "generate_routes_router",
+    "routes_router",
 ]

@@ -27,7 +27,7 @@ const ROUTE_COLORS = [
 	"#14b8a6", // Teal
 ];
 
-interface SolutionMapProps {
+interface RoutesMapProps {
 	routes: BusRoute[];
 	unassignedStops?: UnassignedStop[];
 	className?: string;
@@ -35,13 +35,13 @@ interface SolutionMapProps {
 	onRouteSelect?: (index: number | null) => void;
 }
 
-export default function SolutionMap({
+export default function RoutesMap({
 	routes,
 	unassignedStops = [],
 	className = "",
 	selectedRouteIndex,
 	onRouteSelect,
-}: SolutionMapProps) {
+}: RoutesMapProps) {
 	const mapRef = useRef<HTMLDivElement>(null);
 	const mapInstanceRef = useRef<L.Map | null>(null);
 	const layerRef = useRef<L.Layer | null>(null);
