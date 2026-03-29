@@ -39,9 +39,18 @@ const ClusterMap = dynamic(() => import("~/components/cluster-map"), {
 
 export default function RoutesPage() {
 	const queryClient = useQueryClient();
-	const [selectedGroup, setSelectedGroup] = useState<number | null>(null);
 	const [spotFrom, setSpotFrom] = useState<string | null>(null);
 	const [spotTo, setSpotTo] = useState<string | null>(null);
+	const [selectedGroup, setSelectedGroup] = useState<number | null>(null);
+
+	const { data: analysis, isLoading } = useQuery({
+		queryKey: ["routes", "analysis"],
+		queryFn: () => api.routes.analysis(),
+	});
+
+	const latestMatrix = analysis?.latest_matrix;
+	const currentStops = analysis?.stops;
+	const clusteringData = analysis?.clustering;
 
 	// Scroll selected group into view
 	useEffect(() => {
@@ -52,22 +61,6 @@ export default function RoutesPage() {
 			}
 		}
 	}, [selectedGroup]);
-
-	const { data: latestMatrix, isLoading: isLoadingMatrix } = useQuery({
-		queryKey: ["routes", "latest"],
-		queryFn: api.routes.latest,
-		retry: false,
-	});
-
-	const { data: currentStops, isLoading: isLoadingStops } = useQuery({
-		queryKey: ["stops"],
-		queryFn: api.stops.list,
-	});
-
-	const { data: clusteringData, isLoading: isLoadingClustering } = useQuery({
-		queryKey: ["clustering", "suggestions"],
-		queryFn: () => api.clustering.suggestions(),
-	});
 
 	const staleness = useMemo(() => {
 		if (!latestMatrix || !currentStops) return null;
@@ -90,7 +83,7 @@ export default function RoutesPage() {
 	const activeStopCount =
 		currentStops?.filter((s) => s.active && s.lat != null && s.lon != null)
 			.length ?? 0;
-	const hasNoStops = !isLoadingStops && activeStopCount === 0;
+	const hasNoStops = !isLoading && activeStopCount === 0;
 
 	// Spot-check: stop options from the matrix
 	const matrixStopOptions = useMemo(() => {
@@ -138,7 +131,7 @@ export default function RoutesPage() {
 	const buildMutation = useMutation({
 		mutationFn: () => api.routes.build(),
 		onSuccess: (data) => {
-			queryClient.invalidateQueries({ queryKey: ["routes"] });
+			queryClient.invalidateQueries({ queryKey: ["routes", "analysis"] });
 			toast.success(
 				`Travel times calculated for ${data.stop_count} stops in ${data.build_time_seconds}s`,
 			);
@@ -236,7 +229,7 @@ export default function RoutesPage() {
 						<Route className="h-4 w-4 text-muted-foreground" />
 					</CardHeader>
 					<CardContent>
-						{isLoadingMatrix ? (
+						{isLoading ? (
 							<div className="h-8 w-24 animate-pulse rounded bg-muted" />
 						) : latestMatrix ? (
 							<div className="flex items-center gap-2">
@@ -258,7 +251,7 @@ export default function RoutesPage() {
 						<MapPin className="h-4 w-4 text-muted-foreground" />
 					</CardHeader>
 					<CardContent>
-						{isLoadingMatrix ? (
+						{isLoading ? (
 							<div className="h-8 w-16 animate-pulse rounded bg-muted" />
 						) : (
 							<p className="font-bold text-2xl">
@@ -276,7 +269,7 @@ export default function RoutesPage() {
 						<Clock className="h-4 w-4 text-muted-foreground" />
 					</CardHeader>
 					<CardContent>
-						{isLoadingMatrix ? (
+						{isLoading ? (
 							<div className="h-8 w-16 animate-pulse rounded bg-muted" />
 						) : (
 							<p className="font-bold text-2xl">
@@ -294,7 +287,7 @@ export default function RoutesPage() {
 						<Calendar className="h-4 w-4 text-muted-foreground" />
 					</CardHeader>
 					<CardContent>
-						{isLoadingMatrix ? (
+						{isLoading ? (
 							<div className="h-8 w-20 animate-pulse rounded bg-muted" />
 						) : (
 							<p className="font-bold text-2xl">
@@ -427,7 +420,7 @@ export default function RoutesPage() {
 						</CardDescription>
 					</CardHeader>
 					<CardContent className="relative min-h-0 flex-1 p-0">
-						{isLoadingClustering ? (
+						{isLoading ? (
 							<div className="flex h-[450px] items-center justify-center">
 								<Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
 							</div>
@@ -480,7 +473,7 @@ export default function RoutesPage() {
 						</div>
 					</CardHeader>
 					<CardContent className="max-h-[450px] overflow-y-auto">
-						{isLoadingClustering ? (
+						{isLoading ? (
 							<div className="flex items-center gap-2 py-8 text-muted-foreground">
 								<Loader2 className="h-4 w-4 animate-spin" />
 								Finding nearby stops...

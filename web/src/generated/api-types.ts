@@ -342,6 +342,30 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
+	"/api/routes/analysis": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Get Route Analysis
+		 * @description Get all data required for the Route Analysis dashboard in a single call.
+		 *     Combines:
+		 *     - Latest distance matrix
+		 *     - List of active stops
+		 *     - Clustering suggestions
+		 */
+		get: operations["get_route_analysis_api_routes_analysis_get"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
 	"/api/routes/build": {
 		parameters: {
 			query?: never;
@@ -385,23 +409,6 @@ export interface paths {
 		};
 		/** Get Matrix */
 		get: operations["get_matrix_api_routes__matrix_id__get"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/clustering/suggestions": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get Clustering Suggestions */
-		get: operations["get_clustering_suggestions_api_clustering_suggestions_get"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1037,6 +1044,13 @@ export interface components {
 			/** Name */
 			name: string;
 		};
+		/** RouteAnalysisResponse */
+		RouteAnalysisResponse: {
+			latest_matrix?: components["schemas"]["MatrixRead"] | null;
+			/** Stops */
+			stops: components["schemas"]["StopReadMinimal"][];
+			clustering: components["schemas"]["ClusteringSuggestionsResponse"];
+		};
 		/**
 		 * RouteStop
 		 * @description A single stop in a bus route sequence
@@ -1126,6 +1140,22 @@ export interface components {
 			 * Format: uuid
 			 */
 			id: string;
+		};
+		/** StopReadMinimal */
+		StopReadMinimal: {
+			/** Id */
+			id: string;
+			/** Name */
+			name: string;
+			/** Lat */
+			lat?: number | null;
+			/** Lon */
+			lon?: number | null;
+			/**
+			 * Active
+			 * @default true
+			 */
+			active: boolean;
 		};
 		/** StopUpdate */
 		StopUpdate: {
@@ -2161,6 +2191,37 @@ export interface operations {
 			};
 		};
 	};
+	get_route_analysis_api_routes_analysis_get: {
+		parameters: {
+			query?: {
+				threshold_m?: number;
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["RouteAnalysisResponse"];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["HTTPValidationError"];
+				};
+			};
+		};
+	};
 	build_matrix_api_routes_build_post: {
 		parameters: {
 			query?: never;
@@ -2232,37 +2293,6 @@ export interface operations {
 				};
 				content: {
 					"application/json": components["schemas"]["MatrixRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	get_clustering_suggestions_api_clustering_suggestions_get: {
-		parameters: {
-			query?: {
-				threshold_m?: number;
-			};
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["ClusteringSuggestionsResponse"];
 				};
 			};
 			/** @description Validation Error */

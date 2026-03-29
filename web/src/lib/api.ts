@@ -98,6 +98,10 @@ export const api = {
 			}),
 	},
 	routes: {
+		analysis: (thresholdM?: number) =>
+			fetcher<components["schemas"]["RouteAnalysisResponse"]>(
+				`/routes/analysis${thresholdM ? `?threshold_m=${thresholdM}` : ""}`,
+			),
 		build: (stopIds?: string[]) =>
 			fetcher<{
 				id: string;
@@ -126,24 +130,6 @@ export const api = {
 				stop_ids_json: Record<string, unknown> | null;
 				created_at: string;
 			}>(`/routes/${id}`),
-	},
-	clustering: {
-		suggestions: (thresholdM?: number) =>
-			fetcher<{
-				suggestions: Array<{
-					stops: Array<{
-						id: string;
-						name: string;
-						lat: number;
-						lon: number;
-					}>;
-					max_distance_m: number;
-				}>;
-				threshold_m: number;
-				total_groups: number;
-			}>(
-				`/clustering/suggestions${thresholdM ? `?threshold_m=${thresholdM}` : ""}`,
-			),
 	},
 	dashboard: {
 		summary: () =>

@@ -47,3 +47,21 @@ class ClusteringSuggestionsResponse(BaseModel):
     suggestions: list[ClusteringSuggestion]
     threshold_m: float
     total_groups: int
+
+
+class StopReadMinimal(BaseModel):
+    id: str
+    name: str
+    lat: float | None = None
+    lon: float | None = None
+    active: bool = True
+
+    class Config:
+        from_attributes = True
+
+
+class RouteAnalysisResponse(BaseModel):
+    latest_matrix: MatrixRead | None = None
+    stops: list[StopReadMinimal]
+    clustering: ClusteringSuggestionsResponse
+

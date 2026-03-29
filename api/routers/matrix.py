@@ -9,11 +9,80 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_db
 from models import Stop, DistanceMatrix, Depot
-from schemas.matrix import MatrixBuildRequest, MatrixBuildResponse, MatrixRead
+from schemas.matrix import (
+    MatrixBuildRequest,
+    MatrixBuildResponse,
+    MatrixRead,
+    RouteAnalysisResponse,
+    ClusteringSuggestionsResponse,
+    ClusteringSuggestion,
+    StopInfo,
+    StopReadMinimal,
+)
 from services.osrm import osrm_service
+from services.clustering import find_clusters
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/routes", tags=["routes"])
+
+
+@router.get("/analysis", response_model=RouteAnalysisResponse)
+async def get_route_analysis(
+    threshold_m: float = 500.0,
+    session: AsyncSession = Depends(get_db),
+):
+    """
+    Get all data required for the Route Analysis dashboard in a single call.
+    Combines:
+    - Latest distance matrix
+    - List of active stops
+    - Clustering suggestions
+    """
+    # 1. Fetch latest matrix
+    matrix_result = await session.execute(
+        select(DistanceMatrix).order_by(DistanceMatrix.created_at.desc()).limit(1)
+    )
+    latest_matrix = matrix_result.scalar_one_or_none()
+
+    # 2. Fetch active stops
+    stops_result = await session.execute(
+        select(Stop).where(Stop.active == True)
+    )
+    stops = stops_result.scalars().all()
+
+    # 3. Calculate clustering
+    # Only use stops with coordinates for clustering
+    stops_with_coords = [s for s in stops if s.lat is not None and s.lon is not None]
+    stop_dicts = [
+        {"id": str(s.id), "name": s.name, "lat": s.lat, "lon": s.lon}
+        for s in stops_with_coords
+    ]
+    raw_clusters = find_clusters(stop_dicts, threshold_m=threshold_m)
+    suggestions = [
+        ClusteringSuggestion(
+            stops=[StopInfo(**s) for s in c["stops"]],
+            max_distance_m=c["max_distance_m"],
+        )
+        for c in raw_clusters
+    ]
+
+    return RouteAnalysisResponse(
+        latest_matrix=latest_matrix,
+        stops=[
+            StopReadMinimal(
+                id=str(s.id),
+                name=s.name,
+                lat=s.lat,
+                lon=s.lon,
+                active=s.active
+            ) for s in stops
+        ],
+        clustering=ClusteringSuggestionsResponse(
+            suggestions=suggestions,
+            threshold_m=threshold_m,
+            total_groups=len(suggestions),
+        )
+    )
 
 
 @router.post("/build", response_model=MatrixBuildResponse)
