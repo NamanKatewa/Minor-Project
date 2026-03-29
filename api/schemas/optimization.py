@@ -55,6 +55,9 @@ class BusRoute(BaseModel):
     # Route sequence (ordered stops)
     stops: list[RouteStop]
     
+    # Road geometry for visualization (list of [lat, lon])
+    geometry: list[list[float]] | None = None
+
     # Aggregates
     total_students: int
     total_distance_km: float

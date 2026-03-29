@@ -620,6 +620,8 @@ export interface components {
 			depot_lon: number;
 			/** Stops */
 			stops: components["schemas"]["RouteStop"][];
+			/** Geometry */
+			geometry?: number[][] | null;
 			/** Total Students */
 			total_students: number;
 			/** Total Distance Km */

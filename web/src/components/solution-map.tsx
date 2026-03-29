@@ -102,20 +102,25 @@ export default function SolutionMap({
 
 		// Render Routes
 		routes.forEach((route, idx) => {
-			const color = ROUTE_COLORS[idx % ROUTE_COLORS.length] ?? "#ef4444";
 			const isSelected = selectedRouteIndex === idx;
-			const dimmed =
-				selectedRouteIndex !== null &&
-				selectedRouteIndex !== undefined &&
-				!isSelected;
-			const opacity = dimmed ? 0.15 : 0.8;
+			const hasSelection =
+				selectedRouteIndex !== null && selectedRouteIndex !== undefined;
+
+			// If a route is selected, only render that specific route
+			if (hasSelection && !isSelected) return;
+
+			const color = ROUTE_COLORS[idx % ROUTE_COLORS.length] ?? "#ef4444";
+			const opacity = 0.8;
 			const weight = isSelected ? 5 : 3;
 
-			// Create path: Depot -> Stop 1 -> Stop 2 -> ... -> Stop N
-			const pathPoints: [number, number][] = [
-				[route.depot_lat, route.depot_lon],
-				...route.stops.map((s) => [s.lat, s.lon] as [number, number]),
-			];
+			// Create path: Use OSRM geometry if available, otherwise fallback to straight lines
+			const pathPoints: [number, number][] =
+				route.geometry && route.geometry.length > 0
+					? (route.geometry as [number, number][])
+					: [
+							[route.depot_lat, route.depot_lon],
+							...route.stops.map((s) => [s.lat, s.lon] as [number, number]),
+						];
 
 			// Draw route polyline
 			const polyline = L.polyline(pathPoints, {
@@ -148,7 +153,7 @@ export default function SolutionMap({
 
 			const depotMarker = L.marker([route.depot_lat, route.depot_lon], {
 				icon: depotIcon,
-				opacity: dimmed ? 0.3 : 1,
+				opacity: 1,
 			});
 			depotMarker.bindTooltip(`Depot: ${route.depot_name}`, {
 				direction: "top",
@@ -158,34 +163,32 @@ export default function SolutionMap({
 			markersRef.current?.addLayer(depotMarker);
 
 			// Add Stop markers (only if not too many or if selected)
-			if (isSelected || !dimmed) {
-				route.stops.forEach((stop, stopIdx) => {
-					const stopMarker = L.circleMarker([stop.lat, stop.lon], {
-						radius: isSelected ? 6 : 4,
-						fillColor: color,
-						color: "#fff",
-						weight: 1,
-						opacity: opacity,
-						fillOpacity: opacity,
-					});
-
-					stopMarker.bindTooltip(
-						`<b>${stop.stop_name}</b><br>Bus ${route.bus_no} · Stop ${stopIdx + 1}<br>${stop.students_boarding} students`,
-						{
-							direction: "top",
-							className:
-								"bg-background text-foreground border shadow-sm px-2 py-1 rounded text-xs",
-						},
-					);
-
-					stopMarker.on("click", (e) => {
-						L.DomEvent.stopPropagation(e);
-						onRouteSelect?.(isSelected ? null : idx);
-					});
-
-					markersRef.current?.addLayer(stopMarker);
+			route.stops.forEach((stop, stopIdx) => {
+				const stopMarker = L.circleMarker([stop.lat, stop.lon], {
+					radius: isSelected ? 6 : 4,
+					fillColor: color,
+					color: "#fff",
+					weight: 1,
+					opacity: opacity,
+					fillOpacity: opacity,
 				});
-			}
+
+				stopMarker.bindTooltip(
+					`<b>${stop.stop_name}</b><br>Bus ${route.bus_no} · Stop ${stopIdx + 1}<br>${stop.students_boarding} students`,
+					{
+						direction: "top",
+						className:
+							"bg-background text-foreground border shadow-sm px-2 py-1 rounded text-xs",
+					},
+				);
+
+				stopMarker.on("click", (e) => {
+					L.DomEvent.stopPropagation(e);
+					onRouteSelect?.(isSelected ? null : idx);
+				});
+
+				markersRef.current?.addLayer(stopMarker);
+			});
 		});
 
 		// Render Unassigned Stops
@@ -212,25 +215,6 @@ export default function SolutionMap({
 				markersRef.current?.addLayer(unassignedMarker);
 			}
 		});
-
-		// Fit bounds if no route selected, show all
-		if (selectedRouteIndex === null || selectedRouteIndex === undefined) {
-			const allPoints: [number, number][] = [];
-			routes.forEach((r) => {
-				allPoints.push([r.depot_lat, r.depot_lon]);
-				r.stops.forEach((s) => {
-					allPoints.push([s.lat, s.lon]);
-				});
-			});
-			unassignedStops.forEach((s) => {
-				if (s.lat && s.lon) allPoints.push([s.lat, s.lon]);
-			});
-
-			if (allPoints.length > 0) {
-				const bounds = L.latLngBounds(allPoints);
-				mapInstanceRef.current.fitBounds(bounds.pad(0.1));
-			}
-		}
 	}, [routes, unassignedStops, selectedRouteIndex, onRouteSelect]);
 
 	// Fly to selected route

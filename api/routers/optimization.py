@@ -193,6 +193,7 @@ def _format_solution_response(solution: Solution) -> OptimizationResponse:
             depot_lat=route.get("depot_lat", 0.0),
             depot_lon=route.get("depot_lon", 0.0),
             stops=route["stops"],
+            geometry=route.get("geometry"),
             total_students=route["total_students"],
             total_distance_km=route["total_distance_km"],
             total_time_min=route["total_time_min"],

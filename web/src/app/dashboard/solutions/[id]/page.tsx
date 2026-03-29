@@ -26,6 +26,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "~/components/ui/card";
+import { Skeleton } from "~/components/ui/skeleton";
 import type { components } from "~/generated/api-types";
 import { api } from "~/lib/api";
 
@@ -78,14 +79,7 @@ export default function SolutionDetailPage() {
 	};
 
 	if (isLoading) {
-		return (
-			<div className="flex h-full items-center justify-center">
-				<div className="text-center">
-					<div className="mb-4 h-8 w-8 animate-spin rounded-full border-primary border-b-2" />
-					<p className="text-muted-foreground">Loading solution...</p>
-				</div>
-			</div>
-		);
+		return <SolutionSkeleton />;
 	}
 
 	if (!solution) {
@@ -118,8 +112,8 @@ export default function SolutionDetailPage() {
 					</Link>
 					<div>
 						<div className="flex items-center gap-2">
-							<h2 className="font-bold text-3xl tracking-tight">
-								Solution Details
+							<h2 className="font-bold text-3xl uppercase tracking-tight">
+								Solution Overview
 							</h2>
 							<Badge
 								variant={
@@ -129,7 +123,7 @@ export default function SolutionDetailPage() {
 								{solution.scenario_type}
 							</Badge>
 						</div>
-						<p className="text-muted-foreground">
+						<p className="text-muted-foreground text-xs uppercase tracking-widest">
 							Generated on {formatDate(solution.created_at)}
 						</p>
 					</div>
@@ -140,7 +134,9 @@ export default function SolutionDetailPage() {
 			<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
 				<Card>
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle className="font-medium text-sm">Buses Used</CardTitle>
+						<CardTitle className="font-medium text-sm uppercase tracking-widest">
+							Buses Used
+						</CardTitle>
 						<Bus className="h-4 w-4 text-muted-foreground" />
 					</CardHeader>
 					<CardContent>
@@ -152,7 +148,7 @@ export default function SolutionDetailPage() {
 
 				<Card>
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle className="font-medium text-sm">
+						<CardTitle className="font-medium text-sm uppercase tracking-widest">
 							Total Distance
 						</CardTitle>
 						<Route className="h-4 w-4 text-muted-foreground" />
@@ -166,8 +162,8 @@ export default function SolutionDetailPage() {
 
 				<Card>
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle className="font-medium text-sm">
-							Students Covered
+						<CardTitle className="font-medium text-sm uppercase tracking-widest">
+							Coverage
 						</CardTitle>
 						<Users className="h-4 w-4 text-muted-foreground" />
 					</CardHeader>
@@ -175,7 +171,7 @@ export default function SolutionDetailPage() {
 						<div className="font-bold text-2xl">
 							{solution.stats.total_students_assigned}
 						</div>
-						<p className="text-muted-foreground text-xs">
+						<p className="text-muted-foreground text-xs uppercase tracking-widest">
 							{solution.stats.coverage_percentage.toFixed(1)}% coverage
 						</p>
 					</CardContent>
@@ -183,8 +179,8 @@ export default function SolutionDetailPage() {
 
 				<Card>
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle className="font-medium text-sm">
-							Estimated Cost
+						<CardTitle className="font-medium text-sm uppercase tracking-widest">
+							Est. Cost
 						</CardTitle>
 						<Coins className="h-4 w-4 text-muted-foreground" />
 					</CardHeader>
@@ -192,82 +188,36 @@ export default function SolutionDetailPage() {
 						<div className="font-bold text-2xl">
 							₹{solution.cost_estimate.toLocaleString()}
 						</div>
-						<p className="text-muted-foreground text-xs">
+						<p className="text-muted-foreground text-xs uppercase tracking-widest">
 							₹{solution.fuel_cost_per_km}/km
 						</p>
 					</CardContent>
 				</Card>
 			</div>
 
-			{/* Warnings */}
-			{solution.stats.global_warnings.length > 0 && (
-				<Card className="border-yellow-200 bg-yellow-50 dark:border-yellow-800 dark:bg-yellow-950/30">
-					<CardHeader>
-						<CardTitle className="flex items-center gap-2 text-yellow-800 dark:text-yellow-200">
-							<AlertTriangle className="h-5 w-5" />
-							Warnings ({solution.stats.global_warnings.length})
-						</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<ul className="space-y-1">
-							{solution.stats.global_warnings.map((warning) => (
-								<li
-									className="text-sm text-yellow-700 dark:text-yellow-300"
-									key={nanoid()}
-								>
-									{warning}
-								</li>
-							))}
-						</ul>
-					</CardContent>
-				</Card>
-			)}
-
-			{/* Unassigned Stops */}
-			{solution.stats.unassigned_stops.length > 0 && (
-				<Card className="border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-950/30">
-					<CardHeader>
-						<CardTitle className="flex items-center gap-2 text-red-800 dark:text-red-200">
-							<XCircle className="h-5 w-5" />
-							Unassigned Stops ({solution.stats.unassigned_stops.length})
-						</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<ul className="space-y-1">
-							{solution.stats.unassigned_stops.map((stop) => (
-								<li
-									className="text-red-700 text-sm dark:text-red-300"
-									key={nanoid()}
-								>
-									<strong>{stop.name || "Unknown"}</strong>:{" "}
-									{stop.reason || "Could not be assigned"}
-								</li>
-							))}
-						</ul>
-					</CardContent>
-				</Card>
-			)}
-
 			{/* Routes Overview */}
 			<div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
 				{/* Route List */}
 				<div className="flex flex-col gap-4 lg:col-span-4">
-					<Card className="flex flex-1 flex-col overflow-hidden">
-						<CardHeader>
-							<CardTitle>Route List</CardTitle>
-							<CardDescription>
+					<Card className="flex flex-1 flex-col overflow-hidden py-0">
+						<CardHeader className="pt-6">
+							<CardTitle className="uppercase tracking-widest">
+								Route List
+							</CardTitle>
+							<CardDescription className="text-xs uppercase">
 								{solution.routes.length} routes generated
 							</CardDescription>
 						</CardHeader>
-						<CardContent className="max-h-[700px] flex-1 space-y-4 overflow-y-auto">
+						<CardContent className="flex max-h-[700px] flex-1 flex-col items-center space-y-4 overflow-y-auto px-6 pb-6">
 							{solution.routes.map((route, idx) => (
-								<RouteCard
-									index={idx}
-									isSelected={selectedRouteIndex === idx}
-									key={`${route.bus_id}-${idx}`}
-									onSelect={setSelectedRouteIndex}
-									route={route}
-								/>
+								<div className="w-full max-w-md" key={`${route.bus_id}-${idx}`}>
+									<RouteCard
+										index={idx}
+										isSelected={selectedRouteIndex === idx}
+										onSelect={setSelectedRouteIndex}
+										route={route}
+									/>
+								</div>
 							))}
 						</CardContent>
 					</Card>
@@ -277,8 +227,10 @@ export default function SolutionDetailPage() {
 				<div className="lg:col-span-8">
 					<Card className="flex h-full flex-col overflow-hidden">
 						<CardHeader>
-							<CardTitle>Route Map</CardTitle>
-							<CardDescription>
+							<CardTitle className="uppercase tracking-widest">
+								Route Map
+							</CardTitle>
+							<CardDescription className="text-xs uppercase">
 								Interactive visualization of all routes
 							</CardDescription>
 						</CardHeader>
@@ -294,6 +246,35 @@ export default function SolutionDetailPage() {
 							</div>
 						</CardContent>
 					</Card>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+function SolutionSkeleton() {
+	return (
+		<div className="flex-1 space-y-6 p-8 pt-6">
+			<div className="flex items-center justify-between">
+				<div className="flex items-center gap-4">
+					<Skeleton className="h-10 w-10" />
+					<div className="space-y-2">
+						<Skeleton className="h-8 w-48" />
+						<Skeleton className="h-4 w-32" />
+					</div>
+				</div>
+			</div>
+			<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+				{[...Array(4)].map(() => (
+					<Skeleton className="h-32 rounded-xl" key={nanoid()} />
+				))}
+			</div>
+			<div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+				<div className="lg:col-span-4">
+					<Skeleton className="h-[700px] rounded-xl" />
+				</div>
+				<div className="lg:col-span-8">
+					<Skeleton className="h-[700px] rounded-xl" />
 				</div>
 			</div>
 		</div>
@@ -338,70 +319,84 @@ function RouteCard({
 				<span className="flex items-center gap-3">
 					<span className={`h-3 w-3 rounded-full ${color}`} />
 					<span>
-						<span className="block font-semibold">Bus {route.bus_no}</span>
-						<span className="block text-muted-foreground text-sm">
-							Capacity: {route.total_students}/{route.capacity} students
+						<span className="block font-semibold uppercase">
+							Bus {route.bus_no}
+						</span>
+						<span className="block text-muted-foreground text-xs uppercase tracking-widest">
+							{route.total_students}/{route.capacity} seats
 						</span>
 					</span>
 				</span>
 				<span className="text-right">
 					<span className="flex items-center gap-4 text-sm">
-						<span className="flex items-center gap-1">
-							<Route className="h-4 w-4 text-muted-foreground" />
-							<span>{route.total_distance_km.toFixed(1)} km</span>
+						<span className="flex items-center gap-1 font-mono">
+							<Route className="h-3 w-3 text-muted-foreground" />
+							<span>{route.total_distance_km.toFixed(1)}km</span>
 						</span>
-						<span className="flex items-center gap-1">
-							<Clock className="h-4 w-4 text-muted-foreground" />
-							<span>{route.total_time_min} min</span>
+						<span className="flex items-center gap-1 font-mono">
+							<Clock className="h-3 w-3 text-muted-foreground" />
+							<span>{route.total_time_min}m</span>
 						</span>
 					</span>
 					<span className="mt-1 block">
 						<Badge
+							className="h-4 text-[10px] uppercase"
 							variant={
 								route.capacity_utilization > 90 ? "destructive" : "secondary"
 							}
 						>
-							{route.capacity_utilization.toFixed(0)}% utilized
+							{route.capacity_utilization.toFixed(0)}% Util
 						</Badge>
 					</span>
 				</span>
 			</span>
 
 			{/* Depot Info */}
-			<span className="mb-3 flex items-center gap-2 rounded bg-muted/50 p-2 text-sm">
-				<MapPin className="h-4 w-4 text-muted-foreground" />
+			<span className="mb-3 flex items-center gap-2 rounded bg-muted/50 p-2 text-xs uppercase tracking-widest">
+				<MapPin className="h-3 w-3 text-muted-foreground" />
 				<span className="text-muted-foreground">Depot:</span>
-				<span className="font-medium">{route.depot_name || "Unknown"}</span>
+				<span className="truncate font-medium">
+					{route.depot_name || "Unknown"}
+				</span>
 			</span>
 
 			{route.warnings.length > 0 && (
-				<span className="mb-3 flex items-center gap-2 rounded bg-yellow-50 p-2 text-sm text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-300">
-					<AlertTriangle className="h-4 w-4" />
-					{route.warnings.join(", ")}
-				</span>
+				<div className="mb-3 space-y-1">
+					{route.warnings.map((warning) => (
+						<span
+							className="flex items-center gap-2 rounded bg-yellow-500/10 p-1.5 font-bold text-[10px] text-yellow-700 uppercase dark:bg-yellow-950/30 dark:text-yellow-400"
+							key={nanoid()}
+						>
+							<AlertTriangle className="h-3 w-3" />
+							{warning}
+						</span>
+					))}
+				</div>
 			)}
 
 			<span className="block space-y-2">
 				{route.stops.map((stop, stopIdx) => (
 					<span
-						className="flex items-center gap-3 rounded-md bg-muted/50 p-2"
+						className="flex items-center gap-3 rounded-md border border-transparent bg-muted/30 p-2 transition-colors hover:border-muted-foreground/10"
 						key={`${stop.stop_id}-${stopIdx}`}
 					>
-						<span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted font-medium text-xs">
+						<span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-muted font-black text-[10px]">
 							{stopIdx + 1}
 						</span>
 						<span className="min-w-0 flex-1">
-							<span className="block truncate font-medium text-sm">
+							<span className="block truncate font-bold text-xs uppercase">
 								{stop.stop_name}
 							</span>
-							<span className="block text-muted-foreground text-xs">
+							<span className="block font-mono text-[10px] text-muted-foreground">
 								{stop.stop_code} • {stop.students_boarding} students
 							</span>
 						</span>
-						<span className="text-right text-sm">
-							<span className="block font-medium">{stop.arrival_time}</span>
-							<span className="block text-muted-foreground text-xs">
-								+{stop.cumulative_time_min} min
+						<span className="text-right text-xs">
+							<span className="block font-black font-mono">
+								{stop.arrival_time}
+							</span>
+							<span className="block font-mono text-[10px] text-muted-foreground">
+								+{stop.cumulative_time_min}m
 							</span>
 						</span>
 					</span>

@@ -89,7 +89,11 @@ class OsrmService:
     ) -> dict:
         coords_str = ";".join(f"{lon},{lat}" for lat, lon in coordinates)
         url = f"{self.base_url}/route/v1/driving/{coords_str}"
-        params = {"overview": "full", "geometries": "geojson"}
+        params = {
+            "overview": "full",
+            "geometries": "geojson",
+            "annotations": "duration,distance",
+        }
 
         resp = await self.client.get(url, params=params)
         data = resp.json()

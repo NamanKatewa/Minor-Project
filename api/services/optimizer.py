@@ -171,7 +171,7 @@ class OptimizerService:
             logger.info(f"  Campus location: ({self.config.campus_lat}, {self.config.campus_lon})")
             
             t0 = time.time()
-            routes, stats = await asyncio.to_thread(
+            preliminary_routes, valid_stops = await asyncio.to_thread(
                 self._solve_cvrptw,
                 matrix=matrix,
                 stops_with_demand=stops_with_demand,
@@ -182,13 +182,23 @@ class OptimizerService:
                 arrival_deadline=deadline,
                 timeout=self.config.optimization_timeout_sec,
             )
+            
+            # Step 5: Process road geometries and accurate timings (ASYNCHRONOUS)
+            logger.info("[STEP 5] Fetching road geometries and calculating accurate timings...")
+            routes, stats = await self._process_road_accurate_routes(
+                preliminary_routes=preliminary_routes,
+                valid_stops=valid_stops,
+                campus_lat=self.config.campus_lat,
+                campus_lon=self.config.campus_lon,
+                arrival_deadline=deadline,
+                max_ride_time=max_ride
+            )
             model_build_time = time.time() - t0
             
-            logger.info(f"[STEP 5] Solution found")
             logger.info(f"  Routes generated: {len(routes)}")
             logger.info(f"  Students assigned: {stats.get('total_students_assigned', 0)}/{total_students}")
             logger.info(f"  Coverage: {stats.get('coverage_percentage', 0):.1f}%")
-            logger.info(f"  Solve time: {model_build_time:.2f}s")
+            logger.info(f"  Total solve time: {model_build_time:.2f}s")
             
             # Step 6: Calculate cost
             total_distance = sum(r["total_distance_km"] for r in routes)
@@ -514,10 +524,10 @@ class OptimizerService:
         logger.info(f"  Phase 1 complete! Objective value: {solution.ObjectiveValue()}")
         
         # ============================================================
-        # PHASE 2: Find closest depot to LAST stop, then reverse
+        # PHASE 2: Preliminary Route Assignment (Synchronous)
         # ============================================================
         logger.info("=" * 60)
-        logger.info("[PHASE 2] Assigning depots and reversing routes...")
+        logger.info("[PHASE 2] Assigning depots and sequences...")
         
         # Prepare depot data
         depots_list = []
@@ -532,210 +542,147 @@ class OptimizerService:
                 })
         
         if not depots_list:
-            logger.warning("No valid depots found - using campus as fallback")
-            depots_list = [{
-                "id": "campus",
-                "name": "Campus",
-                "lat": campus_lat,
-                "lon": campus_lon,
-            }]
-        
-        logger.info(f"  Available depots: {len(depots_list)}")
+            depots_list = [{"id": "campus", "name": "Campus", "lat": campus_lat, "lon": campus_lon}]
         
         import math
-        
-        # Parse Phase 1 solution into routes
-        routes = []
-        total_assigned = 0
-        unassigned = []
-        global_warnings = []
-        
+        preliminary_routes = []
         for vehicle_id in range(num_vehicles):
-            bus = buses[vehicle_id]
             index = routing.Start(vehicle_id)
-            route_stops_phase1 = []
-            route_time_phase1 = 0
-            
+            route_stops = []
             while not routing.IsEnd(index):
                 node_index = manager.IndexToNode(index)
-                
                 if node_index != campus_index and node_index in index_to_stop:
-                    stop_data = index_to_stop[node_index]
-                    
-                    # Get arrival time from solution
-                    time_var = time_dimension.CumulVar(index)
-                    arrival_time = solution.Value(time_var)
-                    
-                    route_stops_phase1.append({
-                        "stop_id": stop_data["id"],
-                        "stop_name": stop_data["name"],
-                        "stop_code": stop_data.get("code"),
-                        "lat": stop_data["lat"],
-                        "lon": stop_data["lon"],
-                        "zone": stop_data.get("zone"),
-                        "arrival_time": self._minutes_to_time(arrival_time),
-                        "students_boarding": stop_data["student_count"],
-                        "cumulative_time_min": arrival_time,
-                    })
-                
-                previous_index = index
+                    route_stops.append(index_to_stop[node_index])
                 index = solution.Value(routing.NextVar(index))
+            
+            if route_stops:
+                # Find closest depot to LAST stop (Phase 1 end)
+                last_stop = route_stops[-1]
+                min_dist = float('inf')
+                closest_depot = depots_list[0]
+                for depot in depots_list:
+                    dist = math.sqrt((depot["lat"]-last_stop["lat"])**2 + (depot["lon"]-last_stop["lon"])**2)
+                    if dist < min_dist:
+                        min_dist = dist
+                        closest_depot = depot
                 
-                # Calculate route time
-                from_node = manager.IndexToNode(previous_index)
-                to_node = manager.IndexToNode(index)
-                if from_node < num_nodes and to_node < num_nodes:
-                    route_time_phase1 += time_matrix[from_node][to_node]
-            
-            # Only process routes that have stops
-            if len(route_stops_phase1) == 0:
-                continue
-            
-            # Find closest depot to the LAST stop (before reversing)
-            last_stop = route_stops_phase1[-1]
-            min_dist = float('inf')
-            closest_depot = None
-            
-            for depot in depots_list:
-                # Use haversine-like approximation for distance
-                dist = math.sqrt(
-                    (depot["lat"] - last_stop["lat"])**2 + 
-                    (depot["lon"] - last_stop["lon"])**2
-                )
-                if dist < min_dist:
-                    min_dist = dist
-                    closest_depot = depot
-            
-            # Fallback if no depot found (shouldn't happen)
-            if not closest_depot:
-                closest_depot = {
-                    "id": "campus",
-                    "name": "Campus",
-                    "lat": campus_lat,
-                    "lon": campus_lon,
-                }
-            
-            # Ensure closest_depot has all required keys
-            depot_lat = closest_depot.get("lat", campus_lat)
-            depot_lon = closest_depot.get("lon", campus_lon)
-            depot_id = closest_depot.get("id", "campus")
-            depot_name = closest_depot.get("name", "Campus")
-            
-            # REVERSE the route!
-            route_stops_phase1.reverse()
-            
-            # Recalculate distances properly after reversal
-            # Use matrix indices (stop_ids_in_matrix), not valid_stops order
-            stop_index_map = {stop_id: i for i, stop_id in enumerate(stop_ids_in_matrix)}
-            
-            total_distance = 0
-            total_time = 0
-            
-            # Distance from depot to first stop (reversed route's first stop = was last)
-            # Use haversine approximation
-            first_stop = route_stops_phase1[0]
-            depot_to_first_dist = math.sqrt(
-                (depot_lat - first_stop["lat"])**2 + 
-                (depot_lon - first_stop["lon"])**2
-            ) * 111  # rough conversion to km
-            route_stops_phase1[0]["distance_from_prev_km"] = round(depot_to_first_dist, 2)
-            total_distance += depot_to_first_dist
-            
-            # Inter-stop distances using OSRM matrix
-            for i in range(1, len(route_stops_phase1)):
-                prev_stop = route_stops_phase1[i-1]
-                curr_stop = route_stops_phase1[i]
-                
-                idx_prev = stop_index_map.get(prev_stop["stop_id"])
-                idx_curr = stop_index_map.get(curr_stop["stop_id"])
-                
-                if idx_prev is not None and idx_curr is not None:
-                    # Use distance from matrix (already have from Phase 1)
-                    dist_m = distances[idx_prev][idx_curr]
-                    dist_km = dist_m / 1000 if dist_m else 0
-                else:
-                    # Fallback to haversine
-                    dist = math.sqrt(
-                        (curr_stop["lat"] - prev_stop["lat"])**2 + 
-                        (curr_stop["lon"] - prev_stop["lon"])**2
-                    ) * 111
-                    dist_km = dist
-                
-                route_stops_phase1[i]["distance_from_prev_km"] = round(dist_km, 2)
-                total_distance += dist_km
-            
-            # Add distance from last stop to campus
-            last_stop_reversed = route_stops_phase1[-1]
-            last_to_campus = math.sqrt(
-                (campus_lat - last_stop_reversed["lat"])**2 + 
-                (campus_lon - last_stop_reversed["lon"])**2
-            ) * 111
-            total_distance += last_to_campus
-            
-            route_students = sum(s["students_boarding"] for s in route_stops_phase1)
-            utilization = (route_students / bus["capacity"]) * 100
-            
-            # Check warnings
-            route_warnings = []
-            if route_time_phase1 > max_ride_time:
-                route_warnings.append(f"Route exceeds max ride time ({route_time_phase1} > {max_ride_time} min)")
-                global_warnings.append(f"Bus {bus['bus_no']}: Ride time {route_time_phase1}min exceeds limit")
-            
-            if utilization > 95:
-                route_warnings.append(f"Bus at {utilization:.1f}% capacity")
-            
-            routes.append({
-                "bus_id": bus["id"],
-                "bus_no": bus["bus_no"],
-                "capacity": bus["capacity"],
-                "depot_id": depot_id,
-                "depot_name": depot_name,
-                "depot_lat": depot_lat,
-                "depot_lon": depot_lon,
-                "stops": route_stops_phase1,
-                "total_students": route_students,
-                "total_distance_km": round(total_distance, 2),
-                "total_time_min": route_time_phase1,
-                "capacity_utilization": round(utilization, 2),
-                "warnings": route_warnings,
-            })
-            
-            total_assigned += route_students
-            logger.info(f"    Route {vehicle_id + 1}: {bus['bus_no']}, {len(route_stops_phase1)} stops, {route_students} students, {round(total_distance, 1)}km, depot: {depot_name}")
-        
-        # Find unassigned stops
-        assigned_stop_ids = set()
-        for route in routes:
-            for stop in route["stops"]:
-                assigned_stop_ids.add(stop["stop_id"])
-        
-        for stop_data in valid_stops:
-            if stop_data["id"] not in assigned_stop_ids:
-                unassigned.append({
-                    "stop_id": stop_data["id"],
-                    "name": stop_data["name"],
-                    "reason": "Could not fit in any route within constraints",
-                    "lat": stop_data["lat"],
-                    "lon": stop_data["lon"]
+                # Reverse for pickup sequence: Depot -> Stop 1 ... -> Campus
+                route_stops.reverse()
+                preliminary_routes.append({
+                    "bus": buses[vehicle_id],
+                    "stops": route_stops,
+                    "depot": closest_depot
                 })
         
-        # Stats
-        total_students = sum(s["student_count"] for s in valid_stops)
+        return preliminary_routes, valid_stops
+
+    async def _process_road_accurate_routes(
+        self,
+        preliminary_routes: List[Dict],
+        valid_stops: List[Dict],
+        campus_lat: float,
+        campus_lon: float,
+        arrival_deadline: str,
+        max_ride_time: int
+    ) -> Tuple[List[Dict], Dict]:
+        """Async processing of routes to get real road geometries and timings from OSRM"""
+        from services.osrm import osrm_service
+        
+        async def process_single_route(route_info):
+            bus = route_info["bus"]
+            stops = route_info["stops"]
+            depot = route_info["depot"]
+            
+            coords = [(depot["lat"], depot["lon"])] + [(s["lat"], s["lon"]) for s in stops] + [(campus_lat, campus_lon)]
+            
+            try:
+                osrm_data = await osrm_service.get_route(coords)
+                osrm_route = osrm_data["routes"][0]
+                geometry = [[p[1], p[0]] for p in osrm_route["geometry"]["coordinates"]]
+                legs = osrm_route["legs"]
+                
+                deadline_min = self._time_to_minutes(arrival_deadline)
+                total_time_min = round(osrm_route["duration"] / 60)
+                start_time_min = deadline_min - total_time_min
+                current_time_min = deadline_min
+                processed_stops = []
+                
+                # Backward pass for arrival times
+                for i in range(len(stops) - 1, -1, -1):
+                    leg_to_next = legs[i + 1]
+                    current_time_min -= round(leg_to_next["duration"] / 60)
+                    
+                    stop = stops[i]
+                    processed_stops.append({
+                        "stop_id": stop["id"],
+                        "stop_name": stop["name"],
+                        "stop_code": stop.get("code"),
+                        "lat": stop["lat"],
+                        "lon": stop["lon"],
+                        "zone": stop.get("zone"),
+                        "arrival_time": self._minutes_to_time(current_time_min),
+                        "students_boarding": stop["student_count"],
+                        "cumulative_time_min": current_time_min - start_time_min,
+                        "distance_from_prev_km": round(legs[i]["distance"] / 1000, 2)
+                    })
+                
+                processed_stops.reverse()
+                total_dist = osrm_route["distance"] / 1000
+                total_time = total_time_min
+                students = sum(s["student_count"] for s in stops)
+                utilization = (students / bus["capacity"]) * 100
+                
+                warnings = []
+                if total_time > max_ride_time:
+                    warnings.append(f"Exceeds max ride time ({total_time} min)")
+                if utilization > 95:
+                    warnings.append(f"High capacity utilization ({utilization:.1f}%)")
+                
+                return {
+                    "bus_id": bus["id"],
+                    "bus_no": bus["bus_no"],
+                    "capacity": bus["capacity"],
+                    "depot_id": str(depot["id"]),
+                    "depot_name": depot["name"],
+                    "depot_lat": depot["lat"],
+                    "depot_lon": depot["lon"],
+                    "stops": processed_stops,
+                    "geometry": geometry,
+                    "total_students": students,
+                    "total_distance_km": round(total_dist, 2),
+                    "total_time_min": total_time,
+                    "capacity_utilization": round(utilization, 2),
+                    "warnings": warnings,
+                }
+            except Exception as e:
+                logger.error(f"Error processing route for bus {bus['bus_no']}: {str(e)}")
+                return None
+
+        # Execute in parallel
+        routes = await asyncio.gather(*(process_single_route(r) for r in preliminary_routes))
+        routes = [r for r in routes if r is not None]
+        
+        # Calculate final stats
+        total_assigned = sum(r["total_students"] for r in routes)
+        total_students_req = sum(s["student_count"] for s in valid_stops)
+        assigned_stop_ids = {s["stop_id"] for r in routes for s in r["stops"]}
+        
+        unassigned = []
+        for s in valid_stops:
+            if s["id"] not in assigned_stop_ids:
+                unassigned.append({"stop_id": s["id"], "name": s["name"], "reason": "Constraints", "lat": s["lat"], "lon": s["lon"]})
+        
         stats = {
             "total_buses_used": len(routes),
             "total_distance_km": sum(r["total_distance_km"] for r in routes),
             "total_time_min": max(r["total_time_min"] for r in routes) if routes else 0,
             "avg_utilization": sum(r["capacity_utilization"] for r in routes) / len(routes) if routes else 0,
             "total_students_assigned": total_assigned,
-            "total_students_requested": total_students,
-            "coverage_percentage": (total_assigned / total_students * 100) if total_students > 0 else 0,
+            "total_students_requested": total_students_req,
+            "coverage_percentage": (total_assigned / total_students_req * 100) if total_students_req > 0 else 0,
             "unassigned_stops": unassigned,
-            "global_warnings": global_warnings,
+            "global_warnings": [f"Bus {r['bus_no']}: {', '.join(r['warnings'])}" for r in routes if r["warnings"]],
         }
-        
-        logger.info(f"  Final Summary: {len(routes)} routes, {total_assigned}/{total_students} students assigned")
-        logger.info("[CVRPTW] Solver completed")
-        logger.info("=" * 60)
         
         return routes, stats
     
