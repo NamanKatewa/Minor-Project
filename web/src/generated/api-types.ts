@@ -438,6 +438,27 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
+	"/api/optimization/ready": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Get Optimization Ready
+		 * @description Get all data needed to prepare for an optimization run in a single call.
+		 *     Checks prerequisites like stops, buses, demand, and matrix status.
+		 */
+		get: operations["get_optimization_ready_api_optimization_ready_get"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
 	"/api/optimization/run": {
 		parameters: {
 			query?: never;
@@ -914,6 +935,28 @@ export interface components {
 			limit: number;
 			/** Offset */
 			offset: number;
+		};
+		/**
+		 * OptimizationReadyResponse
+		 * @description Data needed to prepare for an optimization run
+		 */
+		OptimizationReadyResponse: {
+			/** Semesters */
+			semesters: string[];
+			/** Stops Count */
+			stops_count: number;
+			/** Buses Count */
+			buses_count: number;
+			/** Demand Records Count */
+			demand_records_count: number;
+			/** Total Students Count */
+			total_students_count: number;
+			/** Total Fleet Capacity */
+			total_fleet_capacity: number;
+			/** Latest Matrix Stop Count */
+			latest_matrix_stop_count?: number | null;
+			/** Has Matrix */
+			has_matrix: boolean;
 		};
 		/**
 		 * OptimizationRequest
@@ -2322,6 +2365,26 @@ export interface operations {
 				};
 				content: {
 					"application/json": components["schemas"]["DashboardSummary"];
+				};
+			};
+		};
+	};
+	get_optimization_ready_api_optimization_ready_get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": components["schemas"]["OptimizationReadyResponse"];
 				};
 			};
 		};

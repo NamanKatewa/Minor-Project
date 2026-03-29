@@ -164,3 +164,15 @@ class OptimizationErrorResponse(BaseModel):
     error_type: str
     validation_errors: list[OptimizationValidationError] = []
     suggestions: list[str] = []
+
+
+class OptimizationReadyResponse(BaseModel):
+    """Data needed to prepare for an optimization run"""
+    semesters: list[str]
+    stops_count: int
+    buses_count: int
+    demand_records_count: int
+    total_students_count: int
+    total_fleet_capacity: int
+    latest_matrix_stop_count: int | None = None
+    has_matrix: bool

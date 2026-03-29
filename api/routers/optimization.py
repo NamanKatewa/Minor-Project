@@ -2,11 +2,11 @@
 
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy import select
+from sqlalchemy import select, text, distinct, desc
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_db
-from models import Solution
+from models import Solution, Demand, DistanceMatrix
 from schemas import (
     OptimizationRequest,
     OptimizationResponse,
@@ -14,10 +14,55 @@ from schemas import (
     OptimizationSummary,
     OptimizationStats,
     BusRoute,
+    OptimizationReadyResponse,
 )
 from services.optimizer import optimizer_service
 
 router = APIRouter(prefix="/api/optimization", tags=["optimization"])
+
+
+@router.get("/ready", response_model=OptimizationReadyResponse)
+async def get_optimization_ready(session: AsyncSession = Depends(get_db)):
+    """
+    Get all data needed to prepare for an optimization run in a single call.
+    Checks prerequisites like stops, buses, demand, and matrix status.
+    """
+    # 1. Fetch counts
+    count_query = text("""
+        SELECT 
+            (SELECT COUNT(*) FROM stops WHERE active = true) as stops_count,
+            (SELECT COUNT(*) FROM buses) as buses_count,
+            (SELECT COUNT(*) FROM demand) as demand_records_count,
+            (SELECT COALESCE(SUM(student_count), 0) FROM demand) as total_students_count,
+            (SELECT COALESCE(SUM(capacity), 0) FROM buses) as total_fleet_capacity
+    """)
+    count_result = await session.execute(count_query)
+    counts = count_result.one()
+    
+    # 2. Fetch semesters
+    semesters_res = await session.execute(
+        select(distinct(Demand.semester)).where(Demand.semester != None)
+    )
+    semesters = semesters_res.scalars().all()
+    
+    # 3. Fetch latest matrix info
+    matrix_res = await session.execute(
+        select(DistanceMatrix.stop_count)
+        .order_by(desc(DistanceMatrix.created_at))
+        .limit(1)
+    )
+    matrix_stop_count = matrix_res.scalar_one_or_none()
+
+    return OptimizationReadyResponse(
+        semesters=list(semesters),
+        stops_count=counts[0],
+        buses_count=counts[1],
+        demand_records_count=counts[2],
+        total_students_count=counts[3],
+        total_fleet_capacity=counts[4],
+        latest_matrix_stop_count=matrix_stop_count,
+        has_matrix=matrix_stop_count is not None
+    )
 
 
 @router.post("/run", response_model=OptimizationResponse, status_code=201)

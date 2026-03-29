@@ -61,21 +61,12 @@ export default function OptimizePage() {
 	const [arrivalDeadline, setArrivalDeadline] = useState("08:45");
 	const [lastError, setLastError] = useState<OptimizationError | null>(null);
 
-	const { data: semesters } = useQuery({
-		queryKey: ["semesters"],
-		queryFn: api.demand.semesters,
+	const { data: readyData, isLoading } = useQuery({
+		queryKey: ["optimization", "ready"],
+		queryFn: api.optimization.ready,
 	});
 
-	const { data: dashboardData } = useQuery({
-		queryKey: ["dashboard", "summary"],
-		queryFn: api.dashboard.summary,
-	});
-
-	const { data: latestMatrix } = useQuery({
-		queryKey: ["routes", "latest"],
-		queryFn: api.routes.latest,
-		retry: false,
-	});
+	const semesters = readyData?.semesters;
 
 	const optimizeMutation = useMutation({
 		mutationFn: api.optimization.run,
@@ -126,10 +117,10 @@ export default function OptimizePage() {
 		});
 	};
 
-	const hasMatrix = !!latestMatrix;
-	const hasStops = (dashboardData?.stops_count ?? 0) > 0;
-	const hasBuses = (dashboardData?.buses_count ?? 0) > 0;
-	const hasDemand = (dashboardData?.demand_records_count ?? 0) > 0;
+	const hasMatrix = !!readyData?.has_matrix;
+	const hasStops = (readyData?.stops_count ?? 0) > 0;
+	const hasBuses = (readyData?.buses_count ?? 0) > 0;
+	const hasDemand = (readyData?.demand_records_count ?? 0) > 0;
 
 	const isReady = hasMatrix && hasStops && hasBuses && hasDemand;
 
@@ -179,11 +170,15 @@ export default function OptimizePage() {
 							</div>
 							<div>
 								<p className="font-medium text-sm">Stops</p>
-								<p className="text-muted-foreground text-xs">
-									{hasStops
-										? `${dashboardData?.stops_count} stops`
-										: "No stops found"}
-								</p>
+								<div className="text-muted-foreground text-xs">
+									{isLoading ? (
+										<div className="h-3 w-12 animate-pulse rounded bg-muted" />
+									) : hasStops ? (
+										`${readyData?.stops_count} stops`
+									) : (
+										"No stops found"
+									)}
+								</div>
 							</div>
 						</div>
 
@@ -195,11 +190,15 @@ export default function OptimizePage() {
 							</div>
 							<div>
 								<p className="font-medium text-sm">Buses</p>
-								<p className="text-muted-foreground text-xs">
-									{hasBuses
-										? `${dashboardData?.buses_count} buses`
-										: "No buses found"}
-								</p>
+								<div className="text-muted-foreground text-xs">
+									{isLoading ? (
+										<div className="h-3 w-12 animate-pulse rounded bg-muted" />
+									) : hasBuses ? (
+										`${readyData?.buses_count} buses`
+									) : (
+										"No buses found"
+									)}
+								</div>
 							</div>
 						</div>
 
@@ -211,11 +210,15 @@ export default function OptimizePage() {
 							</div>
 							<div>
 								<p className="font-medium text-sm">Demand</p>
-								<p className="text-muted-foreground text-xs">
-									{hasDemand
-										? `${dashboardData?.demand_records_count} records`
-										: "No demand data"}
-								</p>
+								<div className="text-muted-foreground text-xs">
+									{isLoading ? (
+										<div className="h-3 w-12 animate-pulse rounded bg-muted" />
+									) : hasDemand ? (
+										`${readyData?.demand_records_count} records`
+									) : (
+										"No demand data"
+									)}
+								</div>
 							</div>
 						</div>
 
@@ -227,16 +230,20 @@ export default function OptimizePage() {
 							</div>
 							<div>
 								<p className="font-medium text-sm">Distance Matrix</p>
-								<p className="text-muted-foreground text-xs">
-									{hasMatrix
-										? `${latestMatrix?.stop_count} stops`
-										: "Not calculated"}
-								</p>
+								<div className="text-muted-foreground text-xs">
+									{isLoading ? (
+										<div className="h-3 w-16 animate-pulse rounded bg-muted" />
+									) : hasMatrix ? (
+										`${readyData?.latest_matrix_stop_count} stops`
+									) : (
+										"Not calculated"
+									)}
+								</div>
 							</div>
 						</div>
 					</div>
 
-					{!isReady && (
+					{!isReady && !isLoading && (
 						<div className="mt-4 flex items-start gap-2 rounded-lg bg-yellow-50 p-3 dark:bg-yellow-950/30">
 							<AlertTriangle className="mt-0.5 h-4 w-4 text-yellow-600" />
 							<p className="text-sm text-yellow-800">
@@ -340,7 +347,7 @@ export default function OptimizePage() {
 
 						<Button
 							className="w-full gap-2"
-							disabled={!isReady || optimizeMutation.isPending}
+							disabled={!isReady || optimizeMutation.isPending || isLoading}
 							onClick={handleOptimize}
 							size="lg"
 						>
@@ -455,7 +462,7 @@ export default function OptimizePage() {
 			</div>
 
 			{/* Quick Stats */}
-			{dashboardData && (
+			{readyData && (
 				<div className="grid gap-4 md:grid-cols-4">
 					<Card>
 						<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -466,9 +473,11 @@ export default function OptimizePage() {
 						</CardHeader>
 						<CardContent>
 							<div className="font-bold text-2xl">
-								{dashboardData.total_fleet_capacity}
+								{readyData.total_fleet_capacity}
 							</div>
-							<p className="text-muted-foreground text-xs">students</p>
+							<p className="text-muted-foreground text-xs">
+								{readyData.total_students_count} students mapped
+							</p>
 						</CardContent>
 					</Card>
 
@@ -480,9 +489,7 @@ export default function OptimizePage() {
 							<MapPin className="h-4 w-4 text-muted-foreground" />
 						</CardHeader>
 						<CardContent>
-							<div className="font-bold text-2xl">
-								{dashboardData.stops_count}
-							</div>
+							<div className="font-bold text-2xl">{readyData.stops_count}</div>
 							<p className="text-muted-foreground text-xs">locations</p>
 						</CardContent>
 					</Card>
@@ -495,9 +502,7 @@ export default function OptimizePage() {
 							<TrendingUp className="h-4 w-4 text-muted-foreground" />
 						</CardHeader>
 						<CardContent>
-							<div className="font-bold text-2xl">
-								{dashboardData.buses_count}
-							</div>
+							<div className="font-bold text-2xl">{readyData.buses_count}</div>
 							<p className="text-muted-foreground text-xs">vehicles</p>
 						</CardContent>
 					</Card>

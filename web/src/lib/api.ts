@@ -136,6 +136,10 @@ export const api = {
 			fetcher<components["schemas"]["DashboardSummary"]>("/dashboard/summary"),
 	},
 	optimization: {
+		ready: () =>
+			fetcher<components["schemas"]["OptimizationReadyResponse"]>(
+				"/optimization/ready",
+			),
 		run: (data: components["schemas"]["OptimizationRequest"]) =>
 			fetcher<components["schemas"]["OptimizationResponse"]>(
 				"/optimization/run",
