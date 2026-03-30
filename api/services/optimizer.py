@@ -4,6 +4,7 @@ import asyncio
 import logging
 import time
 import traceback
+import numpy as np
 from uuid import UUID
 from typing import Tuple, List, Dict, Any
 from fastapi import HTTPException
@@ -342,19 +343,17 @@ class OptimizerService:
         timeout: int,
     ) -> Tuple[List[Dict], Dict[str, Any]]:
         """
-        Build and solve CVRPTW model using OR-Tools - Two Phase Approach.
+        Build and solve CVRPTW model using OR-Tools - Integrated Multi-Depot Approach.
         
-        Phase 1: Solve VRP starting from campus (Campus → Stops → Campus)
-                 This is fast because we don't include depot nodes in the model.
-                 
-        Phase 2: For each route, find closest depot to LAST stop, then reverse route.
-                 Final route: Depot → (reversed stops) → Campus
-        
-        This avoids the solver hang that occurs when depot nodes are included.
+        Node Mapping:
+        - Node 0: Virtual Source (Start for all vehicles)
+        - Node 1: Campus (End for all vehicles)
+        - Nodes 2 to D+1: Real Depots
+        - Nodes D+2 to N: Student Stops
         """
         
         logger.info("=" * 60)
-        logger.info("[CVRPTW] Starting solver setup - TWO PHASE APPROACH")
+        logger.info("[CVRPTW] Starting solver setup - INTEGRATED MULTI-DEPOT")
         
         # Parse matrix data
         matrix_data = matrix.matrix_json
@@ -365,10 +364,8 @@ class OptimizerService:
         durations = matrix_data["durations"]  # seconds
         distances = matrix_data["distances"]  # meters
         
-        num_stop_coords = len(stop_ids_in_matrix)
-        
-        logger.info(f"  Matrix has {num_stop_coords} stops and {len(depot_ids_in_matrix)} depots")
-        logger.info(f"  Using campus as start/end point (Phase 1)")
+        # OSRM matrix mapping (0=Campus, 1..N=Stops, N+1..N+D=Depots)
+        matrix_campus_idx = matrix_data.get("campus_index", 0)
         
         # Filter stops that exist in matrix
         valid_stops = [
@@ -376,207 +373,222 @@ class OptimizerService:
             if s["id"] in stop_ids_in_matrix
         ]
         
-        logger.info(f"  Valid stops with demand: {len(valid_stops)}")
-        logger.info(f"  Total students to assign: {sum(s['student_count'] for s in valid_stops)}")
-        
         if not valid_stops:
             logger.error("No stops found in distance matrix")
             raise HTTPException(
                 status_code=400,
                 detail="No stops found in distance matrix. Rebuild matrix with current stops."
             )
-        
-        # Build node mapping - NO DEPOT NODES in Phase 1
-        # Node 0: Campus
-        # Nodes 1..n: Student stops
-        campus_index = 0
-        stop_id_to_index = {s["id"]: i + 1 for i, s in enumerate(valid_stops)}
-        index_to_stop = {i + 1: s for i, s in enumerate(valid_stops)}
-        num_stops = len(valid_stops)
-        num_nodes = num_stops + 1  # campus + stops
-        
-        logger.info(f"  Phase 1: {num_nodes} nodes (1 campus + {num_stops} stops)")
-        
-        # Build time matrix (in minutes) and distance matrix (in km)
-        logger.info("  Building time/distance matrices...")
-        time_matrix = [[0] * num_nodes for _ in range(num_nodes)]
-        distance_matrix = [[0] * num_nodes for _ in range(num_nodes)]
-        
-        # Fill stop-to-stop times/distances from matrix
-        for i, stop_i in enumerate(valid_stops):
-            idx_i = stop_id_to_index[stop_i["id"]]
-            matrix_idx_i = stop_ids_in_matrix.index(stop_i["id"])
             
-            for j, stop_j in enumerate(valid_stops):
-                idx_j = stop_id_to_index[stop_j["id"]]
-                matrix_idx_j = stop_ids_in_matrix.index(stop_j["id"])
-                
-                # Convert seconds to minutes
-                dur_sec = durations[matrix_idx_i][matrix_idx_j]
-                time_matrix[idx_i][idx_j] = int(dur_sec / 60) if dur_sec and dur_sec > 0 else 0
-                
-                # Distance in km
-                dist_m = distances[matrix_idx_i][matrix_idx_j]
-                distance_matrix[idx_i][idx_j] = dist_m / 1000 if dist_m else 0
+        num_stops = len(valid_stops)
         
-        # Campus connections: small penalty to campus to encourage it as end point
-        logger.info("  Setting up campus connections...")
-        CAMPUS_TIME_PENALTY = 5
-        for i in range(1, num_nodes):
-            time_matrix[i][campus_index] = CAMPUS_TIME_PENALTY
-            time_matrix[campus_index][i] = 1
-            distance_matrix[i][campus_index] = 0
-            distance_matrix[campus_index][i] = 0
+        # Node Mapping - REMOVED PHYSICAL DEPOTS AS NODES
+        # 0: Virtual Source (Pool of all 250 buses)
+        # 1: Campus
+        # 2 to 2+S-1: Student Stops
+        VIRTUAL_SOURCE = 0
+        CAMPUS_NODE = 1
+        STOP_START_NODE = 2
+        num_nodes = 2 + num_stops
         
-        # Demands (students at each stop)
-        demands = [0] + [s["student_count"] for s in valid_stops]
+        logger.info(f"  Nodes: {num_nodes} (1 Virtual Start, 1 Campus, {num_stops} Stops)")
         
-        # Vehicle data
+        # Build node translation helpers
+        stop_id_to_matrix_idx = {sid: i + 1 for i, sid in enumerate(stop_ids_in_matrix)}
+        # Depots start after all stops in the matrix
+        depot_id_to_matrix_idx = {did: i + 1 + len(stop_ids_in_matrix) for i, did in enumerate(depot_ids_in_matrix)}
+        
+        # Mapping for result reconstruction
+        index_to_stop = {}
+        for i, stop in enumerate(valid_stops):
+            index_to_stop[STOP_START_NODE + i] = {
+                **stop,
+                "matrix_idx": stop_id_to_matrix_idx[stop["id"]]
+            }
+            
+        # Physical depot info for choosing the best start
+        physical_depots = []
+        for did in depot_ids_in_matrix:
+            coords = depot_coords.get(did, {})
+            physical_depots.append({
+                "id": did,
+                "name": depot_names.get(did, "Unknown Depot"),
+                "lat": coords.get("lat"),
+                "lon": coords.get("lon"),
+                "matrix_idx": depot_id_to_matrix_idx[did]
+            })
+
+        # Build matrices
+        logger.info(f"  Building optimized matrices for {num_nodes} nodes using NumPy...")
+        t_matrix_start = time.time()
+        
+        PENALTY = 10000000
+        time_np = np.full((num_nodes, num_nodes), PENALTY // 1000, dtype=np.int32)
+        cost_np = np.full((num_nodes, num_nodes), PENALTY, dtype=np.int32)
+        
+        durations_np = np.array(durations)
+        distances_np = np.array(distances)
+        
+        # OSRM matrix indices
+        stop_matrix_indices = [index_to_stop[i]["matrix_idx"] for i in range(STOP_START_NODE, num_nodes)]
+        depot_matrix_indices = [d["matrix_idx"] for d in physical_depots]
+        
+        # 1. Virtual Source -> Stops (INFINITE DEPOT LOGIC)
+        # The cost to start at a stop is the distance from the CLOSEST physical depot to that stop.
+        if depot_matrix_indices:
+            # Get durations from all depots to all stops: shape (num_depots, num_stops)
+            depot_to_stop_dur = durations_np[depot_matrix_indices, :][:, stop_matrix_indices]
+            depot_to_stop_dist = distances_np[depot_matrix_indices, :][:, stop_matrix_indices]
+            
+            # Use the minimum (closest depot) for each stop
+            time_np[VIRTUAL_SOURCE, STOP_START_NODE:] = (np.min(depot_to_stop_dur, axis=0) / 60).astype(np.int32)
+            cost_np[VIRTUAL_SOURCE, STOP_START_NODE:] = np.min(depot_to_stop_dist, axis=0).astype(np.int32)
+        
+        # 2. Virtual Source -> Campus (Escape hatch)
+        time_np[VIRTUAL_SOURCE, CAMPUS_NODE] = 0
+        cost_np[VIRTUAL_SOURCE, CAMPUS_NODE] = 0
+        
+        # 3. Stops -> Stops
+        for i, mi in enumerate(stop_matrix_indices):
+            solver_idx_i = STOP_START_NODE + i
+            valid_mask = durations_np[mi, stop_matrix_indices] >= 0
+            time_np[solver_idx_i, np.array(range(STOP_START_NODE, num_nodes))[valid_mask]] = (durations_np[mi, stop_matrix_indices][valid_mask] / 60).astype(np.int32)
+            cost_np[solver_idx_i, np.array(range(STOP_START_NODE, num_nodes))[valid_mask]] = distances_np[mi, stop_matrix_indices][valid_mask].astype(np.int32)
+            
+        # 4. Stops -> Campus
+        for i, mi in enumerate(stop_matrix_indices):
+            solver_idx_i = STOP_START_NODE + i
+            if durations_np[mi, matrix_campus_idx] >= 0:
+                time_np[solver_idx_i, CAMPUS_NODE] = int(durations_np[mi, matrix_campus_idx] / 60)
+                cost_np[solver_idx_i, CAMPUS_NODE] = int(distances_np[mi, matrix_campus_idx])
+        
+        # 5. Explicit Self-loops
+        for i in range(num_nodes):
+            time_np[i, i] = 0
+            cost_np[i, i] = 0
+        
+        # Convert to list for OR-Tools compatibility
+        time_matrix = time_np.tolist()
+        cost_matrix = cost_np.tolist()
+        
+        matrix_build_time = time.time() - t_matrix_start
+        logger.info(f"  Matrices built in {matrix_build_time:.2f}s. Initializing Routing Manager...")
+        
+        # Demands
+        demands = [0] * num_nodes
+        for idx, stop in index_to_stop.items():
+            demands[idx] = stop["student_count"]
+            
+        # Vehicle Data
         num_vehicles = len(buses)
         vehicle_capacities = [b["capacity"] for b in buses]
+        starts = [VIRTUAL_SOURCE] * num_vehicles
+        ends = [CAMPUS_NODE] * num_vehicles
         
-        # All vehicles start and end at campus for Phase 1
-        starts = [campus_index] * num_vehicles
-        ends = [campus_index] * num_vehicles
-        
-        logger.info(f"  Setting up {num_vehicles} vehicles...")
-        logger.info(f"  Vehicle capacities: {vehicle_capacities[:5]}{'...' if len(vehicle_capacities) > 5 else ''}")
-        
-        deadline_minutes = self._time_to_minutes(arrival_deadline)
-        logger.info(f"  Deadline: {arrival_deadline} = {deadline_minutes} minutes")
-        
-        # Build OR-Tools model (Phase 1 - no depot nodes)
-        logger.info("  Building OR-Tools model (Phase 1)...")
-        manager = pywrapcp.RoutingIndexManager(
-            num_nodes, num_vehicles, starts, ends
-        )
+        t_manager_start = time.time()
+        manager = pywrapcp.RoutingIndexManager(num_nodes, num_vehicles, starts, ends)
         routing = pywrapcp.RoutingModel(manager)
+        logger.info(f"  Routing Model created in {time.time() - t_manager_start:.2f}s. Pre-calculating index mappings...")
         
-        # Time callback
+        # OPTIMIZATION: Pre-calculate index-to-node mapping using the correct index count
+        index_to_node_map = [manager.IndexToNode(i) for i in range(manager.GetNumberOfIndices())]
+        
+        # Callbacks (Optimized with pre-calculated mapping)
+        def cost_callback(from_index, to_index):
+            from_node = index_to_node_map[from_index]
+            to_node = index_to_node_map[to_index]
+            return cost_matrix[from_node][to_node]
+        
         def time_callback(from_index, to_index):
-            from_node = manager.IndexToNode(from_index)
-            to_node = manager.IndexToNode(to_index)
+            from_node = index_to_node_map[from_index]
+            to_node = index_to_node_map[to_index]
             return time_matrix[from_node][to_node]
+            
+        cost_idx = routing.RegisterTransitCallback(cost_callback)
+        time_idx = routing.RegisterTransitCallback(time_callback)
         
-        transit_callback_index = routing.RegisterTransitCallback(time_callback)
-        routing.SetArcCostEvaluatorOfAllVehicles(transit_callback_index)
+        routing.SetArcCostEvaluatorOfAllVehicles(cost_idx)
         
-        # Add dimension: Time (max ride time)
-        routing.AddDimension(
-            transit_callback_index,
-            slack_max=30,
-            capacity=max_ride_time,
-            fix_start_cumul_to_zero=False,
-            name="Time"
-        )
+        # Dimensions
+        logger.info("  Adding dimensions...")
+        routing.AddDimension(time_idx, 30, max_ride_time, False, "Time")
         time_dimension = routing.GetDimensionOrDie("Time")
+        deadline_min = self._time_to_minutes(arrival_deadline)
         
-        # Set campus arrival constraint
-        campus_index_rt = manager.NodeToIndex(campus_index)
-        time_dimension.CumulVar(campus_index_rt).SetRange(0, deadline_minutes)
+        # Apply deadline to each vehicle's end node individually
+        for i in range(num_vehicles):
+            time_dimension.CumulVar(routing.End(i)).SetRange(0, deadline_min)
         
-        # Add dimension: Capacity
         def demand_callback(from_index):
-            from_node = manager.IndexToNode(from_index)
-            return demands[from_node]
+            return demands[index_to_node_map[from_index]]
+        demand_idx = routing.RegisterUnaryTransitCallback(demand_callback)
+        routing.AddDimensionWithVehicleCapacity(demand_idx, 0, vehicle_capacities, True, "Capacity")
         
-        demand_callback_index = routing.RegisterUnaryTransitCallback(demand_callback)
-        routing.AddDimensionWithVehicleCapacity(
-            demand_callback_index,
-            slack_max=0,
-            vehicle_capacities=vehicle_capacities,
-            fix_start_cumul_to_zero=True,
-            name="Capacity"
-        )
+        # Fixed cost to encourage balanced usage
+        routing.SetFixedCostOfAllVehicles(1000)
+        
+        # NEW: Allow dropping stops if they cause infeasibility
+        # 100,000 penalty = 100km. High enough to avoid accidental drops, low enough to ensure feasibility.
+        DROP_PENALTY = 100000 
+        for i in range(STOP_START_NODE, num_nodes):
+            routing.AddDisjunction([manager.NodeToIndex(i)], DROP_PENALTY)
         
         # Search parameters
-        search_parameters = pywrapcp.DefaultRoutingSearchParameters()
-        search_parameters.first_solution_strategy = (
-            routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
-        )
-        search_parameters.local_search_metaheuristic = (
-            routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
-        )
-        search_parameters.time_limit.FromSeconds(timeout)
+        search_params = pywrapcp.DefaultRoutingSearchParameters()
+        search_params.first_solution_strategy = routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
+        search_params.local_search_metaheuristic = routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
+        search_params.time_limit.FromSeconds(timeout)
         
-        logger.info(f"  Starting OR-Tools solve (Phase 1)...")
-        logger.info(f"    Timeout: {timeout}s")
-        
+        logger.info(f"  Model fully initialized. Starting solver (timeout {timeout}s)...")
         solve_start = time.time()
-        solution = routing.SolveWithParameters(search_parameters)
+        solution = routing.SolveWithParameters(search_params)
         solve_time = time.time() - solve_start
-        
-        logger.info(f"  Phase 1 solver finished in {solve_time:.2f}s")
+        logger.info(f"  Solver finished in {solve_time:.2f}s")
         
         if not solution:
-            logger.error("Solver returned no solution")
-            raise HTTPException(
-                status_code=422,
-                detail={
-                    "error_type": "no_feasible_solution",
-                    "message": "Optimization failed to find a feasible solution",
-                    "suggestions": [
-                        "Increase number of buses",
-                        "Increase bus capacity",
-                        "Relax arrival deadline",
-                        "Check for unreachable stops"
-                    ]
-                }
-            )
-        
-        logger.info(f"  Phase 1 complete! Objective value: {solution.ObjectiveValue()}")
-        
-        # ============================================================
-        # PHASE 2: Preliminary Route Assignment (Synchronous)
-        # ============================================================
-        logger.info("=" * 60)
-        logger.info("[PHASE 2] Assigning depots and sequences...")
-        
-        # Prepare depot data
-        depots_list = []
-        for depot_id in depot_ids_in_matrix:
-            depot_info = depot_coords.get(depot_id, {})
-            if depot_info.get("lat") and depot_info.get("lon"):
-                depots_list.append({
-                    "id": depot_id,
-                    "name": depot_names.get(depot_id, "Unknown Depot"),
-                    "lat": depot_info["lat"],
-                    "lon": depot_info["lon"],
-                })
-        
-        if not depots_list:
-            depots_list = [{"id": "campus", "name": "Campus", "lat": campus_lat, "lon": campus_lon}]
-        
-        import math
+            logger.error("Solver returned no solution even with disjunctions!")
+            raise HTTPException(status_code=422, detail="No feasible solution found.")
+            
+        # Process routes
         preliminary_routes = []
+        assigned_stops_count = 0
         for vehicle_id in range(num_vehicles):
             index = routing.Start(vehicle_id)
-            route_stops = []
+            route_nodes = []
             while not routing.IsEnd(index):
-                node_index = manager.IndexToNode(index)
-                if node_index != campus_index and node_index in index_to_stop:
-                    route_stops.append(index_to_stop[node_index])
+                node_idx = manager.IndexToNode(index)
+                route_nodes.append(node_idx)
                 index = solution.Value(routing.NextVar(index))
             
-            if route_stops:
-                # Find closest depot to LAST stop (Phase 1 end)
-                last_stop = route_stops[-1]
-                min_dist = float('inf')
-                closest_depot = depots_list[0]
-                for depot in depots_list:
-                    dist = math.sqrt((depot["lat"]-last_stop["lat"])**2 + (depot["lon"]-last_stop["lon"])**2)
-                    if dist < min_dist:
-                        min_dist = dist
-                        closest_depot = depot
+            # Extract Depot and Stops (Skip Virtual Source)
+            # Route nodes: [VirtualSource, Stop1, Stop2...]
+            if len(route_nodes) > 1: # Has at least one Stop
+                stop_nodes = route_nodes[1:]
+                route_stops = [index_to_stop[sn] for sn in stop_nodes]
                 
-                # Reverse for pickup sequence: Depot -> Stop 1 ... -> Campus
-                route_stops.reverse()
+                # RECONSTRUCT DEPOT CHOICE: Which depot was actually closest to the first stop?
+                first_stop = route_stops[0]
+                first_stop_matrix_idx = first_stop["matrix_idx"]
+                
+                best_depot = physical_depots[0]
+                min_dist = float('inf')
+                for depot in physical_depots:
+                    d = distances_np[depot["matrix_idx"]][first_stop_matrix_idx]
+                    if d < min_dist:
+                        min_dist = d
+                        best_depot = depot
+                
                 preliminary_routes.append({
                     "bus": buses[vehicle_id],
-                    "stops": route_stops,
-                    "depot": closest_depot
+                    "depot": best_depot,
+                    "stops": route_stops
                 })
+                assigned_stops_count += len(stop_nodes)
         
+        logger.info(f"  Assignment complete: {assigned_stops_count}/{num_stops} stops assigned.")
+        if assigned_stops_count < num_stops:
+            logger.warning(f"  {num_stops - assigned_stops_count} stops were dropped due to constraints.")
+                
         return preliminary_routes, valid_stops
 
     async def _process_road_accurate_routes(

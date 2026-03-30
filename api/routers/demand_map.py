@@ -7,6 +7,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from config import get_settings
 from database import get_db
 from models import Stop, DistanceMatrix, Depot
 from schemas.matrix import (
@@ -91,6 +92,7 @@ async def build_demand_matrix(
 ):
     """Build or rebuild the distance matrix for all active stops and depots."""
     logger.info("=== MATRIX BUILD STARTED ===")
+    settings = get_settings()
     healthy = await osrm_service.health_check()
     if not healthy:
         raise HTTPException(
@@ -113,9 +115,17 @@ async def build_demand_matrix(
     depot_result = await session.execute(depot_query)
     depots = depot_result.scalars().all()
 
+    # Define campus coordinates from settings
+    campus_lat = settings.campus_lat
+    campus_lon = settings.campus_lon
+
+    # Build coordinates list starting with campus
+    campus_coordinates = [(campus_lat, campus_lon)]
     stop_coordinates = [(s.lat, s.lon) for s in stops]
     depot_coordinates = [(d.lat, d.lon) for d in depots]
-    combined_coordinates = stop_coordinates + depot_coordinates
+    
+    # Combined list: [Campus, Stop1, Stop2, ..., Depot1, Depot2, ...]
+    combined_coordinates = campus_coordinates + stop_coordinates + depot_coordinates
 
     stop_ids = [str(s.id) for s in stops]
     stop_names = {str(s.id): s.name for s in stops}
@@ -127,6 +137,12 @@ async def build_demand_matrix(
     build_time = round(time.time() - t0, 2)
 
     depot_coords = {str(d.id): {"lat": d.lat, "lon": d.lon} for d in depots}
+    
+    # Indices in the table_result matrices:
+    # 0: Campus
+    # 1 to len(stops): Student stops
+    # len(stops) + 1 to end: Depots
+    
     matrix_data = {
         "stop_ids": stop_ids,
         "stop_names": stop_names,
@@ -135,9 +151,10 @@ async def build_demand_matrix(
         "depot_ids": depot_ids,
         "depot_names": depot_names,
         "depot_coords": depot_coords,
+        "campus_index": 0,
         "campus_location": {
-            "lat": 28.26,
-            "lon": 77.07
+            "lat": campus_lat,
+            "lon": campus_lon
         }
     }
 
@@ -145,7 +162,12 @@ async def build_demand_matrix(
         matrix_json=matrix_data,
         stop_count=len(stops),
         build_time_seconds=build_time,
-        stop_ids_json={"stop_ids": stop_ids, "depot_ids": depot_ids},
+        stop_ids_json={
+            "stop_ids": stop_ids, 
+            "depot_ids": depot_ids,
+            "has_campus": True,
+            "campus_index": 0
+        },
     )
     session.add(dm)
     await session.commit()
