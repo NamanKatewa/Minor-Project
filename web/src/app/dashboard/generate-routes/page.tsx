@@ -56,9 +56,9 @@ export default function GenerateRoutesPage() {
 	const queryClient = useQueryClient();
 	const [scenarioType, setScenarioType] = useState("strict");
 	const [semester, setSemester] = useState("");
-	const [fuelCostPerKm, setFuelCostPerKm] = useState("50");
+	const [fuelCostPerKm, setFuelCostPerKm] = useState("12.33");
 	const [maxRideTime, setMaxRideTime] = useState("350");
-	const [arrivalDeadline, setArrivalDeadline] = useState("08:45");
+	const [arrivalDeadline, setArrivalDeadline] = useState("09:05");
 	const [lastError, setLastError] = useState<OptimizationError | null>(null);
 
 	const { data: readyData, isLoading } = useQuery({
@@ -110,7 +110,7 @@ export default function GenerateRoutesPage() {
 			scenario_type: scenarioType,
 			semester: semester || null,
 			matrix_id: null,
-			fuel_cost_per_km: Number.parseFloat(fuelCostPerKm) || 50,
+			fuel_cost_per_km: Number.parseFloat(fuelCostPerKm) || 12.33,
 			bus_ids: null,
 			max_ride_time_min: Number.parseInt(maxRideTime, 10) || null,
 			arrival_deadline: arrivalDeadline || null,
