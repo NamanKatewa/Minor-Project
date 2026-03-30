@@ -277,6 +277,7 @@ class OptimizerService:
             .where(Stop.active == True)
             .where(Stop.lat.isnot(None))
             .where(Stop.lon.isnot(None))
+            .where(Demand.student_count > 0)
         )
         
         if semester:
@@ -297,6 +298,7 @@ class OptimizerService:
                 "student_count": demand.student_count,
             })
         
+        logger.info(f"  Stops with positive demand loaded: {len(stops_with_demand)}")
         return stops_with_demand
     
     async def _load_buses(

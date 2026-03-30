@@ -27,9 +27,9 @@ async def get_route_generation_ready(session: AsyncSession = Depends(get_db)):
     # 1. Fetch counts
     count_query = text("""
         SELECT 
-            (SELECT COUNT(*) FROM stops WHERE active = true) as stops_count,
+            (SELECT COUNT(DISTINCT s.id) FROM stops s JOIN demand d ON s.id = d.stop_id WHERE s.active = true AND d.student_count > 0) as stops_count,
             (SELECT COUNT(*) FROM buses) as buses_count,
-            (SELECT COUNT(*) FROM demand) as demand_records_count,
+            (SELECT COUNT(*) FROM demand WHERE student_count > 0) as demand_records_count,
             (SELECT COALESCE(SUM(student_count), 0) FROM demand) as total_students_count,
             (SELECT COALESCE(SUM(capacity), 0) FROM buses) as total_fleet_capacity
     """)
