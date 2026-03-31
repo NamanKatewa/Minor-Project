@@ -42,10 +42,10 @@ ZONE_WEIGHTS = {
 }
 
 BASE_STUDENT_RANGE = {
-    "metro": (3, 12),      # Reduced from (8, 25)
-    "urban": (2, 8),       # Reduced from (5, 18)
-    "suburban": (1, 5),    # Reduced from (3, 12)
-    "rural": (1, 3),       # Reduced from (1, 6)
+    "metro": (4, 6),
+    "urban": (3, 5),
+    "suburban": (2, 4),
+    "rural": (1, 2),
 }
 
 
@@ -122,7 +122,7 @@ def generate_student_count(stop_type, zone_weight, is_active_semester=True):
     if random.random() < 0.05:
         base_count = int(base_count * random.uniform(1.5, 2.0))
     
-    return min(base_count, 25)  # Cap at 25 students per stop
+    return min(base_count, 6)  # Cap at 6 students per stop
 
 
 def main():
