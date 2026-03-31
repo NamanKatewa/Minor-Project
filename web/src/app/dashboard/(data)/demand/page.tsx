@@ -8,6 +8,7 @@ import { useMemo, useState } from "react";
 import { toast } from "sonner";
 import { CsvDropzone } from "~/components/csv-dropzone";
 import { DataTable } from "~/components/data-table";
+import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import {
 	Card,
@@ -316,8 +317,15 @@ export default function DemandDataPage() {
 				<Card className="flex min-h-0 flex-1 flex-col overflow-hidden">
 					<CardHeader className="flex flex-row items-center justify-between">
 						<div>
-							<CardTitle>
+							<CardTitle className="flex items-center gap-2">
 								{pendingDemand.length > 0 ? "Review Data" : "Demand Data"}
+								{pendingDemand.length === 0 &&
+									!isLoading &&
+									demand.length > 0 && (
+										<Badge className="font-mono" variant="secondary">
+											{demand.length} records
+										</Badge>
+									)}
 							</CardTitle>
 							<CardDescription>
 								{pendingDemand.length > 0

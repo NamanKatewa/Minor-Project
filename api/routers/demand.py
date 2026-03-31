@@ -105,28 +105,39 @@ async def delete_all_demand(session: AsyncSession = Depends(get_db)):
 async def bulk_create_demand(
     demands: list[DemandImport], session: AsyncSession = Depends(get_db)
 ):
-    """Bulk create demand"""
+    """Bulk create demand, merging duplicate stops by summing student counts"""
     if not demands:
-        return {"created": 0, "skipped": 0}
+        return {"created": 0, "skipped": 0, "merged": 0}
 
-    # 1. Resolve Stop IDs from codes
-    stop_codes = {d.stop_code for d in demands}
+    # 1. Group by stop_code and semester to merge duplicates
+    merged_data = {} # (stop_code, semester) -> total_students
+    original_count = len(demands)
+    
+    for d in demands:
+        key = (d.stop_code, d.semester)
+        if key in merged_data:
+            merged_data[key] += d.student_count
+        else:
+            merged_data[key] = d.student_count
+    
+    # 2. Resolve Stop IDs from codes
+    stop_codes = {key[0] for key in merged_data.keys()}
     stops_result = await session.execute(
         select(Stop.stop_code, Stop.id).where(Stop.stop_code.in_(stop_codes))
     )
     stop_map = {code: id for code, id in stops_result.fetchall()}
 
-    # 2. Create Demand objects
+    # 3. Create Demand objects from merged data
     new_demands = []
     skipped = 0
     
-    for d in demands:
-        if d.stop_code in stop_map:
+    for (stop_code, semester), student_count in merged_data.items():
+        if stop_code in stop_map:
             new_demands.append(
                 Demand(
-                    stop_id=stop_map[d.stop_code],
-                    student_count=d.student_count,
-                    semester=d.semester,
+                    stop_id=stop_map[stop_code],
+                    student_count=student_count,
+                    semester=semester,
                 )
             )
         else:
@@ -136,4 +147,7 @@ async def bulk_create_demand(
         session.add_all(new_demands)
         await session.commit()
     
-    return {"created": len(new_demands), "skipped": skipped}
+    return {
+        "created": len(new_demands), 
+        "skipped": skipped, 
+    }

@@ -287,17 +287,23 @@ class OptimizerService:
         result = await session.execute(query)
         rows = result.all()
         
-        stops_with_demand = []
+        # Aggregate demand by stop to handle potential duplicate demand records
+        stop_demand_agg = {}
         for stop, demand in rows:
-            stops_with_demand.append({
-                "id": str(stop.id),
-                "name": stop.name,
-                "code": stop.stop_code,
-                "lat": stop.lat,
-                "lon": stop.lon,
-                "zone": stop.zone,
-                "student_count": demand.student_count,
-            })
+            stop_id = str(stop.id)
+            if stop_id not in stop_demand_agg:
+                stop_demand_agg[stop_id] = {
+                    "id": stop_id,
+                    "name": stop.name,
+                    "code": stop.stop_code,
+                    "lat": stop.lat,
+                    "lon": stop.lon,
+                    "zone": stop.zone,
+                    "student_count": 0
+                }
+            stop_demand_agg[stop_id]["student_count"] += demand.student_count
+        
+        stops_with_demand = list(stop_demand_agg.values())
         
         logger.info(f"  Stops with positive demand loaded: {len(stops_with_demand)}")
         return stops_with_demand
