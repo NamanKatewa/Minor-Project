@@ -31,7 +31,23 @@ class OptimizerService:
     async def is_running(self) -> bool:
         """Check if an optimization is currently running"""
         return self._is_running
-    
+
+    def _get_first_solution_strategy(self, strategy_name: str):
+        """Map strategy name to OR-Tools FirstSolutionStrategy enum"""
+        return getattr(
+            routing_enums_pb2.FirstSolutionStrategy,
+            strategy_name,
+            routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
+        )
+
+    def _get_metaheuristic(self, metaheuristic_name: str):
+        """Map metaheuristic name to OR-Tools LocalSearchMetaheuristic enum"""
+        return getattr(
+            routing_enums_pb2.LocalSearchMetaheuristic,
+            metaheuristic_name,
+            routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
+        )
+
     async def optimize(
         self,
         session: AsyncSession,
@@ -541,8 +557,8 @@ class OptimizerService:
         
         # Search parameters
         search_params = pywrapcp.DefaultRoutingSearchParameters()
-        search_params.first_solution_strategy = routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
-        search_params.local_search_metaheuristic = routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
+        search_params.first_solution_strategy = self._get_first_solution_strategy(self.config.first_solution_strategy)
+        search_params.local_search_metaheuristic = self._get_metaheuristic(self.config.local_search_metaheuristic)
         search_params.time_limit.FromSeconds(timeout)
         
         logger.info(f"  Model fully initialized. Starting solver (timeout {timeout}s)...")
