@@ -38,6 +38,7 @@ interface DataTableProps<TData, TValue> {
 	filterColumn?: string;
 	filterPlaceholder?: string;
 	enablePagination?: boolean;
+	pageSize?: number;
 	className?: string;
 	containerClassName?: string;
 	selectedRowId?: string | null;
@@ -52,6 +53,7 @@ export function DataTable<TData, TValue>({
 	filterColumn,
 	filterPlaceholder = "Filter...",
 	enablePagination = true,
+	pageSize = 10,
 	className,
 	containerClassName,
 	selectedRowId,
@@ -85,6 +87,7 @@ export function DataTable<TData, TValue>({
 			columnFilters,
 			columnVisibility,
 			rowSelection,
+			pagination: enablePagination ? { pageIndex: 0, pageSize } : undefined,
 		},
 	});
 
