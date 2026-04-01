@@ -112,182 +112,92 @@ class OptimizerService:
         logger.info(f"Config: max_ride={max_ride_time_min or self.config.max_ride_time_min}min, deadline={arrival_deadline or self.config.arrival_deadline}, fuel_cost={fuel_cost_per_km}/km")
         
         try:
+            # PHASE 1: Fetch all data (session will close after this)
             async with async_session_maker() as session:
-                return await self._do_optimize_inner(
-                    session, scenario_type, semester, matrix_id,
-                    fuel_cost_per_km, bus_ids, max_ride_time_min, arrival_deadline,
-                    enable_split_delivery
-                )
-        except HTTPException:
-            raise
-        except Exception as e:
-            logger.error("=" * 60)
-            logger.error("=== OPTIMIZATION FAILED ===")
-            logger.error(f"Error type: {type(e).__name__}")
-            logger.error(f"Error message: {str(e)}")
-            logger.error(f"Full traceback: {traceback.format_exc()}")
-            logger.error("=" * 60)
-            raise HTTPException(
-                status_code=500,
-                detail=f"Optimization failed: {str(e)}"
-            )
-    
-    async def _do_optimize_inner(
-        self,
-        session: AsyncSession,
-        scenario_type: str,
-        semester: str | None,
-        matrix_id: UUID | None,
-        fuel_cost_per_km: float,
-        bus_ids: list[UUID] | None,
-        max_ride_time_min: int | None,
-        arrival_deadline: str | None,
-        enable_split_delivery: bool = True,
-    ) -> RoutePlan:
-        """Internal optimization logic - called with an existing session"""
-
-        try:
-            # Resolve parameters
-            max_ride = max_ride_time_min or self.config.max_ride_time_min
-            deadline = arrival_deadline or self.config.arrival_deadline
+                # Step 1: Load distance matrix
+                logger.info("[STEP 1] Loading distance matrix...")
+                matrix = await self._load_matrix(session, matrix_id)
+                if not matrix:
+                    logger.error("No distance matrix found in database")
+                    raise HTTPException(
+                        status_code=400,
+                        detail="No distance matrix available. Build one first."
+                    )
+                
+                matrix_data = matrix.matrix_json
+                matrix_id = matrix.id
+                matrix_stop_count = matrix.stop_count
+                depot_ids_in_matrix = matrix_data.get("depot_ids", [])
+                depot_names = matrix_data.get("depot_names", {})
+                logger.info(f"  Matrix ID: {matrix_id}")
+                logger.info(f"  Student stops: {matrix_stop_count}")
+                logger.info(f"  Depots: {len(depot_ids_in_matrix)}")
+                
+                # Step 2: Load stops with demand
+                logger.info("[STEP 2] Loading stops with demand...")
+                stops_with_demand = await self._load_stops_with_demand(session, semester, enable_split_delivery)
+                if not stops_with_demand:
+                    logger.error("No stops with demand found in database")
+                    raise HTTPException(
+                        status_code=400,
+                        detail="No active stops with demand found for the specified semester."
+                    )
+                total_students = sum(s['student_count'] for s in stops_with_demand)
+                logger.info(f"  Stops loaded: {len(stops_with_demand)}")
+                logger.info(f"  Total students: {total_students}")
+                
+                # Step 3: Load buses
+                logger.info("[STEP 3] Loading buses...")
+                buses = await self._load_buses(session, bus_ids)
+                if not buses:
+                    logger.error("No buses found in database")
+                    raise HTTPException(
+                        status_code=400,
+                        detail="No buses available."
+                    )
+                total_capacity = sum(b['capacity'] for b in buses)
+                logger.info(f"  Buses loaded: {len(buses)}")
+                logger.info(f"  Total capacity: {total_capacity}")
+                for i, bus in enumerate(buses):
+                    logger.info(f"    Bus {i+1}: {bus['bus_no']}, capacity={bus['capacity']}")
+                
+                # Check capacity constraint - FAIL FAST
+                if total_students > total_capacity:
+                    logger.error(f"CAPACITY ERROR: {total_students} students > {total_capacity} total capacity ({len(buses)} buses)")
+                    raise HTTPException(
+                        status_code=422,
+                        detail={
+                            "error_type": "capacity_insufficient",
+                            "message": f"Fleet capacity insufficient to handle all students",
+                            "details": {
+                                "total_students": total_students,
+                                "total_capacity": total_capacity,
+                                "buses_available": len(buses),
+                                "capacity_needed": total_students - total_capacity,
+                                "additional_buses_needed": (total_students - total_capacity + 49) // 50
+                            },
+                            "suggestions": [
+                                f"Add at least {(total_students - total_capacity + 49) // 50} more buses (50 capacity each)",
+                                f"Increase existing bus capacities by {total_students - total_capacity} total seats",
+                                f"Current: {total_capacity} seats across {len(buses)} buses",
+                                f"Required: {total_students} seats for {total_students} students"
+                            ]
+                        }
+                    )
             
-            # Step 1: Load distance matrix
-            logger.info("[STEP 1] Loading distance matrix...")
-            matrix = await self._load_matrix(session, matrix_id)
-            if not matrix:
-                logger.error("No distance matrix found in database")
-                raise HTTPException(
-                    status_code=400,
-                    detail="No distance matrix available. Build one first."
-                )
-            
-            matrix_data = matrix.matrix_json
-            depot_ids_in_matrix = matrix_data.get("depot_ids", [])
-            depot_names = matrix_data.get("depot_names", {})
-            logger.info(f"  Matrix ID: {matrix.id}")
-            logger.info(f"  Student stops: {matrix.stop_count}")
-            logger.info(f"  Depots: {len(depot_ids_in_matrix)}")
-            logger.info(f"  Depot IDs: {depot_ids_in_matrix}")
-            
-            # Step 2: Load stops with demand
-            logger.info("[STEP 2] Loading stops with demand...")
-            stops_with_demand = await self._load_stops_with_demand(session, semester, enable_split_delivery)
-            if not stops_with_demand:
-                logger.error("No stops with demand found in database")
-                raise HTTPException(
-                    status_code=400,
-                    detail="No active stops with demand found for the specified semester."
-                )
-            total_students = sum(s['student_count'] for s in stops_with_demand)
-            logger.info(f"  Stops loaded: {len(stops_with_demand)}")
-            logger.info(f"  Total students: {total_students}")
-            
-            # Step 3: Load buses
-            logger.info("[STEP 3] Loading buses...")
-            buses = await self._load_buses(session, bus_ids)
-            if not buses:
-                logger.error("No buses found in database")
-                raise HTTPException(
-                    status_code=400,
-                    detail="No buses available."
-                )
-            total_capacity = sum(b['capacity'] for b in buses)
-            logger.info(f"  Buses loaded: {len(buses)}")
-            logger.info(f"  Total capacity: {total_capacity}")
-            for i, bus in enumerate(buses):
-                logger.info(f"    Bus {i+1}: {bus['bus_no']}, capacity={bus['capacity']}")
-            
-            # Check capacity constraint - FAIL FAST
-            if total_students > total_capacity:
-                logger.error(f"CAPACITY ERROR: {total_students} students > {total_capacity} total capacity ({len(buses)} buses)")
-                raise HTTPException(
-                    status_code=422,
-                    detail={
-                        "error_type": "capacity_insufficient",
-                        "message": f"Fleet capacity insufficient to handle all students",
-                        "details": {
-                            "total_students": total_students,
-                            "total_capacity": total_capacity,
-                            "buses_available": len(buses),
-                            "capacity_needed": total_students - total_capacity,
-                            "additional_buses_needed": (total_students - total_capacity + 49) // 50
-                        },
-                        "suggestions": [
-                            f"Add at least {(total_students - total_capacity + 49) // 50} more buses (50 capacity each)",
-                            f"Increase existing bus capacities by {total_students - total_capacity} total seats",
-                            f"Current: {total_capacity} seats across {len(buses)} buses",
-                            f"Required: {total_students} seats for {total_students} students"
-                        ]
-                    }
-                )
-            
-            logger.info("[STEP 4] Building CVRPTW model and solving...")
-            logger.info(f"  Timeout: {self.config.optimization_timeout_sec}s")
-            logger.info(f"  Campus location: ({self.config.campus_lat}, {self.config.campus_lon})")
-            
-            t0 = time.time()
-            preliminary_routes, valid_stops = await asyncio.to_thread(
-                self._solve_cvrptw,
-                matrix=matrix,
+            # PHASE 2: Solve + Process + Save (no DB connection during solve!)
+            return await self._do_solve_and_save(
+                matrix_data=matrix_data,
+                matrix_id=matrix_id,
+                matrix_stop_count=matrix_stop_count,
                 stops_with_demand=stops_with_demand,
                 buses=buses,
-                campus_lat=self.config.campus_lat,
-                campus_lon=self.config.campus_lon,
-                max_ride_time=max_ride,
-                arrival_deadline=deadline,
-                timeout=self.config.optimization_timeout_sec,
+                scenario_type=scenario_type,
+                fuel_cost_per_km=fuel_cost_per_km,
+                max_ride_time_min=max_ride_time_min or self.config.max_ride_time_min,
+                arrival_deadline=arrival_deadline or self.config.arrival_deadline,
+                enable_split_delivery=enable_split_delivery,
             )
-            
-            # Step 5: Process road geometries and accurate timings (ASYNCHRONOUS)
-            logger.info("[STEP 5] Fetching road geometries and calculating accurate timings...")
-            routes, stats = await self._process_road_accurate_routes(
-                preliminary_routes=preliminary_routes,
-                valid_stops=valid_stops,
-                campus_lat=self.config.campus_lat,
-                campus_lon=self.config.campus_lon,
-                arrival_deadline=deadline,
-                max_ride_time=max_ride,
-                enable_split_delivery=enable_split_delivery
-            )
-            model_build_time = time.time() - t0
-            
-            logger.info(f"  Routes generated: {len(routes)}")
-            logger.info(f"  Students assigned: {stats.get('total_students_assigned', 0)}/{total_students}")
-            logger.info(f"  Coverage: {stats.get('coverage_percentage', 0):.1f}%")
-            logger.info(f"  Total solve time: {model_build_time:.2f}s")
-            
-            # Step 6: Calculate cost
-            total_distance = sum(r["total_distance_km"] for r in routes)
-            cost_estimate = total_distance * fuel_cost_per_km
-            
-            logger.info(f"[STEP 6] Calculating cost")
-            logger.info(f"  Total distance: {total_distance}km")
-            logger.info(f"  Cost estimate: ₹{cost_estimate:.2f}")
-            
-            # Step 7: Create route plan - use fresh session for saving
-            logger.info("[STEP 7] Storing route plan in database...")
-            
-            async with async_session_maker() as save_session:
-                route_plan = RoutePlan(
-                    scenario_type=scenario_type,
-                    routes_json={"routes": routes},
-                    stats_json={
-                        **stats,
-                        "solve_time_seconds": model_build_time,
-                        "model_build_time_seconds": model_build_time,
-                    },
-                    cost_estimate=cost_estimate,
-                )
-                save_session.add(route_plan)
-                await save_session.commit()
-                await save_session.refresh(route_plan)
-            
-            logger.info(f"  Route Plan ID: {route_plan.id}")
-            logger.info("=== OPTIMIZATION COMPLETED SUCCESSFULLY ===")
-            logger.info("=" * 60)
-            
-            return route_plan
-            
         except HTTPException:
             raise
         except Exception as e:
@@ -434,9 +344,110 @@ class OptimizerService:
         
         return buses_list
     
+    async def _do_solve_and_save(
+        self,
+        matrix_data: Dict[str, Any],
+        matrix_id: UUID,
+        matrix_stop_count: int,
+        stops_with_demand: List[Dict],
+        buses: List[Dict],
+        scenario_type: str,
+        fuel_cost_per_km: float,
+        max_ride_time_min: int,
+        arrival_deadline: str,
+        enable_split_delivery: bool = True,
+    ) -> RoutePlan:
+        """PHASE 2: Solve + Process + Save (no DB connection during 1-hour solve!)"""
+        
+        try:
+            total_students = sum(s['student_count'] for s in stops_with_demand)
+            
+            logger.info("=" * 60)
+            logger.info("=== PHASE 2: SOLVE (DB connection closed) ===")
+            logger.info(f"  Solving with {len(stops_with_demand)} stops, {len(buses)} buses")
+            logger.info(f"  Timeout: {self.config.optimization_timeout_sec}s")
+            
+            # PHASE 2a: Solve (no DB connection!)
+            t0 = time.time()
+            preliminary_routes, valid_stops = await asyncio.to_thread(
+                self._solve_cvrptw,
+                matrix_data=matrix_data,
+                stops_with_demand=stops_with_demand,
+                buses=buses,
+                campus_lat=self.config.campus_lat,
+                campus_lon=self.config.campus_lon,
+                max_ride_time=max_ride_time_min,
+                arrival_deadline=arrival_deadline,
+                timeout=self.config.optimization_timeout_sec,
+            )
+            
+            # PHASE 2b: Process road geometries (no DB connection)
+            logger.info("[STEP 5] Fetching road geometries and calculating accurate timings...")
+            routes, stats = await self._process_road_accurate_routes(
+                preliminary_routes=preliminary_routes,
+                valid_stops=valid_stops,
+                campus_lat=self.config.campus_lat,
+                campus_lon=self.config.campus_lon,
+                arrival_deadline=arrival_deadline,
+                max_ride_time=max_ride_time_min,
+                enable_split_delivery=enable_split_delivery
+            )
+            model_build_time = time.time() - t0
+            
+            logger.info(f"  Routes generated: {len(routes)}")
+            logger.info(f"  Students assigned: {stats.get('total_students_assigned', 0)}/{total_students}")
+            logger.info(f"  Coverage: {stats.get('coverage_percentage', 0):.1f}%")
+            logger.info(f"  Total solve time: {model_build_time:.2f}s")
+            
+            # PHASE 2c: Calculate cost
+            total_distance = sum(r["total_distance_km"] for r in routes)
+            cost_estimate = total_distance * fuel_cost_per_km
+            
+            logger.info(f"[STEP 6] Calculating cost")
+            logger.info(f"  Total distance: {total_distance}km")
+            logger.info(f"  Cost estimate: ₹{cost_estimate:.2f}")
+            
+            # PHASE 2d: Save to DB (fresh connection!)
+            logger.info("[STEP 7] Storing route plan in database...")
+            
+            async with async_session_maker() as save_session:
+                route_plan = RoutePlan(
+                    scenario_type=scenario_type,
+                    routes_json={"routes": routes},
+                    stats_json={
+                        **stats,
+                        "solve_time_seconds": model_build_time,
+                        "model_build_time_seconds": model_build_time,
+                    },
+                    cost_estimate=cost_estimate,
+                )
+                save_session.add(route_plan)
+                await save_session.commit()
+                await save_session.refresh(route_plan)
+            
+            logger.info(f"  Route Plan ID: {route_plan.id}")
+            logger.info("=== OPTIMIZATION COMPLETED SUCCESSFULLY ===")
+            logger.info("=" * 60)
+            
+            return route_plan
+            
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error("=" * 60)
+            logger.error("=== SOLVE FAILED ===")
+            logger.error(f"Error type: {type(e).__name__}")
+            logger.error(f"Error message: {str(e)}")
+            logger.error(f"Full traceback: {traceback.format_exc()}")
+            logger.error("=" * 60)
+            raise HTTPException(
+                status_code=500,
+                detail=f"Optimization failed: {str(e)}"
+            )
+    
     def _solve_cvrptw(
         self,
-        matrix: DistanceMatrix,
+        matrix_data: Dict[str, Any],
         stops_with_demand: List[Dict],
         buses: List[Dict],
         campus_lat: float,
@@ -459,7 +470,6 @@ class OptimizerService:
         logger.info("[CVRPTW] Starting solver setup - INTEGRATED MULTI-DEPOT")
         
         # Parse matrix data
-        matrix_data = matrix.matrix_json
         stop_ids_in_matrix = matrix_data["stop_ids"]
         depot_ids_in_matrix = matrix_data.get("depot_ids", [])
         depot_names = matrix_data.get("depot_names", {})

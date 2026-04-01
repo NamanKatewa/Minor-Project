@@ -22,7 +22,7 @@ class Settings(BaseSettings):
     max_bus_capacity: int = 50
     max_ride_time_min: int = 350
     arrival_deadline: str = "08:45"
-    optimization_timeout_sec: int = 300
+    optimization_timeout_sec: int = 3600
     
     # --- OR-Tools Solver Knobs ---
     drop_penalty: int = 100000
