@@ -29,6 +29,9 @@ class Settings(BaseSettings):
     time_dimension_slack: int = 30
     fixed_vehicle_cost: int = 1000
     
+    # Split Delivery: Allow splitting stop demand across multiple buses
+    enable_split_delivery: bool = True
+    
     # --- OR-Tools Strategy Configurations ---
     
     # First Solution Strategy: How the solver builds the very first valid route.

@@ -375,32 +375,51 @@ function RouteCard({
 			)}
 
 			<span className="block space-y-2">
-				{route.stops.map((stop, stopIdx) => (
-					<span
-						className="flex items-center gap-3 rounded-md border border-transparent bg-muted/30 p-2 transition-colors hover:border-muted-foreground/10"
-						key={`${stop.stop_id}-${stopIdx}`}
-					>
-						<span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-muted font-black text-[10px]">
-							{stopIdx + 1}
+				{(() => {
+					type Stop = components["schemas"]["RouteStop"];
+					const mergedStops: Map<string, Stop> = new Map();
+
+					route.stops.forEach((s) => {
+						const key = s.parent_stop_id || String(s.stop_id);
+						if (mergedStops.has(key)) {
+							const existing = mergedStops.get(key);
+							if (existing) {
+								existing.students_boarding += s.students_boarding;
+							}
+						} else {
+							mergedStops.set(key, { ...s });
+						}
+					});
+
+					return Array.from(mergedStops.values()).map((stop, stopIdx) => (
+						<span
+							className="flex items-center gap-3 rounded-md border border-transparent bg-muted/30 p-2 transition-colors hover:border-muted-foreground/10"
+							key={`${stop.stop_id}-${stopIdx}`}
+						>
+							<span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-muted font-black text-[10px]">
+								{stopIdx + 1}
+							</span>
+							<span className="min-w-0 flex-1">
+								<span className="block truncate font-bold text-xs uppercase">
+									{stop.is_split && stop.students_boarding > 50
+										? `${stop.stop_name} (Split)`
+										: stop.stop_name}
+								</span>
+								<span className="block font-mono text-[10px] text-muted-foreground">
+									{stop.stop_code} • {stop.students_boarding} students
+								</span>
+							</span>
+							<span className="text-right text-xs">
+								<span className="block font-black font-mono">
+									{stop.arrival_time}
+								</span>
+								<span className="block font-mono text-[10px] text-muted-foreground">
+									+{stop.cumulative_time_min}m
+								</span>
+							</span>
 						</span>
-						<span className="min-w-0 flex-1">
-							<span className="block truncate font-bold text-xs uppercase">
-								{stop.stop_name}
-							</span>
-							<span className="block font-mono text-[10px] text-muted-foreground">
-								{stop.stop_code} • {stop.students_boarding} students
-							</span>
-						</span>
-						<span className="text-right text-xs">
-							<span className="block font-black font-mono">
-								{stop.arrival_time}
-							</span>
-							<span className="block font-mono text-[10px] text-muted-foreground">
-								+{stop.cumulative_time_min}m
-							</span>
-						</span>
-					</span>
-				))}
+					));
+				})()}
 			</span>
 		</button>
 	);

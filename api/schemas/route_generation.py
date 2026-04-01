@@ -20,6 +20,9 @@ class RouteGenerationRequest(BaseModel):
     # Constraint overrides
     max_ride_time_min: int | None = Field(default=None, gt=0)
     arrival_deadline: str | None = Field(default=None, pattern="^(0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")
+    
+    # Split delivery - allow stop demand to be split across multiple buses
+    enable_split_delivery: bool = True
 
 
 # ============================================================================
@@ -38,6 +41,8 @@ class RouteStop(BaseModel):
     cumulative_time_min: int
     distance_from_prev_km: float
     zone: str | None = None
+    parent_stop_id: str | None = None
+    is_split: bool = False
 
 
 class BusRoute(BaseModel):

@@ -88,6 +88,7 @@ async def run_route_generation(
             bus_ids=request.bus_ids,
             max_ride_time_min=request.max_ride_time_min,
             arrival_deadline=request.arrival_deadline,
+            enable_split_delivery=request.enable_split_delivery,
         )
         
         # Format response

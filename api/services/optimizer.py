@@ -58,6 +58,7 @@ class OptimizerService:
         bus_ids: list[UUID] | None,
         max_ride_time_min: int | None,
         arrival_deadline: str | None,
+        enable_split_delivery: bool = True,
     ) -> RoutePlan:
         """
         Run CVRPTW optimization and return stored route plan.
@@ -85,7 +86,8 @@ class OptimizerService:
             try:
                 return await self._do_optimize(
                     session, scenario_type, semester, matrix_id,
-                    fuel_cost_per_km, bus_ids, max_ride_time_min, arrival_deadline
+                    fuel_cost_per_km, bus_ids, max_ride_time_min, arrival_deadline,
+                    enable_split_delivery
                 )
             finally:
                 self._is_running = False
@@ -100,6 +102,7 @@ class OptimizerService:
         bus_ids: list[UUID] | None,
         max_ride_time_min: int | None,
         arrival_deadline: str | None,
+        enable_split_delivery: bool = True,
     ) -> RoutePlan:
         """Internal optimization logic"""
 
@@ -134,7 +137,7 @@ class OptimizerService:
             
             # Step 2: Load stops with demand
             logger.info("[STEP 2] Loading stops with demand...")
-            stops_with_demand = await self._load_stops_with_demand(session, semester)
+            stops_with_demand = await self._load_stops_with_demand(session, semester, enable_split_delivery)
             if not stops_with_demand:
                 logger.error("No stops with demand found in database")
                 raise HTTPException(
@@ -209,7 +212,8 @@ class OptimizerService:
                 campus_lat=self.config.campus_lat,
                 campus_lon=self.config.campus_lon,
                 arrival_deadline=deadline,
-                max_ride_time=max_ride
+                max_ride_time=max_ride,
+                enable_split_delivery=enable_split_delivery
             )
             model_build_time = time.time() - t0
             
@@ -284,7 +288,8 @@ class OptimizerService:
     async def _load_stops_with_demand(
         self,
         session: AsyncSession,
-        semester: str | None
+        semester: str | None,
+        enable_split_delivery: bool = True,
     ) -> List[Dict[str, Any]]:
         """Load active stops with their demand for the specified semester"""
         
@@ -322,7 +327,48 @@ class OptimizerService:
         stops_with_demand = list(stop_demand_agg.values())
         
         logger.info(f"  Stops with positive demand loaded: {len(stops_with_demand)}")
+        
+        if enable_split_delivery:
+            stops_with_demand = self._split_stop_demand(stops_with_demand)
+        
         return stops_with_demand
+    
+    def _split_stop_demand(self, stops: List[Dict[str, Any]], enable_split_delivery: bool = True) -> List[Dict[str, Any]]:
+        """Split stop demand into multiple entries for better bus packing.
+        
+        If a stop has 50+ students, split into chunks of max_bus_capacity.
+        This allows split delivery - students from same stop can use multiple buses.
+        """
+        if not enable_split_delivery:
+            return stops
+        
+        max_capacity = self.config.max_bus_capacity
+        split_stops = []
+        
+        for stop in stops:
+            demand = stop["student_count"]
+            if demand > max_capacity:
+                num_splits = (demand + max_capacity - 1) // max_capacity
+                chunk_size = max_capacity
+                for i in range(num_splits):
+                    remaining = demand - (i * chunk_size)
+                    actual_chunk = min(chunk_size, remaining)
+                    split_stops.append({
+                        **stop,
+                        "id": f"{stop['id']}_split_{i}",
+                        "name": f"{stop['name']} (Part {i+1})",
+                        "student_count": actual_chunk,
+                        "is_split": True,
+                        "parent_stop_id": stop["id"]
+                    })
+            else:
+                split_stops.append(stop)
+        
+        total_original = len(stops)
+        total_split = len(split_stops)
+        logger.info(f"  Split delivery: {total_original} stops → {total_split} split nodes (max {max_capacity} per node)")
+        
+        return split_stops
     
     async def _load_buses(
         self,
@@ -618,7 +664,8 @@ class OptimizerService:
         campus_lat: float,
         campus_lon: float,
         arrival_deadline: str,
-        max_ride_time: int
+        max_ride_time: int,
+        enable_split_delivery: bool = True,
     ) -> Tuple[List[Dict], Dict]:
         """Async processing of routes to get real road geometries and timings from OSRM"""
         from services.osrm import osrm_service
@@ -658,7 +705,9 @@ class OptimizerService:
                         "arrival_time": self._minutes_to_time(current_time_min),
                         "students_boarding": stop["student_count"],
                         "cumulative_time_min": current_time_min - start_time_min,
-                        "distance_from_prev_km": round(legs[i]["distance"] / 1000, 2)
+                        "distance_from_prev_km": round(legs[i]["distance"] / 1000, 2),
+                        "parent_stop_id": stop.get("parent_stop_id"),
+                        "is_split": stop.get("is_split", False),
                     })
                 
                 processed_stops.reverse()
@@ -699,13 +748,29 @@ class OptimizerService:
         
         # Calculate final stats
         total_assigned = sum(r["total_students"] for r in routes)
-        total_students_req = sum(s["student_count"] for s in valid_stops)
-        assigned_stop_ids = {s["stop_id"] for r in routes for s in r["stops"]}
         
-        unassigned = []
-        for s in valid_stops:
-            if s["id"] not in assigned_stop_ids:
-                unassigned.append({"stop_id": s["id"], "name": s["name"], "reason": "Constraints", "lat": s["lat"], "lon": s["lon"]})
+        # Handle split delivery: get original stop counts
+        if enable_split_delivery:
+            original_stops = [s for s in valid_stops if not s.get("is_split", False)]
+            total_students_req = sum(s["student_count"] for s in original_stops)
+            assigned_parent_ids = set()
+            for r in routes:
+                for s in r["stops"]:
+                    parent_id = s.get("parent_stop_id", s["stop_id"])
+                    assigned_parent_ids.add(parent_id)
+            
+            unassigned = []
+            for s in original_stops:
+                if s["id"] not in assigned_parent_ids:
+                    unassigned.append({"stop_id": s["id"], "name": s["name"], "reason": "Constraints", "lat": s["lat"], "lon": s["lon"]})
+        else:
+            total_students_req = sum(s["student_count"] for s in valid_stops)
+            assigned_stop_ids = {s["stop_id"] for r in routes for s in r["stops"]}
+            
+            unassigned = []
+            for s in valid_stops:
+                if s["id"] not in assigned_stop_ids:
+                    unassigned.append({"stop_id": s["id"], "name": s["name"], "reason": "Constraints", "lat": s["lat"], "lon": s["lon"]})
         
         stats = {
             "total_buses_used": len(routes),

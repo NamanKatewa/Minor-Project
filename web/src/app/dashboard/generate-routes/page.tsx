@@ -59,6 +59,7 @@ export default function GenerateRoutesPage() {
 	const [fuelCostPerKm, setFuelCostPerKm] = useState("12.33");
 	const [maxRideTime, setMaxRideTime] = useState("350");
 	const [arrivalDeadline, setArrivalDeadline] = useState("09:05");
+	const [enableSplitDelivery, setEnableSplitDelivery] = useState(true);
 	const [lastError, setLastError] = useState<OptimizationError | null>(null);
 
 	const { data: readyData, isLoading } = useQuery({
@@ -114,6 +115,7 @@ export default function GenerateRoutesPage() {
 			bus_ids: null,
 			max_ride_time_min: Number.parseInt(maxRideTime, 10) || null,
 			arrival_deadline: arrivalDeadline || null,
+			enable_split_delivery: enableSplitDelivery,
 		});
 	};
 
@@ -342,6 +344,19 @@ export default function GenerateRoutesPage() {
 									type="time"
 									value={arrivalDeadline}
 								/>
+							</div>
+
+							<div className="flex items-center gap-2 pt-2">
+								<input
+									checked={enableSplitDelivery}
+									className="h-4 w-4"
+									id="splitDelivery"
+									onChange={(e) => setEnableSplitDelivery(e.target.checked)}
+									type="checkbox"
+								/>
+								<Label className="text-sm" htmlFor="splitDelivery">
+									Split Delivery (allow stops to use multiple buses)
+								</Label>
 							</div>
 						</div>
 

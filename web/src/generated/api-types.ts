@@ -333,7 +333,7 @@ export interface paths {
 		put?: never;
 		/**
 		 * Bulk Create Demand
-		 * @description Bulk create demand
+		 * @description Bulk create demand, merging duplicate stops by summing student counts
 		 */
 		post: operations["bulk_create_demand_api_demand_bulk_post"];
 		delete?: never;
@@ -1008,6 +1008,11 @@ export interface components {
 			max_ride_time_min?: number | null;
 			/** Arrival Deadline */
 			arrival_deadline?: string | null;
+			/**
+			 * Enable Split Delivery
+			 * @default true
+			 */
+			enable_split_delivery: boolean;
 		};
 		/**
 		 * RoutePlanHistoryResponse
@@ -1149,6 +1154,13 @@ export interface components {
 			distance_from_prev_km: number;
 			/** Zone */
 			zone?: string | null;
+			/** Parent Stop Id */
+			parent_stop_id?: string | null;
+			/**
+			 * Is Split
+			 * @default false
+			 */
+			is_split: boolean;
 		};
 		/** StopBulkResponse */
 		StopBulkResponse: {

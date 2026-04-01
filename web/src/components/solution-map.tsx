@@ -9,6 +9,7 @@ import type { components } from "~/generated/api-types";
 
 type BusRoute = components["schemas"]["BusRoute"];
 type UnassignedStop = components["schemas"]["UnassignedStop"];
+type RouteStop = components["schemas"]["RouteStop"];
 
 const NCR_CENTER: [number, number] = [28.405, 77.075];
 const DEFAULT_ZOOM = 11;
@@ -161,34 +162,77 @@ export default function RoutesMap({
 					"bg-background text-foreground border shadow-sm px-2 py-1 rounded text-xs",
 			});
 			markersRef.current?.addLayer(depotMarker);
+		});
 
-			// Add Stop markers (only if not too many or if selected)
-			route.stops.forEach((stop, stopIdx) => {
-				const stopMarker = L.circleMarker([stop.lat, stop.lon], {
-					radius: isSelected ? 6 : 4,
-					fillColor: color,
-					color: "#fff",
-					weight: 1,
-					opacity: opacity,
-					fillOpacity: opacity,
-				});
+		// Collect all stops and deduplicate split stops
+		type RouteType = components["schemas"]["BusRoute"];
+		const stopKeyMap = new Map<
+			string,
+			{
+				stop: RouteStop;
+				route: RouteType;
+				routeIdx: number;
+				stopPosition: number;
+			}
+		>();
 
-				stopMarker.bindTooltip(
-					`<b>${stop.stop_name}</b><br>Bus ${route.bus_no} · Stop ${stopIdx + 1}<br>${stop.students_boarding} students`,
-					{
-						direction: "top",
-						className:
-							"bg-background text-foreground border shadow-sm px-2 py-1 rounded text-xs",
-					},
-				);
+		routes.forEach((route, idx) => {
+			let stopPosition = 0;
+			route.stops.forEach((stop) => {
+				const key = stop.parent_stop_id || String(stop.stop_id);
 
-				stopMarker.on("click", (e) => {
-					L.DomEvent.stopPropagation(e);
-					onRouteSelect?.(isSelected ? null : idx);
-				});
-
-				markersRef.current?.addLayer(stopMarker);
+				if (stopKeyMap.has(key)) {
+					const existing = stopKeyMap.get(key);
+					if (existing) {
+						existing.stop.students_boarding += stop.students_boarding;
+						existing.stop.is_split = true;
+					}
+				} else {
+					stopKeyMap.set(key, {
+						stop: { ...stop, is_split: stop.is_split || false },
+						route,
+						routeIdx: idx,
+						stopPosition: stopPosition++,
+					});
+				}
 			});
+		});
+
+		// Add Stop markers (deduplicated for split stops)
+		stopKeyMap.forEach(({ stop, route, routeIdx, stopPosition }) => {
+			const isSelected = selectedRouteIndex === routeIdx;
+			const color = ROUTE_COLORS[routeIdx % ROUTE_COLORS.length];
+			const opacity = isSelected ? 1 : 0.6;
+
+			const stopMarker = L.circleMarker([stop.lat, stop.lon], {
+				radius: isSelected ? 6 : 4,
+				fillColor: color,
+				color: "#fff",
+				weight: 1,
+				opacity: opacity,
+				fillOpacity: opacity,
+			});
+
+			const stopLabel =
+				stop.is_split && stop.students_boarding > 50
+					? `${stop.stop_name} (Split)`
+					: stop.stop_name;
+
+			stopMarker.bindTooltip(
+				`<b>${stopLabel}</b><br>Bus ${route.bus_no} · Stop ${stopPosition + 1}<br>${stop.students_boarding} students`,
+				{
+					direction: "top",
+					className:
+						"bg-background text-foreground border shadow-sm px-2 py-1 rounded text-xs",
+				},
+			);
+
+			stopMarker.on("click", (e) => {
+				L.DomEvent.stopPropagation(e);
+				onRouteSelect?.(isSelected ? null : routeIdx);
+			});
+
+			markersRef.current?.addLayer(stopMarker);
 		});
 
 		// Render Unassigned Stops
@@ -238,7 +282,7 @@ export default function RoutesMap({
 			animate: true,
 			maxZoom: 16,
 		});
-	}, [selectedRouteIndex, routes]);
+	}, [routes, selectedRouteIndex]);
 
 	return (
 		<div className={`relative ${className}`}>
