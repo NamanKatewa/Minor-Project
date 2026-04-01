@@ -533,7 +533,7 @@ class OptimizerService:
         
         # Dimensions
         logger.info("  Adding dimensions...")
-        routing.AddDimension(time_idx, 30, max_ride_time, False, "Time")
+        routing.AddDimension(time_idx, self.config.time_dimension_slack, max_ride_time, False, "Time")
         time_dimension = routing.GetDimensionOrDie("Time")
         deadline_min = self._time_to_minutes(arrival_deadline)
         
@@ -546,14 +546,12 @@ class OptimizerService:
         demand_idx = routing.RegisterUnaryTransitCallback(demand_callback)
         routing.AddDimensionWithVehicleCapacity(demand_idx, 0, vehicle_capacities, True, "Capacity")
         
-        # Fixed cost to encourage balanced usage
-        routing.SetFixedCostOfAllVehicles(1000)
+        routing.SetFixedCostOfAllVehicles(self.config.fixed_vehicle_cost)
         
-        # NEW: Allow dropping stops if they cause infeasibility
-        # 100,000 penalty = 100km. High enough to avoid accidental drops, low enough to ensure feasibility.
-        DROP_PENALTY = 100000 
+        # Allow dropping stops if they cause infeasibility
+        drop_penalty = self.config.drop_penalty
         for i in range(STOP_START_NODE, num_nodes):
-            routing.AddDisjunction([manager.NodeToIndex(i)], DROP_PENALTY)
+            routing.AddDisjunction([manager.NodeToIndex(i)], drop_penalty)
         
         # Search parameters
         search_params = pywrapcp.DefaultRoutingSearchParameters()

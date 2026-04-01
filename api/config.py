@@ -24,6 +24,11 @@ class Settings(BaseSettings):
     arrival_deadline: str = "08:45"
     optimization_timeout_sec: int = 300
     
+    # --- OR-Tools Solver Knobs ---
+    drop_penalty: int = 100000
+    time_dimension_slack: int = 30
+    fixed_vehicle_cost: int = 1000
+    
     # --- OR-Tools Strategy Configurations ---
     
     # First Solution Strategy: How the solver builds the very first valid route.
