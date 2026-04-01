@@ -264,33 +264,23 @@ class OptimizerService:
             logger.info(f"  Total distance: {total_distance}km")
             logger.info(f"  Cost estimate: ₹{cost_estimate:.2f}")
             
-            # Step 7: Create route plan
-            route_plan = RoutePlan(
-                scenario_type=scenario_type,
-                routes_json={"routes": routes},
-                stats_json={
-                    **stats,
-                    "solve_time_seconds": model_build_time,
-                    "model_build_time_seconds": model_build_time,
-                },
-                cost_estimate=cost_estimate,
-            )
+            # Step 7: Create route plan - use fresh session for saving
+            logger.info("[STEP 7] Storing route plan in database...")
             
-            logger.info(f"[STEP 7] Storing route plan in database...")
-            
-            route_plan = RoutePlan(
-                scenario_type=scenario_type,
-                routes_json={"routes": routes},
-                stats_json={
-                    **stats,
-                    "solve_time_seconds": model_build_time,
-                    "model_build_time_seconds": model_build_time,
-                },
-                cost_estimate=cost_estimate,
-            )
-            session.add(route_plan)
-            await session.commit()
-            await session.refresh(route_plan)
+            async with async_session_maker() as save_session:
+                route_plan = RoutePlan(
+                    scenario_type=scenario_type,
+                    routes_json={"routes": routes},
+                    stats_json={
+                        **stats,
+                        "solve_time_seconds": model_build_time,
+                        "model_build_time_seconds": model_build_time,
+                    },
+                    cost_estimate=cost_estimate,
+                )
+                save_session.add(route_plan)
+                await save_session.commit()
+                await save_session.refresh(route_plan)
             
             logger.info(f"  Route Plan ID: {route_plan.id}")
             logger.info("=== OPTIMIZATION COMPLETED SUCCESSFULLY ===")
@@ -628,7 +618,7 @@ class OptimizerService:
         time_dimension = routing.GetDimensionOrDie("Time")
         deadline_min = self._time_to_minutes(arrival_deadline)
         
-        # Apply deadline to each vehicle's end node individually
+        # Apply deadline to each vehicle's end node
         for i in range(num_vehicles):
             time_dimension.CumulVar(routing.End(i)).SetRange(0, deadline_min)
         
