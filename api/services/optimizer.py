@@ -11,6 +11,7 @@ from fastapi import HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
+from database import async_session_maker
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 
@@ -243,9 +244,22 @@ class OptimizerService:
             )
             
             logger.info(f"[STEP 7] Storing route plan in database...")
-            session.add(route_plan)
-            await session.commit()
-            await session.refresh(route_plan)
+            
+            # Create a fresh session for saving to avoid connection timeout issues
+            async with async_session_maker() as save_session:
+                route_plan = RoutePlan(
+                    scenario_type=scenario_type,
+                    routes_json={"routes": routes},
+                    stats_json={
+                        **stats,
+                        "solve_time_seconds": model_build_time,
+                        "model_build_time_seconds": model_build_time,
+                    },
+                    cost_estimate=cost_estimate,
+                )
+                save_session.add(route_plan)
+                await save_session.commit()
+                await save_session.refresh(route_plan)
             
             logger.info(f"  Route Plan ID: {route_plan.id}")
             logger.info("=== OPTIMIZATION COMPLETED SUCCESSFULLY ===")
