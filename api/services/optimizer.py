@@ -51,7 +51,6 @@ class OptimizerService:
 
     async def optimize(
         self,
-        session: AsyncSession,
         scenario_type: str,
         semester: str | None,
         matrix_id: UUID | None,
@@ -86,7 +85,7 @@ class OptimizerService:
             self._is_running = True
             try:
                 return await self._do_optimize(
-                    session, scenario_type, semester, matrix_id,
+                    scenario_type, semester, matrix_id,
                     fuel_cost_per_km, bus_ids, max_ride_time_min, arrival_deadline,
                     enable_split_delivery
                 )
@@ -95,7 +94,6 @@ class OptimizerService:
     
     async def _do_optimize(
         self,
-        session: AsyncSession,
         scenario_type: str,
         semester: str | None,
         matrix_id: UUID | None,
@@ -113,6 +111,41 @@ class OptimizerService:
         logger.info(f"Scenario: {scenario_type}, Semester: {semester}, Deadline: {arrival_deadline}")
         logger.info(f"Config: max_ride={max_ride_time_min or self.config.max_ride_time_min}min, deadline={arrival_deadline or self.config.arrival_deadline}, fuel_cost={fuel_cost_per_km}/km")
         
+        try:
+            async with async_session_maker() as session:
+                return await self._do_optimize_inner(
+                    session, scenario_type, semester, matrix_id,
+                    fuel_cost_per_km, bus_ids, max_ride_time_min, arrival_deadline,
+                    enable_split_delivery
+                )
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error("=" * 60)
+            logger.error("=== OPTIMIZATION FAILED ===")
+            logger.error(f"Error type: {type(e).__name__}")
+            logger.error(f"Error message: {str(e)}")
+            logger.error(f"Full traceback: {traceback.format_exc()}")
+            logger.error("=" * 60)
+            raise HTTPException(
+                status_code=500,
+                detail=f"Optimization failed: {str(e)}"
+            )
+    
+    async def _do_optimize_inner(
+        self,
+        session: AsyncSession,
+        scenario_type: str,
+        semester: str | None,
+        matrix_id: UUID | None,
+        fuel_cost_per_km: float,
+        bus_ids: list[UUID] | None,
+        max_ride_time_min: int | None,
+        arrival_deadline: str | None,
+        enable_split_delivery: bool = True,
+    ) -> RoutePlan:
+        """Internal optimization logic - called with an existing session"""
+
         try:
             # Resolve parameters
             max_ride = max_ride_time_min or self.config.max_ride_time_min
@@ -245,21 +278,19 @@ class OptimizerService:
             
             logger.info(f"[STEP 7] Storing route plan in database...")
             
-            # Create a fresh session for saving to avoid connection timeout issues
-            async with async_session_maker() as save_session:
-                route_plan = RoutePlan(
-                    scenario_type=scenario_type,
-                    routes_json={"routes": routes},
-                    stats_json={
-                        **stats,
-                        "solve_time_seconds": model_build_time,
-                        "model_build_time_seconds": model_build_time,
-                    },
-                    cost_estimate=cost_estimate,
-                )
-                save_session.add(route_plan)
-                await save_session.commit()
-                await save_session.refresh(route_plan)
+            route_plan = RoutePlan(
+                scenario_type=scenario_type,
+                routes_json={"routes": routes},
+                stats_json={
+                    **stats,
+                    "solve_time_seconds": model_build_time,
+                    "model_build_time_seconds": model_build_time,
+                },
+                cost_estimate=cost_estimate,
+            )
+            session.add(route_plan)
+            await session.commit()
+            await session.refresh(route_plan)
             
             logger.info(f"  Route Plan ID: {route_plan.id}")
             logger.info("=== OPTIMIZATION COMPLETED SUCCESSFULLY ===")

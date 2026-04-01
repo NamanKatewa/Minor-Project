@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     # --- OR-Tools Solver Knobs ---
     drop_penalty: int = 100000
     time_dimension_slack: int = 30
-    fixed_vehicle_cost: int = 1000
+    fixed_vehicle_cost: int = 10000
     
     # Split Delivery: Allow splitting stop demand across multiple buses
     enable_split_delivery: bool = True

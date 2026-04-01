@@ -65,7 +65,6 @@ async def get_route_generation_ready(session: AsyncSession = Depends(get_db)):
 @router.post("/run", response_model=RoutePlanRead, status_code=201)
 async def run_route_generation(
     request: RouteGenerationRequest,
-    session: AsyncSession = Depends(get_db),
 ):
     """
     Run route optimization and store the resulting route plan.
@@ -80,7 +79,6 @@ async def run_route_generation(
     """
     try:
         route_plan = await optimizer_service.optimize(
-            session=session,
             scenario_type=request.scenario_type,
             semester=request.semester,
             matrix_id=request.matrix_id,
@@ -91,7 +89,6 @@ async def run_route_generation(
             enable_split_delivery=request.enable_split_delivery,
         )
         
-        # Format response
         return _format_route_plan_response(route_plan)
         
     except HTTPException:
