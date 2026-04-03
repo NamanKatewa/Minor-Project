@@ -4,10 +4,9 @@ Generate sample demand.csv with realistic student distribution for UFOS project.
 This script creates demand data that:
 - Maps to actual stop_ids from stops.csv
 - Distributes students realistically based on zone population density
-- Supports multiple semesters (odd/even)
-- Creates varying demand patterns (more students near urban centers)
+- Total students in range 3000-4000
 
-CSV Columns: stop_id, student_count, semester
+CSV Columns: stop_id, student_count
 """
 
 import csv
@@ -18,7 +17,7 @@ DATA_DIR = Path(__file__).parent.parent / "data" / "raw"
 STOPS_PATH = DATA_DIR / "stops.csv"
 OUTPUT_PATH = DATA_DIR / "demand.csv"
 
-SEMESTERS = ["ODD-2025", "EVEN-2026"]
+TARGET_TOTAL_STUDENTS = 4000
 
 ZONE_WEIGHTS = {
     "GURGAON": 1.8,
@@ -42,10 +41,10 @@ ZONE_WEIGHTS = {
 }
 
 BASE_STUDENT_RANGE = {
-    "metro": (4, 6),
-    "urban": (3, 5),
-    "suburban": (2, 4),
-    "rural": (1, 2),
+    "metro": (8, 12),
+    "urban": (6, 10),
+    "suburban": (4, 8),
+    "rural": (2, 5),
 }
 
 
@@ -104,7 +103,7 @@ def read_stops():
     return stops
 
 
-def generate_student_count(stop_type, zone_weight, is_active_semester=True):
+def generate_student_count(stop_type, zone_weight):
     min_count, max_count = BASE_STUDENT_RANGE.get(stop_type, (2, 10))
     
     weighted_max = int(max_count * zone_weight)
@@ -112,17 +111,10 @@ def generate_student_count(stop_type, zone_weight, is_active_semester=True):
     
     base_count = random.randint(weighted_min, max(weighted_min + 1, weighted_max))
     
-    if not is_active_semester:
-        variance = random.uniform(0.8, 1.2)
-        base_count = max(1, int(base_count * variance))
-    
-    if random.random() < 0.15:
-        return 0
-    
     if random.random() < 0.05:
         base_count = int(base_count * random.uniform(1.5, 2.0))
     
-    return min(base_count, 6)  # Cap at 6 students per stop
+    return base_count
 
 
 def main():
@@ -137,50 +129,53 @@ def main():
         return
     
     demand_data = []
+    total_students = 0
     
-    for semester in SEMESTERS:
-        semester_total = 0
-        is_primary = semester == SEMESTERS[0]
+    for stop in stops:
+        zone = stop["zone"]
+        zone_weight = ZONE_WEIGHTS.get(zone, 0.5)
+        stop_type = classify_stop(stop["stop_name"], zone)
         
-        for stop in stops:
-            zone = stop["zone"]
-            zone_weight = ZONE_WEIGHTS.get(zone, 0.5)
-            stop_type = classify_stop(stop["stop_name"], zone)
-            
-            student_count = generate_student_count(stop_type, zone_weight, is_primary)
-            semester_total += student_count
-            
-            demand_data.append({
-                "stop_id": stop["stop_id"],
-                "student_count": student_count,
-                "semester": semester,
-            })
+        student_count = generate_student_count(stop_type, zone_weight)
+        total_students += student_count
         
-        print(f"   {semester}: {semester_total} total students")
+        demand_data.append({
+            "stop_id": stop["stop_id"],
+            "student_count": student_count,
+        })
+    
+    print(f"   Initial total: {total_students} students")
+    
+    target_total = TARGET_TOTAL_STUDENTS
+    scale_factor = target_total / total_students if total_students > 0 else 1
+    
+    for d in demand_data:
+        d["student_count"] = max(1, int(d["student_count"] * scale_factor))
+    
+    scaled_total = sum(d["student_count"] for d in demand_data)
+    print(f"   Scaled to: {scaled_total} students (target: {target_total})")
     
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     
     with open(OUTPUT_PATH, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["stop_id", "student_count", "semester"])
+        writer = csv.DictWriter(f, fieldnames=["stop_id", "student_count"])
         writer.writeheader()
         writer.writerows(demand_data)
     
     print(f"\n✅ Generated demand data in {OUTPUT_PATH}")
     
-    primary_semester = SEMESTERS[0]
-    primary_data = [d for d in demand_data if d["semester"] == primary_semester]
-    active_stops = [d for d in primary_data if d["student_count"] > 0]
+    active_stops = [d for d in demand_data if d["student_count"] > 0]
     
-    print("\n📊 Demand Summary (Primary Semester):")
+    print("\n📊 Demand Summary:")
     print(f"   Active stops: {len(active_stops)} / {len(stops)}")
-    print(f"   Total students: {sum(d['student_count'] for d in primary_data)}")
+    print(f"   Total students: {scaled_total}")
     if active_stops:
         print(f"   Avg students/active stop: {sum(d['student_count'] for d in active_stops) / len(active_stops):.1f}")
-    print(f"   Max at single stop: {max(d['student_count'] for d in primary_data)}")
+    print(f"   Max at single stop: {max(d['student_count'] for d in demand_data)}")
     
-    print("\n🗺️  Students by Zone (Primary Semester):")
+    print("\n🗺️  Students by Zone:")
     zone_totals = {}
-    for stop, demand in zip(stops, primary_data[:len(stops)]):
+    for stop, demand in zip(stops, demand_data):
         zone = stop["zone"]
         zone_totals[zone] = zone_totals.get(zone, 0) + demand["student_count"]
     
