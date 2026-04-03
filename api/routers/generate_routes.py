@@ -1,7 +1,7 @@
 """Route Generation router - Prepare and run route optimization"""
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy import select, text, distinct, desc
+from sqlalchemy import select, text, desc
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_db
@@ -24,7 +24,6 @@ async def get_route_generation_ready(session: AsyncSession = Depends(get_db)):
     Get all data needed to prepare for a route generation run in a single call.
     Checks prerequisites like stops, buses, demand, and matrix status.
     """
-    # 1. Fetch counts
     count_query = text("""
         SELECT 
             (SELECT COUNT(DISTINCT s.id) FROM stops s JOIN demand d ON s.id = d.stop_id WHERE s.active = true AND d.student_count > 0) as stops_count,
@@ -36,13 +35,6 @@ async def get_route_generation_ready(session: AsyncSession = Depends(get_db)):
     count_result = await session.execute(count_query)
     counts = count_result.one()
     
-    # 2. Fetch semesters
-    semesters_res = await session.execute(
-        select(distinct(Demand.semester)).where(Demand.semester != None)
-    )
-    semesters = semesters_res.scalars().all()
-    
-    # 3. Fetch latest matrix info
     matrix_res = await session.execute(
         select(DistanceMatrix.stop_count)
         .order_by(desc(DistanceMatrix.created_at))
@@ -51,7 +43,6 @@ async def get_route_generation_ready(session: AsyncSession = Depends(get_db)):
     matrix_stop_count = matrix_res.scalar_one_or_none()
 
     return RouteGenerationReadyResponse(
-        semesters=list(semesters),
         stops_count=counts[0],
         buses_count=counts[1],
         demand_records_count=counts[2],
@@ -80,7 +71,6 @@ async def run_route_generation(
     try:
         route_plan = await optimizer_service.optimize(
             scenario_type=request.scenario_type,
-            semester=request.semester,
             matrix_id=request.matrix_id,
             fuel_cost_per_km=request.fuel_cost_per_km,
             bus_ids=request.bus_ids,
@@ -148,5 +138,4 @@ def _format_route_plan_response(route_plan: RoutePlan) -> RoutePlanRead:
         cost_estimate=route_plan.cost_estimate or 0,
         fuel_cost_per_km=route_plan.cost_estimate / stats_data.get("total_distance_km", 1) if route_plan.cost_estimate else 50.0,
         created_at=route_plan.created_at,
-        semester=None,
     )

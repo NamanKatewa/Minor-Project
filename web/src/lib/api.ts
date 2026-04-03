@@ -69,11 +69,7 @@ export const api = {
 			}),
 	},
 	demand: {
-		list: (semester?: string) =>
-			fetcher<components["schemas"]["DemandWithStop"][]>(
-				`/demand${semester ? `?semester=${semester}` : ""}`,
-			),
-		semesters: () => fetcher<string[]>("/demand/semesters"),
+		list: () => fetcher<components["schemas"]["DemandWithStop"][]>("/demand"),
 
 		deleteAll: () => fetcher("/demand", { method: "DELETE" }),
 		bulkCreate: (data: components["schemas"]["DemandImport"][]) =>

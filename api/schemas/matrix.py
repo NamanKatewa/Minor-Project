@@ -5,6 +5,13 @@ from datetime import datetime
 from pydantic import BaseModel
 
 
+class DepotInfo(BaseModel):
+    id: str
+    name: str
+    lat: float | None = None
+    lon: float | None = None
+
+
 class MatrixBuildRequest(BaseModel):
     stop_ids: list[str] | None = None
 
@@ -63,5 +70,6 @@ class StopReadMinimal(BaseModel):
 class RouteAnalysisResponse(BaseModel):
     latest_matrix: MatrixRead | None = None
     stops: list[StopReadMinimal]
+    depots: list[DepotInfo]
     clustering: ClusteringSuggestionsResponse
 

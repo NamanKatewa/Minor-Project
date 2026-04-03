@@ -4,7 +4,7 @@ import csv
 import io
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
-from sqlalchemy import select
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_db
@@ -15,23 +15,12 @@ from schemas import DemandCreate, DemandUpdate, DemandRead, DemandImport, Demand
 router = APIRouter(prefix="/api/demand", tags=["demand"])
 
 
-@router.get("/semesters", response_model=list[str])
-async def list_semesters(session: AsyncSession = Depends(get_db)):
-    result = await session.execute(
-        select(Demand.semester).distinct().order_by(Demand.semester)
-    )
-    return [row[0] for row in result.fetchall()]
-
-
 @router.get("", response_model=list[DemandWithStop])
 async def list_demand(
-    semester: str | None = None,
     stop_id: UUID | None = None,
     session: AsyncSession = Depends(get_db),
 ):
     query = select(Demand).options(joinedload(Demand.stop))
-    if semester:
-        query = query.where(Demand.semester == semester)
     if stop_id:
         query = query.where(Demand.stop_id == stop_id)
     result = await session.execute(query)
@@ -109,35 +98,36 @@ async def bulk_create_demand(
     if not demands:
         return {"created": 0, "skipped": 0, "merged": 0}
 
-    # 1. Group by stop_code and semester to merge duplicates
-    merged_data = {} # (stop_code, semester) -> total_students
+    merged_data = {} # stop_code -> total_students
     original_count = len(demands)
     
     for d in demands:
-        key = (d.stop_code, d.semester)
-        if key in merged_data:
-            merged_data[key] += d.student_count
+        if d.stop_code in merged_data:
+            merged_data[d.stop_code] += d.student_count
         else:
-            merged_data[key] = d.student_count
+            merged_data[d.stop_code] = d.student_count
     
-    # 2. Resolve Stop IDs from codes
-    stop_codes = {key[0] for key in merged_data.keys()}
+    stop_codes = set(merged_data.keys())
     stops_result = await session.execute(
         select(Stop.stop_code, Stop.id).where(Stop.stop_code.in_(stop_codes))
     )
     stop_map = {code: id for code, id in stops_result.fetchall()}
 
-    # 3. Create Demand objects from merged data
     new_demands = []
     skipped = 0
     
-    for (stop_code, semester), student_count in merged_data.items():
+    for stop_code, student_count in merged_data.items():
         if stop_code in stop_map:
+            existing = await session.execute(
+                select(Demand).where(Demand.stop_id == stop_map[stop_code])
+            )
+            if existing.scalar_one_or_none():
+                continue
+            
             new_demands.append(
                 Demand(
                     stop_id=stop_map[stop_code],
                     student_count=student_count,
-                    semester=semester,
                 )
             )
         else:

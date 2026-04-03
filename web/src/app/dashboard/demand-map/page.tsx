@@ -50,6 +50,7 @@ export default function DemandMapPage() {
 
 	const latestMatrix = analysis?.latest_matrix;
 	const currentStops = analysis?.stops;
+	const currentDepots = analysis?.depots;
 	const clusteringData = analysis?.clustering;
 
 	// Scroll selected group into view
@@ -68,17 +69,33 @@ export default function DemandMapPage() {
 		const activeStops = currentStops.filter(
 			(s) => s.active && s.lat != null && s.lon != null,
 		);
-		const currentIds = new Set(activeStops.map((s) => s.id));
-		const matrixIds = new Set(
+		const currentStopIds = new Set(activeStops.map((s) => s.id));
+		const matrixStopIds = new Set(
 			(latestMatrix.stop_ids_json as { stop_ids?: string[] })?.stop_ids ?? [],
 		);
 
-		const added = activeStops.filter((s) => !matrixIds.has(s.id));
-		const removed = [...matrixIds].filter((id) => !currentIds.has(id));
-		const isStale = added.length > 0 || removed.length > 0;
+		const stopsAdded = activeStops.filter((s) => !matrixStopIds.has(s.id));
+		const stopsRemoved = [...matrixStopIds].filter((id) => !currentStopIds.has(id));
 
-		return { isStale, added: added.length, removed: removed.length };
-	}, [latestMatrix, currentStops]);
+		// Check depot changes
+		const currentDepotIds = new Set((currentDepots ?? []).map((d) => d.id));
+		const matrixDepotIds = new Set(
+			(latestMatrix.stop_ids_json as { depot_ids?: string[] })?.depot_ids ?? [],
+		);
+
+		const depotsAdded = (currentDepots ?? []).filter((d) => !matrixDepotIds.has(d.id));
+		const depotsRemoved = [...matrixDepotIds].filter((id) => !currentDepotIds.has(id));
+
+		const isStale = stopsAdded.length > 0 || stopsRemoved.length > 0 || depotsAdded.length > 0 || depotsRemoved.length > 0;
+
+		return { 
+			isStale, 
+			stopsAdded: stopsAdded.length, 
+			stopsRemoved: stopsRemoved.length,
+			depotsAdded: depotsAdded.length,
+			depotsRemoved: depotsRemoved.length,
+		};
+	}, [latestMatrix, currentStops, currentDepots]);
 
 	const activeStopCount =
 		currentStops?.filter((s) => s.active && s.lat != null && s.lon != null)
@@ -195,14 +212,20 @@ export default function DemandMapPage() {
 					<AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-yellow-600 dark:text-yellow-400" />
 					<div>
 						<p className="font-medium text-sm text-yellow-800 dark:text-yellow-200">
-							Stop data has changed since last calculation
+							Data has changed since last calculation
 						</p>
 						<p className="mt-0.5 text-sm text-yellow-700 dark:text-yellow-300">
-							{staleness.added > 0 &&
-								`${staleness.added} stop${staleness.added !== 1 ? "s" : ""} added`}
-							{staleness.added > 0 && staleness.removed > 0 && ", "}
-							{staleness.removed > 0 &&
-								`${staleness.removed} stop${staleness.removed !== 1 ? "s" : ""} removed`}
+							{staleness.stopsAdded > 0 &&
+								`${staleness.stopsAdded} stop${staleness.stopsAdded !== 1 ? "s" : ""} added`}
+							{staleness.stopsAdded > 0 && (staleness.stopsRemoved > 0 || staleness.depotsAdded > 0 || staleness.depotsRemoved > 0) && ", "}
+							{staleness.stopsRemoved > 0 &&
+								`${staleness.stopsRemoved} stop${staleness.stopsRemoved !== 1 ? "s" : ""} removed`}
+							{staleness.depotsAdded > 0 && (staleness.stopsAdded > 0 || staleness.stopsRemoved > 0) && ", "}
+							{staleness.depotsAdded > 0 &&
+								`${staleness.depotsAdded} depot${staleness.depotsAdded !== 1 ? "s" : ""} added`}
+							{staleness.depotsAdded > 0 && staleness.depotsRemoved > 0 && ", "}
+							{staleness.depotsRemoved > 0 &&
+								`${staleness.depotsRemoved} depot${staleness.depotsRemoved !== 1 ? "s" : ""} removed`}
 							. Click <strong>Recalculate</strong> to update travel times.
 						</p>
 					</div>

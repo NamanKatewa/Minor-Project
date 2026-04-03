@@ -19,6 +19,7 @@ from schemas.matrix import (
     ClusteringSuggestion,
     StopInfo,
     StopReadMinimal,
+    DepotInfo,
 )
 from services.osrm import osrm_service
 from services.clustering import find_clusters
@@ -51,6 +52,12 @@ async def get_demand_analysis(
     )
     stops = stops_result.scalars().all()
 
+    # 2a. Fetch active depots
+    depots_result = await session.execute(
+        select(Depot).where(Depot.lat.isnot(None)).where(Depot.lon.isnot(None))
+    )
+    depots = depots_result.scalars().all()
+
     # 3. Calculate clustering
     stops_with_coords = [s for s in stops if s.lat is not None and s.lon is not None]
     stop_dicts = [
@@ -76,6 +83,14 @@ async def get_demand_analysis(
                 lon=s.lon,
                 active=s.active
             ) for s in stops
+        ],
+        depots=[
+            DepotInfo(
+                id=str(d.id),
+                name=d.name,
+                lat=d.lat,
+                lon=d.lon,
+            ) for d in depots
         ],
         clustering=ClusteringSuggestionsResponse(
             suggestions=suggestions,

@@ -52,7 +52,6 @@ class OptimizerService:
     async def optimize(
         self,
         scenario_type: str,
-        semester: str | None,
         matrix_id: UUID | None,
         fuel_cost_per_km: float,
         bus_ids: list[UUID] | None,
@@ -65,7 +64,7 @@ class OptimizerService:
         
         Algorithm Overview:
         1. Load distance matrix (latest or specified)
-        2. Load active stops with demand for semester
+        2. Load active stops with demand
         3. Load available buses with depots
         4. Build CVRPTW model with constraints
         5. Solve using OR-Tools
@@ -85,7 +84,7 @@ class OptimizerService:
             self._is_running = True
             try:
                 return await self._do_optimize(
-                    scenario_type, semester, matrix_id,
+                    scenario_type, matrix_id,
                     fuel_cost_per_km, bus_ids, max_ride_time_min, arrival_deadline,
                     enable_split_delivery
                 )
@@ -95,7 +94,6 @@ class OptimizerService:
     async def _do_optimize(
         self,
         scenario_type: str,
-        semester: str | None,
         matrix_id: UUID | None,
         fuel_cost_per_km: float,
         bus_ids: list[UUID] | None,
@@ -108,7 +106,7 @@ class OptimizerService:
         
         logger.info("=" * 60)
         logger.info("=== OPTIMIZATION STARTED ===")
-        logger.info(f"Scenario: {scenario_type}, Semester: {semester}, Deadline: {arrival_deadline}")
+        logger.info(f"Scenario: {scenario_type}, Deadline: {arrival_deadline}")
         logger.info(f"Config: max_ride={max_ride_time_min or self.config.max_ride_time_min}min, deadline={arrival_deadline or self.config.arrival_deadline}, fuel_cost={fuel_cost_per_km}/km")
         
         try:
@@ -135,12 +133,12 @@ class OptimizerService:
                 
                 # Step 2: Load stops with demand
                 logger.info("[STEP 2] Loading stops with demand...")
-                stops_with_demand = await self._load_stops_with_demand(session, semester, enable_split_delivery)
+                stops_with_demand = await self._load_stops_with_demand(session, enable_split_delivery)
                 if not stops_with_demand:
                     logger.error("No stops with demand found in database")
                     raise HTTPException(
                         status_code=400,
-                        detail="No active stops with demand found for the specified semester."
+                        detail="No active stops with demand found."
                     )
                 total_students = sum(s['student_count'] for s in stops_with_demand)
                 logger.info(f"  Stops loaded: {len(stops_with_demand)}")
@@ -233,10 +231,9 @@ class OptimizerService:
     async def _load_stops_with_demand(
         self,
         session: AsyncSession,
-        semester: str | None,
         enable_split_delivery: bool = True,
     ) -> List[Dict[str, Any]]:
-        """Load active stops with their demand for the specified semester"""
+        """Load active stops with their demand"""
         
         query = (
             select(Stop, Demand)
@@ -246,9 +243,6 @@ class OptimizerService:
             .where(Stop.lon.isnot(None))
             .where(Demand.student_count > 0)
         )
-        
-        if semester:
-            query = query.where(Demand.semester == semester)
         
         result = await session.execute(query)
         rows = result.all()

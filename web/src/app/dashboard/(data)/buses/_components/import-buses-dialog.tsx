@@ -37,10 +37,6 @@ export function ImportBusesDialog({
 						valid buses out of{" "}
 						<span className="font-medium text-foreground">{totalCount}</span>{" "}
 						total parsed.
-						<br />
-						<br />
-						Depots will be automatically created or linked based on the
-						"depot_name" column.
 					</DialogDescription>
 				</DialogHeader>
 				<DialogFooter>

@@ -37,7 +37,7 @@ export function DeleteAllDemandDialog({
 					<DialogTitle>Are you absolutely sure?</DialogTitle>
 					<DialogDescription>
 						This action cannot be undone. This will permanently delete ALL
-						demand records from the database, including for all semesters.
+						demand records from the database.
 					</DialogDescription>
 				</DialogHeader>
 				<DialogFooter>

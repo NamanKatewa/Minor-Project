@@ -233,5 +233,4 @@ def _format_route_plan_response(route_plan: RoutePlan) -> RoutePlanRead:
         cost_estimate=route_plan.cost_estimate or 0,
         fuel_cost_per_km=route_plan.cost_estimate / stats_data.get("total_distance_km", 1) if route_plan.cost_estimate else 50.0,
         created_at=route_plan.created_at,
-        semester=None,
     )

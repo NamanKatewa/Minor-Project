@@ -55,7 +55,6 @@ interface OptimizationError {
 export default function GenerateRoutesPage() {
 	const queryClient = useQueryClient();
 	const [scenarioType, setScenarioType] = useState("strict");
-	const [semester, setSemester] = useState("");
 	const [fuelCostPerKm, setFuelCostPerKm] = useState("12.33");
 	const [maxRideTime, setMaxRideTime] = useState("350");
 	const [arrivalDeadline, setArrivalDeadline] = useState("09:05");
@@ -66,8 +65,6 @@ export default function GenerateRoutesPage() {
 		queryKey: ["generate-routes", "ready"],
 		queryFn: api.generateRoutes.ready,
 	});
-
-	const semesters = readyData?.semesters;
 
 	const optimizeMutation = useMutation({
 		mutationFn: api.generateRoutes.run,
@@ -109,7 +106,6 @@ export default function GenerateRoutesPage() {
 	const handleOptimize = () => {
 		optimizeMutation.mutate({
 			scenario_type: scenarioType,
-			semester: semester || null,
 			matrix_id: null,
 			fuel_cost_per_km: Number.parseFloat(fuelCostPerKm) || 12.33,
 			bus_ids: null,
@@ -216,7 +212,7 @@ export default function GenerateRoutesPage() {
 									{isLoading ? (
 										<div className="h-3 w-12 animate-pulse rounded bg-muted" />
 									) : hasDemand ? (
-										`${readyData?.demand_records_count} records`
+										`${readyData?.total_students_count} students`
 									) : (
 										"No demand data"
 									)}
@@ -289,26 +285,6 @@ export default function GenerateRoutesPage() {
 									<SelectItem value="suggested">
 										Suggested (Relaxed constraints)
 									</SelectItem>
-								</SelectContent>
-							</Select>
-						</div>
-
-						<div className="space-y-2">
-							<Label htmlFor="semester">Semester</Label>
-							<Select
-								onValueChange={(val) => setSemester(val === "all" ? "" : val)}
-								value={semester || "all"}
-							>
-								<SelectTrigger id="semester">
-									<SelectValue placeholder="All semesters" />
-								</SelectTrigger>
-								<SelectContent>
-									<SelectItem value="all">All semesters</SelectItem>
-									{semesters?.map((s) => (
-										<SelectItem key={s} value={s}>
-											{s}
-										</SelectItem>
-									))}
 								</SelectContent>
 							</Select>
 						</div>

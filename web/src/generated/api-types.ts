@@ -4,2627 +4,2586 @@
  */
 
 export interface paths {
-	"/health": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Health Check */
-		get: operations["health_check_health_get"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/auth/register": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		get?: never;
-		put?: never;
-		/**
-		 * Register
-		 * @description Register a new user.
-		 */
-		post: operations["register_auth_register_post"];
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/auth/login": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		get?: never;
-		put?: never;
-		/**
-		 * Login
-		 * @description Login and get JWT token.
-		 */
-		post: operations["login_auth_login_post"];
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/auth/me": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/**
-		 * Get Me
-		 * @description Get current user information.
-		 */
-		get: operations["get_me_auth_me_get"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/stops": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** List Stops */
-		get: operations["list_stops_api_stops_get"];
-		put?: never;
-		/** Create Stop */
-		post: operations["create_stop_api_stops_post"];
-		/**
-		 * Delete All Stops
-		 * @description Delete all stops
-		 */
-		delete: operations["delete_all_stops_api_stops_delete"];
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/stops/{stop_id}": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get Stop */
-		get: operations["get_stop_api_stops__stop_id__get"];
-		/** Update Stop */
-		put: operations["update_stop_api_stops__stop_id__put"];
-		post?: never;
-		/** Delete Stop */
-		delete: operations["delete_stop_api_stops__stop_id__delete"];
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/stops/bulk": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		get?: never;
-		put?: never;
-		/**
-		 * Bulk Create Stops
-		 * @description Bulk create stops
-		 */
-		post: operations["bulk_create_stops_api_stops_bulk_post"];
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/buses": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** List Buses */
-		get: operations["list_buses_api_buses_get"];
-		put?: never;
-		/** Create Bus */
-		post: operations["create_bus_api_buses_post"];
-		/**
-		 * Delete All Buses
-		 * @description Delete all buses
-		 */
-		delete: operations["delete_all_buses_api_buses_delete"];
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/buses/{bus_id}": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get Bus */
-		get: operations["get_bus_api_buses__bus_id__get"];
-		/** Update Bus */
-		put: operations["update_bus_api_buses__bus_id__put"];
-		post?: never;
-		/** Delete Bus */
-		delete: operations["delete_bus_api_buses__bus_id__delete"];
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/buses/bulk": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		get?: never;
-		put?: never;
-		/**
-		 * Bulk Create Buses
-		 * @description Bulk create buses
-		 */
-		post: operations["bulk_create_buses_api_buses_bulk_post"];
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/depots": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** List Depots */
-		get: operations["list_depots_api_depots_get"];
-		put?: never;
-		/** Create Depot */
-		post: operations["create_depot_api_depots_post"];
-		/**
-		 * Delete All Depots
-		 * @description Delete all depots
-		 */
-		delete: operations["delete_all_depots_api_depots_delete"];
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/depots/{depot_id}": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get Depot */
-		get: operations["get_depot_api_depots__depot_id__get"];
-		/** Update Depot */
-		put: operations["update_depot_api_depots__depot_id__put"];
-		post?: never;
-		/** Delete Depot */
-		delete: operations["delete_depot_api_depots__depot_id__delete"];
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/depots/bulk": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		get?: never;
-		put?: never;
-		/**
-		 * Bulk Create Depots
-		 * @description Bulk create depots
-		 */
-		post: operations["bulk_create_depots_api_depots_bulk_post"];
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/demand/semesters": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** List Semesters */
-		get: operations["list_semesters_api_demand_semesters_get"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/demand": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** List Demand */
-		get: operations["list_demand_api_demand_get"];
-		put?: never;
-		/** Create Demand */
-		post: operations["create_demand_api_demand_post"];
-		/**
-		 * Delete All Demand
-		 * @description Delete all demand
-		 */
-		delete: operations["delete_all_demand_api_demand_delete"];
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/demand/{demand_id}": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get Demand */
-		get: operations["get_demand_api_demand__demand_id__get"];
-		/** Update Demand */
-		put: operations["update_demand_api_demand__demand_id__put"];
-		post?: never;
-		/** Delete Demand */
-		delete: operations["delete_demand_api_demand__demand_id__delete"];
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/demand/bulk": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		get?: never;
-		put?: never;
-		/**
-		 * Bulk Create Demand
-		 * @description Bulk create demand, merging duplicate stops by summing student counts
-		 */
-		post: operations["bulk_create_demand_api_demand_bulk_post"];
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/demand-map/analysis": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/**
-		 * Get Demand Analysis
-		 * @description Get all data required for the Demand Map dashboard in a single call.
-		 *     Combines:
-		 *     - Latest distance matrix
-		 *     - List of active stops
-		 *     - Clustering suggestions
-		 */
-		get: operations["get_demand_analysis_api_demand_map_analysis_get"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/demand-map/build-matrix": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		get?: never;
-		put?: never;
-		/**
-		 * Build Demand Matrix
-		 * @description Build or rebuild the distance matrix for all active stops and depots.
-		 */
-		post: operations["build_demand_matrix_api_demand_map_build_matrix_post"];
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/demand-map/latest-matrix": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get Latest Matrix */
-		get: operations["get_latest_matrix_api_demand_map_latest_matrix_get"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/demand-map/matrix/{matrix_id}": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get Matrix */
-		get: operations["get_matrix_api_demand_map_matrix__matrix_id__get"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/dashboard/summary": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/**
-		 * Get Dashboard Summary
-		 * @description Get high-level summary statistics for the dashboard.
-		 *     Optimized to use minimal queries.
-		 */
-		get: operations["get_dashboard_summary_api_dashboard_summary_get"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/generate-routes/ready": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/**
-		 * Get Route Generation Ready
-		 * @description Get all data needed to prepare for a route generation run in a single call.
-		 *     Checks prerequisites like stops, buses, demand, and matrix status.
-		 */
-		get: operations["get_route_generation_ready_api_generate_routes_ready_get"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/generate-routes/run": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		get?: never;
-		put?: never;
-		/**
-		 * Run Route Generation
-		 * @description Run route optimization and store the resulting route plan.
-		 *
-		 *     This endpoint triggers the CVRPTW solver which:
-		 *     - Assigns stops to buses based on demand
-		 *     - Respects capacity constraints
-		 *     - Ensures campus arrival by specified deadline
-		 *     - Minimizes total travel distance
-		 *
-		 *     Returns the generated route plan with routes, stats, and cost estimate.
-		 */
-		post: operations["run_route_generation_api_generate_routes_run_post"];
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/routes/history": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/**
-		 * Get Route Plan History
-		 * @description Get route plan history with minimal data transfer.
-		 */
-		get: operations["get_route_plan_history_api_routes_history_get"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/routes/": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/**
-		 * List Route Plans
-		 * @description List all route plans (history).
-		 */
-		get: operations["list_route_plans_api_routes__get"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/routes/latest": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/**
-		 * Get Latest Route Plan
-		 * @description Get the most recent route plan.
-		 */
-		get: operations["get_latest_route_plan_api_routes_latest_get"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/api/routes/{route_plan_id}": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/**
-		 * Get Route Plan
-		 * @description Get a specific route plan by ID.
-		 */
-		get: operations["get_route_plan_api_routes__route_plan_id__get"];
-		put?: never;
-		post?: never;
-		/**
-		 * Delete Route Plan
-		 * @description Delete a route plan from history.
-		 */
-		delete: operations["delete_route_plan_api_routes__route_plan_id__delete"];
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Root */
-		get: operations["root__get"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
+    "/health": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Health Check */
+        get: operations["health_check_health_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth/register": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Register
+         * @description Register a new user.
+         */
+        post: operations["register_auth_register_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth/login": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Login
+         * @description Login and get JWT token.
+         */
+        post: operations["login_auth_login_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Me
+         * @description Get current user information.
+         */
+        get: operations["get_me_auth_me_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/stops": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Stops */
+        get: operations["list_stops_api_stops_get"];
+        put?: never;
+        /** Create Stop */
+        post: operations["create_stop_api_stops_post"];
+        /**
+         * Delete All Stops
+         * @description Delete all stops
+         */
+        delete: operations["delete_all_stops_api_stops_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/stops/{stop_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Stop */
+        get: operations["get_stop_api_stops__stop_id__get"];
+        /** Update Stop */
+        put: operations["update_stop_api_stops__stop_id__put"];
+        post?: never;
+        /** Delete Stop */
+        delete: operations["delete_stop_api_stops__stop_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/stops/bulk": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk Create Stops
+         * @description Bulk create stops
+         */
+        post: operations["bulk_create_stops_api_stops_bulk_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/buses": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Buses */
+        get: operations["list_buses_api_buses_get"];
+        put?: never;
+        /** Create Bus */
+        post: operations["create_bus_api_buses_post"];
+        /**
+         * Delete All Buses
+         * @description Delete all buses
+         */
+        delete: operations["delete_all_buses_api_buses_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/buses/{bus_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Bus */
+        get: operations["get_bus_api_buses__bus_id__get"];
+        /** Update Bus */
+        put: operations["update_bus_api_buses__bus_id__put"];
+        post?: never;
+        /** Delete Bus */
+        delete: operations["delete_bus_api_buses__bus_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/buses/bulk": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk Create Buses
+         * @description Bulk create buses
+         */
+        post: operations["bulk_create_buses_api_buses_bulk_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/depots": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Depots */
+        get: operations["list_depots_api_depots_get"];
+        put?: never;
+        /** Create Depot */
+        post: operations["create_depot_api_depots_post"];
+        /**
+         * Delete All Depots
+         * @description Delete all depots
+         */
+        delete: operations["delete_all_depots_api_depots_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/depots/{depot_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Depot */
+        get: operations["get_depot_api_depots__depot_id__get"];
+        /** Update Depot */
+        put: operations["update_depot_api_depots__depot_id__put"];
+        post?: never;
+        /** Delete Depot */
+        delete: operations["delete_depot_api_depots__depot_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/depots/bulk": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk Create Depots
+         * @description Bulk create depots
+         */
+        post: operations["bulk_create_depots_api_depots_bulk_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/demand": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Demand */
+        get: operations["list_demand_api_demand_get"];
+        put?: never;
+        /** Create Demand */
+        post: operations["create_demand_api_demand_post"];
+        /**
+         * Delete All Demand
+         * @description Delete all demand
+         */
+        delete: operations["delete_all_demand_api_demand_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/demand/{demand_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Demand */
+        get: operations["get_demand_api_demand__demand_id__get"];
+        /** Update Demand */
+        put: operations["update_demand_api_demand__demand_id__put"];
+        post?: never;
+        /** Delete Demand */
+        delete: operations["delete_demand_api_demand__demand_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/demand/bulk": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk Create Demand
+         * @description Bulk create demand, merging duplicate stops by summing student counts
+         */
+        post: operations["bulk_create_demand_api_demand_bulk_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/demand-map/analysis": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Demand Analysis
+         * @description Get all data required for the Demand Map dashboard in a single call.
+         *     Combines:
+         *     - Latest distance matrix
+         *     - List of active stops
+         *     - Clustering suggestions
+         */
+        get: operations["get_demand_analysis_api_demand_map_analysis_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/demand-map/build-matrix": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Build Demand Matrix
+         * @description Build or rebuild the distance matrix for all active stops and depots.
+         */
+        post: operations["build_demand_matrix_api_demand_map_build_matrix_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/demand-map/latest-matrix": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Latest Matrix */
+        get: operations["get_latest_matrix_api_demand_map_latest_matrix_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/demand-map/matrix/{matrix_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Matrix */
+        get: operations["get_matrix_api_demand_map_matrix__matrix_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/dashboard/summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Dashboard Summary
+         * @description Get high-level summary statistics for the dashboard.
+         *     Optimized to use minimal queries.
+         */
+        get: operations["get_dashboard_summary_api_dashboard_summary_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/generate-routes/ready": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Route Generation Ready
+         * @description Get all data needed to prepare for a route generation run in a single call.
+         *     Checks prerequisites like stops, buses, demand, and matrix status.
+         */
+        get: operations["get_route_generation_ready_api_generate_routes_ready_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/generate-routes/run": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Run Route Generation
+         * @description Run route optimization and store the resulting route plan.
+         *
+         *     This endpoint triggers the CVRPTW solver which:
+         *     - Assigns stops to buses based on demand
+         *     - Respects capacity constraints
+         *     - Ensures campus arrival by specified deadline
+         *     - Minimizes total travel distance
+         *
+         *     Returns the generated route plan with routes, stats, and cost estimate.
+         */
+        post: operations["run_route_generation_api_generate_routes_run_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/routes/history": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Route Plan History
+         * @description Get route plan history with minimal data transfer.
+         */
+        get: operations["get_route_plan_history_api_routes_history_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/routes/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Route Plans
+         * @description List all route plans (history).
+         */
+        get: operations["list_route_plans_api_routes__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/routes/latest": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Latest Route Plan
+         * @description Get the most recent route plan.
+         */
+        get: operations["get_latest_route_plan_api_routes_latest_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/routes/{route_plan_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Route Plan
+         * @description Get a specific route plan by ID.
+         */
+        get: operations["get_route_plan_api_routes__route_plan_id__get"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete Route Plan
+         * @description Delete a route plan from history.
+         */
+        delete: operations["delete_route_plan_api_routes__route_plan_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Root */
+        get: operations["root__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-	schemas: {
-		/** AuthResponse */
-		AuthResponse: {
-			/** Access Token */
-			access_token: string;
-			/**
-			 * Token Type
-			 * @default bearer
-			 */
-			token_type: string;
-			/** User */
-			user: {
-				[key: string]: unknown;
-			};
-		};
-		/** BusCreate */
-		BusCreate: {
-			/** Bus No */
-			bus_no: string;
-			/**
-			 * Capacity
-			 * @default 50
-			 */
-			capacity: number;
-		};
-		/** BusImport */
-		BusImport: {
-			/** Bus No */
-			bus_no: string;
-			/**
-			 * Capacity
-			 * @default 50
-			 */
-			capacity: number;
-		};
-		/** BusRead */
-		BusRead: {
-			/** Bus No */
-			bus_no: string;
-			/**
-			 * Capacity
-			 * @default 50
-			 */
-			capacity: number;
-			/**
-			 * Id
-			 * Format: uuid
-			 */
-			id: string;
-		};
-		/**
-		 * BusRoute
-		 * @description Complete route for one bus
-		 */
-		BusRoute: {
-			/**
-			 * Bus Id
-			 * Format: uuid
-			 */
-			bus_id: string;
-			/** Bus No */
-			bus_no: string;
-			/** Capacity */
-			capacity: number;
-			/** Depot Id */
-			depot_id: string;
-			/** Depot Name */
-			depot_name?: string | null;
-			/** Depot Lat */
-			depot_lat: number;
-			/** Depot Lon */
-			depot_lon: number;
-			/** Stops */
-			stops: components["schemas"]["RouteStop"][];
-			/** Geometry */
-			geometry?: number[][] | null;
-			/** Total Students */
-			total_students: number;
-			/** Total Distance Km */
-			total_distance_km: number;
-			/** Total Time Min */
-			total_time_min: number;
-			/** Capacity Utilization */
-			capacity_utilization: number;
-			/**
-			 * Warnings
-			 * @default []
-			 */
-			warnings: string[];
-		};
-		/** BusUpdate */
-		BusUpdate: {
-			/** Bus No */
-			bus_no?: string | null;
-			/** Capacity */
-			capacity?: number | null;
-		};
-		/** BusWithDepot */
-		BusWithDepot: {
-			/** Bus No */
-			bus_no: string;
-			/**
-			 * Capacity
-			 * @default 50
-			 */
-			capacity: number;
-			/**
-			 * Id
-			 * Format: uuid
-			 */
-			id: string;
-			/** Depot Name */
-			depot_name?: string | null;
-		};
-		/** ClusteringSuggestion */
-		ClusteringSuggestion: {
-			/** Stops */
-			stops: components["schemas"]["StopInfo"][];
-			/** Max Distance M */
-			max_distance_m: number;
-		};
-		/** ClusteringSuggestionsResponse */
-		ClusteringSuggestionsResponse: {
-			/** Suggestions */
-			suggestions: components["schemas"]["ClusteringSuggestion"][];
-			/** Threshold M */
-			threshold_m: number;
-			/** Total Groups */
-			total_groups: number;
-		};
-		/** DashboardMatrixInfo */
-		DashboardMatrixInfo: {
-			/** Id */
-			id: string;
-			/** Stop Count */
-			stop_count: number | null;
-			/** Build Time Seconds */
-			build_time_seconds: number | null;
-			/**
-			 * Created At
-			 * Format: date-time
-			 */
-			created_at: string;
-		};
-		/** DashboardStop */
-		DashboardStop: {
-			/** Id */
-			id: string;
-			/** Name */
-			name: string;
-			/** Lat */
-			lat: number;
-			/** Lon */
-			lon: number;
-		};
-		/** DashboardSummary */
-		DashboardSummary: {
-			/** Stops Count */
-			stops_count: number;
-			/** Buses Count */
-			buses_count: number;
-			/** Depots Count */
-			depots_count: number;
-			/** Demand Records Count */
-			demand_records_count: number;
-			/** Total Fleet Capacity */
-			total_fleet_capacity: number;
-			/** Semesters */
-			semesters: string[];
-			latest_matrix: components["schemas"]["DashboardMatrixInfo"] | null;
-			/**
-			 * Stops
-			 * @default []
-			 */
-			stops: components["schemas"]["DashboardStop"][];
-		};
-		/** DemandCreate */
-		DemandCreate: {
-			/**
-			 * Stop Id
-			 * Format: uuid
-			 */
-			stop_id: string;
-			/**
-			 * Student Count
-			 * @default 0
-			 */
-			student_count: number;
-			/** Semester */
-			semester: string;
-		};
-		/** DemandImport */
-		DemandImport: {
-			/** Stop Code */
-			stop_code: string;
-			/**
-			 * Student Count
-			 * @default 0
-			 */
-			student_count: number;
-			/** Semester */
-			semester: string;
-		};
-		/** DemandRead */
-		DemandRead: {
-			/**
-			 * Stop Id
-			 * Format: uuid
-			 */
-			stop_id: string;
-			/**
-			 * Student Count
-			 * @default 0
-			 */
-			student_count: number;
-			/** Semester */
-			semester: string;
-			/**
-			 * Id
-			 * Format: uuid
-			 */
-			id: string;
-		};
-		/** DemandUpdate */
-		DemandUpdate: {
-			/** Stop Id */
-			stop_id?: string | null;
-			/** Student Count */
-			student_count?: number | null;
-			/** Semester */
-			semester?: string | null;
-		};
-		/** DemandWithStop */
-		DemandWithStop: {
-			/**
-			 * Stop Id
-			 * Format: uuid
-			 */
-			stop_id: string;
-			/**
-			 * Student Count
-			 * @default 0
-			 */
-			student_count: number;
-			/** Semester */
-			semester: string;
-			/**
-			 * Id
-			 * Format: uuid
-			 */
-			id: string;
-			/** Stop Name */
-			stop_name?: string | null;
-		};
-		/** DepotCreate */
-		DepotCreate: {
-			/** Name */
-			name: string;
-			/** Lat */
-			lat?: number | null;
-			/** Lon */
-			lon?: number | null;
-		};
-		/** DepotRead */
-		DepotRead: {
-			/** Name */
-			name: string;
-			/** Lat */
-			lat?: number | null;
-			/** Lon */
-			lon?: number | null;
-			/**
-			 * Id
-			 * Format: uuid
-			 */
-			id: string;
-		};
-		/** DepotUpdate */
-		DepotUpdate: {
-			/** Name */
-			name?: string | null;
-			/** Lat */
-			lat?: number | null;
-			/** Lon */
-			lon?: number | null;
-		};
-		/** HTTPValidationError */
-		HTTPValidationError: {
-			/** Detail */
-			detail?: components["schemas"]["ValidationError"][];
-		};
-		/** LoginRequest */
-		LoginRequest: {
-			/**
-			 * Email
-			 * Format: email
-			 */
-			email: string;
-			/** Password */
-			password: string;
-		};
-		/** MatrixBuildRequest */
-		MatrixBuildRequest: {
-			/** Stop Ids */
-			stop_ids?: string[] | null;
-		};
-		/** MatrixBuildResponse */
-		MatrixBuildResponse: {
-			/**
-			 * Id
-			 * Format: uuid
-			 */
-			id: string;
-			/** Stop Count */
-			stop_count: number;
-			/** Build Time Seconds */
-			build_time_seconds: number;
-			/**
-			 * Created At
-			 * Format: date-time
-			 */
-			created_at: string;
-		};
-		/** MatrixRead */
-		MatrixRead: {
-			/**
-			 * Id
-			 * Format: uuid
-			 */
-			id: string;
-			/** Matrix Json */
-			matrix_json: {
-				[key: string]: unknown;
-			};
-			/** Stop Count */
-			stop_count?: number | null;
-			/** Build Time Seconds */
-			build_time_seconds?: number | null;
-			/** Stop Ids Json */
-			stop_ids_json?: {
-				[key: string]: unknown;
-			} | null;
-			/**
-			 * Created At
-			 * Format: date-time
-			 */
-			created_at: string;
-		};
-		/** RegisterRequest */
-		RegisterRequest: {
-			/**
-			 * Email
-			 * Format: email
-			 */
-			email: string;
-			/** Password */
-			password: string;
-			/** Name */
-			name: string;
-		};
-		/** RouteAnalysisResponse */
-		RouteAnalysisResponse: {
-			latest_matrix?: components["schemas"]["MatrixRead"] | null;
-			/** Stops */
-			stops: components["schemas"]["StopReadMinimal"][];
-			clustering: components["schemas"]["ClusteringSuggestionsResponse"];
-		};
-		/**
-		 * RouteGenerationReadyResponse
-		 * @description Data needed to prepare for a route generation run
-		 */
-		RouteGenerationReadyResponse: {
-			/** Semesters */
-			semesters: string[];
-			/** Stops Count */
-			stops_count: number;
-			/** Buses Count */
-			buses_count: number;
-			/** Demand Records Count */
-			demand_records_count: number;
-			/** Total Students Count */
-			total_students_count: number;
-			/** Total Fleet Capacity */
-			total_fleet_capacity: number;
-			/** Latest Matrix Stop Count */
-			latest_matrix_stop_count?: number | null;
-			/** Has Matrix */
-			has_matrix: boolean;
-		};
-		/**
-		 * RouteGenerationRequest
-		 * @description Request to run route optimization
-		 */
-		RouteGenerationRequest: {
-			/**
-			 * Scenario Type
-			 * @default strict
-			 */
-			scenario_type: string;
-			/** Semester */
-			semester?: string | null;
-			/** Matrix Id */
-			matrix_id?: string | null;
-			/**
-			 * Fuel Cost Per Km
-			 * @default 50
-			 */
-			fuel_cost_per_km: number;
-			/** Bus Ids */
-			bus_ids?: string[] | null;
-			/** Max Ride Time Min */
-			max_ride_time_min?: number | null;
-			/** Arrival Deadline */
-			arrival_deadline?: string | null;
-			/**
-			 * Enable Split Delivery
-			 * @default true
-			 */
-			enable_split_delivery: boolean;
-		};
-		/**
-		 * RoutePlanHistoryResponse
-		 * @description Simplified response for the route plans history dashboard
-		 */
-		RoutePlanHistoryResponse: {
-			solutions_data: components["schemas"]["RoutePlanListResponse"];
-		};
-		/**
-		 * RoutePlanListResponse
-		 * @description Response for listing route plans
-		 */
-		RoutePlanListResponse: {
-			/** Solutions */
-			solutions: components["schemas"]["RoutePlanSummary"][];
-			/** Count */
-			count: number;
-			/** Limit */
-			limit: number;
-			/** Offset */
-			offset: number;
-		};
-		/**
-		 * RoutePlanRead
-		 * @description Full route plan response
-		 */
-		RoutePlanRead: {
-			/**
-			 * Id
-			 * Format: uuid
-			 */
-			id: string;
-			/** Scenario Type */
-			scenario_type: string;
-			/** Routes */
-			routes: components["schemas"]["BusRoute"][];
-			stats: components["schemas"]["RoutePlanStats"];
-			/** Cost Estimate */
-			cost_estimate: number;
-			/** Fuel Cost Per Km */
-			fuel_cost_per_km: number;
-			/**
-			 * Created At
-			 * Format: date-time
-			 */
-			created_at: string;
-			/** Semester */
-			semester?: string | null;
-		};
-		/**
-		 * RoutePlanStats
-		 * @description Summary statistics for a route plan
-		 */
-		RoutePlanStats: {
-			/** Total Buses Used */
-			total_buses_used: number;
-			/** Total Distance Km */
-			total_distance_km: number;
-			/** Total Time Min */
-			total_time_min: number;
-			/** Avg Utilization */
-			avg_utilization: number;
-			/** Total Students Assigned */
-			total_students_assigned: number;
-			/** Total Students Requested */
-			total_students_requested: number;
-			/** Coverage Percentage */
-			coverage_percentage: number;
-			/**
-			 * Unassigned Stops
-			 * @default []
-			 */
-			unassigned_stops: components["schemas"]["UnassignedStop"][];
-			/**
-			 * Global Warnings
-			 * @default []
-			 */
-			global_warnings: string[];
-			/** Solve Time Seconds */
-			solve_time_seconds: number;
-			/** Model Build Time Seconds */
-			model_build_time_seconds: number;
-		};
-		/**
-		 * RoutePlanSummary
-		 * @description Lightweight summary for listing route plans
-		 */
-		RoutePlanSummary: {
-			/**
-			 * Id
-			 * Format: uuid
-			 */
-			id: string;
-			/** Scenario Type */
-			scenario_type: string;
-			/** Total Buses */
-			total_buses: number;
-			/** Total Distance Km */
-			total_distance_km: number;
-			/** Total Students */
-			total_students: number;
-			/** Cost Estimate */
-			cost_estimate: number;
-			/** Coverage Percentage */
-			coverage_percentage: number;
-			/** Has Warnings */
-			has_warnings: boolean;
-			/**
-			 * Created At
-			 * Format: date-time
-			 */
-			created_at: string;
-		};
-		/**
-		 * RouteStop
-		 * @description A single stop in a bus route sequence
-		 */
-		RouteStop: {
-			/**
-			 * Stop Id
-			 * Format: uuid
-			 */
-			stop_id: string;
-			/** Stop Name */
-			stop_name: string;
-			/** Stop Code */
-			stop_code?: string | null;
-			/** Lat */
-			lat: number;
-			/** Lon */
-			lon: number;
-			/** Arrival Time */
-			arrival_time: string;
-			/** Students Boarding */
-			students_boarding: number;
-			/** Cumulative Time Min */
-			cumulative_time_min: number;
-			/** Distance From Prev Km */
-			distance_from_prev_km: number;
-			/** Zone */
-			zone?: string | null;
-			/** Parent Stop Id */
-			parent_stop_id?: string | null;
-			/**
-			 * Is Split
-			 * @default false
-			 */
-			is_split: boolean;
-		};
-		/** StopBulkResponse */
-		StopBulkResponse: {
-			/** Count */
-			count: number;
-		};
-		/** StopCreate */
-		StopCreate: {
-			/** Stop Code */
-			stop_code?: string | null;
-			/** Name */
-			name: string;
-			/** Lat */
-			lat?: number | null;
-			/** Lon */
-			lon?: number | null;
-			/** Locality */
-			locality?: string | null;
-			/** Zone */
-			zone?: string | null;
-			/**
-			 * Active
-			 * @default true
-			 */
-			active: boolean;
-		};
-		/** StopInfo */
-		StopInfo: {
-			/** Id */
-			id: string;
-			/** Name */
-			name: string;
-			/** Lat */
-			lat: number;
-			/** Lon */
-			lon: number;
-		};
-		/** StopRead */
-		StopRead: {
-			/** Stop Code */
-			stop_code?: string | null;
-			/** Name */
-			name: string;
-			/** Lat */
-			lat?: number | null;
-			/** Lon */
-			lon?: number | null;
-			/** Locality */
-			locality?: string | null;
-			/** Zone */
-			zone?: string | null;
-			/**
-			 * Active
-			 * @default true
-			 */
-			active: boolean;
-			/**
-			 * Id
-			 * Format: uuid
-			 */
-			id: string;
-		};
-		/** StopReadMinimal */
-		StopReadMinimal: {
-			/** Id */
-			id: string;
-			/** Name */
-			name: string;
-			/** Lat */
-			lat?: number | null;
-			/** Lon */
-			lon?: number | null;
-			/**
-			 * Active
-			 * @default true
-			 */
-			active: boolean;
-		};
-		/** StopUpdate */
-		StopUpdate: {
-			/** Stop Code */
-			stop_code?: string | null;
-			/** Name */
-			name?: string | null;
-			/** Lat */
-			lat?: number | null;
-			/** Lon */
-			lon?: number | null;
-			/** Locality */
-			locality?: string | null;
-			/** Zone */
-			zone?: string | null;
-			/** Active */
-			active?: boolean | null;
-		};
-		/**
-		 * UnassignedStop
-		 * @description An unassigned stop with reason
-		 */
-		UnassignedStop: {
-			/** Stop Id */
-			stop_id: string;
-			/** Name */
-			name: string;
-			/** Reason */
-			reason: string;
-			/** Lat */
-			lat?: number | null;
-			/** Lon */
-			lon?: number | null;
-		};
-		/** UserResponse */
-		UserResponse: {
-			/** Id */
-			id: string;
-			/** Email */
-			email: string;
-			/** Name */
-			name: string | null;
-		};
-		/** ValidationError */
-		ValidationError: {
-			/** Location */
-			loc: (string | number)[];
-			/** Message */
-			msg: string;
-			/** Error Type */
-			type: string;
-		};
-	};
-	responses: never;
-	parameters: never;
-	requestBodies: never;
-	headers: never;
-	pathItems: never;
+    schemas: {
+        /** AuthResponse */
+        AuthResponse: {
+            /** Access Token */
+            access_token: string;
+            /**
+             * Token Type
+             * @default bearer
+             */
+            token_type: string;
+            /** User */
+            user: {
+                [key: string]: unknown;
+            };
+        };
+        /** BusCreate */
+        BusCreate: {
+            /** Bus No */
+            bus_no: string;
+            /**
+             * Capacity
+             * @default 50
+             */
+            capacity: number;
+        };
+        /** BusImport */
+        BusImport: {
+            /** Bus No */
+            bus_no: string;
+            /**
+             * Capacity
+             * @default 50
+             */
+            capacity: number;
+        };
+        /** BusRead */
+        BusRead: {
+            /** Bus No */
+            bus_no: string;
+            /**
+             * Capacity
+             * @default 50
+             */
+            capacity: number;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+        };
+        /**
+         * BusRoute
+         * @description Complete route for one bus
+         */
+        BusRoute: {
+            /**
+             * Bus Id
+             * Format: uuid
+             */
+            bus_id: string;
+            /** Bus No */
+            bus_no: string;
+            /** Capacity */
+            capacity: number;
+            /** Depot Id */
+            depot_id: string;
+            /** Depot Name */
+            depot_name?: string | null;
+            /** Depot Lat */
+            depot_lat: number;
+            /** Depot Lon */
+            depot_lon: number;
+            /** Stops */
+            stops: components["schemas"]["RouteStop"][];
+            /** Geometry */
+            geometry?: number[][] | null;
+            /** Total Students */
+            total_students: number;
+            /** Total Distance Km */
+            total_distance_km: number;
+            /** Total Time Min */
+            total_time_min: number;
+            /** Capacity Utilization */
+            capacity_utilization: number;
+            /**
+             * Warnings
+             * @default []
+             */
+            warnings: string[];
+        };
+        /** BusUpdate */
+        BusUpdate: {
+            /** Bus No */
+            bus_no?: string | null;
+            /** Capacity */
+            capacity?: number | null;
+        };
+        /** BusWithDepot */
+        BusWithDepot: {
+            /** Bus No */
+            bus_no: string;
+            /**
+             * Capacity
+             * @default 50
+             */
+            capacity: number;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Depot Name */
+            depot_name?: string | null;
+        };
+        /** ClusteringSuggestion */
+        ClusteringSuggestion: {
+            /** Stops */
+            stops: components["schemas"]["StopInfo"][];
+            /** Max Distance M */
+            max_distance_m: number;
+        };
+        /** ClusteringSuggestionsResponse */
+        ClusteringSuggestionsResponse: {
+            /** Suggestions */
+            suggestions: components["schemas"]["ClusteringSuggestion"][];
+            /** Threshold M */
+            threshold_m: number;
+            /** Total Groups */
+            total_groups: number;
+        };
+        /** DashboardMatrixInfo */
+        DashboardMatrixInfo: {
+            /** Id */
+            id: string;
+            /** Stop Count */
+            stop_count: number | null;
+            /** Build Time Seconds */
+            build_time_seconds: number | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /** DashboardStop */
+        DashboardStop: {
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /** Lat */
+            lat: number;
+            /** Lon */
+            lon: number;
+        };
+        /** DashboardSummary */
+        DashboardSummary: {
+            /** Stops Count */
+            stops_count: number;
+            /** Buses Count */
+            buses_count: number;
+            /** Depots Count */
+            depots_count: number;
+            /** Demand Records Count */
+            demand_records_count: number;
+            /** Total Students */
+            total_students: number;
+            /** Total Fleet Capacity */
+            total_fleet_capacity: number;
+            latest_matrix: components["schemas"]["DashboardMatrixInfo"] | null;
+            /**
+             * Stops
+             * @default []
+             */
+            stops: components["schemas"]["DashboardStop"][];
+        };
+        /** DemandCreate */
+        DemandCreate: {
+            /**
+             * Stop Id
+             * Format: uuid
+             */
+            stop_id: string;
+            /**
+             * Student Count
+             * @default 0
+             */
+            student_count: number;
+        };
+        /** DemandImport */
+        DemandImport: {
+            /** Stop Code */
+            stop_code: string;
+            /**
+             * Student Count
+             * @default 0
+             */
+            student_count: number;
+        };
+        /** DemandRead */
+        DemandRead: {
+            /**
+             * Stop Id
+             * Format: uuid
+             */
+            stop_id: string;
+            /**
+             * Student Count
+             * @default 0
+             */
+            student_count: number;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+        };
+        /** DemandUpdate */
+        DemandUpdate: {
+            /** Stop Id */
+            stop_id?: string | null;
+            /** Student Count */
+            student_count?: number | null;
+        };
+        /** DemandWithStop */
+        DemandWithStop: {
+            /**
+             * Stop Id
+             * Format: uuid
+             */
+            stop_id: string;
+            /**
+             * Student Count
+             * @default 0
+             */
+            student_count: number;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Stop Name */
+            stop_name?: string | null;
+        };
+        /** DepotCreate */
+        DepotCreate: {
+            /** Name */
+            name: string;
+            /** Lat */
+            lat?: number | null;
+            /** Lon */
+            lon?: number | null;
+        };
+        /** DepotInfo */
+        DepotInfo: {
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /** Lat */
+            lat?: number | null;
+            /** Lon */
+            lon?: number | null;
+        };
+        /** DepotRead */
+        DepotRead: {
+            /** Name */
+            name: string;
+            /** Lat */
+            lat?: number | null;
+            /** Lon */
+            lon?: number | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+        };
+        /** DepotUpdate */
+        DepotUpdate: {
+            /** Name */
+            name?: string | null;
+            /** Lat */
+            lat?: number | null;
+            /** Lon */
+            lon?: number | null;
+        };
+        /** HTTPValidationError */
+        HTTPValidationError: {
+            /** Detail */
+            detail?: components["schemas"]["ValidationError"][];
+        };
+        /** LoginRequest */
+        LoginRequest: {
+            /**
+             * Email
+             * Format: email
+             */
+            email: string;
+            /** Password */
+            password: string;
+        };
+        /** MatrixBuildRequest */
+        MatrixBuildRequest: {
+            /** Stop Ids */
+            stop_ids?: string[] | null;
+        };
+        /** MatrixBuildResponse */
+        MatrixBuildResponse: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Stop Count */
+            stop_count: number;
+            /** Build Time Seconds */
+            build_time_seconds: number;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /** MatrixRead */
+        MatrixRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Matrix Json */
+            matrix_json: {
+                [key: string]: unknown;
+            };
+            /** Stop Count */
+            stop_count?: number | null;
+            /** Build Time Seconds */
+            build_time_seconds?: number | null;
+            /** Stop Ids Json */
+            stop_ids_json?: {
+                [key: string]: unknown;
+            } | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /** RegisterRequest */
+        RegisterRequest: {
+            /**
+             * Email
+             * Format: email
+             */
+            email: string;
+            /** Password */
+            password: string;
+            /** Name */
+            name: string;
+        };
+        /** RouteAnalysisResponse */
+        RouteAnalysisResponse: {
+            latest_matrix?: components["schemas"]["MatrixRead"] | null;
+            /** Stops */
+            stops: components["schemas"]["StopReadMinimal"][];
+            /** Depots */
+            depots: components["schemas"]["DepotInfo"][];
+            clustering: components["schemas"]["ClusteringSuggestionsResponse"];
+        };
+        /**
+         * RouteGenerationReadyResponse
+         * @description Data needed to prepare for a route generation run
+         */
+        RouteGenerationReadyResponse: {
+            /** Stops Count */
+            stops_count: number;
+            /** Buses Count */
+            buses_count: number;
+            /** Demand Records Count */
+            demand_records_count: number;
+            /** Total Students Count */
+            total_students_count: number;
+            /** Total Fleet Capacity */
+            total_fleet_capacity: number;
+            /** Latest Matrix Stop Count */
+            latest_matrix_stop_count?: number | null;
+            /** Has Matrix */
+            has_matrix: boolean;
+        };
+        /**
+         * RouteGenerationRequest
+         * @description Request to run route optimization
+         */
+        RouteGenerationRequest: {
+            /**
+             * Scenario Type
+             * @default strict
+             */
+            scenario_type: string;
+            /** Matrix Id */
+            matrix_id?: string | null;
+            /**
+             * Fuel Cost Per Km
+             * @default 50
+             */
+            fuel_cost_per_km: number;
+            /** Bus Ids */
+            bus_ids?: string[] | null;
+            /** Max Ride Time Min */
+            max_ride_time_min?: number | null;
+            /** Arrival Deadline */
+            arrival_deadline?: string | null;
+            /**
+             * Enable Split Delivery
+             * @default true
+             */
+            enable_split_delivery: boolean;
+        };
+        /**
+         * RoutePlanHistoryResponse
+         * @description Simplified response for the route plans history dashboard
+         */
+        RoutePlanHistoryResponse: {
+            solutions_data: components["schemas"]["RoutePlanListResponse"];
+        };
+        /**
+         * RoutePlanListResponse
+         * @description Response for listing route plans
+         */
+        RoutePlanListResponse: {
+            /** Solutions */
+            solutions: components["schemas"]["RoutePlanSummary"][];
+            /** Count */
+            count: number;
+            /** Limit */
+            limit: number;
+            /** Offset */
+            offset: number;
+        };
+        /**
+         * RoutePlanRead
+         * @description Full route plan response
+         */
+        RoutePlanRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Scenario Type */
+            scenario_type: string;
+            /** Routes */
+            routes: components["schemas"]["BusRoute"][];
+            stats: components["schemas"]["RoutePlanStats"];
+            /** Cost Estimate */
+            cost_estimate: number;
+            /** Fuel Cost Per Km */
+            fuel_cost_per_km: number;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /**
+         * RoutePlanStats
+         * @description Summary statistics for a route plan
+         */
+        RoutePlanStats: {
+            /** Total Buses Used */
+            total_buses_used: number;
+            /** Total Distance Km */
+            total_distance_km: number;
+            /** Total Time Min */
+            total_time_min: number;
+            /** Avg Utilization */
+            avg_utilization: number;
+            /** Total Students Assigned */
+            total_students_assigned: number;
+            /** Total Students Requested */
+            total_students_requested: number;
+            /** Coverage Percentage */
+            coverage_percentage: number;
+            /**
+             * Unassigned Stops
+             * @default []
+             */
+            unassigned_stops: components["schemas"]["UnassignedStop"][];
+            /**
+             * Global Warnings
+             * @default []
+             */
+            global_warnings: string[];
+            /** Solve Time Seconds */
+            solve_time_seconds: number;
+            /** Model Build Time Seconds */
+            model_build_time_seconds: number;
+        };
+        /**
+         * RoutePlanSummary
+         * @description Lightweight summary for listing route plans
+         */
+        RoutePlanSummary: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Scenario Type */
+            scenario_type: string;
+            /** Total Buses */
+            total_buses: number;
+            /** Total Distance Km */
+            total_distance_km: number;
+            /** Total Students */
+            total_students: number;
+            /** Cost Estimate */
+            cost_estimate: number;
+            /** Coverage Percentage */
+            coverage_percentage: number;
+            /** Has Warnings */
+            has_warnings: boolean;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /**
+         * RouteStop
+         * @description A single stop in a bus route sequence
+         */
+        RouteStop: {
+            /**
+             * Stop Id
+             * Format: uuid
+             */
+            stop_id: string;
+            /** Stop Name */
+            stop_name: string;
+            /** Stop Code */
+            stop_code?: string | null;
+            /** Lat */
+            lat: number;
+            /** Lon */
+            lon: number;
+            /** Arrival Time */
+            arrival_time: string;
+            /** Students Boarding */
+            students_boarding: number;
+            /** Cumulative Time Min */
+            cumulative_time_min: number;
+            /** Distance From Prev Km */
+            distance_from_prev_km: number;
+            /** Zone */
+            zone?: string | null;
+            /** Parent Stop Id */
+            parent_stop_id?: string | null;
+            /**
+             * Is Split
+             * @default false
+             */
+            is_split: boolean;
+        };
+        /** StopBulkResponse */
+        StopBulkResponse: {
+            /** Count */
+            count: number;
+        };
+        /** StopCreate */
+        StopCreate: {
+            /** Stop Code */
+            stop_code?: string | null;
+            /** Name */
+            name: string;
+            /** Lat */
+            lat?: number | null;
+            /** Lon */
+            lon?: number | null;
+            /** Locality */
+            locality?: string | null;
+            /** Zone */
+            zone?: string | null;
+            /**
+             * Active
+             * @default true
+             */
+            active: boolean;
+        };
+        /** StopInfo */
+        StopInfo: {
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /** Lat */
+            lat: number;
+            /** Lon */
+            lon: number;
+        };
+        /** StopRead */
+        StopRead: {
+            /** Stop Code */
+            stop_code?: string | null;
+            /** Name */
+            name: string;
+            /** Lat */
+            lat?: number | null;
+            /** Lon */
+            lon?: number | null;
+            /** Locality */
+            locality?: string | null;
+            /** Zone */
+            zone?: string | null;
+            /**
+             * Active
+             * @default true
+             */
+            active: boolean;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+        };
+        /** StopReadMinimal */
+        StopReadMinimal: {
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /** Lat */
+            lat?: number | null;
+            /** Lon */
+            lon?: number | null;
+            /**
+             * Active
+             * @default true
+             */
+            active: boolean;
+        };
+        /** StopUpdate */
+        StopUpdate: {
+            /** Stop Code */
+            stop_code?: string | null;
+            /** Name */
+            name?: string | null;
+            /** Lat */
+            lat?: number | null;
+            /** Lon */
+            lon?: number | null;
+            /** Locality */
+            locality?: string | null;
+            /** Zone */
+            zone?: string | null;
+            /** Active */
+            active?: boolean | null;
+        };
+        /**
+         * UnassignedStop
+         * @description An unassigned stop with reason
+         */
+        UnassignedStop: {
+            /** Stop Id */
+            stop_id: string;
+            /** Name */
+            name: string;
+            /** Reason */
+            reason: string;
+            /** Lat */
+            lat?: number | null;
+            /** Lon */
+            lon?: number | null;
+        };
+        /** UserResponse */
+        UserResponse: {
+            /** Id */
+            id: string;
+            /** Email */
+            email: string;
+            /** Name */
+            name: string | null;
+        };
+        /** ValidationError */
+        ValidationError: {
+            /** Location */
+            loc: (string | number)[];
+            /** Message */
+            msg: string;
+            /** Error Type */
+            type: string;
+        };
+    };
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
 export type $defs = Record<string, never>;
 export interface operations {
-	health_check_health_get: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": unknown;
-				};
-			};
-		};
-	};
-	register_auth_register_post: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["RegisterRequest"];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["AuthResponse"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	login_auth_login_post: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["LoginRequest"];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["AuthResponse"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	get_me_auth_me_get: {
-		parameters: {
-			query?: never;
-			header?: {
-				authorization?: string | null;
-			};
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["UserResponse"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	list_stops_api_stops_get: {
-		parameters: {
-			query?: {
-				zone?: string | null;
-				active?: boolean | null;
-			};
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["StopRead"][];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	create_stop_api_stops_post: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["StopCreate"];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			201: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["StopRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	delete_all_stops_api_stops_delete: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			204: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-		};
-	};
-	get_stop_api_stops__stop_id__get: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				stop_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["StopRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	update_stop_api_stops__stop_id__put: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				stop_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["StopUpdate"];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["StopRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	delete_stop_api_stops__stop_id__delete: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				stop_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			204: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	bulk_create_stops_api_stops_bulk_post: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["StopCreate"][];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			201: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["StopBulkResponse"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	list_buses_api_buses_get: {
-		parameters: {
-			query?: {
-				depot_id?: string | null;
-			};
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["BusWithDepot"][];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	create_bus_api_buses_post: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["BusCreate"];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			201: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["BusRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	delete_all_buses_api_buses_delete: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			204: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-		};
-	};
-	get_bus_api_buses__bus_id__get: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				bus_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["BusRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	update_bus_api_buses__bus_id__put: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				bus_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["BusUpdate"];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["BusRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	delete_bus_api_buses__bus_id__delete: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				bus_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			204: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	bulk_create_buses_api_buses_bulk_post: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["BusImport"][];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			201: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": {
-						[key: string]: unknown;
-					};
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	list_depots_api_depots_get: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["DepotRead"][];
-				};
-			};
-		};
-	};
-	create_depot_api_depots_post: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["DepotCreate"];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			201: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["DepotRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	delete_all_depots_api_depots_delete: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			204: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-		};
-	};
-	get_depot_api_depots__depot_id__get: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				depot_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["DepotRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	update_depot_api_depots__depot_id__put: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				depot_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["DepotUpdate"];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["DepotRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	delete_depot_api_depots__depot_id__delete: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				depot_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			204: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	bulk_create_depots_api_depots_bulk_post: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["DepotCreate"][];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			201: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": {
-						[key: string]: unknown;
-					};
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	list_semesters_api_demand_semesters_get: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": string[];
-				};
-			};
-		};
-	};
-	list_demand_api_demand_get: {
-		parameters: {
-			query?: {
-				semester?: string | null;
-				stop_id?: string | null;
-			};
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["DemandWithStop"][];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	create_demand_api_demand_post: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["DemandCreate"];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			201: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["DemandRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	delete_all_demand_api_demand_delete: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			204: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-		};
-	};
-	get_demand_api_demand__demand_id__get: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				demand_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["DemandRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	update_demand_api_demand__demand_id__put: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				demand_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["DemandUpdate"];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["DemandRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	delete_demand_api_demand__demand_id__delete: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				demand_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			204: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	bulk_create_demand_api_demand_bulk_post: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["DemandImport"][];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			201: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": {
-						[key: string]: unknown;
-					};
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	get_demand_analysis_api_demand_map_analysis_get: {
-		parameters: {
-			query?: {
-				threshold_m?: number;
-			};
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["RouteAnalysisResponse"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	build_demand_matrix_api_demand_map_build_matrix_post: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: {
-			content: {
-				"application/json": components["schemas"]["MatrixBuildRequest"] | null;
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["MatrixBuildResponse"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	get_latest_matrix_api_demand_map_latest_matrix_get: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["MatrixRead"];
-				};
-			};
-		};
-	};
-	get_matrix_api_demand_map_matrix__matrix_id__get: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				matrix_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["MatrixRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	get_dashboard_summary_api_dashboard_summary_get: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["DashboardSummary"];
-				};
-			};
-		};
-	};
-	get_route_generation_ready_api_generate_routes_ready_get: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["RouteGenerationReadyResponse"];
-				};
-			};
-		};
-	};
-	run_route_generation_api_generate_routes_run_post: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				"application/json": components["schemas"]["RouteGenerationRequest"];
-			};
-		};
-		responses: {
-			/** @description Successful Response */
-			201: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["RoutePlanRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	get_route_plan_history_api_routes_history_get: {
-		parameters: {
-			query?: {
-				limit?: number;
-				offset?: number;
-				scenario_type?: string | null;
-			};
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["RoutePlanHistoryResponse"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	list_route_plans_api_routes__get: {
-		parameters: {
-			query?: {
-				limit?: number;
-				offset?: number;
-				scenario_type?: string | null;
-			};
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["RoutePlanListResponse"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	get_latest_route_plan_api_routes_latest_get: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["RoutePlanRead"];
-				};
-			};
-		};
-	};
-	get_route_plan_api_routes__route_plan_id__get: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				route_plan_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["RoutePlanRead"];
-				};
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	delete_route_plan_api_routes__route_plan_id__delete: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				route_plan_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			204: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-			/** @description Validation Error */
-			422: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": components["schemas"]["HTTPValidationError"];
-				};
-			};
-		};
-	};
-	root__get: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Successful Response */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					"application/json": unknown;
-				};
-			};
-		};
-	};
+    health_check_health_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    register_auth_register_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RegisterRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AuthResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    login_auth_login_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LoginRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AuthResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_me_auth_me_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_stops_api_stops_get: {
+        parameters: {
+            query?: {
+                zone?: string | null;
+                active?: boolean | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StopRead"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_stop_api_stops_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StopCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StopRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_all_stops_api_stops_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    get_stop_api_stops__stop_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                stop_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StopRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_stop_api_stops__stop_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                stop_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StopUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StopRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_stop_api_stops__stop_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                stop_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    bulk_create_stops_api_stops_bulk_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StopCreate"][];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StopBulkResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_buses_api_buses_get: {
+        parameters: {
+            query?: {
+                depot_id?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BusWithDepot"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_bus_api_buses_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BusCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BusRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_all_buses_api_buses_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    get_bus_api_buses__bus_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                bus_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BusRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_bus_api_buses__bus_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                bus_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BusUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BusRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_bus_api_buses__bus_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                bus_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    bulk_create_buses_api_buses_bulk_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BusImport"][];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_depots_api_depots_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DepotRead"][];
+                };
+            };
+        };
+    };
+    create_depot_api_depots_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DepotCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DepotRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_all_depots_api_depots_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    get_depot_api_depots__depot_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                depot_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DepotRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_depot_api_depots__depot_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                depot_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DepotUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DepotRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_depot_api_depots__depot_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                depot_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    bulk_create_depots_api_depots_bulk_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DepotCreate"][];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_demand_api_demand_get: {
+        parameters: {
+            query?: {
+                stop_id?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DemandWithStop"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_demand_api_demand_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DemandCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DemandRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_all_demand_api_demand_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    get_demand_api_demand__demand_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                demand_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DemandRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_demand_api_demand__demand_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                demand_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DemandUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DemandRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_demand_api_demand__demand_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                demand_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    bulk_create_demand_api_demand_bulk_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DemandImport"][];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_demand_analysis_api_demand_map_analysis_get: {
+        parameters: {
+            query?: {
+                threshold_m?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RouteAnalysisResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    build_demand_matrix_api_demand_map_build_matrix_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["MatrixBuildRequest"] | null;
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MatrixBuildResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_latest_matrix_api_demand_map_latest_matrix_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MatrixRead"];
+                };
+            };
+        };
+    };
+    get_matrix_api_demand_map_matrix__matrix_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                matrix_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MatrixRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_dashboard_summary_api_dashboard_summary_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DashboardSummary"];
+                };
+            };
+        };
+    };
+    get_route_generation_ready_api_generate_routes_ready_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RouteGenerationReadyResponse"];
+                };
+            };
+        };
+    };
+    run_route_generation_api_generate_routes_run_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RouteGenerationRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoutePlanRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_route_plan_history_api_routes_history_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+                offset?: number;
+                scenario_type?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoutePlanHistoryResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_route_plans_api_routes__get: {
+        parameters: {
+            query?: {
+                limit?: number;
+                offset?: number;
+                scenario_type?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoutePlanListResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_latest_route_plan_api_routes_latest_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoutePlanRead"];
+                };
+            };
+        };
+    };
+    get_route_plan_api_routes__route_plan_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                route_plan_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoutePlanRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_route_plan_api_routes__route_plan_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                route_plan_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    root__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
 }

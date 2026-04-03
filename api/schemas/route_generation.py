@@ -12,7 +12,6 @@ from pydantic import BaseModel, Field
 class RouteGenerationRequest(BaseModel):
     """Request to run route optimization"""
     scenario_type: str = Field(default="strict", pattern="^(strict|suggested)$")
-    semester: str | None = None
     matrix_id: UUID | None = None
     fuel_cost_per_km: float = Field(default=50.0, gt=0)
     bus_ids: list[UUID] | None = None
@@ -118,7 +117,6 @@ class RoutePlanRead(BaseModel):
     
     # Metadata
     created_at: datetime
-    semester: str | None = None
     
     class Config:
         from_attributes = True
@@ -178,7 +176,6 @@ class RouteGenerationErrorResponse(BaseModel):
 
 class RouteGenerationReadyResponse(BaseModel):
     """Data needed to prepare for a route generation run"""
-    semesters: list[str]
     stops_count: int
     buses_count: int
     demand_records_count: int

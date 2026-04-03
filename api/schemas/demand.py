@@ -7,7 +7,6 @@ from pydantic import BaseModel
 class DemandBase(BaseModel):
     stop_id: UUID
     student_count: int = 0
-    semester: str
 
 
 class DemandCreate(DemandBase):
@@ -17,7 +16,6 @@ class DemandCreate(DemandBase):
 class DemandUpdate(BaseModel):
     stop_id: UUID | None = None
     student_count: int | None = None
-    semester: str | None = None
 
 
 class DemandRead(DemandBase):
@@ -28,7 +26,6 @@ class DemandRead(DemandBase):
 
 
 
-
 class DemandWithStop(DemandRead):
     stop_name: str | None = None
 
@@ -36,4 +33,3 @@ class DemandWithStop(DemandRead):
 class DemandImport(BaseModel):
     stop_code: str
     student_count: int = 0
-    semester: str

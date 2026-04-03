@@ -43,8 +43,8 @@ export default function DashboardPage() {
 		buses_count: 0,
 		depots_count: 0,
 		demand_records_count: 0,
+		total_students: 0,
 		total_fleet_capacity: 0,
-		semesters: [],
 		latest_matrix: null,
 		stops: [],
 	};
@@ -72,11 +72,9 @@ export default function DashboardPage() {
 					DASHBOARD
 				</h1>
 				<div className="text-right">
-					<div className="font-bold text-2xl">
-						{s.semesters.length > 0 ? s.semesters[0] : "No Semester"}
-					</div>
+					<div className="font-bold text-2xl">UFOS</div>
 					<div className="text-muted-foreground text-sm uppercase tracking-widest">
-						Active Term
+						Unified Fleet Optimization System
 					</div>
 				</div>
 			</div>
@@ -103,9 +101,9 @@ export default function DashboardPage() {
 				/>
 				<StatCard
 					icon={Database}
-					label="Demand Records"
-					subLabel="Student mappings"
-					value={s.demand_records_count}
+					label="Total Students"
+					subLabel="Demand records"
+					value={s.total_students}
 				/>
 			</div>
 
