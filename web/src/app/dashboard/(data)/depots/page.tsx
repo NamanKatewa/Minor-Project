@@ -3,6 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import type { ColumnDef } from "@tanstack/react-table";
 import { Edit, Loader2, Trash2 } from "lucide-react";
+import dynamic from "next/dynamic";
 import Papa from "papaparse";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
@@ -24,6 +25,13 @@ import { DeleteDepotDialog } from "./_components/delete-depot-dialog";
 import { EditDepotDialog } from "./_components/edit-depot-dialog";
 import { ImportDepotsDialog } from "./_components/import-depots-dialog";
 
+const DepotsMap = dynamic(() => import("~/components/depots-map"), {
+	ssr: false,
+	loading: () => (
+		<div className="h-[400px] w-full animate-pulse rounded-md bg-muted" />
+	),
+});
+
 type DepotRead = components["schemas"]["DepotRead"];
 type DepotCreate = components["schemas"]["DepotCreate"];
 
@@ -35,6 +43,7 @@ interface AugmentedDepot extends DepotCreate {
 
 export default function DepotsDataPage() {
 	const queryClient = useQueryClient();
+	const [selectedDepotId, setSelectedDepotId] = useState<string | null>(null);
 	const [isDeleteAllOpen, setIsDeleteAllOpen] = useState(false);
 	const [depotToDelete, setDepotToDelete] = useState<DepotRead | null>(null);
 	const [depotToEdit, setDepotToEdit] = useState<DepotRead | null>(null);
@@ -278,152 +287,196 @@ export default function DepotsDataPage() {
 		},
 	];
 
+	const mapDepots = useMemo(() => {
+		if (pendingDepots.length > 0) {
+			return validatedPendingDepots
+				.filter((d) => d.lat && d.lon)
+				.map(
+					(d, idx) =>
+						({
+							...d,
+							id: d.id || `temp-${idx}`,
+						}) as unknown as DepotRead,
+				);
+		}
+		return depots;
+	}, [depots, validatedPendingDepots, pendingDepots.length]);
+
 	return (
-		<div className="space-y-6">
+		<div className="flex h-full flex-col space-y-6">
 			<div className="flex items-center justify-between">
 				<h2 className="font-bold text-3xl tracking-tight">Depot Management</h2>
-				<DeleteAllDepotsDialog
-					isDisabled={depots.length === 0}
-					isPending={deleteAllMutation.isPending}
-					onConfirm={() => deleteAllMutation.mutate()}
-					onOpenChange={setIsDeleteAllOpen}
-					open={isDeleteAllOpen}
-				/>
+				<div className="flex gap-2">
+					<DeleteAllDepotsDialog
+						isDisabled={depots.length === 0}
+						isPending={deleteAllMutation.isPending}
+						onConfirm={() => deleteAllMutation.mutate()}
+						onOpenChange={setIsDeleteAllOpen}
+						open={isDeleteAllOpen}
+					/>
 
-				<ImportDepotsDialog
-					isPending={bulkCreateMutation.isPending}
-					onConfirm={confirmImport}
-					onOpenChange={setIsImportConfirmOpen}
-					open={isImportConfirmOpen}
-					totalCount={validatedPendingDepots.length}
-					validCount={
-						validatedPendingDepots.filter((d) => d.validationStatus === "valid")
-							.length
-					}
-				/>
+					<ImportDepotsDialog
+						isPending={bulkCreateMutation.isPending}
+						onConfirm={confirmImport}
+						onOpenChange={setIsImportConfirmOpen}
+						open={isImportConfirmOpen}
+						totalCount={validatedPendingDepots.length}
+						validCount={
+							validatedPendingDepots.filter(
+								(d) => d.validationStatus === "valid",
+							).length
+						}
+					/>
+				</div>
 			</div>
 
-			<div className="flex h-full flex-col space-y-6 overflow-hidden">
-				<Card className="flex-shrink-0">
-					<CardHeader>
-						<CardTitle>Import Depots</CardTitle>
-						<CardDescription>
-							Upload CSV (Header mapping: depot_name, lat, lon)
-						</CardDescription>
-					</CardHeader>
-					<CardContent>
-						{pendingDepots.length === 0 ? (
-							<CsvDropzone
-								description="Drag & drop depot.csv here"
-								onFileSelect={handleDrop}
-							/>
-						) : (
-							<div className="flex items-center justify-between">
-								<p className="text-muted-foreground text-sm">
-									Reviewing {pendingDepots.length} depots. Valid:{" "}
-									{
-										validatedPendingDepots.filter(
-											(d) => d.validationStatus === "valid",
-										).length
-									}
-								</p>
-								<div className="space-x-2">
-									<Button
-										disabled={bulkCreateMutation.isPending}
-										onClick={() => setPendingDepots([])}
-										variant="outline"
-									>
-										Cancel
-									</Button>
-									<Button
-										className="min-w-[140px]"
-										disabled={
+			<div className="grid h-full min-h-0 flex-1 grid-cols-1 gap-6 lg:grid-cols-2">
+				<div className="flex h-full flex-col space-y-6 overflow-hidden">
+					<Card className="flex-shrink-0">
+						<CardHeader>
+							<CardTitle>Import Depots</CardTitle>
+							<CardDescription>
+								Upload CSV (Header mapping: depot_name, lat, lon)
+							</CardDescription>
+						</CardHeader>
+						<CardContent>
+							{pendingDepots.length === 0 ? (
+								<CsvDropzone
+									description="Drag & drop depot.csv here"
+									onFileSelect={handleDrop}
+								/>
+							) : (
+								<div className="flex items-center justify-between">
+									<p className="text-muted-foreground text-sm">
+										Reviewing {pendingDepots.length} depots. Valid:{" "}
+										{
 											validatedPendingDepots.filter(
 												(d) => d.validationStatus === "valid",
-											).length === 0 || bulkCreateMutation.isPending
+											).length
 										}
-										onClick={handleCommit}
-									>
-										{bulkCreateMutation.isPending ? (
-											<>
-												<Loader2 className="mr-2 h-4 w-4 animate-spin" />
-												Importing...
-											</>
-										) : (
-											"Import Valid"
-										)}
-									</Button>
+									</p>
+									<div className="space-x-2">
+										<Button
+											disabled={bulkCreateMutation.isPending}
+											onClick={() => setPendingDepots([])}
+											variant="outline"
+										>
+											Cancel
+										</Button>
+										<Button
+											className="min-w-[140px]"
+											disabled={
+												validatedPendingDepots.filter(
+													(d) => d.validationStatus === "valid",
+												).length === 0 || bulkCreateMutation.isPending
+											}
+											onClick={handleCommit}
+										>
+											{bulkCreateMutation.isPending ? (
+												<>
+													<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+													Importing...
+												</>
+											) : (
+												"Import Valid"
+											)}
+										</Button>
+									</div>
 								</div>
-							</div>
-						)}
-					</CardContent>
-				</Card>
+							)}
+						</CardContent>
+					</Card>
 
-				<Card className="flex min-h-0 flex-1 flex-col overflow-hidden">
-					<CardHeader>
-						<CardTitle>
-							{pendingDepots.length > 0 ? "Review Data" : "Depot List"}
-						</CardTitle>
-						<CardDescription>
-							{pendingDepots.length > 0
-								? "Review depots before importing"
-								: `${depots.length} depots managed`}
-						</CardDescription>
-					</CardHeader>
-					<CardContent className="flex flex-col overflow-hidden">
-						{pendingDepots.length > 0 ? (
-							<Tabs className="flex h-full flex-col" defaultValue="valid">
-								<TabsList>
-									<TabsTrigger value="valid">
-										Valid (
-										{
-											validatedPendingDepots.filter(
+					<Card className="flex min-h-0 flex-1 flex-col overflow-hidden">
+						<CardHeader>
+							<CardTitle>
+								{pendingDepots.length > 0 ? "Review Data" : "Depot List"}
+							</CardTitle>
+							<CardDescription>
+								{pendingDepots.length > 0
+									? "Review depots before importing"
+									: `${depots.length} depots managed`}
+							</CardDescription>
+						</CardHeader>
+						<CardContent className="flex flex-col overflow-hidden">
+							{pendingDepots.length > 0 ? (
+								<Tabs className="flex h-full flex-col" defaultValue="valid">
+									<TabsList>
+										<TabsTrigger value="valid">
+											Valid (
+											{
+												validatedPendingDepots.filter(
+													(d) => d.validationStatus === "valid",
+												).length
+											}
+											)
+										</TabsTrigger>
+										<TabsTrigger value="invalid">
+											Invalid (
+											{
+												validatedPendingDepots.filter(
+													(d) => d.validationStatus !== "valid",
+												).length
+											}
+											)
+										</TabsTrigger>
+									</TabsList>
+									<TabsContent className="flex-1 overflow-hidden" value="valid">
+										<DataTable
+											columns={reviewColumns}
+											containerClassName="h-[400px] overflow-y-auto"
+											data={validatedPendingDepots.filter(
 												(d) => d.validationStatus === "valid",
-											).length
-										}
-										)
-									</TabsTrigger>
-									<TabsTrigger value="invalid">
-										Invalid (
-										{
-											validatedPendingDepots.filter(
+											)}
+											enablePagination={false}
+											getRowId={(row) => row.id}
+											onRowClick={(row) => setSelectedDepotId(row.id)}
+											selectedRowId={selectedDepotId}
+										/>
+									</TabsContent>
+									<TabsContent
+										className="flex-1 overflow-hidden"
+										value="invalid"
+									>
+										<DataTable
+											columns={reviewColumns}
+											containerClassName="h-[400px] overflow-y-auto"
+											data={validatedPendingDepots.filter(
 												(d) => d.validationStatus !== "valid",
-											).length
-										}
-										)
-									</TabsTrigger>
-								</TabsList>
-								<TabsContent className="flex-1 overflow-hidden" value="valid">
-									<DataTable
-										columns={reviewColumns}
-										containerClassName="h-[400px] overflow-y-auto"
-										data={validatedPendingDepots.filter(
-											(d) => d.validationStatus === "valid",
-										)}
-										enablePagination={false}
-									/>
-								</TabsContent>
-								<TabsContent className="flex-1 overflow-hidden" value="invalid">
-									<DataTable
-										columns={reviewColumns}
-										containerClassName="h-[400px] overflow-y-auto"
-										data={validatedPendingDepots.filter(
-											(d) => d.validationStatus !== "valid",
-										)}
-										enablePagination={false}
-									/>
-								</TabsContent>
-							</Tabs>
-						) : (
-							<DataTable
-								columns={columns}
-								containerClassName="h-[450px] overflow-y-auto"
-								data={depots}
-								enablePagination={false}
-								filterColumn="name"
-								isLoading={isLoading}
-							/>
-						)}
+											)}
+											enablePagination={false}
+										/>
+									</TabsContent>
+								</Tabs>
+							) : (
+								<DataTable
+									columns={columns}
+									containerClassName="h-[450px] overflow-y-auto"
+									data={depots}
+									enablePagination={false}
+									filterColumn="name"
+									getRowId={(row) => row.id}
+									isLoading={isLoading}
+									onRowClick={(row) => setSelectedDepotId(row.id)}
+									selectedRowId={selectedDepotId}
+								/>
+							)}
+						</CardContent>
+					</Card>
+				</div>
+
+				<Card className="flex h-full min-h-[500px] flex-col">
+					<CardHeader>
+						<CardTitle>Depot Map</CardTitle>
+						<CardDescription>Visual location of depots</CardDescription>
+					</CardHeader>
+					<CardContent className="relative min-h-0 flex-1 p-0">
+						<DepotsMap
+							className="absolute inset-0 h-full w-full rounded-b-lg"
+							depots={mapDepots}
+							onDepotClick={(depot) => setSelectedDepotId(depot.id)}
+							selectedDepotId={selectedDepotId}
+						/>
 					</CardContent>
 				</Card>
 			</div>

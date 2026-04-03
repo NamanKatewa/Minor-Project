@@ -75,7 +75,9 @@ export default function DemandMapPage() {
 		);
 
 		const stopsAdded = activeStops.filter((s) => !matrixStopIds.has(s.id));
-		const stopsRemoved = [...matrixStopIds].filter((id) => !currentStopIds.has(id));
+		const stopsRemoved = [...matrixStopIds].filter(
+			(id) => !currentStopIds.has(id),
+		);
 
 		// Check depot changes
 		const currentDepotIds = new Set((currentDepots ?? []).map((d) => d.id));
@@ -83,14 +85,22 @@ export default function DemandMapPage() {
 			(latestMatrix.stop_ids_json as { depot_ids?: string[] })?.depot_ids ?? [],
 		);
 
-		const depotsAdded = (currentDepots ?? []).filter((d) => !matrixDepotIds.has(d.id));
-		const depotsRemoved = [...matrixDepotIds].filter((id) => !currentDepotIds.has(id));
+		const depotsAdded = (currentDepots ?? []).filter(
+			(d) => !matrixDepotIds.has(d.id),
+		);
+		const depotsRemoved = [...matrixDepotIds].filter(
+			(id) => !currentDepotIds.has(id),
+		);
 
-		const isStale = stopsAdded.length > 0 || stopsRemoved.length > 0 || depotsAdded.length > 0 || depotsRemoved.length > 0;
+		const isStale =
+			stopsAdded.length > 0 ||
+			stopsRemoved.length > 0 ||
+			depotsAdded.length > 0 ||
+			depotsRemoved.length > 0;
 
-		return { 
-			isStale, 
-			stopsAdded: stopsAdded.length, 
+		return {
+			isStale,
+			stopsAdded: stopsAdded.length,
 			stopsRemoved: stopsRemoved.length,
 			depotsAdded: depotsAdded.length,
 			depotsRemoved: depotsRemoved.length,
@@ -217,10 +227,16 @@ export default function DemandMapPage() {
 						<p className="mt-0.5 text-sm text-yellow-700 dark:text-yellow-300">
 							{staleness.stopsAdded > 0 &&
 								`${staleness.stopsAdded} stop${staleness.stopsAdded !== 1 ? "s" : ""} added`}
-							{staleness.stopsAdded > 0 && (staleness.stopsRemoved > 0 || staleness.depotsAdded > 0 || staleness.depotsRemoved > 0) && ", "}
+							{staleness.stopsAdded > 0 &&
+								(staleness.stopsRemoved > 0 ||
+									staleness.depotsAdded > 0 ||
+									staleness.depotsRemoved > 0) &&
+								", "}
 							{staleness.stopsRemoved > 0 &&
 								`${staleness.stopsRemoved} stop${staleness.stopsRemoved !== 1 ? "s" : ""} removed`}
-							{staleness.depotsAdded > 0 && (staleness.stopsAdded > 0 || staleness.stopsRemoved > 0) && ", "}
+							{staleness.depotsAdded > 0 &&
+								(staleness.stopsAdded > 0 || staleness.stopsRemoved > 0) &&
+								", "}
 							{staleness.depotsAdded > 0 &&
 								`${staleness.depotsAdded} depot${staleness.depotsAdded !== 1 ? "s" : ""} added`}
 							{staleness.depotsAdded > 0 && staleness.depotsRemoved > 0 && ", "}

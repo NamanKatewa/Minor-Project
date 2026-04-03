@@ -74,7 +74,7 @@ export default function DashboardPage() {
 				<div className="text-right">
 					<div className="font-bold text-2xl">UFOS</div>
 					<div className="text-muted-foreground text-sm uppercase tracking-widest">
-						Unified Fleet Optimization System
+						University Fleet Optimization System
 					</div>
 				</div>
 			</div>
