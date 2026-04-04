@@ -1,0 +1,24 @@
+services:
+  # OSRM Engine (Routing Engine)
+  osrm:
+    image: osrm/osrm-backend:v5.27.1
+    volumes:
+      - ./data/osm:/data
+    ports:
+      - "5000:5000"
+    # Points to your ncr.osrm file in data/osm/
+    command: osrm-routed --algorithm mld /data/ncr.osrm --max-table-size 1000
+    restart: always
+
+  # FastAPI Backend (Uses its own .env)
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./api/.env
+    environment:
+      - OSRM_URL=http://osrm:5000
+    depends_on:
+      - osrm
+    restart: always
