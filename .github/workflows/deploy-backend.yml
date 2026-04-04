@@ -21,6 +21,6 @@ jobs:
             cd ~/Minor-Project
             git pull origin main
             # Rebuild only the API container to save time
-            docker-compose up -d --build api
+            docker compose up -d --build api
             # Cleanup old Docker images to save disk space
             docker image prune -f
