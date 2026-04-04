@@ -1,12 +1,13 @@
 services:
-  # OSRM Engine (Routing Engine)
+  # OSRM Engine (Built from source to match your data version)
   osrm:
-    image: osrm/osrm-backend:latest
+    build:
+      context: ./.osrm-backend
+      dockerfile: Dockerfile
     volumes:
       - ./data/osm:/data
     ports:
       - "5000:5000"
-    # Points to your ncr.osrm file in data/osm/
     command: osrm-routed --algorithm mld /data/ncr.osrm --max-table-size 1000
     restart: always
 
