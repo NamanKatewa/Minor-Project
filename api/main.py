@@ -53,16 +53,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(health_router)
-app.include_router(auth_router)
-app.include_router(stops_router)
-app.include_router(buses_router)
-app.include_router(depots_router)
-app.include_router(demand_router)
-app.include_router(demand_map_router)
-app.include_router(dashboard_router)
-app.include_router(generate_routes_router)
-app.include_router(routes_router)
+app.include_router(health_router, prefix="/api")
+app.include_router(auth_router, prefix="/api")
+app.include_router(stops_router, prefix="/api")
+app.include_router(buses_router, prefix="/api")
+app.include_router(depots_router, prefix="/api")
+app.include_router(demand_router, prefix="/api")
+app.include_router(demand_map_router, prefix="/api")
+app.include_router(dashboard_router, prefix="/api")
+app.include_router(generate_routes_router, prefix="/api")
+app.include_router(routes_router, prefix="/api")
 
 
 @app.get("/")
