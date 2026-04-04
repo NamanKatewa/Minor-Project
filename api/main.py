@@ -9,6 +9,8 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 
+#TEST
+
 from config import get_settings
 from database import engine
 from routers import (
