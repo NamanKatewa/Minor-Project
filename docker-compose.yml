@@ -1,7 +1,7 @@
 services:
   # OSRM Engine (Routing Engine)
   osrm:
-    image: osrm/osrm-backend:v5.27.1
+    image: osrm/osrm-backend:latest
     volumes:
       - ./data/osm:/data
     ports:
