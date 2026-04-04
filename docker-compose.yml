@@ -1,9 +1,7 @@
 services:
-  # OSRM Engine (Built from source to match your data version)
+  # OSRM Engine (v6.0.0 to match your data)
   osrm:
-    build:
-      context: ./.osrm-backend
-      dockerfile: Dockerfile
+    image: ghcr.io/project-osrm/osrm-backend:v6.0.0
     volumes:
       - ./data/osm:/data
     ports:
