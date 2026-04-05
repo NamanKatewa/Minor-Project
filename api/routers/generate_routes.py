@@ -18,6 +18,12 @@ from services.optimizer import optimizer_service
 router = APIRouter(prefix="/generate-routes", tags=["generate-routes"])
 
 
+@router.get("/status")
+async def get_optimization_status():
+    """Check if an optimization is currently running."""
+    return {"is_running": await optimizer_service.is_running()}
+
+
 @router.get("/ready", response_model=RouteGenerationReadyResponse)
 async def get_route_generation_ready(session: AsyncSession = Depends(get_db)):
     """

@@ -125,6 +125,7 @@ export const api = {
 				method: "POST",
 				body: JSON.stringify(data),
 			}),
+		status: () => fetcher<{ is_running: boolean }>("/generate-routes/status"),
 	},
 	routes: {
 		history: (limit = 20, offset = 0, scenario_type?: string | null) =>

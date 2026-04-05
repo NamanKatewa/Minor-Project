@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-	"/health": {
+	"/api/health": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -12,7 +12,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/** Health Check */
-		get: operations["health_check_health_get"];
+		get: operations["health_check_api_health_get"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -21,7 +21,7 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
-	"/auth/register": {
+	"/api/auth/register": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -34,14 +34,14 @@ export interface paths {
 		 * Register
 		 * @description Register a new user.
 		 */
-		post: operations["register_auth_register_post"];
+		post: operations["register_api_auth_register_post"];
 		delete?: never;
 		options?: never;
 		head?: never;
 		patch?: never;
 		trace?: never;
 	};
-	"/auth/login": {
+	"/api/auth/login": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -54,14 +54,14 @@ export interface paths {
 		 * Login
 		 * @description Login and get JWT token.
 		 */
-		post: operations["login_auth_login_post"];
+		post: operations["login_api_auth_login_post"];
 		delete?: never;
 		options?: never;
 		head?: never;
 		patch?: never;
 		trace?: never;
 	};
-	"/auth/me": {
+	"/api/auth/me": {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -72,7 +72,7 @@ export interface paths {
 		 * Get Me
 		 * @description Get current user information.
 		 */
-		get: operations["get_me_auth_me_get"];
+		get: operations["get_me_api_auth_me_get"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -413,9 +413,29 @@ export interface paths {
 		/**
 		 * Get Dashboard Summary
 		 * @description Get high-level summary statistics for the dashboard.
-		 *     Optimized to use minimal queries.
+		 *     Unified into a single database call for maximum efficiency.
 		 */
 		get: operations["get_dashboard_summary_api_dashboard_summary_get"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/api/generate-routes/status": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Get Optimization Status
+		 * @description Check if an optimization is currently running.
+		 */
+		get: operations["get_optimization_status_api_generate_routes_status_get"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1279,7 +1299,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-	health_check_health_get: {
+	health_check_api_health_get: {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -1299,7 +1319,7 @@ export interface operations {
 			};
 		};
 	};
-	register_auth_register_post: {
+	register_api_auth_register_post: {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -1332,7 +1352,7 @@ export interface operations {
 			};
 		};
 	};
-	login_auth_login_post: {
+	login_api_auth_login_post: {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -1365,7 +1385,7 @@ export interface operations {
 			};
 		};
 	};
-	get_me_auth_me_get: {
+	get_me_api_auth_me_get: {
 		parameters: {
 			query?: never;
 			header?: {
@@ -2363,6 +2383,26 @@ export interface operations {
 				};
 				content: {
 					"application/json": components["schemas"]["DashboardSummary"];
+				};
+			};
+		};
+	};
+	get_optimization_status_api_generate_routes_status_get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					"application/json": unknown;
 				};
 			};
 		};

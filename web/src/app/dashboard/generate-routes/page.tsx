@@ -66,10 +66,18 @@ export default function GenerateRoutesPage() {
 		queryFn: api.generateRoutes.ready,
 	});
 
+	// Poll backend for optimization status (survives page navigation & refresh)
+	const { data: statusData } = useQuery({
+		queryKey: ["optimization-status"],
+		queryFn: api.generateRoutes.status,
+		refetchInterval: (query) => (query.state.data?.is_running ? 2000 : 10000),
+	});
+
 	const optimizeMutation = useMutation({
 		mutationFn: api.generateRoutes.run,
 		onSuccess: (data) => {
 			setLastError(null);
+			queryClient.invalidateQueries({ queryKey: ["optimization-status"] });
 			queryClient.invalidateQueries({ queryKey: ["routes"] });
 			toast.success(
 				`Route generation complete! Generated ${data.routes.length} routes covering ${data.stats.total_students_assigned} students.`,
@@ -102,6 +110,9 @@ export default function GenerateRoutesPage() {
 			}
 		},
 	});
+
+	const isOptimizing =
+		optimizeMutation.isPending || statusData?.is_running === true;
 
 	const handleOptimize = () => {
 		optimizeMutation.mutate({
@@ -145,7 +156,7 @@ export default function GenerateRoutesPage() {
 			)}
 
 			{/* Optimization Running Warning */}
-			{optimizeMutation.isPending && <OptimizationLoadingWarning />}
+			{isOptimizing && <OptimizationLoadingWarning />}
 
 			{/* Prerequisites Check */}
 			<Card>
@@ -331,18 +342,18 @@ export default function GenerateRoutesPage() {
 									type="checkbox"
 								/>
 								<Label className="text-sm" htmlFor="splitDelivery">
-									Split Delivery (allow stops to use multiple buses)
+									Split Delivery (allow students from the same stop to board different buses)
 								</Label>
 							</div>
 						</div>
 
 						<Button
 							className="w-full gap-2"
-							disabled={!isReady || optimizeMutation.isPending || isLoading}
+							disabled={!isReady || isOptimizing || isLoading}
 							onClick={handleOptimize}
 							size="lg"
 						>
-							{optimizeMutation.isPending ? (
+							{isOptimizing ? (
 								<>
 									<Loader2 className="h-4 w-4 animate-spin" />
 									Optimizing...
