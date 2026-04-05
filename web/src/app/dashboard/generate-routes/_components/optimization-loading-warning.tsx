@@ -11,7 +11,7 @@ export function OptimizationLoadingWarning() {
 					Optimization in progress...
 				</p>
 				<p className="text-blue-700 text-sm">
-					This may take up to 60 seconds. You can navigate away and come back
+					This may take up to 1 hour. You can navigate away and come back
 					later.
 				</p>
 			</div>
