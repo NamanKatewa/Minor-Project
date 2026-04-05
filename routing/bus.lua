@@ -285,7 +285,7 @@ function process_node(profile, node, result, relations)
   local access = find_access_tag(node, profile.access_tags_hierarchy)
   if access then
     if profile.access_tag_blacklist[access] and not profile.restricted_access_tag_list[access] then
-      obstacle_map:add(node, Obstacle.new(obstacle_type.barrier))
+      result.barrier = true
     end
   else
     local barrier = node:get_value_by_key("barrier")
@@ -316,17 +316,12 @@ function process_node(profile, node, result, relations)
                 and not audible_fence
                 and not barrier_penalty
                 or restricted_by_height then
-        obstacle_map:add(node, Obstacle.new(obstacle_type.barrier))
-      end
-
-      if barrier_penalty then
-        obstacle_map:add(node, Obstacle.new(obstacle_type.gate,
-                                            obstacle_direction.both, barrier_penalty, 0))
+        result.barrier = true
       end
     end
   end
 
-  Obstacles.process_node(profile, node)
+  Obstacles.process_node(profile, node, result, relations)
 end
 
 function process_way(profile, way, result, relations)
@@ -382,21 +377,6 @@ end
 function process_turn(profile, turn)
   local turn_penalty = profile.turn_penalty
   local turn_bias = turn.is_left_hand_driving and 1. / profile.turn_bias or profile.turn_bias
-
-  for _, obs in pairs(obstacle_map:get(turn.from, turn.via)) do
-    if obs.type == obstacle_type.stop_minor and not Obstacles.entering_by_minor_road(turn) then
-        goto skip
-    end
-    if turn.number_of_roads == 2
-        and obs.type == obstacle_type.stop
-        and obs.direction == obstacle_direction.none
-        and turn.source_road.distance < 20
-        and turn.target_road.distance > 20 then
-            goto skip
-    end
-    turn.duration = turn.duration + obs.duration
-    ::skip::
-  end
 
   if turn.number_of_roads > 2 or turn.source_mode ~= turn.target_mode or turn.is_u_turn then
     if turn.angle >= 0 then
