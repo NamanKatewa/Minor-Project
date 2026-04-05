@@ -219,7 +219,7 @@ export default function RoutesPage() {
 						getRowId={(row) => row.id}
 						isLoading={isLoading}
 						onRowClick={(row) => router.push(`/dashboard/routes/${row.id}`)}
-						pageSize={20}
+						pageSize={10}
 					/>
 				</CardContent>
 			</Card>

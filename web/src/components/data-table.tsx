@@ -65,6 +65,7 @@ export function DataTable<TData, TValue>({
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = useState({});
+	const [pagination, setPagination] = useState({ pageIndex: 0, pageSize });
 
 	const table = useReactTable({
 		data,
@@ -79,6 +80,7 @@ export function DataTable<TData, TValue>({
 		getFilteredRowModel: getFilteredRowModel(),
 		onColumnVisibilityChange: setColumnVisibility,
 		onRowSelectionChange: setRowSelection,
+		onPaginationChange: enablePagination ? setPagination : undefined,
 		getRowId,
 		enableRowSelection: true,
 		enableMultiRowSelection: false,
@@ -87,7 +89,7 @@ export function DataTable<TData, TValue>({
 			columnFilters,
 			columnVisibility,
 			rowSelection,
-			pagination: enablePagination ? { pageIndex: 0, pageSize } : undefined,
+			...(enablePagination ? { pagination } : {}),
 		},
 	});
 
