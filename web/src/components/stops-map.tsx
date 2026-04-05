@@ -89,22 +89,33 @@ export default function StopsMap({
 			if (mapInstanceRef.current) {
 				mapInstanceRef.current.remove();
 				mapInstanceRef.current = null;
+				markersRef.current = null;
+				layerRef.current = null;
 			}
 		};
-	}, [resolvedTheme]); // Run once on mount (guarded by mapInstanceRef check)
+	}, [resolvedTheme]); // Run once on mount
 
 	// Handle theme changes
 	useEffect(() => {
 		if (!mapInstanceRef.current || !layerRef.current) return;
+
 		const currentFlavor = resolvedTheme === "dark" ? "dark" : "light";
-		if (layerRef.current) {
-			mapInstanceRef.current.removeLayer(layerRef.current);
-		}
+		mapInstanceRef.current.removeLayer(layerRef.current);
+
 		const newLayer = leafletLayer({
 			url: "/tiles/ncr-extended.pmtiles",
 			flavor: currentFlavor,
 		});
 		newLayer.addTo(mapInstanceRef.current);
+
+		// Force the tile layer to the back so it doesn't cover markers
+		const layerWithBack = newLayer as unknown as L.Layer & {
+			bringToBack?: () => void;
+		};
+		if (typeof layerWithBack.bringToBack === "function") {
+			layerWithBack.bringToBack();
+		}
+
 		layerRef.current = newLayer as unknown as L.Layer;
 	}, [resolvedTheme]);
 

@@ -130,3 +130,9 @@
 		@apply bg-background text-foreground;
 	}
 }
+
+/* Fix protomaps-leaflet canvas sub-pixel grid gaps */
+.leaflet-tile-container canvas.leaflet-tile {
+	width: 256.5px;
+	height: 256.5px;
+}

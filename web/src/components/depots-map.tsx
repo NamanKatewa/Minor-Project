@@ -55,7 +55,7 @@ export default function DepotsMap({
 
 		const map = L.map(mapRef.current, {
 			center: NCR_CENTER,
-			zoom: DEFAULT_ZOOM,
+			zoom: zoom,
 			minZoom: 9,
 			maxZoom: 18,
 			maxBounds: NCR_BOUNDS,
@@ -85,22 +85,32 @@ export default function DepotsMap({
 			if (mapInstanceRef.current) {
 				mapInstanceRef.current.remove();
 				mapInstanceRef.current = null;
+				markersRef.current = null;
+				layerRef.current = null;
 			}
 		};
-	}, [resolvedTheme]);
+	}, [resolvedTheme, zoom]); // Run once on mount
 
 	// Handle theme changes
 	useEffect(() => {
 		if (!mapInstanceRef.current || !layerRef.current) return;
 		const currentFlavor = resolvedTheme === "dark" ? "dark" : "light";
-		if (layerRef.current) {
-			mapInstanceRef.current.removeLayer(layerRef.current);
-		}
+
+		mapInstanceRef.current.removeLayer(layerRef.current);
+
 		const newLayer = leafletLayer({
 			url: "/tiles/ncr-extended.pmtiles",
 			flavor: currentFlavor,
 		});
 		newLayer.addTo(mapInstanceRef.current);
+
+		const layerWithBack = newLayer as unknown as L.Layer & {
+			bringToBack?: () => void;
+		};
+		if (typeof layerWithBack.bringToBack === "function") {
+			layerWithBack.bringToBack();
+		}
+
 		layerRef.current = newLayer as unknown as L.Layer;
 	}, [resolvedTheme]);
 

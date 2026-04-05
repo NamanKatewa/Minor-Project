@@ -79,6 +79,8 @@ export default function RoutesMap({
 			if (mapInstanceRef.current) {
 				mapInstanceRef.current.remove();
 				mapInstanceRef.current = null;
+				markersRef.current = null;
+				layerRef.current = null;
 			}
 		};
 	}, [resolvedTheme]);
@@ -88,11 +90,20 @@ export default function RoutesMap({
 		if (!mapInstanceRef.current || !layerRef.current) return;
 		const flavor = resolvedTheme === "dark" ? "dark" : "light";
 		mapInstanceRef.current.removeLayer(layerRef.current);
+
 		const newLayer = leafletLayer({
 			url: "/tiles/ncr-extended.pmtiles",
 			flavor,
 		});
 		newLayer.addTo(mapInstanceRef.current);
+
+		const layerWithBack = newLayer as unknown as L.Layer & {
+			bringToBack?: () => void;
+		};
+		if (typeof layerWithBack.bringToBack === "function") {
+			layerWithBack.bringToBack();
+		}
+
 		layerRef.current = newLayer as unknown as L.Layer;
 	}, [resolvedTheme]);
 
