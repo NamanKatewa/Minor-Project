@@ -9,7 +9,7 @@ from database import get_db
 from models import Depot
 from schemas import DepotCreate, DepotUpdate, DepotRead
 
-router = APIRouter(prefix="/api/depots", tags=["depots"])
+router = APIRouter(prefix="/depots", tags=["depots"])
 
 
 @router.get("", response_model=list[DepotRead])

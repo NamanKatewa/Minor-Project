@@ -16,7 +16,7 @@ from schemas import (
     RoutePlanHistoryResponse,
 )
 
-router = APIRouter(prefix="/api/routes", tags=["routes"])
+router = APIRouter(prefix="/routes", tags=["routes"])
 
 
 @router.get("/history", response_model=RoutePlanHistoryResponse)

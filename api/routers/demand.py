@@ -12,7 +12,7 @@ from sqlalchemy.orm import joinedload
 from models import Demand, Stop
 from schemas import DemandCreate, DemandUpdate, DemandRead, DemandImport, DemandWithStop
 
-router = APIRouter(prefix="/api/demand", tags=["demand"])
+router = APIRouter(prefix="/demand", tags=["demand"])
 
 
 @router.get("", response_model=list[DemandWithStop])

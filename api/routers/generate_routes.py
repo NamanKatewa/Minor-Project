@@ -15,7 +15,7 @@ from schemas import (
 )
 from services.optimizer import optimizer_service
 
-router = APIRouter(prefix="/api/generate-routes", tags=["generate-routes"])
+router = APIRouter(prefix="/generate-routes", tags=["generate-routes"])
 
 
 @router.get("/ready", response_model=RouteGenerationReadyResponse)

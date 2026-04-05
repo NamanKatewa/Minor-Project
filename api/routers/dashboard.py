@@ -6,7 +6,7 @@ from database import get_db
 from models import Stop, Bus, Depot, Demand, DistanceMatrix
 from schemas.dashboard import DashboardSummary, DashboardMatrixInfo, DashboardStop
 
-router = APIRouter(prefix="/api/dashboard", tags=["dashboard"])
+router = APIRouter(prefix="/dashboard", tags=["dashboard"])
 
 @router.get("/summary", response_model=DashboardSummary)
 async def get_dashboard_summary(db: AsyncSession = Depends(get_db)):

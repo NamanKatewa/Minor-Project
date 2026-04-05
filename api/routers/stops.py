@@ -9,7 +9,7 @@ from database import get_db
 from models import Stop
 from schemas import StopCreate, StopUpdate, StopRead, StopBulkResponse
 
-router = APIRouter(prefix="/api/stops", tags=["stops"])
+router = APIRouter(prefix="/stops", tags=["stops"])
 
 
 @router.get("", response_model=list[StopRead])

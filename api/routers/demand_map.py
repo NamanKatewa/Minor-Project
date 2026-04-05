@@ -25,7 +25,7 @@ from services.osrm import osrm_service
 from services.clustering import find_clusters
 
 logger = logging.getLogger(__name__)
-router = APIRouter(prefix="/api/demand-map", tags=["demand-map"])
+router = APIRouter(prefix="/demand-map", tags=["demand-map"])
 
 
 @router.get("/analysis", response_model=RouteAnalysisResponse)

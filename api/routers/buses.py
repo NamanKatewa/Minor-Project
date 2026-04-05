@@ -9,7 +9,7 @@ from database import get_db
 from models import Bus
 from schemas import BusCreate, BusUpdate, BusRead, BusImport, BusWithDepot
 
-router = APIRouter(prefix="/api/buses", tags=["buses"])
+router = APIRouter(prefix="/buses", tags=["buses"])
 
 
 @router.get("", response_model=list[BusWithDepot])
