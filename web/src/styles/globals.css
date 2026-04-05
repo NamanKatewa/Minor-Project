@@ -131,8 +131,17 @@
 	}
 }
 
-/* Fix protomaps-leaflet canvas sub-pixel grid gaps */
-.leaflet-tile-container canvas.leaflet-tile {
-	width: 256.5px;
-	height: 256.5px;
+/* Fix protomaps-leaflet canvas sub-pixel grid gaps (high-DPI safe) */
+.leaflet-tile-container {
+	will-change: transform;
+	backface-visibility: hidden;
+}
+
+.leaflet-tile-pane {
+	mix-blend-mode: plus-lighter;
+}
+
+.leaflet-tile {
+	outline: 1px solid transparent;
+	backface-visibility: hidden;
 }

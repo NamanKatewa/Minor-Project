@@ -58,6 +58,8 @@ export default function ClusterMap({
 	const layerRef = useRef<L.Layer | null>(null);
 	const markersRef = useRef<L.LayerGroup | null>(null);
 	const { resolvedTheme } = useTheme();
+	const themeRef = useRef(resolvedTheme);
+	themeRef.current = resolvedTheme;
 
 	// Initialize map
 	useEffect(() => {
@@ -74,13 +76,18 @@ export default function ClusterMap({
 			preferCanvas: true,
 		});
 
+		// Dedicated pane for basemap tiles — z-index below markers (default 600)
+		const basemapPane = map.createPane("basemap");
+		basemapPane.style.zIndex = "200";
+
 		mapInstanceRef.current = map;
 		markersRef.current = L.layerGroup().addTo(map);
 
-		const initialFlavor = resolvedTheme === "dark" ? "dark" : "light";
+		const initialFlavor = themeRef.current === "dark" ? "dark" : "light";
 		const layer = leafletLayer({
 			url: "/tiles/ncr-extended.pmtiles",
 			flavor: initialFlavor,
+			pane: "basemap",
 		});
 		layer.addTo(map);
 		layerRef.current = layer as unknown as L.Layer;
@@ -93,9 +100,9 @@ export default function ClusterMap({
 				layerRef.current = null;
 			}
 		};
-	}, [resolvedTheme]);
+	}, []);
 
-	// Theme changes
+	// Theme changes — only swap the tile layer, never rebuild the map
 	useEffect(() => {
 		if (!mapInstanceRef.current || !layerRef.current) return;
 		const flavor = resolvedTheme === "dark" ? "dark" : "light";
@@ -104,15 +111,9 @@ export default function ClusterMap({
 		const newLayer = leafletLayer({
 			url: "/tiles/ncr-extended.pmtiles",
 			flavor,
+			pane: "basemap",
 		});
 		newLayer.addTo(mapInstanceRef.current);
-
-		const layerWithBack = newLayer as unknown as L.Layer & {
-			bringToBack?: () => void;
-		};
-		if (typeof layerWithBack.bringToBack === "function") {
-			layerWithBack.bringToBack();
-		}
 
 		layerRef.current = newLayer as unknown as L.Layer;
 	}, [resolvedTheme]);
@@ -223,11 +224,18 @@ export default function ClusterMap({
 	return (
 		<div className={`relative ${className}`}>
 			<style>{`
-				.leaflet-container { z-index: 0; }
+				.leaflet-container { z-index: 0; position: relative; }
+				.leaflet-pane.leaflet-basemap-pane { z-index: 200 !important; }
 				.leaflet-marker-icon,
 				.leaflet-marker-shadow,
 				.leaflet-zoom-animated {
 					transition: none !important;
+				}
+				.leaflet-tile-container canvas {
+					width: 257px !important;
+					height: 257px !important;
+					margin-right: -1px;
+					margin-bottom: -1px;
 				}
 			`}</style>
 			<div

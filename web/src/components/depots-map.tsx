@@ -43,6 +43,8 @@ export default function DepotsMap({
 	const layerRef = useRef<L.Layer | null>(null);
 	const markersRef = useRef<L.LayerGroup | null>(null);
 	const { resolvedTheme } = useTheme();
+	const themeRef = useRef(resolvedTheme);
+	themeRef.current = resolvedTheme;
 
 	const markerRegistry = useRef<Map<string, L.CircleMarker | L.Marker>>(
 		new Map(),
@@ -55,7 +57,7 @@ export default function DepotsMap({
 
 		const map = L.map(mapRef.current, {
 			center: NCR_CENTER,
-			zoom: zoom,
+			zoom: DEFAULT_ZOOM,
 			minZoom: 9,
 			maxZoom: 18,
 			maxBounds: NCR_BOUNDS,
@@ -64,6 +66,10 @@ export default function DepotsMap({
 			preferCanvas: true,
 		});
 
+		// Dedicated pane for basemap tiles — z-index below markers (default 600)
+		const basemapPane = map.createPane("basemap");
+		basemapPane.style.zIndex = "200";
+
 		map.on("zoomend", () => {
 			setZoom(map.getZoom());
 		});
@@ -71,10 +77,11 @@ export default function DepotsMap({
 		mapInstanceRef.current = map;
 		markersRef.current = L.layerGroup().addTo(map);
 
-		const initialFlavor = resolvedTheme === "dark" ? "dark" : "light";
+		const initialFlavor = themeRef.current === "dark" ? "dark" : "light";
 		const layer = leafletLayer({
 			url: "/tiles/ncr-extended.pmtiles",
 			flavor: initialFlavor,
+			pane: "basemap",
 		});
 
 		layer.addTo(map);
@@ -89,9 +96,9 @@ export default function DepotsMap({
 				layerRef.current = null;
 			}
 		};
-	}, [resolvedTheme, zoom]); // Run once on mount
+	}, []); // Mount once — theme changes handled by separate effect
 
-	// Handle theme changes
+	// Handle theme changes — only swap the tile layer, never rebuild the map
 	useEffect(() => {
 		if (!mapInstanceRef.current || !layerRef.current) return;
 		const currentFlavor = resolvedTheme === "dark" ? "dark" : "light";
@@ -101,15 +108,9 @@ export default function DepotsMap({
 		const newLayer = leafletLayer({
 			url: "/tiles/ncr-extended.pmtiles",
 			flavor: currentFlavor,
+			pane: "basemap",
 		});
 		newLayer.addTo(mapInstanceRef.current);
-
-		const layerWithBack = newLayer as unknown as L.Layer & {
-			bringToBack?: () => void;
-		};
-		if (typeof layerWithBack.bringToBack === "function") {
-			layerWithBack.bringToBack();
-		}
 
 		layerRef.current = newLayer as unknown as L.Layer;
 	}, [resolvedTheme]);
@@ -267,9 +268,16 @@ export default function DepotsMap({
 			className={`relative h-full w-full ${className} ${zoom < 13 ? "hide-tooltips" : ""}`}
 		>
 			<style>{`
-            .leaflet-container { z-index: 0; }
+            .leaflet-container { z-index: 0; position: relative; }
+            .leaflet-pane.leaflet-basemap-pane { z-index: 200 !important; }
             .hide-tooltips .leaflet-tooltip { display: none !important; }
 			.leaflet-marker-icon, .leaflet-marker-shadow, .leaflet-zoom-animated { transition: none !important; }
+			.leaflet-tile-container canvas {
+				width: 257px !important;
+				height: 257px !important;
+				margin-right: -1px;
+				margin-bottom: -1px;
+			}
         `}</style>
 			<div
 				className="h-full w-full rounded-md border"
