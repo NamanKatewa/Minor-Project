@@ -342,7 +342,8 @@ export default function GenerateRoutesPage() {
 									type="checkbox"
 								/>
 								<Label className="text-sm" htmlFor="splitDelivery">
-									Split Delivery (allow students from the same stop to board different buses)
+									Split Delivery (allow students from the same stop to board
+									different buses)
 								</Label>
 							</div>
 						</div>

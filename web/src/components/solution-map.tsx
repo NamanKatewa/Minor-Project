@@ -188,7 +188,13 @@ export default function RoutesMap({
 			}
 		>();
 
+		const hasSelection =
+			selectedRouteIndex !== null && selectedRouteIndex !== undefined;
+
 		routes.forEach((route, idx) => {
+			// When a route is selected, only collect stops from that route
+			if (hasSelection && selectedRouteIndex !== idx) return;
+
 			let stopPosition = 0;
 			route.stops.forEach((stop) => {
 				const key = stop.parent_stop_id || String(stop.stop_id);
@@ -247,30 +253,32 @@ export default function RoutesMap({
 			markersRef.current?.addLayer(stopMarker);
 		});
 
-		// Render Unassigned Stops
-		unassignedStops.forEach((stop) => {
-			if (stop.lat && stop.lon) {
-				const unassignedMarker = L.circleMarker([stop.lat, stop.lon], {
-					radius: 5,
-					fillColor: "#6b7280", // Gray-500
-					color: "#fff",
-					weight: 1,
-					opacity: 0.8,
-					fillOpacity: 0.6,
-				});
+		// Render Unassigned Stops (only in overview, not when a route is selected)
+		if (!hasSelection) {
+			unassignedStops.forEach((stop) => {
+				if (stop.lat && stop.lon) {
+					const unassignedMarker = L.circleMarker([stop.lat, stop.lon], {
+						radius: 5,
+						fillColor: "#6b7280", // Gray-500
+						color: "#fff",
+						weight: 1,
+						opacity: 0.8,
+						fillOpacity: 0.6,
+					});
 
-				unassignedMarker.bindTooltip(
-					`<b>${stop.name} (Unassigned)</b><br>${stop.reason}`,
-					{
-						direction: "top",
-						className:
-							"bg-background text-foreground border shadow-sm px-2 py-1 rounded text-xs",
-					},
-				);
+					unassignedMarker.bindTooltip(
+						`<b>${stop.name} (Unassigned)</b><br>${stop.reason}`,
+						{
+							direction: "top",
+							className:
+								"bg-background text-foreground border shadow-sm px-2 py-1 rounded text-xs",
+						},
+					);
 
-				markersRef.current?.addLayer(unassignedMarker);
-			}
-		});
+					markersRef.current?.addLayer(unassignedMarker);
+				}
+			});
+		}
 	}, [routes, unassignedStops, selectedRouteIndex, onRouteSelect]);
 
 	// Fly to selected route
